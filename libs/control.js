@@ -3269,7 +3269,7 @@ control.prototype._doResize = function (obj) {
 control.prototype.resize = function () {
     if (main.mode == 'editor') return;
     var clientWidth = main.dom.body.clientWidth, clientHeight = main.dom.body.clientHeight;
-    var BORDER = 3;
+    var BORDER = 0;
     var extendToolbar = core.flags.extendToolbar;
     let hideLeftStatusBar = core.flags.hideLeftStatusBar;
     var BAR_WIDTH = hideLeftStatusBar ? 0 : Math.round(core._PY_ * 0.31);
@@ -3297,7 +3297,7 @@ control.prototype.resize = function () {
         core.domStyle.availableScale = [];
         extendToolbar = false;
         hideLeftStatusBar = false;
-        BAR_WIDTH = Math.round(core._PX_ * 0.3);
+        BAR_WIDTH = 0//Math.round(core._PX_ * 0.3);
     }
 
     var statusDisplayArr = this._shouldDisplayStatus(), count = statusDisplayArr.length;
@@ -3314,16 +3314,16 @@ control.prototype.resize = function () {
         clientHeight: clientHeight,
         BORDER: BORDER,
         BAR_WIDTH: BAR_WIDTH,
-        TOOLBAR_HEIGHT: 38,
+        TOOLBAR_HEIGHT: 0,
         outerWidth: core._PX_ * core.domStyle.scale + 2 * BORDER,
         outerHeight: core._PY_ * core.domStyle.scale + 2 * BORDER,
         globalAttribute: globalAttribute,
-        border: '3px ' + core.arrayToRGBA(globalAttribute.borderColor) + ' solid',
+        border: '0px ' + core.arrayToRGBA(globalAttribute.borderColor) + ' solid',
         statusDisplayArr: statusDisplayArr,
         count: count,
         col: col,
-        statusBarHeightInVertical: core.domStyle.isVertical ? (32 * col + 6) * core.domStyle.scale + 2 * BORDER : 0,
-        toolbarHeightInVertical: core.domStyle.isVertical ? 38 * core.domStyle.scale + 2 * BORDER : 0,
+        statusBarHeightInVertical: 0,//core.domStyle.isVertical ? (32 * col + 6) * core.domStyle.scale + 2 * BORDER : 0,
+        toolbarHeightInVertical: 0,//core.domStyle.isVertical ? 38 * core.domStyle.scale + 2 * BORDER : 0,
         extendToolbar: extendToolbar,
         is15x15: false,
         hideLeftStatusBar
@@ -3332,6 +3332,7 @@ control.prototype.resize = function () {
     this._doResize(obj);
     this.setToolbarButton();
     core.updateStatusBar();
+    core.AllSprites();
 }
 
 control.prototype._resize_gameGroup = function (obj) {
@@ -3353,7 +3354,7 @@ control.prototype._resize_gameGroup = function (obj) {
     }
     gameGroup.style.width = totalWidth + "px";
     gameGroup.style.height = totalHeight + "px";
-    gameGroup.style.left = (obj.clientWidth - totalWidth) / 2 + "px";
+    gameGroup.style.left = (obj.clientWidth - totalWidth) / 2-((main.replayChecking || !core.status.played||core.domStyle.isVertical)?0:48) + "px";
     gameGroup.style.top = (obj.clientHeight - totalHeight) / 2 + "px";
     // floorMsgGroup
     var floorMsgGroup = core.dom.floorMsgGroup;

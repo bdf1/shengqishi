@@ -348,7 +348,7 @@ main.floors.sample1=
                 "operator": "+=",
                 "value": "10*(status:atk+status:def)"
             },
-            "\t[老人,man]\b[this]再送你500金币，1000经验，1破2炸3飞！",
+            "\t[老人,man]\b[this]再送你500金币，200经验，1破2炸3飞！",
             {
                 "type": "setValue",
                 "name": "status:money",
@@ -359,7 +359,7 @@ main.floors.sample1=
                 "type": "setValue",
                 "name": "status:exp",
                 "operator": "+=",
-                "value": "1000"
+                "value": "200"
             },
             {
                 "type": "setValue",
@@ -626,5 +626,6 @@ main.floors.sample1=
     },
     "width": 13,
     "height": 13,
-    "beforeBattle": {}
+    "beforeBattle": {},
+    "cannotMoveIn": {}
 }

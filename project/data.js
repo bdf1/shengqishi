@@ -5,14 +5,56 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"sample0",
 			"sample1",
 			"sample2",
-			"MT0"
+			"MT0",
+			"MT1",
+			"MT2"
 		],
 		"floorPartitions": [],
 		"images": [
+			"0.png",
+			"1.png",
+			"2.png",
+			"3.png",
+			"4.png",
+			"5.png",
+			"6.png",
+			"7.png",
+			"8.png",
+			"9.png",
+			"Actor05-Strange05.png",
+			"Star.png",
+			"a.png",
+			"atk.png",
+			"atk2.png",
+			"b.png",
+			"backg.png",
+			"backl.png",
+			"backl2.png",
+			"backw.png",
 			"bear.png",
 			"bg.jpg",
+			"box1.png",
+			"box1Light.png",
+			"box2.png",
+			"box2Light.png",
+			"boxLight.png",
+			"brave.png",
+			"c.png",
+			"def.png",
+			"def2.png",
 			"dragon.png",
+			"exp.png",
+			"expL.png",
+			"expLt.png",
 			"hero.png",
+			"hp.png",
+			"key.png",
+			"lv.png",
+			"mana.png",
+			"manaL.png",
+			"manaLt.png",
+			"mdef.png",
+			"money.png",
 			"winskin.png"
 		],
 		"tilesets": [
@@ -121,7 +163,11 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		],
 		"equipName": [
 			"武器",
-			"盾牌"
+			"盾牌",
+			"饰品",
+			"饰品",
+			"饰品",
+			"饰品"
 		],
 		"startBgm": null,
 		"styles": {
@@ -132,16 +178,17 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"statusLeftBackground": "url(project/materials/ground.png) repeat",
 			"statusTopBackground": "url(project/materials/ground.png) repeat",
 			"toolsBackground": "black",
-			"borderColor": [
-				0,
-				0,
-				0,
-				1
-			],
+			"floorChangingStyle": "background-color: black; color: white",
 			"statusBarColor": [
 				255,
 				255,
 				255,
+				1
+			],
+			"borderColor": [
+				0,
+				0,
+				0,
 				1
 			],
 			"selectColor": [
@@ -150,8 +197,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				0,
 				1
 			],
-			"floorChangingStyle": "background-color: black; color: white",
-			"font": "Verdana"
+			"font": "Zpix"
 		},
 		"splitImages": [
 			{
@@ -165,8 +211,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 	"firstData": {
 		"title": "魔塔样板",
 		"name": "template",
-		"version": "Ver 2.10.3",
-		"floorId": "sample0",
+		"version": "Ver 2.10.0",
+		"floorId": "MT2",
 		"hero": {
 			"image": "hero.png",
 			"animate": false,
@@ -174,8 +220,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"lv": 1,
 			"hpmax": 9999,
 			"hp": 1000,
-			"manamax": -1,
-			"mana": 0,
+			"manamax": 100,
+			"mana": 90,
 			"atk": 100,
 			"def": 100,
 			"mdef": 0,
@@ -189,12 +235,14 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			},
 			"loc": {
 				"direction": "up",
-				"x": 6,
-				"y": 10
+				"x": 7,
+				"y": 11
 			},
 			"flags": {},
 			"followers": [],
-			"steps": 0
+			"steps": 0,
+			"atk2": 0,
+			"def2": 10
 		},
 		"startCanvas": [
 			{
@@ -550,11 +598,21 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		],
 		"startText": [
 			{
+				"type": "function",
+				"function": "function(){\nflags._statusgry_ =100;core.createSpr0();core.createSprBack();\n}"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('book')\n}"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('fly')\n}"
+			},
+			{
 				"type": "comment",
 				"text": "初始剧情"
-			},
-			"Hi，欢迎来到 HTML5 魔塔样板！\n\n本样板由艾之葵制作，可以让你在不会写任何代码\n的情况下也能做出属于自己的H5魔塔！",
-			"这里游戏开始时的剧情。\n\n你可以在这里写上自己的内容。\n赶快来试一试吧！"
+			}
 		],
 		"shops": [
 			{
@@ -706,6 +764,42 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				]
 			},
 			{
+				"need": "100",
+				"title": "",
+				"action": [
+					{
+						"type": "setValue",
+						"name": "status:atk",
+						"operator": "+=",
+						"value": "10"
+					},
+					{
+						"type": "setValue",
+						"name": "status:def",
+						"operator": "+=",
+						"value": "10"
+					}
+				]
+			},
+			{
+				"need": "1000",
+				"title": "",
+				"action": [
+					{
+						"type": "setValue",
+						"name": "status:atk",
+						"operator": "+=",
+						"value": "10"
+					},
+					{
+						"type": "setValue",
+						"name": "status:def",
+						"operator": "+=",
+						"value": "10"
+					}
+				]
+			},
+			{
 				"need": "40",
 				"title": "",
 				"action": [
@@ -735,7 +829,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"animateSpeed": 300,
 		"moveSpeed": 100,
 		"statusCanvasRowsOnMobile": 3,
-		"floorChangeTime": 100
+		"floorChangeTime": 0
 	},
 	"flags": {
 		"statusBarItems": [
@@ -748,6 +842,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"enableMDef",
 			"enableMoney",
 			"enableExp",
+			"enableLevelUp",
+			"levelUpLeftMode",
 			"enableKeys",
 			"enablePZF",
 			"enableSkill"

@@ -186,7 +186,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"itemEffectTip": "，攻击+40"
 	},
 	"sword4": {
-		"cls": "items",
+		"cls": "equips",
 		"name": "圣剑",
 		"text": "一把很普通的圣剑",
 		"equip": {
@@ -266,7 +266,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"itemEffectTip": "，防御+40"
 	},
 	"shield4": {
-		"cls": "items",
+		"cls": "equips",
 		"name": "圣盾",
 		"text": "一个很普通的圣盾",
 		"equip": {
@@ -324,26 +324,46 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"text": "持有时打败怪物可得双倍金币"
 	},
 	"freezeBadge": {
-		"cls": "constants",
+		"cls": "equips",
 		"name": "冰冻徽章",
 		"text": "可以将面前的熔岩变成平地",
 		"useItemEffect": "(function () {\n\tvar success = false;\n\n\tvar snowFourDirections = false; // 是否多方向雪花；如果是将其改成true\n\tif (snowFourDirections) {\n\t\t// 多方向雪花\n\t\tfor (var direction in core.utils.scan) { // 多方向雪花默认四方向，如需改为八方向请将这两个scan改为scan2\n\t\t\tvar delta = core.utils.scan[direction];\n\t\t\tvar nx = core.getHeroLoc('x') + delta.x,\n\t\t\t\tny = core.getHeroLoc('y') + delta.y;\n\t\t\tif (core.getBlockId(nx, ny) == 'lava') {\n\t\t\t\tcore.removeBlock(nx, ny);\n\t\t\t\tsuccess = true;\n\t\t\t}\n\t\t}\n\t} else {\n\t\tif (core.getBlockId(core.nextX(), core.nextY()) == 'lava') {\n\t\t\tcore.removeBlock(core.nextX(), core.nextY());\n\t\t\tsuccess = true;\n\t\t}\n\t}\n\n\tif (success) {\n\t\tcore.playSound('打开界面');\n\t\tcore.drawTip(core.material.items[itemId].name + '使用成功', itemId);\n\t} else {\n\t\tcore.playSound('操作失败');\n\t\tcore.drawTip(\"当前无法使用\" + core.material.items[itemId].name, itemId);\n\t\tcore.addItem(itemId, 1);\n\t\treturn;\n\t}\n})();",
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "true",
+		"equip": {
+			"type": "饰品",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"cross": {
-		"cls": "constants",
+		"cls": "equips",
 		"name": "十字架",
-		"text": "持有后无视怪物的无敌属性"
+		"text": "持有后无视怪物的无敌属性",
+		"equip": {
+			"type": "饰品",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"dagger": {
-		"cls": "constants",
+		"cls": "equips",
 		"name": "屠龙匕首",
-		"text": "该道具尚未被定义"
+		"text": "该道具尚未被定义",
+		"equip": {
+			"type": "饰品",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"amulet": {
-		"cls": "constants",
+		"cls": "equips",
 		"name": "护符",
-		"text": "持有时无视负面地形"
+		"text": "持有时无视负面地形",
+		"equip": {
+			"type": "饰品",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"bigKey": {
 		"cls": "tools",
@@ -386,7 +406,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"centerFly": {
-		"cls": "tools",
+		"cls": "constants",
 		"name": "中心对称飞行器",
 		"text": "可以飞向当前楼层中心对称的位置",
 		"useItemEffect": "core.playSound('centerFly.mp3');\ncore.clearMap('hero');\ncore.setHeroLoc('x', core.bigmap.width - 1 - core.getHeroLoc('x'));\ncore.setHeroLoc('y', core.bigmap.height - 1 - core.getHeroLoc('y'));\ncore.drawHero();\ncore.drawTip(core.material.items[itemId].name + '使用成功');",
@@ -505,11 +525,16 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"jumpShoes": {
-		"cls": "tools",
+		"cls": "equips",
 		"name": "跳跃靴",
 		"text": "能跳跃到前方两格处",
 		"useItemEffect": "core.playSound(\"跳跃\");\ncore.insertAction({ \"type\": \"jumpHero\", \"loc\": [core.nextX(2), core.nextY(2)] });",
-		"canUseItemEffect": "(function () {\n\tvar nx = core.nextX(2),\n\t\tny = core.nextY(2);\n\treturn nx >= 0 && nx < core.bigmap.width && ny >= 0 && ny < core.bigmap.height && core.getBlockId(nx, ny) == null;\n})();"
+		"canUseItemEffect": "(function () {\n\tvar nx = core.nextX(2),\n\t\tny = core.nextY(2);\n\treturn nx >= 0 && nx < core.bigmap.width && ny >= 0 && ny < core.bigmap.height && core.getBlockId(nx, ny) == null;\n})();",
+		"equip": {
+			"type": "饰品",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"skill1": {
 		"cls": "constants",

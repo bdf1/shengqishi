@@ -13,16 +13,16 @@ main.floors.sample0=
     "map": [
     [  0,  0,220,  0,  0, 20, 87,  3, 58, 59, 60, 61, 64],
     [  0,246,  0,246,  0, 20,  0,  3, 57, 72, 63, 43, 44],
-    [219,  0,  0,  0,219, 20,  0,  3, 53, 54, 55, 56, 69],
-    [ 20, 20,125, 20, 20, 20,  0,  3, 49, 50, 51, 52, 68],
-    [251,247,256,234,248,  6,  0,  3, 35, 36, 46, 47, 48],
-    [  6,  6,125,  6,  6,  6,  0,  3,  0,  0,  0,  0,  0],
-    [208,227,212,216,278,  5,  0,  1,  1,  1,319,  1,  1],
-    [201,205,217,215,224,  5,  0,  1, 27, 28, 29, 30, 31],
-    [  5,  5,125,  5,  5,  5,  0,  1, 21, 22, 23, 24, 26],
+    [219,  0,  0,  0,219, 20, 54,  3, 53, 54, 55, 56, 69],
+    [ 20, 20,125, 20, 20, 20, 69,  3, 49, 50, 51, 52, 68],
+    [251,247,256,234,248,  6, 62,  3, 35, 36, 46, 47, 48],
+    [  6,  6,125,  6,  6,  6, 55,  3,  0,  0,  0,  0,  0],
+    [208,227,212,216,278,  5, 64,  1,  1,  1,319,  1,  1],
+    [201,205,217,215,224,  5, 42,  1, 27, 28, 29, 30, 31],
+    [  5,  5,125,  5,  5,  5, 41,  1, 21, 22, 23, 24, 26],
     [  0,  0,263,  0,  0,  0, 45,  1,  1,  1,121,  1,  1],
-    [  4,  4,133,  4,  4,  4,  0,  0,  0,  0,  0, 85,124],
-    [ 87, 11, 12, 13, 14,  4,  4,  2,  2,122,  2,  2,  2],
+    [  4,  4,133,  4,  4,10303,  0,  0,  0,  0,  0, 85,124],
+    [ 87, 11, 12, 13, 14,10303,10303,125,125,125,  2,  2,  2],
     [ 88, 89, 90, 91, 92, 93, 94,  2, 81, 82, 83, 84, 86]
 ],
     "firstArrive": [
@@ -84,11 +84,107 @@ main.floors.sample0=
             }
         ],
         "9,11": [
-            "\t[老人,trader]\b[this]这些是门，需要对应的钥匙打开。\n机关门必须使用特殊的开法。",
-            "\t[老人,trader]\b[this]开门后可触发 afterOpenDoor 事件。\n\n有关事件的各种信息在下一层会有更为详细的说明。",
             {
-                "type": "hide",
-                "time": 500
+                "type": "choices",
+                "text": "\t[执杖伯伯]换个背景",
+                "choices": [
+                    {
+                        "text": "透明+0.1",
+                        "need": "!flags._backalp_||flags._backalp_>0.1",
+                        "action": [
+                            {
+                                "type": "function",
+                                "function": "function(){\nflags._backalp_= flags._backalp_- 0.1 || 0.4;core.createSprBack();\n}"
+                            },
+                            {
+                                "type": "insert",
+                                "loc": [
+                                    9,
+                                    11
+                                ],
+                                "floorId": "sample0"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "透明-0.1",
+                        "need": "!flags._backalp_||flags._backalp_<0.9",
+                        "action": [
+                            {
+                                "type": "function",
+                                "function": "function(){\nflags._backalp_= flags._backalp_+ 0.1 || 0.6;core.createSprBack();\n}"
+                            },
+                            {
+                                "type": "insert",
+                                "loc": [
+                                    9,
+                                    11
+                                ],
+                                "floorId": "sample0"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "去掉星空",
+                        "condition": "!flags.starOff",
+                        "action": [
+                            {
+                                "type": "function",
+                                "function": "function(){\nflags.starOff=true\n}"
+                            },
+                            {
+                                "type": "function",
+                                "function": "function(){\ncore.createSprBack();\n}"
+                            },
+                            {
+                                "type": "insert",
+                                "loc": [
+                                    9,
+                                    11
+                                ],
+                                "floorId": "sample0"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "加上星空",
+                        "condition": "flags.starOff",
+                        "action": [
+                            {
+                                "type": "function",
+                                "function": "function(){\nflags.starOff=false\n}"
+                            },
+                            {
+                                "type": "function",
+                                "function": "function(){\ncore.createSprBack();\n}"
+                            },
+                            {
+                                "type": "insert",
+                                "loc": [
+                                    9,
+                                    11
+                                ],
+                                "floorId": "sample0"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "换个图",
+                        "action": [
+                            "\t[执杖伯伯,wizard]你为什么不自己找一张"
+                        ]
+                    },
+                    {
+                        "text": "爬",
+                        "color": [
+                            162,
+                            162,
+                            162,
+                            1
+                        ],
+                        "action": []
+                    }
+                ]
             }
         ],
         "10,9": [
@@ -99,7 +195,213 @@ main.floors.sample0=
                 "type": "hide",
                 "time": 500
             }
-        ]
+        ],
+        "8,11": {
+            "trigger": null,
+            "enable": true,
+            "noPass": null,
+            "displayDamage": true,
+            "opacity": 1,
+            "filter": {
+                "blur": 0,
+                "hue": 240,
+                "grayscale": 0,
+                "invert": false,
+                "shadow": 0
+            },
+            "data": [
+                {
+                    "type": "choices",
+                    "text": "\t[执杖伯伯]修改状态栏色相",
+                    "choices": [
+                        {
+                            "text": "+20",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statuscol_ = flags._statuscol_ + 20 || 0 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        8,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "-20",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statuscol_ = flags._statuscol_ - 20 || 0 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        8,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "炫彩",
+                            "condition": "!flags._coltrue_",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._coltrue_=true\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        8,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "关闭炫彩",
+                            "condition": "flags._coltrue_",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._coltrue_=false\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        8,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "爬",
+                            "color": [
+                                162,
+                                162,
+                                162,
+                                1
+                            ],
+                            "action": []
+                        }
+                    ]
+                }
+            ]
+        },
+        "7,11": {
+            "trigger": null,
+            "enable": true,
+            "noPass": null,
+            "displayDamage": true,
+            "opacity": 1,
+            "filter": {
+                "blur": 0,
+                "hue": 0,
+                "grayscale": 1,
+                "invert": false,
+                "shadow": 0
+            },
+            "data": [
+                {
+                    "type": "choices",
+                    "text": "\t[执杖伯伯]修改状态栏灰度/亮度",
+                    "choices": [
+                        {
+                            "text": "亮度+0.1",
+                            "need": "!flags._statusbrg_||flags._statusbrg_<1.5",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statusbrg_ = flags._statusbrg_ + 0.1 || 1.1 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        7,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "亮度-0.1",
+                            "need": "!flags._statusbrg_||flags._statusbrg_>0.1",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statusbrg_ = flags._statusbrg_ - 0.1 || 0.9 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        7,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "灰度+10",
+                            "need": "!flags._statusgry_||flags._statusgry_<100",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statusgry_ = flags._statusgry_ + 10 || 10 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        7,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "灰度-10",
+                            "need": "flags._statusgry_>10",
+                            "action": [
+                                {
+                                    "type": "function",
+                                    "function": "function(){\nflags._statusgry_ = flags._statusgry_ - 10 || 0 ;core.createSpr0();core.createSprBack();\n}"
+                                },
+                                {
+                                    "type": "insert",
+                                    "loc": [
+                                        7,
+                                        11
+                                    ],
+                                    "floorId": "sample0"
+                                }
+                            ]
+                        },
+                        {
+                            "text": "爬",
+                            "color": [
+                                162,
+                                162,
+                                162,
+                                1
+                            ],
+                            "action": []
+                        }
+                    ]
+                }
+            ]
+        }
     },
     "changeFloor": {
         "6,0": {

@@ -259,10 +259,20 @@ var data_comment_c456ea59_6018_45ef_8bcc_211a24c627dc = {
 							"_type": "textarea",
 							"_data": "初始攻击"
 						},
+						"atk2": {
+							"_leaf": true,
+							"_type": "textarea",
+							"_data": "初始攻速"
+						},
 						"def": {
 							"_leaf": true,
 							"_type": "textarea",
 							"_data": "初始防御"
+						},
+						"def2": {
+							"_leaf": true,
+							"_type": "textarea",
+							"_data": "初始护甲"
 						},
 						"mdef": {
 							"_leaf": true,
