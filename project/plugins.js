@@ -1,10 +1,59 @@
 var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 = 
 {
     "init": function () {
-		this._afterLoadResources = function () {
-			// 本函数将在所有资源加载完毕后，游戏开启前被执行
+	this._afterLoadResources = function () {
+		// 本函数将在所有资源加载完毕后，游戏开启前被执行
+	}
+	core.enemys.getDamageString = function (enemy, x, y, floorId) {
+		if (typeof enemy == 'string') enemy = core.material.enemys[enemy];
+		var damage = this.getDamage(enemy, x, y, floorId);
+
+		var color = '#000000';
+
+		if (damage == null) {
+			damage = "???";
+			color = '#FF2222';
+		} else {
+			if (damage <= 0) color = '#11FF11';
+			else if (damage < core.status.hero.hp / 3) color = '#FFFFFF';
+			else if (damage < core.status.hero.hp * 2 / 3) color = '#FFFF00';
+			else if (damage < core.status.hero.hp) color = '#FF9933';
+			else color = '#FF2222';
+
+			damage = core.formatBigNumber(damage, true);
+			if (core.enemys.hasSpecial(enemy, 19))
+				damage += "+";
+			if (core.enemys.hasSpecial(enemy, 21))
+				damage += "-";
+			if (core.enemys.hasSpecial(enemy, 11) || core.enemys.hasSpecial(enemy, 28))
+				damage += "^";
 		}
-	},
+
+		return {
+			"damage": damage,
+			"color": color
+		};
+	}
+	core.ui._drawBook_drawDamage = function (index, enemy, offset, position) {
+		core.setTextAlign('ui', 'center');
+		var damage = enemy.damage,
+			color = '#FFFF00';
+		if (damage == null) {
+			damage = '无法战斗';
+			color = '#FF2222';
+		} else {
+			if (damage >= core.status.hero.hp) color = '#FF2222';
+			else if (damage >= core.status.hero.hp * 2 / 3) color = '#FF9933';
+			else if (damage <= 0) color = '#11FF11';
+			damage = core.formatBigNumber(damage);
+			if (core.enemys.hasSpecial(enemy, 19)) damage += "+";
+			if (core.enemys.hasSpecial(enemy, 21)) damage += "-";
+			if (core.enemys.hasSpecial(enemy, 11) || core.enemys.hasSpecial(enemy, 28)) damage += "^";
+		}
+		if (enemy.notBomb) damage += "[b]";
+		core.fillText('ui', damage, offset, position, color, this._buildFont(13, true));
+	}
+},
     "drawLight": function () {
 
 		// 绘制灯光/漆黑层效果。调用方式 core.plugin.drawLight(...)
@@ -1969,6 +2018,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 	// 忽略的道具
 	const ignore = ['superPotion'];
+	const box = ['X10110'];
+	const portals = ['upPortal', 'downPortal', 'leftPortal', 'rightPortal'];
 
 	// 取消注释下面这句可以减少超大地图的判定。
 	// 如果地图宝石过多，可能会略有卡顿，可以尝试取消注释下面这句话来解决。
@@ -2016,8 +2067,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.status.hero = new Proxy(hero, handler);
 		core.status.maps[floorId].blocks.forEach(function (block) {
 			if (
-				block.event.cls !== 'items' ||
-				ignore.includes(block.event.id) ||
+				(block.event.cls !== 'items' || ignore.includes(block.event.id)) && !box.includes(block.event.id) && !portals.includes(block.event.id) ||
 				block.disable
 			)
 				return;
@@ -2037,7 +2087,12 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			diff = {};
 			const id = block.event.id;
 			const item = core.material.items[id];
-			if (item.cls === 'equips') {
+			if (portals.includes(block.event.id)) {
+				if (!block.event.trigger) {
+					drawItemDetail({ 'atk': 'X' }, x, y);
+				}
+			}
+			if (item && item.cls === 'equips') {
 				// 装备也显示
 				const diff = item.equip.value ?? {};
 				const per = item.equip.percentage ?? {};
@@ -2050,7 +2105,28 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			// 跟数据统计原理一样 执行效果 前后比较
 			core.setFlag('__statistics__', true);
 			try {
-				eval(item.itemEffect);
+				if (box.includes(block.event.id)) {
+					for (var i of (block.event.data[0].yes[0].false))
+						if (i.type == 'setValue') {
+							var value = core.events._updateValueByOperator(core.calValue(i.value), core.calValue(i.name), i.operator);
+							core.events._setValue_setStatus(i.name, value);
+							if ((i.name.indexOf("item:") == 0)) {
+								var itemId = i.name.substring(5),
+									count = core.itemCount(itemId);
+								diff[itemId] = value - count;
+							}
+
+							//core.events._setValue_setBuff(i.name, value);
+							//core.events._setValue_setItem(i.name, value);
+							//core.events._setValue_setFlag(i.name, value);
+							//core.events._setValue_setSwitch(i.name, value);
+							//core.events._setValue_setTemp(i.name, value);
+							//core.events._setValue_setGlobal(i.name, value);
+							//core.events.setValue(i.name, i.operator, i.value);
+						};
+					diff['mana'] += 50;
+				} else
+					eval(item.itemEffect);
 			} catch (error) {}
 			drawItemDetail(diff, x, y);
 		});
@@ -2096,6 +2172,20 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			case 'mana':
 				color = '#c66';
 				break;
+			case 'yellowKey':
+				color = '#fca';
+				break;
+			case 'blueKey':
+				color = '#aad';
+				break;
+			case 'redKey':
+				color = '#f88';
+				break;
+			case 'greenKey':
+				color = '#8f8';
+				break;
+			default:
+				if (diff[name] == 1) content = name;
 			}
 			// 绘制
 			core.status.damage.data.push({
