@@ -2109,7 +2109,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "禁术印记",
 		"canUseItemEffect": "true",
-		"text": "希娜公主为了控制光明圣子的禁术印记，每次战斗额外受到10%伤害"
+		"text": "希娜公主为了控制光明圣子的禁术印记，每次战斗额外受到10%伤害，先计算护盾后计算此禁术。"
 	},
 	"I674": {
 		"cls": "items",
@@ -2371,7 +2371,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 			},
 			{
 				"type": "if",
-				"condition": "(flag:input<=item:I710)",
+				"condition": "((flag:input<=item:I710)&&(flag:input>0))",
 				"true": [
 					{
 						"type": "setValue",
@@ -2429,7 +2429,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 			},
 			{
 				"type": "if",
-				"condition": "(flag:input<=item:I711)",
+				"condition": "((flag:input<=item:I711)&&(flag:input>0))",
 				"true": [
 					{
 						"type": "setValue",
@@ -2487,7 +2487,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 			},
 			{
 				"type": "if",
-				"condition": "(flag:input<=item:I712)",
+				"condition": "((flag:input<=item:I712)&&(flag:input>0))",
 				"true": [
 					{
 						"type": "setValue",
@@ -2545,7 +2545,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 			},
 			{
 				"type": "if",
-				"condition": "(flag:input<=item:I713)",
+				"condition": "((flag:input<=item:I713)&&(flag:input>0))",
 				"true": [
 					{
 						"type": "setValue",

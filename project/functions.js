@@ -352,8 +352,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	}
 	//回溯
 	if (core.enemys.hasSpecial(special, 28)) {
-		core.status.hero.statistics.battleDamage +=
-			core.status.hero.hp *= 1.2
+		
 	}
 	//毁灭
 	if (core.enemys.hasSpecial(special, 33)) {
@@ -559,9 +558,9 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		[25, "光环", function (enemy) { return (enemy.range != null ? ((enemy.haloSquare ? "该怪物九宫格" : "该怪物十字") + enemy.haloRange + "格范围内") : "同楼层所有") + "怪物生命提升" + (enemy.hpBuff || 0) + "%，攻击提升" + (enemy.atkBuff || 0) + "%，防御提升" + (enemy.defBuff || 0) + "%，" + (enemy.haloAdd ? "可叠加" : "不可叠加"); }, "#e6e099", 1],
 		[26, "支援", "当周围一圈的怪物受到攻击时将上前支援，并组成小队战斗。", "#77c0b6", 1],
 		[27, "捕捉", function (enemy) { return "当走到怪物周围" + (enemy.zoneSquare ? "九宫格" : "十字") + "时会强制进行战斗。"; }, "#c0ddbb"],
-		[28, "回溯", "战斗后回复20%生命值", "red"],
-		[29, "反弹", function (enemy) { return "将对手" + (enemy.fantan || 0) + "%的伤害回去"; }, "#FF9900"],
-		[32, "破盾", function (enemy) { return "无视对手" + (enemy.Z || 0) + "%的护盾"; }, "#66ff00"],
+		[28, "回溯", "战斗后回复战斗后生命20%生命值，已计入伤害。", "red"],
+		[29, "反弹", function (enemy) { return "将对手" + (enemy.fantan || 0) + "%的伤害反弹回去。"; }, "#FF9900"],
+		[32, "破盾", function (enemy) { return "无视对手" + (enemy.Z || 0) + "%的护盾。"; }, "#66ff00"],
 		[33, "毁灭", "战斗后将周围3*3格图块炸毁", "yellow"],
 		[34, "复制", "怪物属性为勇者的80%(怪物攻击力大于勇者攻击力的80%则怪物属性不变)", "#c0ddbb"],
 		[35, "灼烧", "勇者每回合额外受到怪物攻击力和防御力之和1%的伤害", "red"],
@@ -813,7 +812,8 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (hero_per_damage <= 0) return null;
 	//反弹
 	if (core.hasSpecial(mon_special, 29)) {
-		per_damage += hero_per_damage * (enemy.fantan / 100);
+		//per_damage += hero_per_damage * (enemy.fantan / 100);
+		init_damage += mon_hp * (enemy.fantan / 100) / (1 - (enemy.fantan / 100))
 		hero_per_damage *= (1 - (enemy.fantan / 100))
 	}
 	// 勇士的攻击回合数；为怪物生命除以每回合伤害向上取整
@@ -899,7 +899,14 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasItem("I673")) { damage *= 1.1 }
 
 	if (core.getFlag('skill', 0) == 3) { damage -= hero_def * 0.5 + hero_mdef * 0.2 + 50 }
+	if (core.hasSpecial(mon_special, 28)) {
+		var vampire_damage = (hero_hp - damage) / -5;
 
+		vampire_damage = Math.ceil(vampire_damage) || 0;
+
+
+		damage += vampire_damage;
+	}
 	return {
 		"mon_hp": Math.floor(mon_hp),
 		"mon_atk": Math.floor(mon_atk),
