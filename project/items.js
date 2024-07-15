@@ -48,49 +48,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"yellowGem": {
 		"cls": "items",
 		"name": "黄宝石",
-		"text": "可以进行加点",
-		"itemEffect": "core.status.hero.hp+=1000;core.status.hero.atk+=6;core.status.hero.def+=6;core.status.hero.mdef+=10;",
-		"itemEffectTip": "，全属性提升",
-		"useItemEvent": [
-			{
-				"type": "choices",
-				"choices": [
-					{
-						"text": "攻击+1",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:atk",
-								"operator": "+=",
-								"value": "1"
-							}
-						]
-					},
-					{
-						"text": "防御+2",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:def",
-								"operator": "+=",
-								"value": "2"
-							}
-						]
-					},
-					{
-						"text": "生命+200",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "200"
-							}
-						]
-					}
-				]
-			}
-		],
+		"text": "全属性+${core.values.redGem}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem\ncore.status.hero.def += core.values.blueGem\ncore.status.hero.mdef += core.values.greenGem",
 		"canUseItemEffect": "true"
 	},
 	"redPotion": {
@@ -473,7 +434,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 			},
 			{
 				"type": "if",
-				"condition": "flag:input<=item:lifeWand",
+				"condition": "(flag:input<=item:lifeWand)",
 				"true": [
 					{
 						"type": "setValue",
@@ -513,10 +474,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"skill1": {
 		"cls": "constants",
-		"name": "技能：二倍斩",
-		"text": "可以打开或关闭主动技能二倍斩",
+		"name": "光明裁决",
+		"text": "消耗80点魔力值，将光明的力量聚集，对敌人造成两倍伤害",
 		"hideInReplay": true,
-		"useItemEffect": "(function () {\n\tvar skillValue = 1; // 技能的flag:skill值，可用于当前开启技能的判定；对于新技能可以依次改成2，3等等\n\tvar skillNeed = 5; // 技能的需求\n\tvar skillName = '二倍斩'; // 技能的名称\n\n\tif (core.getFlag('skill', 0) != skillValue) { // 判断当前是否已经开了技能\n\t\tif (core.getStatus('mana') >= skillNeed) { // 这里要写当前能否开技能的条件判断，比如魔力值至少要多少\n\t\t\tcore.playSound('打开界面');\n\t\t\tcore.setFlag('skill', skillValue); // 开技能1\n\t\t\tcore.setFlag('skillName', skillName); // 设置技能名\n\t\t} else {\n\t\t\tcore.playSound('操作失败');\n\t\t\tcore.drawTip('魔力不足，无法开启技能');\n\t\t}\n\t} else { // 关闭技能\n\t\tcore.setFlag('skill', 0); // 关闭技能状态\n\t\tcore.setFlag('skillName', '无');\n\t}\n})();",
+		"useItemEffect": "(function () {\n\tvar skillValue = 1; // 技能的flag:skill值，可用于当前开启技能的判定；对于新技能可以依次改成2，3等等\n\tvar skillNeed = 80; // 技能的需求\n\tvar skillName = '光明裁决'; // 技能的名称\n\n\tif (core.getFlag('skill', 0) != skillValue) { // 判断当前是否已经开了技能\n\t\tif (core.getStatus('mana') >= skillNeed) { // 这里要写当前能否开技能的条件判断，比如魔力值至少要多少\n\t\t\tcore.playSound('打开界面');\n\t\t\tcore.setFlag('skill', skillValue); // 开技能1\n\t\t\tcore.setFlag('skillName', skillName); // 设置技能名\n\t\t} else {\n\t\t\tcore.playSound('操作失败');\n\t\t\tcore.drawTip('魔力不足，无法开启技能');\n\t\t}\n\t} else { // 关闭技能\n\t\tcore.setFlag('skill', 0); // 关闭技能状态\n\t\tcore.setFlag('skillName', '无');\n\t}\n})();",
 		"canUseItemEffect": "true"
 	},
 	"wand": {
@@ -528,5 +489,1800 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"name": "钱袋",
 		"itemEffect": "core.status.hero.money += 500",
 		"itemEffectTip": "，金币+500"
+	},
+	"I331": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I332": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I333": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I334": {
+		"cls": "constants",
+		"name": "光明祝福",
+		"text": "消耗50点魔力值，战斗中回复自身防御力*0.5+护盾值*0.2+50点的生命值",
+		"hideInReplay": true,
+		"useItemEffect": "(function () {\n\tvar skillValue = 3; // 技能的flag:skill值，可用于当前开启技能的判定；对于新技能可以依次改成2，3等等\n\tvar skillNeed = 50; // 技能的需求\n\tvar skillName = '光明祝福'; // 技能的名称\n\n\tif (core.getFlag('skill', 0) != skillValue) { // 判断当前是否已经开了技能\n\t\tif (core.getStatus('mana') >= skillNeed) { // 这里要写当前能否开技能的条件判断，比如魔力值至少要多少\n\t\t\tcore.playSound('打开界面');\n\t\t\tcore.setFlag('skill', skillValue); // 开技能1\n\t\t\tcore.setFlag('skillName', skillName); // 设置技能名\n\t\t} else {\n\t\t\tcore.playSound('操作失败');\n\t\t\tcore.drawTip('魔力不足，无法开启技能');\n\t\t}\n\t} else { // 关闭技能\n\t\tcore.setFlag('skill', 0); // 关闭技能状态\n\t\tcore.setFlag('skillName', '无');\n\t}\n})();",
+		"canUseItemEffect": "true"
+	},
+	"I335": {
+		"cls": "constants",
+		"name": "光明绽放",
+		"text": "消耗120点魔力值，用光明魔法攻击敌人，无视敌人防御力",
+		"hideInReplay": true,
+		"useItemEffect": "(function () {\n\tvar skillValue = 2; // 技能的flag:skill值，可用于当前开启技能的判定；对于新技能可以依次改成2，3等等\n\tvar skillNeed = 120; // 技能的需求\n\tvar skillName = '光明绽放'; // 技能的名称\n\n\tif (core.getFlag('skill', 0) != skillValue) { // 判断当前是否已经开了技能\n\t\tif (core.getStatus('mana') >= skillNeed) { // 这里要写当前能否开技能的条件判断，比如魔力值至少要多少\n\t\t\tcore.playSound('打开界面');\n\t\t\tcore.setFlag('skill', skillValue); // 开技能1\n\t\t\tcore.setFlag('skillName', skillName); // 设置技能名\n\t\t} else {\n\t\t\tcore.playSound('操作失败');\n\t\t\tcore.drawTip('魔力不足，无法开启技能');\n\t\t}\n\t} else { // 关闭技能\n\t\tcore.setFlag('skill', 0); // 关闭技能状态\n\t\tcore.setFlag('skillName', '无');\n\t}\n})();",
+		"canUseItemEffect": "true"
+	},
+	"I336": {
+		"cls": "constants",
+		"name": "光明守护",
+		"text": "消耗60点魔力值，使自己的护盾效果提升2倍且防御力的25%对魔攻生效，但不能为负伤",
+		"hideInReplay": true,
+		"useItemEffect": "(function () {\n\tvar skillValue = 4; // 技能的flag:skill值，可用于当前开启技能的判定；对于新技能可以依次改成2，3等等\n\tvar skillNeed = 60; // 技能的需求\n\tvar skillName = '光明守护'; // 技能的名称\n\n\tif (core.getFlag('skill', 0) != skillValue) { // 判断当前是否已经开了技能\n\t\tif (core.getStatus('mana') >= skillNeed) { // 这里要写当前能否开技能的条件判断，比如魔力值至少要多少\n\t\t\tcore.playSound('打开界面');\n\t\t\tcore.setFlag('skill', skillValue); // 开技能1\n\t\t\tcore.setFlag('skillName', skillName); // 设置技能名\n\t\t} else {\n\t\t\tcore.playSound('操作失败');\n\t\t\tcore.drawTip('魔力不足，无法开启技能');\n\t\t}\n\t} else { // 关闭技能\n\t\tcore.setFlag('skill', 0); // 关闭技能状态\n\t\tcore.setFlag('skillName', '无');\n\t}\n})();",
+		"canUseItemEffect": "true"
+	},
+	"I337": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I338": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I339": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I340": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I341": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I342": {
+		"cls": "items",
+		"name": "二阶红宝石",
+		"text": "攻击+${core.values.redGem*2}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 2",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*2}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 2",
+		"canUseItemEffect": "true"
+	},
+	"I343": {
+		"cls": "items",
+		"name": "二阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*2}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 2",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*2}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 2",
+		"canUseItemEffect": "true"
+	},
+	"I344": {
+		"cls": "items",
+		"name": "二阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*2}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 2",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*2}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 2",
+		"canUseItemEffect": "true"
+	},
+	"I345": {
+		"cls": "items",
+		"name": "二阶黄宝石",
+		"text": "全属性+${core.values.redGem*2}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 2\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 2\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 2",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 2\ncore.status.hero.def += core.values.blueGem * 2\ncore.status.hero.mdef += core.values.greenGem * 2",
+		"canUseItemEffect": "true"
+	},
+	"I346": {
+		"cls": "items",
+		"name": "三阶红宝石",
+		"text": "攻击+${core.values.redGem*4}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 4",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*4}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 4",
+		"canUseItemEffect": "true"
+	},
+	"I347": {
+		"cls": "items",
+		"name": "三阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*4}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 4",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*4}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 4",
+		"canUseItemEffect": "true"
+	},
+	"I348": {
+		"cls": "items",
+		"name": "三阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*4}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 4",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*4}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 4",
+		"canUseItemEffect": "true"
+	},
+	"I349": {
+		"cls": "items",
+		"name": "三阶黄宝石",
+		"text": "全属性+${core.values.redGem*4}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 4\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 4\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 4",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 4\ncore.status.hero.def += core.values.blueGem * 4\ncore.status.hero.mdef += core.values.greenGem * 4",
+		"canUseItemEffect": "true"
+	},
+	"I350": {
+		"cls": "items",
+		"name": "四阶红宝石",
+		"text": "攻击+${core.values.redGem*8}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 8",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*8}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 8",
+		"canUseItemEffect": "true"
+	},
+	"I351": {
+		"cls": "items",
+		"name": "四阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*8}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 8",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*8}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 8",
+		"canUseItemEffect": "true"
+	},
+	"I352": {
+		"cls": "items",
+		"name": "四阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*8}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 8",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*8}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 8",
+		"canUseItemEffect": "true"
+	},
+	"I353": {
+		"cls": "items",
+		"name": "四阶黄宝石",
+		"text": "全属性+${core.values.redGem*8}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 8\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 8\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 8",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 8\ncore.status.hero.def += core.values.blueGem * 8\ncore.status.hero.mdef += core.values.greenGem * 8",
+		"canUseItemEffect": "true"
+	},
+	"I354": {
+		"cls": "items",
+		"name": "五阶红宝石",
+		"text": "攻击+${core.values.redGem*16}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 16",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*16}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 16",
+		"canUseItemEffect": "true"
+	},
+	"I355": {
+		"cls": "items",
+		"name": "五阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*16}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 16",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*16}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 16",
+		"canUseItemEffect": "true"
+	},
+	"I356": {
+		"cls": "items",
+		"name": "五阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*16}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 16",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*16}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 16",
+		"canUseItemEffect": "true"
+	},
+	"I357": {
+		"cls": "items",
+		"name": "五阶黄宝石",
+		"text": "全属性+${core.values.redGem*16}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 16\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 16\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 16",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 16\ncore.status.hero.def += core.values.blueGem * 16\ncore.status.hero.mdef += core.values.greenGem * 16",
+		"canUseItemEffect": "true"
+	},
+	"I358": {
+		"cls": "items",
+		"name": "六阶红宝石",
+		"text": "攻击+${core.values.redGem*32}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 32",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*32}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 32",
+		"canUseItemEffect": "true"
+	},
+	"I360": {
+		"cls": "items",
+		"name": "六阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*32}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 32",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*32}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 32",
+		"canUseItemEffect": "true"
+	},
+	"I361": {
+		"cls": "items",
+		"name": "六阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*32}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 32",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*32}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 32",
+		"canUseItemEffect": "true"
+	},
+	"I362": {
+		"cls": "items",
+		"name": "六阶黄宝石",
+		"text": "全属性+${core.values.redGem*32}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 32\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 32\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 32",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 32\ncore.status.hero.def += core.values.blueGem * 32\ncore.status.hero.mdef += core.values.greenGem * 32",
+		"canUseItemEffect": "true"
+	},
+	"I363": {
+		"cls": "items",
+		"name": "七阶红宝石",
+		"text": "攻击+${core.values.redGem*64}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 64",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*64}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 64",
+		"canUseItemEffect": "true"
+	},
+	"I364": {
+		"cls": "items",
+		"name": "七阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*64}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 64",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*64}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 64",
+		"canUseItemEffect": "true"
+	},
+	"I365": {
+		"cls": "items",
+		"name": "七阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*64}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 64",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*64}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 64",
+		"canUseItemEffect": "true"
+	},
+	"I366": {
+		"cls": "items",
+		"name": "七阶黄宝石",
+		"text": "全属性+${core.values.redGem*64}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 64\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 64\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 64",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 64\ncore.status.hero.def += core.values.blueGem * 64\ncore.status.hero.mdef += core.values.greenGem * 64",
+		"canUseItemEffect": "true"
+	},
+	"I367": {
+		"cls": "items",
+		"name": "八阶红宝石",
+		"text": "攻击+${core.values.redGem*128}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 128",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*128}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 128",
+		"canUseItemEffect": "true"
+	},
+	"I368": {
+		"cls": "items",
+		"name": "八阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*128}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 128",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*128}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 128",
+		"canUseItemEffect": "true"
+	},
+	"I369": {
+		"cls": "items",
+		"name": "八阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*128}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 128",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*128}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 128",
+		"canUseItemEffect": "true"
+	},
+	"I370": {
+		"cls": "items",
+		"name": "八阶黄宝石",
+		"text": "全属性+${core.values.redGem*128}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 128\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 128\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 128",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 128\ncore.status.hero.def += core.values.blueGem * 128\ncore.status.hero.mdef += core.values.greenGem * 128",
+		"canUseItemEffect": "true"
+	},
+	"I371": {
+		"cls": "items",
+		"name": "九阶红宝石",
+		"text": "攻击+${core.values.redGem*256}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 256",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*256}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 256",
+		"canUseItemEffect": "true"
+	},
+	"I372": {
+		"cls": "items",
+		"name": "九阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*256}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 256",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*256}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 256",
+		"canUseItemEffect": "true"
+	},
+	"I373": {
+		"cls": "items",
+		"name": "九阶绿宝石",
+		"text": "，护盾+${core.values.greenGem*256}",
+		"itemEffect": "core.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 256",
+		"itemEffectTip": "，护盾+${core.values.greenGem * core.status.thisMap.ratio*256}",
+		"useItemEffect": "core.status.hero.mdef += core.values.greenGem * 256",
+		"canUseItemEffect": "true"
+	},
+	"I374": {
+		"cls": "items",
+		"name": "九阶黄宝石",
+		"text": "全属性+${core.values.redGem*256}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 256\ncore.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 256\ncore.status.hero.mdef += core.values.greenGem * core.status.thisMap.ratio * 256",
+		"itemEffectTip": "全属性提升",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 256\ncore.status.hero.def += core.values.blueGem * 256\ncore.status.hero.mdef += core.values.greenGem * 256",
+		"canUseItemEffect": "true"
+	},
+	"I375": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I376": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I377": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I378": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I379": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I380": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I381": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I382": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I383": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I384": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I385": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I386": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I387": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I388": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I389": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I390": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I391": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I392": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I393": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I394": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I395": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I396": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I397": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I398": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I399": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I400": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I401": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I402": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I403": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I404": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I405": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I406": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I407": {
+		"cls": "tools",
+		"name": "强力炸弹",
+		"canUseItemEffect": "true",
+		"useItemEffect": "(function () {\n\tvar bombList = []; // 炸掉的怪物坐标列表\n\tvar bombXYList = []; // 炸掉的怪物xy坐标列表\n\tvar expSum = 0;\n\tvar coinSum = 0;\n\tfor (var index in core.status.thisMap.blocks) {\n\t\tvar block = core.status.thisMap.blocks[index];\n\t\t// \t\tvar nx = block.x;\n\t\t// \t\tvar ny = block.y;\n\t\tvar enemyCanBomb = false;\n\t\tif (block == null || block.disable || block.event.cls.indexOf('enemy') != 0) {} else {\n\t\t\tvar enemy = core.material.enemys[block.event.id];\n\t\t\tvar enemyCanBomb = enemy && !enemy.notBomb;\n\t\t\tif (enemyCanBomb) {\n\t\t\t\tbombList.push(index);\n\t\t\t\texpSum += enemy.exp;\n\t\t\t\tcoinSum += enemy.money;\n\t\t\t\tbombXYList.push(block)\n\t\t\t}\n\t\t}\n\t}\n\tcore.removeBlockByIndexes(bombList);\n\tcore.status.hero.exp += expSum;\n\tcore.status.hero.money += coinSum;\n\tcore.playSound('bomb.mp3');\n\tcore.drawTip(core.material.items[itemId].name + '使用成功');\n\tcore.drawMap();\n\tfor (var index in bombXYList) {\n\t\tcore.drawAnimate(\"zone\", bombXYList[index].x, bombXYList[index].y, false)\n\t}\n})();",
+		"text": "使用后炸掉整层的怪物"
+	},
+	"I408": {
+		"cls": "equips",
+		"name": "光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+5",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 5
+			},
+			"percentage": {}
+		}
+	},
+	"I409": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I410": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I411": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I412": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I413": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I414": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I415": {
+		"cls": "tools",
+		"name": "琼浆",
+		"canUseItemEffect": "true",
+		"text": "喝下后回复50%生命值",
+		"useItemEvent": [
+			{
+				"type": "playSound",
+				"name": "poison.mp3"
+			},
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:hpmax*0.5)"
+			}
+		]
+	},
+	"I416": {
+		"cls": "tools",
+		"name": "玉露",
+		"canUseItemEffect": "true",
+		"text": "喝下后恢复100%生命值",
+		"useItemEvent": [
+			{
+				"type": "playSound",
+				"name": "poison.mp3"
+			},
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:hpmax)"
+			}
+		]
+	},
+	"I417": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I418": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I419": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I420": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I421": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I422": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I423": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I424": {
+		"cls": "items",
+		"name": "黄钥匙串",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.addItem('yellowKey', 3)"
+	},
+	"I425": {
+		"cls": "items",
+		"name": "蓝钥匙串",
+		"canUseItemEffect": "true",
+		"itemEffectTip": null,
+		"itemEffect": "core.addItem('blueKey', 3)"
+	},
+	"I426": {
+		"cls": "items",
+		"name": "红钥匙串",
+		"canUseItemEffect": "true",
+		"itemEffectTip": null,
+		"itemEffect": "core.addItem('redKey', 3)"
+	},
+	"I427": {
+		"cls": "items",
+		"name": "绿钥匙串",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.addItem('greenKey', 3);"
+	},
+	"I595": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I596": {
+		"cls": "tools",
+		"name": "瞬移飞行器",
+		"canUseItemEffect": "true",
+		"text": "可以飞向当前楼层任意的位置",
+		"useItemEffect": "core.insertAction([\n\t{ \"type\": \"comment\", \"text\": \"全地图选择某一个点\" },\n\t{ \"type\": \"setValue\", \"name\": \"flag:x1\", \"value\": \"0\" },\n\t{ \"type\": \"setValue\", \"name\": \"flag:x\", \"value\": \"0\" },\n\t{ \"type\": \"setValue\", \"name\": \"flag:y1\", \"value\": \"0\" },\n\t{ \"type\": \"setValue\", \"name\": \"flag:y\", \"value\": \"0\" },\n\t{ \"type\": \"comment\", \"text\": \"flag:1,flag:2为选中的地图xy坐标\" },\n\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\",0)*32,core.getFlag(\\\"y\\\",0)*32,32,32,fillstyle);\\n}\" },\n\t{ \"type\": \"comment\", \"text\": \"显示一个32*32的红色块,这里是画在色调层上，可以自行换画布\" },\n\t{ \"type\": \"comment\", \"text\": \"这里也可以用图标类图片\" },\n\t{\n\t\t\"type\": \"while\",\n\t\t\"condition\": \"1\",\n\t\t\"data\": [\n\t\t\t{ \"type\": \"wait\" },\n\t\t\t{\n\t\t\t\t\"type\": \"if\",\n\t\t\t\t\"condition\": \"flag:type==0\",\n\t\t\t\t\"true\": [{\n\t\t\t\t\t\"type\": \"switch\",\n\t\t\t\t\t\"condition\": \"flag:keycode\",\n\t\t\t\t\t\"caseList\": [{\n\t\t\t\t\t\t\t\"case\": \"27\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按下esc时，取消选择\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"exit\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"13\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按下enter键时，结束选择，选中坐标代入flag:x与flag:y进入下一步\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"break\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"32\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按下空格时，结束选择，选中坐标代入flag:x与flag:y进入下一步\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"break\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"38\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按上时，移动颜色块，flag:y-1\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:y\", \"value\": \"flag:y-1\" },\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\t\t\t\"condition\": \"flag:y<0\",\n\t\t\t\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:y\", \"value\": \"flag:y+1\" },\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\")*32,core.getFlag(\\\"y\\\")*32,32,32,fillstyle);\\n}\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"40\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按下时，移动颜色块，flag:y+1\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:y\", \"value\": \"flag:y+1\" },\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\t\t\t\"condition\": \"flag:y>12\",\n\t\t\t\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:y\", \"value\": \"flag:y-1\" },\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\")*32,core.getFlag(\\\"y\\\")*32,32,32,fillstyle);\\n}\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"37\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按左时，移动颜色块，flag:x-1\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:x\", \"value\": \"flag:x-1\" },\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\t\t\t\"condition\": \"flag:x<0\",\n\t\t\t\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:x\", \"value\": \"flag:x+1\" },\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\")*32,core.getFlag(\\\"y\\\")*32,32,32,fillstyle);\\n}\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"case\": \"39\",\n\t\t\t\t\t\t\t\"action\": [\n\t\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"当按右时，移动颜色块，flag:x+1\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:x\", \"value\": \"flag:x+1\" },\n\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\t\t\t\"condition\": \"flag:x>12\",\n\t\t\t\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:x\", \"value\": \"flag:x-1\" },\n\t\t\t\t\t\t\t\t\t],\n\t\t\t\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\")*32,core.getFlag(\\\"y\\\")*32,32,32,fillstyle);\\n}\" },\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t],\n\t\t\t\t}, ],\n\t\t\t\t\"false\": [\n\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"如果是鼠标操作，坐标直接代入flag:x,flag:y\" },\n\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\nvar fillstyle = 'rgba(255,0,0,0.5)';\\ncore.fillRect('curtain',core.getFlag(\\\"x\\\")*32,core.getFlag(\\\"y\\\")*32,32,32,fillstyle);\\n}\" },\n\t\t\t\t\t{\n\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\"condition\": \"flag:x==flag:x1&&flag:y==flag:y1\",\n\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"如果点中的点与之前选中的点一样，结束选择,结果为flag:x,flag:y\" },\n\t\t\t\t\t\t\t{ \"type\": \"function\", \"function\": \"function(){\\ncore.clearMap(\\\"curtain\\\")\\n}\" },\n\t\t\t\t\t\t\t{ \"type\": \"break\" },\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"type\": \"if\",\n\t\t\t\t\t\t\"condition\": \"flag:x==3&&flag:y==4\",\n\t\t\t\t\t\t\"true\": [\n\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"这里也可以设定，当你点中地图上的某点时执行什么事件\" },\n\t\t\t\t\t\t\t{ \"type\": \"comment\", \"text\": \"比如点中3,4时执行什么，放这下边\" },\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"false\": [\n\n\t\t\t\t\t\t]\n\t\t\t\t\t},\n\t\t\t\t]\n\t\t\t},\n\t\t\t{ \"type\": \"comment\", \"text\": \"只要选择没有结束，记录上一次选中的位置以给鼠标使用\" },\n\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:x1\", \"value\": \"flag:x\" },\n\t\t\t{ \"type\": \"setValue\", \"name\": \"flag:y1\", \"value\": \"flag:y\" },\n\t\t],\n\t},\n\t{ \"type\": \"comment\", \"text\": \"选择结束后，选中的点的坐标已代入flag：x与flag：y\" },\n\t{ \"type\": \"comment\", \"text\": \"例如要使主角移动到选中的点时，可以执行下面事件\" },\n\t{ \"type\": \"playSound\", \"name\": \"sanashunjianyidong.mp3\" },\n\t{ \"type\": \"setValue\", \"name\": \"flag:6\", \"value\": \"flag:6+1\" },\n\t{ \"type\": \"changePos\", \"loc\": [\"flag:x\", \"flag:y\"] },\n\t{ \"type\": \"exit\" },\n])"
+	},
+	"I597": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I594": {
+		"cls": "constants",
+		"name": "系统设置ex",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"text": "\t[选择打开自动拾取或者宝石血瓶详细信息]",
+				"choices": [
+					{
+						"text": "宝石血瓶详细信息",
+						"color": [
+							254,
+							17,
+							54,
+							1
+						],
+						"action": [
+							{
+								"type": "choices",
+								"text": "开启宝石血瓶详细信息",
+								"choices": [
+									{
+										"text": "打开",
+										"color": [
+											0,
+											61,
+											255,
+											1
+										],
+										"action": [
+											{
+												"type": "setValue",
+												"name": "flag:itemDetail",
+												"value": "true"
+											}
+										]
+									},
+									{
+										"text": "关闭",
+										"color": [
+											13,
+											248,
+											17,
+											1
+										],
+										"action": [
+											{
+												"type": "setValue",
+												"name": "flag:itemDetail",
+												"value": "false"
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"text": "自动拾取",
+						"color": [
+							7,
+							245,
+							131,
+							1
+						],
+						"action": [
+							{
+								"type": "choices",
+								"text": "自动拾取",
+								"choices": [
+									{
+										"text": "打开自动拾取",
+										"color": [
+											237,
+											3,
+											120,
+											1
+										],
+										"action": [
+											"自动拾取已打开!",
+											{
+												"type": "setValue",
+												"name": "flag:shiqu",
+												"value": "true"
+											}
+										]
+									},
+									{
+										"text": "关闭自动拾取",
+										"color": [
+											233,
+											233,
+											23,
+											1
+										],
+										"action": [
+											"自动拾取已关闭!",
+											{
+												"type": "setValue",
+												"name": "flag:shiqu",
+												"value": "false"
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行系统设置"
+	},
+	"I359": {
+		"cls": "items",
+		"name": "一阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+1",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "防御+1",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "生命上限+50",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "50"
+							}
+						]
+					},
+					{
+						"text": "生命+1%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.01)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I598": {
+		"cls": "items",
+		"name": "二阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+2",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "2"
+							}
+						]
+					},
+					{
+						"text": "防御+2",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "2"
+							}
+						]
+					},
+					{
+						"text": "生命上限+100",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "生命+2%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.02)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I599": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I600": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I601": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I602": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I603": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I604": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I605": {
+		"cls": "items",
+		"name": "一阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 50;",
+		"itemEffectTip": "生命上限提升50点"
+	},
+	"I606": {
+		"cls": "items",
+		"name": "二阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 100;",
+		"itemEffectTip": "生命上限提升100点"
+	},
+	"I607": {
+		"cls": "items",
+		"name": "三阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 200;",
+		"itemEffectTip": "生命上限提升200点"
+	},
+	"I608": {
+		"cls": "items",
+		"name": "四阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 400;",
+		"itemEffectTip": "生命上限提升400点"
+	},
+	"I609": {
+		"cls": "items",
+		"name": "五阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 800;",
+		"itemEffectTip": "生命上限提升800点"
+	},
+	"I610": {
+		"cls": "items",
+		"name": "六阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 1600;",
+		"itemEffectTip": "生命上限提升1600点"
+	},
+	"I611": {
+		"cls": "items",
+		"name": "七阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 3200;",
+		"itemEffectTip": "生命上限提升3200点"
+	},
+	"I612": {
+		"cls": "items",
+		"name": "八阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 6400;",
+		"itemEffectTip": "生命上限提升6400点"
+	},
+	"I613": {
+		"cls": "items",
+		"name": "九阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 10000;",
+		"itemEffectTip": "生命上限提升10000点"
+	},
+	"I614": {
+		"cls": "items",
+		"name": "十阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 20000;",
+		"itemEffectTip": "生命上限提升20000点"
+	},
+	"I615": {
+		"cls": "items",
+		"name": "十一阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 40000;",
+		"itemEffectTip": "生命上限提升40000点"
+	},
+	"I616": {
+		"cls": "items",
+		"name": "十二阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 50000;",
+		"itemEffectTip": "生命上限提升50000点"
+	},
+	"I617": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I618": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I619": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I620": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I621": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I622": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I623": {
+		"cls": "constants",
+		"name": "初阶光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前50%魔力值，恢复自身当前魔力值的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana*0.5)"
+			}
+		]
+	},
+	"I624": {
+		"cls": "constants",
+		"name": "中阶光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前50%魔力值，恢复自身当前两倍魔力值的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana*2)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana*0.5)"
+			}
+		]
+	},
+	"I625": {
+		"cls": "constants",
+		"name": "高阶光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前五倍魔力值的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana*5)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana)"
+			}
+		]
+	},
+	"I626": {
+		"cls": "constants",
+		"name": "超阶光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前6倍魔力值的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana*6)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana)"
+			}
+		]
+	},
+	"I627": {
+		"cls": "constants",
+		"name": "黑暗光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前7倍魔力值的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana*7)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana)"
+			}
+		]
+	},
+	"I628": {
+		"cls": "constants",
+		"name": "圣阶光明宝典",
+		"canUseItemEffect": "true",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前（8倍魔力值+当前5%生命上限）的生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:mana*8)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:hpmax*0.05)"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "-=",
+				"value": "(status:mana)"
+			}
+		]
+	},
+	"I629": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I630": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I631": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I632": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I633": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I634": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I635": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I636": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I637": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I638": {
+		"cls": "tools",
+		"name": "初级星露",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "+=",
+				"value": "10"
+			}
+		],
+		"text": "喝下后恢复10点魔力值"
+	},
+	"I639": {
+		"cls": "tools",
+		"name": "中级星露",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "+=",
+				"value": "50"
+			}
+		],
+		"text": "喝下后恢复50点魔力值"
+	},
+	"I640": {
+		"cls": "tools",
+		"name": "高级星露",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"operator": "+=",
+				"value": "100"
+			}
+		],
+		"text": "喝下后恢复100点魔力值"
+	},
+	"I673": {
+		"cls": "constants",
+		"name": "禁术印记",
+		"canUseItemEffect": "true",
+		"text": "希娜公主为了控制光明圣子的禁术印记，每次战斗额外受到10%伤害"
+	},
+	"I674": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I675": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I676": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"big1Potion": {
+		"cls": "items",
+		"name": "一阶血瓶",
+		"text": "，生命+${core.values.redPotion}",
+		"itemEffect": "core.status.hero.hp += core.values.redPotion * core.status.thisMap.ratio",
+		"itemEffectTip": "，生命+${core.values.redPotion * core.status.thisMap.ratio}",
+		"useItemEffect": "core.status.hero.hp += core.values.redPotion",
+		"canUseItemEffect": "true"
+	},
+	"big2Potion": {
+		"cls": "items",
+		"name": "二阶血瓶",
+		"text": "，生命+${core.values.bluePotion}",
+		"itemEffect": "core.status.hero.hp += core.values.bluePotion * core.status.thisMap.ratio",
+		"itemEffectTip": "，生命+${core.values.bluePotion * core.status.thisMap.ratio}",
+		"useItemEffect": "core.status.hero.hp += core.values.bluePotion",
+		"canUseItemEffect": "true"
+	},
+	"big3Potion": {
+		"cls": "items",
+		"name": "三阶血瓶",
+		"text": "，生命+${core.values.yellowPotion}",
+		"itemEffect": "core.status.hero.hp += core.values.yellowPotion * core.status.thisMap.ratio",
+		"itemEffectTip": "，生命+${core.values.yellowPotion * core.status.thisMap.ratio}",
+		"useItemEffect": "core.status.hero.hp += core.values.yellowPotion",
+		"canUseItemEffect": "true"
+	},
+	"big4Potion": {
+		"cls": "items",
+		"name": "四阶血瓶",
+		"text": "，生命+${core.values.greenPotion}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion",
+		"canUseItemEffect": "true"
+	},
+	"big5Potion": {
+		"cls": "items",
+		"name": "五阶血瓶",
+		"text": "，生命+${core.values.greenPotion*2}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 2",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*2}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 2",
+		"canUseItemEffect": "true"
+	},
+	"big6Potion": {
+		"cls": "items",
+		"name": "六阶血瓶",
+		"text": "，生命+${core.values.greenPotion*4}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 4",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*4}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 4",
+		"canUseItemEffect": "true"
+	},
+	"big7Potion": {
+		"cls": "items",
+		"name": "七阶血瓶",
+		"text": "，生命+${core.values.greenPotion*8}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 8",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*8}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 8",
+		"canUseItemEffect": "true"
+	},
+	"big8Potion": {
+		"cls": "items",
+		"name": "八阶血瓶",
+		"text": "，生命+${core.values.greenPotion*10}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 10",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*10}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 10",
+		"canUseItemEffect": "true"
+	},
+	"big9Potion": {
+		"cls": "items",
+		"name": "九阶血瓶",
+		"text": "，生命+${core.values.greenPotion*20}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 20",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*20}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 20",
+		"canUseItemEffect": "true"
+	},
+	"big10Potion": {
+		"cls": "items",
+		"name": "十阶血瓶",
+		"text": "，生命+${core.values.greenPotion*40}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 40",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*40}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 40",
+		"canUseItemEffect": "true"
+	},
+	"big11Potion": {
+		"cls": "items",
+		"name": "十一阶血瓶",
+		"text": "，生命+${core.values.greenPotion*50}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 50",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*50}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 50",
+		"canUseItemEffect": "true"
+	},
+	"big12Potion": {
+		"cls": "items",
+		"name": "十二阶血瓶",
+		"text": "，生命+${core.values.greenPotion*100}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 100",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*100}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 100",
+		"canUseItemEffect": "true"
+	},
+	"I692": {
+		"cls": "items",
+		"name": "一阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 1;",
+		"itemEffectTip": "魔力值提升1点"
+	},
+	"I693": {
+		"cls": "items",
+		"name": "二阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 2;",
+		"itemEffectTip": "魔力值提升2点"
+	},
+	"I694": {
+		"cls": "items",
+		"name": "三阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 4;",
+		"itemEffectTip": "魔力值提升4点"
+	},
+	"I695": {
+		"cls": "items",
+		"name": "四阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 8;",
+		"itemEffectTip": "魔力值提升8点"
+	},
+	"I696": {
+		"cls": "items",
+		"name": "五阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 20;",
+		"itemEffectTip": "魔力值提升20点"
+	},
+	"I697": {
+		"cls": "items",
+		"name": "六阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 40;",
+		"itemEffectTip": "魔力值提升40点"
+	},
+	"I698": {
+		"cls": "items",
+		"name": "七阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 50;",
+		"itemEffectTip": "魔力值提升50点"
+	},
+	"I699": {
+		"cls": "items",
+		"name": "八阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 100;",
+		"itemEffectTip": "魔力值提升100点"
+	},
+	"I700": {
+		"cls": "items",
+		"name": "九阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 200;",
+		"itemEffectTip": "魔力值提升200点"
+	},
+	"I701": {
+		"cls": "items",
+		"name": "十阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 400;",
+		"itemEffectTip": "魔力值提升400点"
+	},
+	"I702": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I703": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I704": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I705": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I706": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I707": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I708": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I709": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I710": {
+		"cls": "tools",
+		"name": "初阶神之血",
+		"text": "可以恢复5%生命值",
+		"useItemEvent": [
+			{
+				"type": "comment",
+				"text": "先恢复一个魔杖（因为使用道具必须消耗一个）"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('I710', 1);\n}"
+			},
+			{
+				"type": "playSound",
+				"name": "打开界面"
+			},
+			{
+				"type": "input",
+				"text": "请输入初阶神之血使用次数：(0-${item:I710})"
+			},
+			{
+				"type": "comment",
+				"text": "【接受用户输入】弹窗输入的结果将会保存在“flag:input”中\n如果需要更多帮助，请查阅帮助文档"
+			},
+			{
+				"type": "if",
+				"condition": "(flag:input<=item:I710)",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "item:I710",
+						"operator": "-=",
+						"value": "flag:input"
+					},
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "flag:input*(status:hpmax*0.05)"
+					},
+					{
+						"type": "playSound",
+						"name": "回血"
+					},
+					"成功使用${flag:input}次初阶神之血，恢复${flag:input*(status:hpmax*0.05)}点生命。"
+				],
+				"false": [
+					{
+						"type": "playSound",
+						"name": "操作失败"
+					},
+					"输入不合法！"
+				]
+			}
+		],
+		"canUseItemEffect": "true"
+	},
+	"I711": {
+		"cls": "tools",
+		"name": "进阶神之血",
+		"text": "可以恢复10%生命值",
+		"useItemEvent": [
+			{
+				"type": "comment",
+				"text": "先恢复一个魔杖（因为使用道具必须消耗一个）"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('I711', 1);\n}"
+			},
+			{
+				"type": "playSound",
+				"name": "打开界面"
+			},
+			{
+				"type": "input",
+				"text": "请输入进阶神之血使用次数：(0-${item:I711})"
+			},
+			{
+				"type": "comment",
+				"text": "【接受用户输入】弹窗输入的结果将会保存在“flag:input”中\n如果需要更多帮助，请查阅帮助文档"
+			},
+			{
+				"type": "if",
+				"condition": "(flag:input<=item:I711)",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "item:I711",
+						"operator": "-=",
+						"value": "flag:input"
+					},
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "flag:input*(status:hpmax*0.1)"
+					},
+					{
+						"type": "playSound",
+						"name": "回血"
+					},
+					"成功使用${flag:input}次进阶神之血，恢复${flag:input*(status:hpmax*0.1)}点生命。"
+				],
+				"false": [
+					{
+						"type": "playSound",
+						"name": "操作失败"
+					},
+					"输入不合法！"
+				]
+			}
+		],
+		"canUseItemEffect": "true"
+	},
+	"I712": {
+		"cls": "tools",
+		"name": "中阶神之血",
+		"text": "可以恢复15%生命值",
+		"useItemEvent": [
+			{
+				"type": "comment",
+				"text": "先恢复一个魔杖（因为使用道具必须消耗一个）"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('I712', 1);\n}"
+			},
+			{
+				"type": "playSound",
+				"name": "打开界面"
+			},
+			{
+				"type": "input",
+				"text": "请输入中阶神之血使用次数：(0-${item:I712})"
+			},
+			{
+				"type": "comment",
+				"text": "【接受用户输入】弹窗输入的结果将会保存在“flag:input”中\n如果需要更多帮助，请查阅帮助文档"
+			},
+			{
+				"type": "if",
+				"condition": "(flag:input<=item:I712)",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "item:I712",
+						"operator": "-=",
+						"value": "flag:input"
+					},
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "flag:input*(status:hpmax*0.15)"
+					},
+					{
+						"type": "playSound",
+						"name": "回血"
+					},
+					"成功使用${flag:input}次中阶神之血，恢复${flag:input*(status:hpmax*0.15)}点生命。"
+				],
+				"false": [
+					{
+						"type": "playSound",
+						"name": "操作失败"
+					},
+					"输入不合法！"
+				]
+			}
+		],
+		"canUseItemEffect": "true"
+	},
+	"I713": {
+		"cls": "tools",
+		"name": "高阶神之血",
+		"text": "可以恢复20%生命值",
+		"useItemEvent": [
+			{
+				"type": "comment",
+				"text": "先恢复一个魔杖（因为使用道具必须消耗一个）"
+			},
+			{
+				"type": "function",
+				"function": "function(){\ncore.addItem('I713', 1);\n}"
+			},
+			{
+				"type": "playSound",
+				"name": "打开界面"
+			},
+			{
+				"type": "input",
+				"text": "请输入高阶神之血使用次数：(0-${item:I713})"
+			},
+			{
+				"type": "comment",
+				"text": "【接受用户输入】弹窗输入的结果将会保存在“flag:input”中\n如果需要更多帮助，请查阅帮助文档"
+			},
+			{
+				"type": "if",
+				"condition": "(flag:input<=item:I713)",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "item:I713",
+						"operator": "-=",
+						"value": "flag:input"
+					},
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "flag:input*(status:hpmax*0.2)"
+					},
+					{
+						"type": "playSound",
+						"name": "回血"
+					},
+					"成功使用${flag:input}次高阶神之血，恢复${flag:input*(status:hpmax*0.2)}点生命。"
+				],
+				"false": [
+					{
+						"type": "playSound",
+						"name": "操作失败"
+					},
+					"输入不合法！"
+				]
+			}
+		],
+		"canUseItemEffect": "true"
+	},
+	"I714": {
+		"cls": "tools",
+		"name": "超阶神之血",
+		"canUseItemEffect": "true",
+		"text": "喝下后回复25%生命值",
+		"useItemEvent": [
+			{
+				"type": "playSound",
+				"name": "poison.mp3"
+			},
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"operator": "+=",
+				"value": "(status:hpmax*0.25)"
+			}
+		]
+	},
+	"I715": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I716": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I717": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I718": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I719": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I720": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I721": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I722": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I723": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
 	}
 }

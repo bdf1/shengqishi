@@ -1,12 +1,11 @@
-///<reference path='../runtime.d.ts'/>
-var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
+var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 = 
 {
-	"init": function () {
+    "init": function () {
 		this._afterLoadResources = function () {
 			// 本函数将在所有资源加载完毕后，游戏开启前被执行
 		}
 	},
-	"drawLight": function () {
+    "drawLight": function () {
 
 		// 绘制灯光/漆黑层效果。调用方式 core.plugin.drawLight(...)
 		// 【参数说明】
@@ -67,7 +66,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			// 可以在任何地方（如afterXXX或自定义脚本事件）调用函数，方法为  core.plugin.xxx();
 		}
 	},
-	"shop": function () {
+    "shop": function () {
 		// 【全局商店】相关的功能
 		// 
 		// 打开一个全局商店
@@ -262,7 +261,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			return false;
 		}, 60);
 	},
-	"removeMap": function () {
+    "removeMap": function () {
 		// 高层塔砍层插件，删除后不会存入存档，不可浏览地图也不可飞到。
 		// 推荐用法：
 		// 对于超高层或分区域塔，当在1区时将2区以后的地图删除；1区结束时恢复2区，进二区时删除1区地图，以此类推
@@ -349,161 +348,161 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			});
 		}
 	},
-	"fiveLayers": function () {
-		// 是否启用五图层（增加背景2层和前景2层） 将__enable置为true即会启用；启用后请保存后刷新编辑器
-		// 背景层2将会覆盖背景层 被事件层覆盖 前景层2将会覆盖前景层
-		// 另外 请注意加入两个新图层 会让大地图的性能降低一些
-		// 插件作者：ad
-		var __enable = false;
-		if (!__enable) return;
+    "fiveLayers": function () {
+	// 是否启用五图层（增加背景2层和前景2层） 将__enable置为true即会启用；启用后请保存后刷新编辑器
+	// 背景层2将会覆盖背景层 被事件层覆盖 前景层2将会覆盖前景层
+	// 另外 请注意加入两个新图层 会让大地图的性能降低一些
+	// 插件作者：ad
+	var __enable = true;
+	if (!__enable) return;
 
-		// 创建新图层
-		function createCanvas (name, zIndex) {
-			if (!name) return;
-			var canvas = document.createElement('canvas');
-			canvas.id = name;
-			canvas.className = 'gameCanvas anti-aliasing';
-			// 编辑器模式下设置zIndex会导致加入的图层覆盖优先级过高
-			if (main.mode != "editor") canvas.style.zIndex = zIndex || 0;
-			// 将图层插入进游戏内容
-			document.getElementById('gameDraw').appendChild(canvas);
-			var ctx = canvas.getContext('2d');
-			core.canvas[name] = ctx;
-			canvas.width = core._PX_ || core.__PIXELS__;
-			canvas.height = core._PY_ || core.__PIXELS__;
-			return canvas;
-		}
+	// 创建新图层
+	function createCanvas(name, zIndex) {
+		if (!name) return;
+		var canvas = document.createElement('canvas');
+		canvas.id = name;
+		canvas.className = 'gameCanvas';
+		// 编辑器模式下设置zIndex会导致加入的图层覆盖优先级过高
+		if (main.mode != "editor") canvas.style.zIndex = zIndex || 0;
+		// 将图层插入进游戏内容
+		document.getElementById('gameDraw').appendChild(canvas);
+		var ctx = canvas.getContext('2d');
+		core.canvas[name] = ctx;
+		canvas.width = core.__PIXELS__;
+		canvas.height = core.__PIXELS__;
+		return canvas;
+	}
 
-		var bg2Canvas = createCanvas('bg2', 20);
-		var fg2Canvas = createCanvas('fg2', 63);
-		// 大地图适配
-		core.bigmap.canvas = ["bg2", "fg2", "bg", "event", "event2", "fg", "damage"];
-		core.initStatus.bg2maps = {};
-		core.initStatus.fg2maps = {};
+	var bg2Canvas = createCanvas('bg2', 20);
+	var fg2Canvas = createCanvas('fg2', 63);
+	// 大地图适配
+	core.bigmap.canvas = ["bg2", "fg2", "bg", "event", "event2", "fg", "damage"];
+	core.initStatus.bg2maps = {};
+	core.initStatus.fg2maps = {};
 
-		if (main.mode == 'editor') {
-			/*插入编辑器的图层 不做此步新增图层无法在编辑器显示*/
-			// 编辑器图层覆盖优先级 eui > efg > fg(前景层) > event2(48*32图块的事件层) > event(事件层) > bg(背景层)
-			// 背景层2(bg2) 插入事件层(event)之前(即bg与event之间)
-			document.getElementById('mapEdit').insertBefore(bg2Canvas, document.getElementById('event'));
-			// 前景层2(fg2) 插入编辑器前景(efg)之前(即fg之后)
-			document.getElementById('mapEdit').insertBefore(fg2Canvas, document.getElementById('ebm'));
-			// 原本有三个图层 从4开始添加
-			var num = 4;
-			// 新增图层存入editor.dom中
-			editor.dom.bg2c = core.canvas.bg2.canvas;
-			editor.dom.bg2Ctx = core.canvas.bg2;
-			editor.dom.fg2c = core.canvas.fg2.canvas;
-			editor.dom.fg2Ctx = core.canvas.fg2;
-			editor.dom.maps.push('bg2map', 'fg2map');
-			editor.dom.canvas.push('bg2', 'fg2');
+	if (main.mode == 'editor') {
+		/*插入编辑器的图层 不做此步新增图层无法在编辑器显示*/
+		// 编辑器图层覆盖优先级 eui > efg > fg(前景层) > event2(48*32图块的事件层) > event(事件层) > bg(背景层)
+		// 背景层2(bg2) 插入事件层(event)之前(即bg与event之间)
+		document.getElementById('mapEdit').insertBefore(bg2Canvas, document.getElementById('event'));
+		// 前景层2(fg2) 插入编辑器前景(efg)之前(即fg之后)
+		document.getElementById('mapEdit').insertBefore(fg2Canvas, document.getElementById('ebm'));
+		// 原本有三个图层 从4开始添加
+		var num = 4;
+		// 新增图层存入editor.dom中
+		editor.dom.bg2c = core.canvas.bg2.canvas;
+		editor.dom.bg2Ctx = core.canvas.bg2;
+		editor.dom.fg2c = core.canvas.fg2.canvas;
+		editor.dom.fg2Ctx = core.canvas.fg2;
+		editor.dom.maps.push('bg2map', 'fg2map');
+		editor.dom.canvas.push('bg2', 'fg2');
 
-			// 创建编辑器上的按钮
-			var createCanvasBtn = function (name) {
-				// 电脑端创建按钮
-				var input = document.createElement('input');
-				// layerMod4/layerMod5
-				var id = 'layerMod' + num++;
-				// bg2map/fg2map
-				var value = name + 'map';
-				input.type = 'radio';
-				input.name = 'layerMod';
-				input.id = id;
-				input.value = value;
-				editor.dom[id] = input;
-				input.onchange = function () {
-					editor.uifunctions.setLayerMod(value);
-				}
-				return input;
-			};
-
-			var createCanvasBtn_mobile = function (name) {
-				// 手机端往选择列表中添加子选项
-				var input = document.createElement('option');
-				var id = 'layerMod' + num++;
-				var value = name + 'map';
-				input.name = 'layerMod';
-				input.value = value;
-				editor.dom[id] = input;
-				return input;
-			};
-			if (!editor.isMobile) {
-				var input = createCanvasBtn('bg2');
-				var input2 = createCanvasBtn('fg2');
-				// 获取事件层及其父节点
-				var child = document.getElementById('layerMod'),
-					parent = child.parentNode;
-				// 背景层2插入事件层前
-				parent.insertBefore(input, child);
-				// 不能直接更改背景层2的innerText 所以创建文本节点
-				var txt = document.createTextNode('bg2');
-				// 插入事件层前(即新插入的背景层2前)
-				parent.insertBefore(txt, child);
-				// 向最后插入前景层2(即插入前景层后)
-				parent.appendChild(input2);
-				var txt2 = document.createTextNode('fg2');
-				parent.appendChild(txt2);
-				parent.childNodes[2].replaceWith("bg");
-				parent.childNodes[6].replaceWith("事件");
-				parent.childNodes[8].replaceWith("fg");
-			} else {
-				var input = createCanvasBtn_mobile('bg2');
-				var input2 = createCanvasBtn_mobile('fg2');
-				// 手机端因为是选项 所以可以直接改innerText
-				input.innerText = '背景层2';
-				input2.innerText = '前景层2';
-				var parent = document.getElementById('layerMod');
-				parent.insertBefore(input, parent.children[1]);
-				parent.appendChild(input2);
+		// 创建编辑器上的按钮
+		var createCanvasBtn = function (name) {
+			// 电脑端创建按钮
+			var input = document.createElement('input');
+			// layerMod4/layerMod5
+			var id = 'layerMod' + num++;
+			// bg2map/fg2map
+			var value = name + 'map';
+			input.type = 'radio';
+			input.name = 'layerMod';
+			input.id = id;
+			input.value = value;
+			editor.dom[id] = input;
+			input.onchange = function () {
+				editor.uifunctions.setLayerMod(value);
 			}
-		}
+			return input;
+		};
 
-		var _loadFloor_doNotCopy = core.maps._loadFloor_doNotCopy;
-		core.maps._loadFloor_doNotCopy = function () {
-			return ["bg2map", "fg2map"].concat(_loadFloor_doNotCopy());
+		var createCanvasBtn_mobile = function (name) {
+			// 手机端往选择列表中添加子选项
+			var input = document.createElement('option');
+			var id = 'layerMod' + num++;
+			var value = name + 'map';
+			input.name = 'layerMod';
+			input.value = value;
+			editor.dom[id] = input;
+			return input;
+		};
+		if (!editor.isMobile) {
+			var input = createCanvasBtn('bg2');
+			var input2 = createCanvasBtn('fg2');
+			// 获取事件层及其父节点
+			var child = document.getElementById('layerMod'),
+				parent = child.parentNode;
+			// 背景层2插入事件层前
+			parent.insertBefore(input, child);
+			// 不能直接更改背景层2的innerText 所以创建文本节点
+			var txt = document.createTextNode('bg2');
+			// 插入事件层前(即新插入的背景层2前)
+			parent.insertBefore(txt, child);
+			// 向最后插入前景层2(即插入前景层后)
+			parent.appendChild(input2);
+			var txt2 = document.createTextNode('fg2');
+			parent.appendChild(txt2);
+			parent.childNodes[2].replaceWith("bg");
+			parent.childNodes[6].replaceWith("事件");
+			parent.childNodes[8].replaceWith("fg");
+		} else {
+			var input = createCanvasBtn_mobile('bg2');
+			var input2 = createCanvasBtn_mobile('fg2');
+			// 手机端因为是选项 所以可以直接改innerText
+			input.innerText = '背景层2';
+			input2.innerText = '前景层2';
+			var parent = document.getElementById('layerMod');
+			parent.insertBefore(input, parent.children[1]);
+			parent.appendChild(input2);
 		}
-		////// 绘制背景和前景层 //////
-		core.maps._drawBg_draw = function (floorId, toDrawCtx, cacheCtx, config) {
-			config.ctx = cacheCtx;
-			core.maps._drawBg_drawBackground(floorId, config);
-			// ------ 调整这两行的顺序来控制是先绘制贴图还是先绘制背景图块；后绘制的覆盖先绘制的。
-			core.maps._drawFloorImages(floorId, config.ctx, 'bg', null, null, config.onMap);
-			core.maps._drawBgFgMap(floorId, 'bg', config);
-			if (config.onMap) {
-				core.drawImage(toDrawCtx, cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
-				core.clearMap('bg2');
-				core.clearMap(cacheCtx);
-			}
-			core.maps._drawBgFgMap(floorId, 'bg2', config);
-			if (config.onMap) core.drawImage('bg2', cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
-			config.ctx = toDrawCtx;
+	}
+
+	var _loadFloor_doNotCopy = core.maps._loadFloor_doNotCopy;
+	core.maps._loadFloor_doNotCopy = function () {
+		return ["bg2map", "fg2map"].concat(_loadFloor_doNotCopy());
+	}
+	////// 绘制背景和前景层 //////
+	core.maps._drawBg_draw = function (floorId, toDrawCtx, cacheCtx, config) {
+		config.ctx = cacheCtx;
+		core.maps._drawBg_drawBackground(floorId, config);
+		// ------ 调整这两行的顺序来控制是先绘制贴图还是先绘制背景图块；后绘制的覆盖先绘制的。
+		core.maps._drawFloorImages(floorId, config.ctx, 'bg', null, null, config.onMap);
+		core.maps._drawBgFgMap(floorId, 'bg', config);
+		if (config.onMap) {
+			core.drawImage(toDrawCtx, cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
+			core.clearMap('bg2');
+			core.clearMap(cacheCtx);
 		}
-		core.maps._drawFg_draw = function (floorId, toDrawCtx, cacheCtx, config) {
-			config.ctx = cacheCtx;
-			// ------ 调整这两行的顺序来控制是先绘制贴图还是先绘制前景图块；后绘制的覆盖先绘制的。
-			core.maps._drawFloorImages(floorId, config.ctx, 'fg', null, null, config.onMap);
-			core.maps._drawBgFgMap(floorId, 'fg', config);
-			if (config.onMap) {
-				core.drawImage(toDrawCtx, cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
-				core.clearMap('fg2');
-				core.clearMap(cacheCtx);
-			}
-			core.maps._drawBgFgMap(floorId, 'fg2', config);
-			if (config.onMap) core.drawImage('fg2', cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
-			config.ctx = toDrawCtx;
+		core.maps._drawBgFgMap(floorId, 'bg2', config);
+		if (config.onMap) core.drawImage('bg2', cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
+		config.ctx = toDrawCtx;
+	}
+	core.maps._drawFg_draw = function (floorId, toDrawCtx, cacheCtx, config) {
+		config.ctx = cacheCtx;
+		// ------ 调整这两行的顺序来控制是先绘制贴图还是先绘制前景图块；后绘制的覆盖先绘制的。
+		core.maps._drawFloorImages(floorId, config.ctx, 'fg', null, null, config.onMap);
+		core.maps._drawBgFgMap(floorId, 'fg', config);
+		if (config.onMap) {
+			core.drawImage(toDrawCtx, cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
+			core.clearMap('fg2');
+			core.clearMap(cacheCtx);
 		}
-		////// 移动判定 //////
-		core.maps._generateMovableArray_arrays = function (floorId) {
-			return {
-				bgArray: this.getBgMapArray(floorId),
-				fgArray: this.getFgMapArray(floorId),
-				eventArray: this.getMapArray(floorId),
-				bg2Array: this._getBgFgMapArray('bg2', floorId),
-				fg2Array: this._getBgFgMapArray('fg2', floorId)
-			};
-		}
-	},
-	"itemShop": function () {
+		core.maps._drawBgFgMap(floorId, 'fg2', config);
+		if (config.onMap) core.drawImage('fg2', cacheCtx.canvas, core.bigmap.v2 ? -32 : 0, core.bigmap.v2 ? -32 : 0);
+		config.ctx = toDrawCtx;
+	}
+	////// 移动判定 //////
+	core.maps._generateMovableArray_arrays = function (floorId) {
+		return {
+			bgArray: this.getBgMapArray(floorId),
+			fgArray: this.getFgMapArray(floorId),
+			eventArray: this.getMapArray(floorId),
+			bg2Array: this._getBgFgMapArray('bg2', floorId),
+			fg2Array: this._getBgFgMapArray('fg2', floorId)
+		};
+	}
+},
+    "itemShop": function () {
 		// 道具商店相关的插件
 		// 可在全塔属性-全局商店中使用「道具商店」事件块进行编辑（如果找不到可以在入口方块中找）
 
@@ -809,93 +808,208 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 
 	},
-	"enemyLevel": function () {
-		// 此插件将提供怪物手册中的怪物境界显示
-		// 使用此插件需要先给每个怪物定义境界，方法如下：
-		// 点击怪物的【配置表格】，找到“【怪物】相关的表格配置”，然后在【名称】仿照增加境界定义：
-		/*
-		 "level": {
-			  "_leaf": true,
-			  "_type": "textarea",
-			  "_string": true,
-			  "_data": "境界"
-		 },
-		 */
-		// 然后保存刷新，可以看到怪物的属性定义中出现了【境界】。再开启本插件即可。
+    "enemyLevel": function () {
+	// 此插件将提供怪物手册中的怪物境界显示
+	// 使用此插件需要先给每个怪物定义境界，方法如下：
+	// 点击怪物的【配置表格】，找到“【怪物】相关的表格配置”，然后在【名称】仿照增加境界定义：
+	/*
+	 "level": {
+		  "_leaf": true,
+		  "_type": "textarea",
+		  "_string": true,
+		  "_data": "境界"
+	 },
+	 */
+	// 然后保存刷新，可以看到怪物的属性定义中出现了【境界】。再开启本插件即可。
 
-		// 是否开启本插件，默认禁用；将此改成 true 将启用本插件。
-		var __enable = false;
-		if (!__enable) return;
+	// 是否开启本插件，默认禁用；将此改成 true 将启用本插件。
+	var __enable = true;
+	if (!__enable) return;
 
-		// 这里定义每个境界的显示颜色；可以写'red', '#RRGGBB' 或者[r,g,b,a]四元数组
-		var levelToColors = {
-			"萌新一阶": "red",
-			"萌新二阶": "#FF0000",
-			"萌新三阶": [255, 0, 0, 1],
-		};
+	// 这里定义每个境界的显示颜色；可以写'red', '#RRGGBB' 或者[r,g,b,a]四元数组
+	var levelToColors = {
+		凡尘: '#FFFFFF',
+		化气期: '#FFFAF0',
+		筑灵期: '#F0FFF0',
+		心丹期: '#E0EEE0',
+		婴变期: '#C1FFC1',
+		异神期: '#BCEE68',
+		合血期: '#C0FF31',
+		极骨期: '#98FB98',
+		捏忌期: '#7CFC00',
+		幻化期: '#43CD80',
+		觉醒期: '#32CD32',
+		魅魂期: '#008B00',
+		至高期: '#CAE1FF',
+	};
 
-		// 复写 _drawBook_drawName
-		var originDrawBook = core.ui._drawBook_drawName;
-		core.ui._drawBook_drawName = function (index, enemy, top, left, width) {
-			// 如果没有境界，则直接调用原始代码绘制
-			if (!enemy.level) return originDrawBook.call(core.ui, index, enemy, top, left, width);
-			// 存在境界，则额外进行绘制
-			core.setTextAlign('ui', 'center');
-			if (enemy.specialText.length == 0) {
-				core.fillText('ui', enemy.name, left + width / 2,
-					top + 27, '#DDDDDD', this._buildFont(17, true));
-				core.fillText('ui', enemy.level, left + width / 2,
-					top + 51, core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'), this._buildFont(14, true));
-			} else {
-				core.fillText('ui', enemy.name, left + width / 2,
-					top + 20, '#DDDDDD', this._buildFont(17, true), width);
-				switch (enemy.specialText.length) {
-					case 1:
-						core.fillText('ui', enemy.specialText[0], left + width / 2,
-							top + 38, core.arrayToRGBA((enemy.specialColor || [])[0] || '#FF6A6A'),
-							this._buildFont(14, true), width);
-						break;
-					case 2:
-						// Step 1: 计算字体
-						var text = enemy.specialText[0] + "  " + enemy.specialText[1];
-						core.setFontForMaxWidth('ui', text, width, this._buildFont(14, true));
-						// Step 2: 计算总宽度
-						var totalWidth = core.calWidth('ui', text);
-						var leftWidth = core.calWidth('ui', enemy.specialText[0]);
-						var rightWidth = core.calWidth('ui', enemy.specialText[1]);
-						// Step 3: 绘制
-						core.fillText('ui', enemy.specialText[0], left + (width + leftWidth - totalWidth) / 2,
-							top + 38, core.arrayToRGBA((enemy.specialColor || [])[0] || '#FF6A6A'));
-						core.fillText('ui', enemy.specialText[1], left + (width + totalWidth - rightWidth) / 2,
-							top + 38, core.arrayToRGBA((enemy.specialColor || [])[1] || '#FF6A6A'));
-						break;
-					default:
-						core.fillText('ui', '多属性...', left + width / 2,
-							top + 38, '#FF6A6A', this._buildFont(14, true), width);
-				}
-				core.fillText('ui', enemy.level, left + width / 2,
-					top + 56, core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'), this._buildFont(14, true));
+	// 复写 _drawBook_drawName
+	var originDrawBook = core.ui._drawBook_drawName;
+	core.ui._drawBook_drawName = function (index, enemy, top, left, width) {
+		// 如果没有境界，则直接调用原始代码绘制
+		if (!enemy.level)
+			return originDrawBook.call(
+				core.ui,
+				index,
+				enemy,
+				top,
+				left,
+				width
+			);
+		// 存在境界，则额外进行绘制
+		core.setTextAlign('ui', 'center');
+		if (enemy.specialText.length == 0) {
+			core.fillText(
+				'ui',
+				enemy.name,
+				left + width / 2,
+				top + 27,
+				'#DDDDDD',
+				this._buildFont(17, true)
+			);
+			core.fillText(
+				'ui',
+				enemy.level,
+				left + width / 2,
+				top + 51,
+				core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'),
+				this._buildFont(14, true)
+			);
+		} else {
+			core.fillText(
+				'ui',
+				enemy.name,
+				left + width / 2,
+				top + 20,
+				'#DDDDDD',
+				this._buildFont(17, true),
+				width
+			);
+			switch (enemy.specialText.length) {
+			case 1:
+				core.fillText(
+					'ui',
+					enemy.specialText[0],
+					left + width / 2,
+					top + 38,
+					core.arrayToRGBA(
+						(enemy.specialColor || [])[0] || '#FF6A6A'
+					),
+					this._buildFont(14, true),
+					width
+				);
+				break;
+			case 2:
+				// Step 1: 计算字体
+				var text =
+					enemy.specialText[0] + '  ' + enemy.specialText[1];
+				core.setFontForMaxWidth(
+					'ui',
+					text,
+					width,
+					this._buildFont(14, true)
+				);
+				// Step 2: 计算总宽度
+				var totalWidth = core.calWidth('ui', text);
+				var leftWidth = core.calWidth(
+					'ui',
+					enemy.specialText[0]
+				);
+				var rightWidth = core.calWidth(
+					'ui',
+					enemy.specialText[1]
+				);
+				// Step 3: 绘制
+				core.fillText(
+					'ui',
+					enemy.specialText[0],
+					left + (width + leftWidth - totalWidth) / 2,
+					top + 38,
+					core.arrayToRGBA(
+						(enemy.specialColor || [])[0] || '#FF6A6A'
+					)
+				);
+				core.fillText(
+					'ui',
+					enemy.specialText[1],
+					left + (width + totalWidth - rightWidth) / 2,
+					top + 38,
+					core.arrayToRGBA(
+						(enemy.specialColor || [])[1] || '#FF6A6A'
+					)
+				);
+				break;
+			default:
+				core.fillText(
+					'ui',
+					'多属性...',
+					left + width / 2,
+					top + 38,
+					'#FF6A6A',
+					this._buildFont(14, true),
+					width
+				);
 			}
+			core.fillText(
+				'ui',
+				enemy.level,
+				left + width / 2,
+				top + 56,
+				core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'),
+				this._buildFont(14, true)
+			);
 		}
+	};
 
-		// 也可以复写其他的属性颜色如怪物攻防等，具体参见下面的例子的注释部分
-		core.ui._drawBook_drawRow1 = function (index, enemy, top, left, width, position) {
-			// 绘制第一行
-			core.setTextAlign('ui', 'left');
-			var b13 = this._buildFont(13, true),
-				f13 = this._buildFont(13, false);
-			var col1 = left,
-				col2 = left + width * 9 / 25,
-				col3 = left + width * 17 / 25;
-			core.fillText('ui', '生命', col1, position, '#DDDDDD', f13);
-			core.fillText('ui', core.formatBigNumber(enemy.hp || 0), col1 + 30, position, /*'red' */ null, b13);
-			core.fillText('ui', '攻击', col2, position, null, f13);
-			core.fillText('ui', core.formatBigNumber(enemy.atk || 0), col2 + 30, position, /* '#FF0000' */ null, b13);
-			core.fillText('ui', '防御', col3, position, null, f13);
-			core.fillText('ui', core.formatBigNumber(enemy.def || 0), col3 + 30, position, /* [255, 0, 0, 1] */ null, b13);
-		}
-	},
-	"multiHeros": function () {
+	// 也可以复写其他的属性颜色如怪物攻防等，具体参见下面的例子的注释部分
+	core.ui._drawBook_drawRow1 = function (
+		index,
+		enemy,
+		top,
+		left,
+		width,
+		position
+	) {
+		// 绘制第一行
+		core.setTextAlign('ui', 'left');
+		var b13 = this._buildFont(13, true),
+			f13 = this._buildFont(13, false);
+		var col1 = left,
+			col2 = left + (width * 9) / 25,
+			col3 = left + (width * 17) / 25;
+		core.fillText('ui', '生命', col1, position, '#DDDDDD', f13);
+		core.fillText(
+			'ui',
+			core.formatBigNumber(enemy.hp || 0),
+			col1 + 30,
+			position,
+			/*'red' */
+			null,
+			b13
+		);
+		core.fillText('ui', '攻击', col2, position, null, f13);
+		core.fillText(
+			'ui',
+			core.formatBigNumber(enemy.atk || 0),
+			col2 + 30,
+			position,
+			/* '#FF0000' */
+			null,
+			b13
+		);
+		core.fillText('ui', '防御', col3, position, null, f13);
+		core.fillText(
+			'ui',
+			core.formatBigNumber(enemy.def || 0),
+			col3 + 30,
+			position,
+			/* [255, 0, 0, 1] */
+			null,
+			b13
+		);
+	};
+},
+    "multiHeros": function () {
 		// 多角色插件
 		// Step 1: 启用本插件
 		// Step 2: 定义每个新的角色各项初始数据（参见下方注释）
@@ -1041,7 +1155,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.setFlag("heroId", toHeroId); // 保存切换到的角色ID
 		}
 	},
-	"heroFourFrames": function () {
+    "heroFourFrames": function () {
 		// 样板的勇士/跟随者移动时只使用2、4两帧，观感较差。本插件可以将四帧全用上。
 
 		// 是否启用本插件
@@ -1094,7 +1208,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			return false;
 		}
 	},
-	"routeFixing": function () {
+    "routeFixing": function () {
 		// 是否开启本插件，true 表示启用，false 表示禁用。
 		var __enable = true;
 		if (!__enable) return;
@@ -1185,7 +1299,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			}
 		}, 100);
 	},
-	"numpad": function () {
+    "numpad": function () {
 		// 样板自带的整数输入事件为白屏弹窗且可以误输入任意非法内容但不支持负整数，观感较差。本插件可以将其美化成仿RM样式，使其支持负整数同时带有音效
 		// 另一方面，4399等第三方平台不允许使用包括 core.myprompt() 和 core.myconfirm() 在内的弹窗，因此也需要此插件来替代，不然类似生命魔杖的道具就不好实现了
 		// 关于负整数输入，V2.8.2原生支持其录像的压缩和解压，只是默认的 core.events._action_input() 函数将负数取了绝对值，可以只复写下面的 core.isReplaying() 部分来取消
@@ -1360,7 +1474,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			}
 		}
 	},
-	"sprites": function () {
+    "sprites": function () {
 		// 基于canvas的sprite化，摘编整理自万宁魔塔
 		// 
 		// ---------------------------------------- 第一部分 js代码 （必装） --------------------------------------- //
@@ -1552,7 +1666,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		window.Sprite = Sprite;
 	},
-	"hotReload": function () {
+    "hotReload": function () {
 		/* ---------- 功能说明 ---------- *
 
 		1. 当 libs/ main.js index.html 中的任意一个文件被更改后，会自动刷新塔的页面
@@ -1815,5 +1929,300 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				}, 1000);
 			}
 		})();
+	},
+    "自动拾取！": function () {
+	var enable = true;
+	if (!enable) return;
+	// 
+	// var noUpdate = false;
+	////// 更新状态栏 ////// 不建议状态栏刷新后触发 容易导致录像不一致的问题
+	//control.prototype.updateStatusBar = function (doNotCheckAutoEvents) {
+	//	if (!core.isPlaying()) return;
+	//	if (noUpdate) return;
+	//	noUpdate = true;
+	//	core.autoGetItem();
+	//	noUpdate = false;
+	//	this.controldata.updateStatusBar();
+	//	if (!doNotCheckAutoEvents) core.checkAutoEvents();
+	//	this._updateStatusBar_setToolboxIcon();
+	//	core.clearRouteFolding();
+	//}
+
+	////// 每移动一格后执行的事件 //////
+	control.prototype.moveOneStep = function (callback) {
+		core.autoGetItem();
+		return this.controldata.moveOneStep(callback);
 	}
+
+	function bfsFlood(sx, sy, blockfn) {
+		var canMoveArray = core.generateMovableArray();
+		var blocksObj = core.getMapBlocksObj();
+		var bgMap = core.getBgMapArray();
+
+		var visited = [],
+			queue = [];
+		visited[sx + "," + sy] = 0;
+		queue.push(sx + "," + sy);
+
+		while (queue.length > 0) {
+			var now = queue.shift().split(","),
+				x = ~~now[0],
+				y = ~~now[1];
+			for (var direction in core.utils.scan) {
+				if (!core.inArray(canMoveArray[x][y], direction)) continue;
+				var nx = x + core.utils.scan[direction].x,
+					ny = y + core.utils.scan[direction].y,
+					nindex = nx + "," + ny;
+				if (visited[nindex]) continue;
+				if (core.onSki(bgMap[ny][nx])) continue;
+				if (blockfn && !blockfn(blocksObj, nx, ny)) continue;
+				visited[nindex] = visited[now] + 1;
+				queue.push(nindex);
+			}
+		}
+	}
+
+	function attractAnimate() {
+		var name = 'attractAnimate';
+		var isPlaying = false;
+		this.nodes = [];
+
+		this.add = function (id, x, y, callback) {
+			this.nodes.push({ id: id, x: x, y: y, callback: callback });
+		}
+		this.start = function () {
+			if (isPlaying) return;
+			isPlaying = true;
+			core.registerAnimationFrame(name, true, this.update);
+			this.ctx = core.createCanvas(name, 0, 0, core.__PIXELS__, core.__PIXELS__, 120);
+		}
+		this.remove = function () {
+			core.unregisterAnimationFrame(name);
+			core.deleteCanvas(name);
+			isPlaying = false;
+		}
+		this.clear = function () {
+			this.nodes = [];
+			this.remove();
+		}
+		var lastTime = -1;
+		var self = this;
+		this.update = function (timeStamp) {
+			if (lastTime < 0) lastTime = timeStamp;
+			if (timeStamp - lastTime < 20) return;
+			lastTime = timeStamp;
+			core.clearMap(name);
+			var cx = core.status.heroCenter.px - 16,
+				cy = core.status.heroCenter.py - 16;
+			var thr = 5; //缓动比例倒数 越大移动越慢
+			self.nodes.forEach(function (n) {
+				var dx = cx - n.x,
+					dy = cy - n.y;
+				if (Math.abs(dx) <= thr && Math.abs(dy) <= thr) {
+					n.dead = true;
+				} else {
+					n.x += ~~(dx / thr);
+					n.y += ~~(dy / thr);
+				}
+				core.drawIcon(name, n.id, n.x, n.y, 32, 32);
+			});
+			self.nodes = self.nodes.filter(function (n) {
+				if (n.dead && n.callback) {
+					n.callback();
+				}
+				return !n.dead;
+			});
+			if (self.nodes.length == 0)
+				self.remove();
+		}
+	}
+
+
+	var animateHwnd = new attractAnimate();
+
+	this.stopAttractAnimate = function () {
+		animateHwnd.clear();
+	}
+
+	this.autoGetItem = function () {
+		var canGetItems = {};
+		if (!core.status.floorId || !core.status.checkBlock.damage || core.status.event.id == 'action' || core.status.lockControl) return;
+		if (core.getFlag("shiqu", 0) == 0) return;
+		if (Object.keys(core.status.checkBlock.damage).indexOf(core.status.hero.loc.x + "," + core.status.hero.loc.y) != -1 && core.status.checkBlock.damage[core.status.hero.loc.x + "," + core.status.hero.loc.y] >= 1) return
+		if (Object.keys(core.status.checkBlock.ambush).indexOf(core.status.hero.loc.x + "," + core.status.hero.loc.y) != -1) return
+		if (Object.keys(core.status.checkBlock.repulse).indexOf(core.status.hero.loc.x + "," + core.status.hero.loc.y) != -1) return
+
+		bfsFlood(core.getHeroLoc('x'), core.getHeroLoc('y'), function (blockMap, x, y) {
+			var idx = x + ',' + y;
+			if (idx in canGetItems) return false;
+			var blk = blockMap[idx];
+			if (blk && !blk.disable && blk.event.cls == 'items' && !core.isMapBlockDisabled(core.status.floorId, blk.x, blk.y) && blk.event.trigger == 'getItem') {
+				canGetItems[idx] = { x: x, y: y, id: blk.event.id };
+				return !core.status.checkBlock.damage[idx] && !core.status.checkBlock.ambush[idx];
+			}
+			return core.maps._canMoveDirectly_checkNextPoint(blockMap, x, y);
+		});
+		for (var k in canGetItems) {
+			var x = canGetItems[k].x,
+				y = canGetItems[k].y,
+				id = canGetItems[k].id;
+			core.trigger(x, y);
+			animateHwnd.add(id, x * 32, y * 32);
+		}
+		animateHwnd.start();
+	}
+},
+    "宝石血瓶数据显示": function () {
+	/* 宝石血瓶左下角显示数值
+	 * 需要将 变量：itemDetail改为true才可正常运行
+	 * 请尽量减少勇士的属性数量，否则可能会出现严重卡顿（划掉，现在你放一万个属性也不会卡）
+	 * 注意：这里的属性必须是core.status.hero里面的，flag无法显示
+	 * 如果不想显示，可以core.setFlag("itemDetail", false);
+	 * 然后再core.getItemDetail();
+	 * 如有bug在大群或造塔群@古祠
+	 */
+
+	// 忽略的道具
+	const ignore = ['superPotion'];
+
+	// 取消注释下面这句可以减少超大地图的判定。
+	// 如果地图宝石过多，可能会略有卡顿，可以尝试取消注释下面这句话来解决。
+	// core.bigmap.threshold = 256;
+	const origin = core.control.updateStatusBar;
+	core.updateStatusBar = core.control.updateStatusBar = function () {
+		if (core.getFlag('__statistics__')) return;
+		else return origin.apply(core.control, arguments);
+	}
+
+	core.control.updateDamage = function (floorId, ctx) {
+		floorId = floorId || core.status.floorId;
+		if (!floorId || core.status.gameOver || main.mode != 'play') return;
+		const onMap = ctx == null;
+
+		// 没有怪物手册
+		if (!core.hasItem('book')) return;
+		core.status.damage.posX = core.bigmap.posX;
+		core.status.damage.posY = core.bigmap.posY;
+		if (!onMap) {
+			const width = core.floors[floorId].width,
+				height = core.floors[floorId].height;
+			// 地图过大的缩略图不绘制显伤
+			if (width * height > core.bigmap.threshold) return;
+		}
+		this._updateDamage_damage(floorId, onMap);
+		this._updateDamage_extraDamage(floorId, onMap);
+		core.getItemDetail(floorId); // 宝石血瓶详细信息
+		this.drawDamage(ctx);
+	};
+	// 获取宝石信息 并绘制
+	this.getItemDetail = function (floorId) {
+		if (!core.getFlag('itemDetail')) return;
+		floorId = floorId ?? core.status.thisMap.floorId;
+		let diff = {};
+		const before = core.status.hero;
+		const hero = core.clone(core.status.hero);
+		const handler = {
+			set(target, key, v) {
+				diff[key] = v - (target[key] || 0);
+				if (!diff[key]) diff[key] = void 0;
+				return true;
+			}
+		};
+		core.status.hero = new Proxy(hero, handler);
+		core.status.maps[floorId].blocks.forEach(function (block) {
+			if (
+				block.event.cls !== 'items' ||
+				ignore.includes(block.event.id) ||
+				block.disable
+			)
+				return;
+			const x = block.x,
+				y = block.y;
+			// v2优化，只绘制范围内的部分
+			if (core.bigmap.v2) {
+				if (
+					x < core.bigmap.posX - core.bigmap.extend ||
+					x > core.bigmap.posX + core._SIZE_ + core.bigmap.extend ||
+					y < core.bigmap.posY - core.bigmap.extend ||
+					y > core.bigmap.posY + core._SIZE_ + core.bigmap.extend
+				) {
+					return;
+				}
+			}
+			diff = {};
+			const id = block.event.id;
+			const item = core.material.items[id];
+			if (item.cls === 'equips') {
+				// 装备也显示
+				const diff = item.equip.value ?? {};
+				const per = item.equip.percentage ?? {};
+				for (const name in per) {
+					diff[name + 'per'] = per[name].toString() + '%';
+				}
+				drawItemDetail(diff, x, y);
+				return;
+			}
+			// 跟数据统计原理一样 执行效果 前后比较
+			core.setFlag('__statistics__', true);
+			try {
+				eval(item.itemEffect);
+			} catch (error) {}
+			drawItemDetail(diff, x, y);
+		});
+		core.status.hero = before;
+		window.hero = before;
+		window.flags = before.flags;
+	};
+
+	// 绘制
+	function drawItemDetail(diff, x, y) {
+		const px = 32 * x + 2,
+			py = 32 * y + 30;
+		let content = '';
+		// 获得数据和颜色
+		let i = 0;
+		for (const name in diff) {
+			if (!diff[name]) continue;
+			let color = '#fff';
+
+			if (typeof diff[name] === 'number')
+				content = core.formatBigNumber(diff[name], true);
+			else content = diff[name];
+			switch (name) {
+			case 'atk':
+			case 'atkper':
+				color = '#FF7A7A';
+				break;
+			case 'def':
+			case 'defper':
+				color = '#00E6F1';
+				break;
+			case 'mdef':
+			case 'mdefper':
+				color = '#6EFF83';
+				break;
+			case 'hp':
+				color = '#A4FF00';
+				break;
+			case 'hpmax':
+			case 'hpmaxper':
+				color = '#F9FF00';
+				break;
+			case 'mana':
+				color = '#c66';
+				break;
+			}
+			// 绘制
+			core.status.damage.data.push({
+				text: content,
+				px: px,
+				py: py - 10 * i,
+				color: color
+			});
+			i++;
+		}
+	}
+	// 在此增加新插件
+
+}
 }

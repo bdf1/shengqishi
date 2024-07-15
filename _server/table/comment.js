@@ -135,6 +135,12 @@ var comment_c456ea59_6018_45ef_8bcc_211a24c627dc = {
 					"_docs": "手册ID",
 					"_data": "在怪物手册中映射到的怪物ID。如果此项不为null，则在怪物手册中，将用目标ID来替换该怪物原本的ID。常被运用在同一个怪物的多朝向上。"
 				},
+				"level": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_string": true,
+					"_data": "境界"
+				},
 				"faceIds": {
 					"_leaf": true,
 					"_type": "event",
@@ -243,6 +249,11 @@ var comment_c456ea59_6018_45ef_8bcc_211a24c627dc = {
 					"_docs": "反击比例",
 					"_data": "反击百分比"
 				},
+				"X": { "_leaf": true, "_type": "textarea", "_docs": "穿透比例", "_data": "穿透百分比" },
+				"Y": { "_leaf": true, "_type": "textarea", "docs": "格挡比例", "_data": "格挡百分比" },
+				"Z": { "_leaf": true, "_type": "textarea", "_docs": "破盾比例", "_data": "破盾百分比" },
+				"W": { "_leaf": true, "_type": "textarea", "_docs": "减伤比例", "_data": "减伤百分比" },
+				"fantan": { "_leaf": true, "_type": "textarea", "_docs": "反弹比例", "_data": "反弹百分比" },
 				"vampire": {
 					"_leaf": true,
 					"_type": "textarea",
@@ -338,6 +349,34 @@ var comment_c456ea59_6018_45ef_8bcc_211a24c627dc = {
 					"_range": "thiseval==~~thiseval||thiseval==null",
 					"_docs": "退化扣防",
 					"_data": "退化时勇士下降的防御力点数"
+				},
+				"mdefValue": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "退化扣盾",
+					"_data": "退化时勇者下降的护盾值点数"
+				},
+				"Atkvalue": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "进化加攻",
+					"_data": "进化时勇者提升的攻击力点数"
+				},
+				"Defvalue": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "进化加防",
+					"_data": "进化时勇者提升的防御力点数"
+				},
+				"Mdefvalue": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "进化加盾",
+					"_data": "进化时勇者提升的护盾值点数"
 				},
 				"damage": {
 					"_leaf": true,
