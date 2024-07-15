@@ -461,7 +461,50 @@ main.floors.GM4=
             "data": [
                 "\t[光明骑士,N440]\b[this]为圣子殿下赴汤蹈火，在所不辞！"
             ]
-        }
+        },
+        "11,2": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得三把黄钥匙",
+                            {
+                                "type": "setValue",
+                                "name": "item:yellowKey",
+                                "operator": "+=",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ]
     },
     "changeFloor": {
         "12,6": {

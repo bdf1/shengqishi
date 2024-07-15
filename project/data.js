@@ -18,7 +18,17 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"BH7",
 			"BH8",
 			"BH9",
-			"BH10"
+			"BH10",
+			"SN1",
+			"SN2",
+			"SN3",
+			"SN4",
+			"SN5",
+			"SN6",
+			"SN7",
+			"SN8",
+			"SN9",
+			"SN10"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -106,6 +116,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"zone"
 		],
 		"bgms": [
+			"ending.mp3",
 			"mingyunshouhu.mp3",
 			"xian.mp3"
 		],
@@ -789,7 +800,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "防御+6",
+						"text": "防御+4",
 						"need": "status:money>=80+10*flag:shop1",
 						"color": [
 							11,
@@ -818,7 +829,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:def",
 								"operator": "+=",
-								"value": "6"
+								"value": "4"
 							}
 						]
 					},

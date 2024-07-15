@@ -530,9 +530,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I337": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "白色光明权杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+3",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 3
+			},
+			"percentage": {}
+		}
 	},
 	"I338": {
 		"cls": "items",
@@ -1017,15 +1025,23 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"equip": {
 			"type": "法杖",
 			"value": {
-				"atk": 5
+				"atk": 8
 			},
 			"percentage": {}
 		}
 	},
 	"I409": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "赤色光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+8，击败怪物后，获得1点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 8
+			},
+			"percentage": {}
+		}
 	},
 	"I410": {
 		"cls": "items",
@@ -1396,33 +1412,351 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I599": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "三阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+4",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "4"
+							}
+						]
+					},
+					{
+						"text": "防御+4",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "4"
+							}
+						]
+					},
+					{
+						"text": "生命上限+200",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "200"
+							}
+						]
+					},
+					{
+						"text": "生命+4%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.04)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I600": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "四阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+8",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "8"
+							}
+						]
+					},
+					{
+						"text": "防御+8",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "8"
+							}
+						]
+					},
+					{
+						"text": "生命上限+400",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "400"
+							}
+						]
+					},
+					{
+						"text": "生命+8%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.08)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I601": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "五阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+16",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "16"
+							}
+						]
+					},
+					{
+						"text": "防御+16",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "16"
+							}
+						]
+					},
+					{
+						"text": "生命上限+800",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "800"
+							}
+						]
+					},
+					{
+						"text": "生命+16%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.16)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I602": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "六阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+32",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "32"
+							}
+						]
+					},
+					{
+						"text": "防御+32",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "32"
+							}
+						]
+					},
+					{
+						"text": "生命上限+1600",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "1600"
+							}
+						]
+					},
+					{
+						"text": "生命+32%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.32)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I603": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "七阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+64",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "64"
+							}
+						]
+					},
+					{
+						"text": "防御+64",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "64"
+							}
+						]
+					},
+					{
+						"text": "生命上限+3200",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "3200"
+							}
+						]
+					},
+					{
+						"text": "生命+64%",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax*0.64)"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I604": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "八阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+100",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "防御+100",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "生命上限+5000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "5000"
+							}
+						]
+					},
+					{
+						"text": "生命+100%，魔力值+1000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "(status:hpmax)"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "+=",
+								"value": "1000"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
 	},
 	"I605": {
 		"cls": "items",
@@ -1542,19 +1876,39 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "初阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前50%魔力值，恢复自身当前魔力值的生命值",
+		"text": "使用后，消耗当前50魔力值，恢复100点生命值\n被动：新手保护（当攻防和小于50时，额外恢复100点生命值）",
 		"useItemEvent": [
 			{
-				"type": "setValue",
-				"name": "status:hp",
-				"operator": "+=",
-				"value": "(status:mana)"
-			},
-			{
-				"type": "setValue",
-				"name": "status:mana",
-				"operator": "-=",
-				"value": "(status:mana*0.5)"
+				"type": "if",
+				"condition": "(((status:atk)+(status:def))<=50)",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "200"
+					},
+					{
+						"type": "setValue",
+						"name": "status:mana",
+						"operator": "-=",
+						"value": "50"
+					}
+				],
+				"false": [
+					{
+						"type": "setValue",
+						"name": "status:hp",
+						"operator": "+=",
+						"value": "100"
+					},
+					{
+						"type": "setValue",
+						"name": "status:mana",
+						"operator": "-=",
+						"value": "50"
+					}
+				]
 			}
 		]
 	},
@@ -1642,19 +1996,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "圣阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前（8倍魔力值+当前5%生命上限）的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前（8倍魔力值）的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
 				"value": "(status:mana*8)"
-			},
-			{
-				"type": "setValue",
-				"name": "status:hp",
-				"operator": "+=",
-				"value": "(status:hpmax*0.05)"
 			},
 			{
 				"type": "setValue",
@@ -1670,9 +2018,15 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I630": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "魔力铠甲",
+		"canUseItemEffect": "true",
+		"text": "穿上后，获得1%魔力值效果的减伤(最大效果不超过自身攻防和)",
+		"equip": {
+			"type": "法袍",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"I631": {
 		"cls": "items",
@@ -1884,71 +2238,71 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "items",
 		"name": "一阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 1;",
-		"itemEffectTip": "魔力值提升1点"
+		"itemEffect": "core.status.hero.mana += 5;",
+		"itemEffectTip": "魔力值提升5点"
 	},
 	"I693": {
 		"cls": "items",
 		"name": "二阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 2;",
-		"itemEffectTip": "魔力值提升2点"
+		"itemEffect": "core.status.hero.mana += 10;",
+		"itemEffectTip": "魔力值提升10点"
 	},
 	"I694": {
 		"cls": "items",
 		"name": "三阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 4;",
-		"itemEffectTip": "魔力值提升4点"
+		"itemEffect": "core.status.hero.mana += 20;",
+		"itemEffectTip": "魔力值提升20点"
 	},
 	"I695": {
 		"cls": "items",
 		"name": "四阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 8;",
-		"itemEffectTip": "魔力值提升8点"
+		"itemEffect": "core.status.hero.mana += 40;",
+		"itemEffectTip": "魔力值提升40点"
 	},
 	"I696": {
 		"cls": "items",
 		"name": "五阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 20;",
-		"itemEffectTip": "魔力值提升20点"
+		"itemEffect": "core.status.hero.mana += 80;",
+		"itemEffectTip": "魔力值提升80点"
 	},
 	"I697": {
 		"cls": "items",
 		"name": "六阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 40;",
-		"itemEffectTip": "魔力值提升40点"
+		"itemEffect": "core.status.hero.mana += 160;",
+		"itemEffectTip": "魔力值提升160点"
 	},
 	"I698": {
 		"cls": "items",
 		"name": "七阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 50;",
-		"itemEffectTip": "魔力值提升50点"
+		"itemEffect": "core.status.hero.mana += 200;",
+		"itemEffectTip": "魔力值提升200点"
 	},
 	"I699": {
 		"cls": "items",
 		"name": "八阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 100;",
-		"itemEffectTip": "魔力值提升100点"
+		"itemEffect": "core.status.hero.mana += 400;",
+		"itemEffectTip": "魔力值提升400点"
 	},
 	"I700": {
 		"cls": "items",
 		"name": "九阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 200;",
-		"itemEffectTip": "魔力值提升200点"
+		"itemEffect": "core.status.hero.mana += 800;",
+		"itemEffectTip": "魔力值提升800点"
 	},
 	"I701": {
 		"cls": "items",
 		"name": "十阶粉臻宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.mana += 400;",
-		"itemEffectTip": "魔力值提升400点"
+		"itemEffect": "core.status.hero.mana += 1600;",
+		"itemEffectTip": "魔力值提升1600点"
 	},
 	"I702": {
 		"cls": "items",
@@ -2256,9 +2610,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I718": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "攻击卷轴",
+		"canUseItemEffect": "true",
+		"text": "获得5%的攻击力",
+		"equip": {
+			"type": "卷轴",
+			"value": {},
+			"percentage": {
+				"atk": 5
+			}
+		}
 	},
 	"I719": {
 		"cls": "items",

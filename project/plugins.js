@@ -828,186 +828,71 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 	// 这里定义每个境界的显示颜色；可以写'red', '#RRGGBB' 或者[r,g,b,a]四元数组
 	var levelToColors = {
-		凡尘: '#FFFFFF',
-		化气期: '#FFFAF0',
-		筑灵期: '#F0FFF0',
-		心丹期: '#E0EEE0',
-		婴变期: '#C1FFC1',
-		异神期: '#BCEE68',
-		合血期: '#C0FF31',
-		极骨期: '#98FB98',
-		捏忌期: '#7CFC00',
-		幻化期: '#43CD80',
-		觉醒期: '#32CD32',
-		魅魂期: '#008B00',
-		至高期: '#CAE1FF',
+		"萌新一阶": "red",
+		"萌新二阶": "#FF0000",
+		"萌新三阶": [255, 0, 0, 1],
 	};
 
 	// 复写 _drawBook_drawName
 	var originDrawBook = core.ui._drawBook_drawName;
 	core.ui._drawBook_drawName = function (index, enemy, top, left, width) {
 		// 如果没有境界，则直接调用原始代码绘制
-		if (!enemy.level)
-			return originDrawBook.call(
-				core.ui,
-				index,
-				enemy,
-				top,
-				left,
-				width
-			);
+		if (!enemy.level) return originDrawBook.call(core.ui, index, enemy, top, left, width);
 		// 存在境界，则额外进行绘制
 		core.setTextAlign('ui', 'center');
 		if (enemy.specialText.length == 0) {
-			core.fillText(
-				'ui',
-				enemy.name,
-				left + width / 2,
-				top + 27,
-				'#DDDDDD',
-				this._buildFont(17, true)
-			);
-			core.fillText(
-				'ui',
-				enemy.level,
-				left + width / 2,
-				top + 51,
-				core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'),
-				this._buildFont(14, true)
-			);
+			core.fillText('ui', enemy.name, left + width / 2,
+				top + 27, '#DDDDDD', this._buildFont(17, true));
+			core.fillText('ui', enemy.level, left + width / 2,
+				top + 51, core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'), this._buildFont(14, true));
 		} else {
-			core.fillText(
-				'ui',
-				enemy.name,
-				left + width / 2,
-				top + 20,
-				'#DDDDDD',
-				this._buildFont(17, true),
-				width
-			);
+			core.fillText('ui', enemy.name, left + width / 2,
+				top + 20, '#DDDDDD', this._buildFont(17, true), width);
 			switch (enemy.specialText.length) {
 			case 1:
-				core.fillText(
-					'ui',
-					enemy.specialText[0],
-					left + width / 2,
-					top + 38,
-					core.arrayToRGBA(
-						(enemy.specialColor || [])[0] || '#FF6A6A'
-					),
-					this._buildFont(14, true),
-					width
-				);
+				core.fillText('ui', enemy.specialText[0], left + width / 2,
+					top + 38, core.arrayToRGBA((enemy.specialColor || [])[0] || '#FF6A6A'),
+					this._buildFont(14, true), width);
 				break;
 			case 2:
 				// Step 1: 计算字体
-				var text =
-					enemy.specialText[0] + '  ' + enemy.specialText[1];
-				core.setFontForMaxWidth(
-					'ui',
-					text,
-					width,
-					this._buildFont(14, true)
-				);
+				var text = enemy.specialText[0] + "  " + enemy.specialText[1];
+				core.setFontForMaxWidth('ui', text, width, this._buildFont(14, true));
 				// Step 2: 计算总宽度
 				var totalWidth = core.calWidth('ui', text);
-				var leftWidth = core.calWidth(
-					'ui',
-					enemy.specialText[0]
-				);
-				var rightWidth = core.calWidth(
-					'ui',
-					enemy.specialText[1]
-				);
+				var leftWidth = core.calWidth('ui', enemy.specialText[0]);
+				var rightWidth = core.calWidth('ui', enemy.specialText[1]);
 				// Step 3: 绘制
-				core.fillText(
-					'ui',
-					enemy.specialText[0],
-					left + (width + leftWidth - totalWidth) / 2,
-					top + 38,
-					core.arrayToRGBA(
-						(enemy.specialColor || [])[0] || '#FF6A6A'
-					)
-				);
-				core.fillText(
-					'ui',
-					enemy.specialText[1],
-					left + (width + totalWidth - rightWidth) / 2,
-					top + 38,
-					core.arrayToRGBA(
-						(enemy.specialColor || [])[1] || '#FF6A6A'
-					)
-				);
+				core.fillText('ui', enemy.specialText[0], left + (width + leftWidth - totalWidth) / 2,
+					top + 38, core.arrayToRGBA((enemy.specialColor || [])[0] || '#FF6A6A'));
+				core.fillText('ui', enemy.specialText[1], left + (width + totalWidth - rightWidth) / 2,
+					top + 38, core.arrayToRGBA((enemy.specialColor || [])[1] || '#FF6A6A'));
 				break;
 			default:
-				core.fillText(
-					'ui',
-					'多属性...',
-					left + width / 2,
-					top + 38,
-					'#FF6A6A',
-					this._buildFont(14, true),
-					width
-				);
+				core.fillText('ui', '多属性...', left + width / 2,
+					top + 38, '#FF6A6A', this._buildFont(14, true), width);
 			}
-			core.fillText(
-				'ui',
-				enemy.level,
-				left + width / 2,
-				top + 56,
-				core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'),
-				this._buildFont(14, true)
-			);
+			core.fillText('ui', enemy.level, left + width / 2,
+				top + 56, core.arrayToRGBA(levelToColors[enemy.level] || '#DDDDDD'), this._buildFont(14, true));
 		}
-	};
+	}
 
 	// 也可以复写其他的属性颜色如怪物攻防等，具体参见下面的例子的注释部分
-	core.ui._drawBook_drawRow1 = function (
-		index,
-		enemy,
-		top,
-		left,
-		width,
-		position
-	) {
+	core.ui._drawBook_drawRow1 = function (index, enemy, top, left, width, position) {
 		// 绘制第一行
 		core.setTextAlign('ui', 'left');
 		var b13 = this._buildFont(13, true),
 			f13 = this._buildFont(13, false);
 		var col1 = left,
-			col2 = left + (width * 9) / 25,
-			col3 = left + (width * 17) / 25;
-		core.fillText('ui', '生命', col1, position, '#DDDDDD', f13);
-		core.fillText(
-			'ui',
-			core.formatBigNumber(enemy.hp || 0),
-			col1 + 30,
-			position,
-			/*'red' */
-			null,
-			b13
-		);
-		core.fillText('ui', '攻击', col2, position, null, f13);
-		core.fillText(
-			'ui',
-			core.formatBigNumber(enemy.atk || 0),
-			col2 + 30,
-			position,
-			/* '#FF0000' */
-			null,
-			b13
-		);
-		core.fillText('ui', '防御', col3, position, null, f13);
-		core.fillText(
-			'ui',
-			core.formatBigNumber(enemy.def || 0),
-			col3 + 30,
-			position,
-			/* [255, 0, 0, 1] */
-			null,
-			b13
-		);
-	};
+			col2 = left + width * 9 / 25,
+			col3 = left + width * 17 / 25;
+		core.fillText('ui', '生命', col1, position, '#66ff00', f13);
+		core.fillText('ui', core.formatBigNumber(enemy.hp || 0), col1 + 30, position, /*'red'*/ null, b13);
+		core.fillText('ui', '攻击', col2, position, '#ff0033', f13);
+		core.fillText('ui', core.formatBigNumber(enemy.atk || 0), col2 + 30, position, /* '#FF0000' */ null, b13);
+		core.fillText('ui', '防御', col3, position, '#00FFFF', f13);
+		core.fillText('ui', core.formatBigNumber(enemy.def || 0), col3 + 30, position, /* [255, 0, 0, 1] */ null, b13);
+	}
 },
     "multiHeros": function () {
 		// 多角色插件

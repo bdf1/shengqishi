@@ -409,8 +409,13 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.setFlag('skill', 0);
 		core.setFlag('skillName', '无');
 	}
-
-
+	//回复魔力值
+	if (core.hasEquip('I409')) { core.status.hero.mana += 1 }
+	if (core.hasEquip('I410')) { core.status.hero.mana += 3 }
+	if (core.hasEquip('I411')) { core.status.hero.mana += 5 }
+	if (core.hasEquip('I412')) { core.status.hero.mana += 7 }
+	if (core.hasEquip('I413')) { core.status.hero.mana += 9 }
+	if (core.hasEquip('I595')) { core.status.hero.mana += 10 }
 	// 事件的处理
 	var todo = [];
 
@@ -888,6 +893,8 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasSpecial(mon_special, 22)) { // 固伤
 		damage += enemy.damage || 0;
 	}
+	//魔力铠甲
+	if (core.hasEquip("I630")) { damage -= (Math.min(hero_atk + hero_def, core.status.hero.mana * 0.01)) }
 	//禁术
 	if (core.hasItem("I673")) { damage *= 1.1 }
 

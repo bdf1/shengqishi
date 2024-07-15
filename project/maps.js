@@ -106,6 +106,7 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"137": {"cls":"npcs","id":"greenMan"},
 	"138": {"cls":"npcs","id":"blueTrader"},
 	"140": {"cls":"autotile","id":"autotile4","canBreak":true},
+	"141": {"cls":"autotile","id":"autotile5","canBreak":true},
 	"151": {"cls":"autotile","id":"autotile1"},
 	"152": {"cls":"autotile","id":"autotile2"},
 	"153": {"cls":"autotile","id":"autotile3"},
@@ -961,5 +962,6 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"1064": {"cls":"enemys","id":"E1064"},
 	"1065": {"cls":"enemys","id":"E1065"},
 	"1066": {"cls":"enemys","id":"E1066"},
+	"1067": {"cls":"terrains","id":"T1067"},
 	"10111": {"cls":"tileset","id":"X10111","event":["这个宝箱是空的!"]}
 }

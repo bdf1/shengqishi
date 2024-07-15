@@ -16,6 +16,7 @@ main.floors.GM2=
     "firstArrive": [
         {
             "type": "moveHero",
+            "time": 50,
             "steps": [
                 "up:4"
             ]
@@ -33,6 +34,12 @@ main.floors.GM2=
         {
             "type": "setValue",
             "name": "item:book",
+            "operator": "+=",
+            "value": "1"
+        },
+        {
+            "type": "setValue",
+            "name": "item:I337",
             "operator": "+=",
             "value": "1"
         },

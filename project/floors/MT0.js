@@ -3,7 +3,7 @@ main.floors.MT0=
     "floorId": "MT0",
     "title": "莫析 1",
     "name": "莫析家",
-    "canFlyTo": true,
+    "canFlyTo": false,
     "canFlyFrom": true,
     "canUseQuickShop": true,
     "cannotViewMap": false,

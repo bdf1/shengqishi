@@ -57,12 +57,12 @@ main.floors.GM5=
                                 "type": "setBlock",
                                 "number": "X10111"
                             },
-                            "获得两点护盾",
+                            "获得5点护盾",
                             {
                                 "type": "setValue",
                                 "name": "status:mdef",
                                 "operator": "+=",
-                                "value": "2"
+                                "value": "5"
                             }
                         ]
                     }
@@ -111,6 +111,82 @@ main.floors.GM5=
                     }
                 ],
                 "no": []
+            }
+        ],
+        "8,5": [
+            {
+                "type": "if",
+                "condition": "switch:A",
+                "true": [
+                    "\t[安南奎,N546]\b[this]小圣子，我们在开会，有空再陪你玩啊！",
+                    {
+                        "type": "turnBlock",
+                        "direction": "left"
+                    },
+                    {
+                        "type": "comment",
+                        "text": "下一条指令可视情况使用或不使用"
+                    }
+                ],
+                "false": [
+                    "\t[安南奎,N546]\b[this]小圣子，快来快来，给你个好东西",
+                    {
+                        "type": "setValue",
+                        "name": "item:I630",
+                        "operator": "+=",
+                        "value": "1"
+                    },
+                    "\t[莫析辉,hero]\b[hero]这啥啊？",
+                    "\t[安南奎,N546]\b[this]总之是好东西，保护你的，嘿嘿",
+                    "\t[莫析辉,hero]\b[hero]谢谢二长老啦",
+                    "\t[安南奎,N546]\b[this]小圣子真乖",
+                    {
+                        "type": "turnBlock",
+                        "direction": "left"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "switch:A",
+                        "value": "true"
+                    }
+                ]
+            }
+        ],
+        "4,9": [
+            {
+                "type": "if",
+                "condition": "switch:A",
+                "true": [
+                    "\t[温明啸,N550]\b[this]辉儿，我们在开会，有空再来陪你啊！",
+                    {
+                        "type": "turnBlock",
+                        "direction": "right"
+                    },
+                    {
+                        "type": "comment",
+                        "text": "下一条指令可视情况使用或不使用"
+                    }
+                ],
+                "false": [
+                    "\t[温明啸,N550]\b[this]辉，快过来，看我给你带来了啥好东西！",
+                    {
+                        "type": "setValue",
+                        "name": "item:I416",
+                        "operator": "+=",
+                        "value": "1"
+                    },
+                    "\t[莫析辉,hero]\b[hero]这是什么啊？",
+                    "\t[温明啸,N550]\b[this]这是能让人瞬间回满状态的至宝，玉露。你收好了，要是遇到了困难，用它能救自己一命呢！",
+                    {
+                        "type": "turnBlock",
+                        "direction": "right"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "switch:A",
+                        "value": "true"
+                    }
+                ]
             }
         ]
     },
