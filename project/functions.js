@@ -1284,88 +1284,88 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 			}
 		},
         "updateStatusBar": function () {
-			// 更新状态栏
+	// 更新状态栏
 
-			// 检查等级
-			core.events.checkLvUp();
+	// 检查等级
+	core.events.checkLvUp();
 
-			// 检查HP上限
-			if (core.flags.statusBarItems.indexOf('enableHPMax') >= 0) {
-				core.setStatus('hp', Math.min(core.getRealStatus('hpmax'), core.getStatus('hp')));
-			}
+	// 检查HP上限
+	if (core.flags.statusBarItems.indexOf('enableHPMax') >= 0) {
+		core.setStatus('hp', Math.min(core.getRealStatus('hpmax'), core.getStatus('hp')));
+	}
 
-			// 设置楼层名
-			if (core.status.floorId) {
-				core.setStatusBarInnerHTML('floor', core.status.maps[core.status.floorId].name);
-			}
+	// 设置楼层名
+	if (core.status.floorId) {
+		core.setStatusBarInnerHTML('floor', core.status.maps[core.status.floorId].name);
+	}
 
-			// 设置勇士名字和图标
-			core.setStatusBarInnerHTML('name', core.getStatus('name'));
-			// 设置等级名称
-			core.setStatusBarInnerHTML('lv', core.getLvName());
+	// 设置勇士名字和图标
+	core.setStatusBarInnerHTML('name', core.getStatus('name'));
+	// 设置等级名称
+	core.setStatusBarInnerHTML('lv', core.getLvName());
 
-			// 设置生命上限、生命值、攻防护盾金币和经验值
-			var statusList = ['hpmax', 'hp', 'mana', 'atk', 'def', 'mdef', 'money', 'exp'];
-			statusList.forEach(function (item) {
-				// 向下取整
-				core.status.hero[item] = Math.floor(core.status.hero[item]);
-				// 大数据格式化
-				core.setStatusBarInnerHTML(item, core.getRealStatus(item));
-			});
+	// 设置生命上限、生命值、攻防护盾金币和经验值
+	var statusList = ['hpmax', 'hp', 'mana', 'atk', 'def', 'mdef', 'money', 'exp'];
+	statusList.forEach(function (item) {
+		// 向下取整
+		core.status.hero[item] = Math.floor(core.status.hero[item]);
+		// 大数据格式化
+		core.setStatusBarInnerHTML(item, core.getRealStatus(item));
+	});
 
-			// 设置魔力值; status:manamax 只有在非负时才生效。
-			if (core.status.hero.manamax != null && core.getRealStatus('manamax') >= 0) {
-				core.status.hero.mana = Math.min(core.status.hero.mana, core.getRealStatus('manamax'));
-				core.setStatusBarInnerHTML('mana', core.status.hero.mana + "/" + core.getRealStatus('manamax'));
-			} else {
-				core.setStatusBarInnerHTML("mana", core.status.hero.mana);
-			}
-			// 设置技能栏
-			// 可以用flag:skill表示当前开启的技能类型，flag:skillName显示技能名；详见文档-个性化-技能塔的支持
-			core.setStatusBarInnerHTML('skill', core.getFlag('skillName', '无'));
+	// 设置魔力值; status:manamax 只有在非负时才生效。
+	if (core.status.hero.manamax != null && core.getRealStatus('manamax') >= 0) {
+		core.status.hero.mana = Math.min(core.status.hero.mana, core.getRealStatus('manamax'));
+		core.setStatusBarInnerHTML('mana', core.status.hero.mana + "/" + core.getRealStatus('manamax'));
+	} else {
+		core.setStatusBarInnerHTML("mana", core.status.hero.mana);
+	}
+	// 设置技能栏
+	// 可以用flag:skill表示当前开启的技能类型，flag:skillName显示技能名；详见文档-个性化-技能塔的支持
+	core.setStatusBarInnerHTML('skill', core.getFlag('skillName', '无'));
 
-			// 可以在这里添加自己额外的状态栏信息，比如想攻击显示 +0.5 可以这么写：
-			// if (core.hasFlag('halfAtk')) core.setStatusBarInnerHTML('atk', core.statusBar.atk.innerText + "+0.5");
+	// 可以在这里添加自己额外的状态栏信息，比如想攻击显示 +0.5 可以这么写：
+	// if (core.hasFlag('halfAtk')) core.setStatusBarInnerHTML('atk', core.statusBar.atk.innerText + "+0.5");
 
-			// 如果是自定义添加的状态栏，也需要在这里进行设置显示的数值
+	// 如果是自定义添加的状态栏，也需要在这里进行设置显示的数值
 
-			// 进阶
-			if (core.flags.statusBarItems.indexOf('enableLevelUp') >= 0) {
-				core.setStatusBarInnerHTML('up', core.formatBigNumber(core.getNextLvUpNeed()) || "");
-			} else core.setStatusBarInnerHTML('up', "");
+	// 进阶
+	if (core.flags.statusBarItems.indexOf('enableLevelUp') >= 0) {
+		core.setStatusBarInnerHTML('up', core.formatBigNumber(core.getNextLvUpNeed()) || "");
+	} else core.setStatusBarInnerHTML('up', "");
 
-			// 钥匙
-			var keys = ['yellowKey', 'blueKey', 'redKey', 'greenKey'];
-			keys.forEach(function (key) {
-				core.setStatusBarInnerHTML(key, core.setTwoDigits(core.itemCount(key)));
-			});
-			// 毒衰咒
-			core.setStatusBarInnerHTML('poison', core.hasFlag('poison') ? "毒" : "");
-			core.setStatusBarInnerHTML('weak', core.hasFlag('weak') ? "衰" : "");
-			core.setStatusBarInnerHTML('curse', core.hasFlag('curse') ? "咒" : "");
-			// 破炸飞
-			core.setStatusBarInnerHTML('pickaxe', "破" + core.itemCount('pickaxe'));
-			core.setStatusBarInnerHTML('bomb', "炸" + core.itemCount('bomb'));
-			core.setStatusBarInnerHTML('fly', "飞" + core.itemCount('centerFly'));
+	// 钥匙
+	var keys = ['yellowKey', 'blueKey', 'redKey', 'greenKey'];
+	keys.forEach(function (key) {
+		core.setStatusBarInnerHTML(key, core.setTwoDigits(core.itemCount(key)));
+	});
+	// 毒衰咒
+	core.setStatusBarInnerHTML('poison', core.hasFlag('poison') ? "毒" : "");
+	core.setStatusBarInnerHTML('weak', core.hasFlag('weak') ? "衰" : "");
+	core.setStatusBarInnerHTML('curse', core.hasFlag('curse') ? "咒" : "");
+	// 破炸飞
+	core.setStatusBarInnerHTML('pickaxe', "破" + core.itemCount('pickaxe'));
+	core.setStatusBarInnerHTML('bomb', "炸" + core.itemCount('bomb'));
+	core.setStatusBarInnerHTML('fly', "飞" + core.itemCount('centerFly'));
 
-			// 难度
-			if (core.statusBar.hard.innerText != core.status.hard) {
-				core.statusBar.hard.innerText = core.status.hard;
-			}
-			var hardColor = core.getFlag('__hardColor__');
-			if (hardColor == null) core.statusBar.hard.innerText = '';
-			if (core.statusBar.hard.getAttribute('_style') != hardColor) {
-				core.statusBar.hard.style.color = hardColor;
-				core.statusBar.hard.setAttribute('_style', hardColor);
-			}
-			// 自定义状态栏绘制
-			core.drawStatusBar();
-
-			// 更新阻激夹域的伤害值
-			core.updateCheckBlock();
-			// updateDamage只能在此处执行！！更新全地图显伤
-			core.updateDamage();
-		},
+	// 难度
+	if (core.statusBar.hard.innerText != core.status.hard) {
+		core.statusBar.hard.innerText = core.status.hard;
+	}
+	var hardColor = core.getFlag('__hardColor__');
+	if (hardColor == null) core.statusBar.hard.innerText = '';
+	if (core.statusBar.hard.getAttribute('_style') != hardColor) {
+		core.statusBar.hard.style.color = hardColor;
+		core.statusBar.hard.setAttribute('_style', hardColor);
+	}
+	// 自定义状态栏绘制
+	core.drawStatusBar();
+	core.createSpr2();
+	// 更新阻激夹域的伤害值
+	core.updateCheckBlock();
+	// updateDamage只能在此处执行！！更新全地图显伤
+	core.updateDamage();
+},
         "updateCheckBlock": function (floorId) {
 			// 领域、夹击、阻击等的伤害值计算
 			floorId = floorId || core.status.floorId;
@@ -1680,22 +1680,27 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 			return false;
 		},
         "parallelDo": function (timestamp) {
-			// 并行事件处理，可以在这里写任何需要并行处理的脚本或事件
-			// 该函数将被系统反复执行，每次执行间隔视浏览器或设备性能而定，一般约为16.6ms一次
-			// 参数timestamp为“从游戏资源加载完毕到当前函数执行时”的时间差，以毫秒为单位
+	// 并行事件处理，可以在这里写任何需要并行处理的脚本或事件
+	// 该函数将被系统反复执行，每次执行间隔视浏览器或设备性能而定，一般约为16.6ms一次
+	// 参数timestamp为“从游戏资源加载完毕到当前函数执行时”的时间差，以毫秒为单位
 
-			// 检查当前是否处于游戏开始状态
-			if (!core.isPlaying()) return;
+	// 检查当前是否处于游戏开始状态
+	if (!core.isPlaying()) return;
 
-			// 执行当前楼层的并行事件处理
-			if (core.status.floorId) {
-				try {
-					eval(core.floors[core.status.floorId].parallelDo);
-				} catch (e) {
-					console.error(e);
-				}
-			}
+	// 执行当前楼层的并行事件处理
+	if (core.status.floorId) {
+		try {
+			eval(core.floors[core.status.floorId].parallelDo);
+		} catch (e) {
+			console.error(e);
 		}
+	}
+	if ((!main.replayChecking && core.status.played) && flags._coltrue_) {
+		flags._statuscol_ = flags._statuscol_ + 5 || 0
+		core.createSpr0();
+		core.createSprBack();
+	}
+}
     },
     "ui": {
         "getToolboxItems": function (cls) {

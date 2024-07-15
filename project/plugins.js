@@ -53,6 +53,76 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		if (enemy.notBomb) damage += "[b]";
 		core.fillText('ui', damage, offset, position, color, this._buildFont(13, true));
 	}
+	core.control.resize = function () {
+		if (main.mode == 'editor') return;
+		var clientWidth = main.dom.body.clientWidth,
+			clientHeight = main.dom.body.clientHeight;
+		var BORDER = 0;
+		var extendToolbar = core.flags.extendToolbar;
+		let hideLeftStatusBar = core.flags.hideLeftStatusBar;
+		var BAR_WIDTH = hideLeftStatusBar ? 0 : Math.round(core._PY_ * 0.31);
+
+		var horizontalMaxRatio = (clientHeight - 2 * BORDER - (hideLeftStatusBar ? BORDER : 0)) / (core._PY_ + (hideLeftStatusBar ? 38 : 0));
+
+		if (clientWidth - 3 * BORDER >= core._PX_ + BAR_WIDTH || (clientWidth > clientHeight && horizontalMaxRatio < 1)) {
+			// 横屏
+			core.domStyle.isVertical = false;
+
+			core.domStyle.availableScale = [];
+			[1, 1.25, 1.5, 1.75, 2, 2.25, 2.5].forEach(function (v) {
+				if (clientWidth - 3 * BORDER >= v * (core._PX_ + BAR_WIDTH) && horizontalMaxRatio >= v) {
+					core.domStyle.availableScale.push(v);
+				}
+			});
+			if (core.domStyle.availableScale.indexOf(core.domStyle.scale) < 0) {
+				core.domStyle.scale = Math.min(1, horizontalMaxRatio);
+			}
+		} else {
+			// 竖屏
+			core.domStyle.isVertical = true;
+			core.domStyle.scale = Math.min((clientWidth - 2 * BORDER) / core._PX_);
+			core.domStyle.availableScale = [];
+			extendToolbar = false;
+			hideLeftStatusBar = false;
+			BAR_WIDTH = 0 //Math.round(core._PX_ * 0.3);
+		}
+
+		var statusDisplayArr = this._shouldDisplayStatus(),
+			count = statusDisplayArr.length;
+		var statusCanvas = core.flags.statusCanvas,
+			statusCanvasRows = core.values.statusCanvasRowsOnMobile || 3;
+		var col = statusCanvas ? statusCanvasRows : Math.ceil(count / 3);
+		if (col > 5) {
+			if (statusCanvas) alert("自绘状态栏的在竖屏下的行数应不超过5！");
+			else alert("当前状态栏数目(" + count + ")大于15，请调整到不超过15以避免手机端出现显示问题。");
+		}
+		var globalAttribute = core.status.globalAttribute || core.initStatus.globalAttribute;
+
+		var obj = {
+			clientWidth: clientWidth,
+			clientHeight: clientHeight,
+			BORDER: BORDER,
+			BAR_WIDTH: BAR_WIDTH,
+			TOOLBAR_HEIGHT: 0,
+			outerWidth: core._PX_ * core.domStyle.scale + 2 * BORDER,
+			outerHeight: core._PY_ * core.domStyle.scale + 2 * BORDER,
+			globalAttribute: globalAttribute,
+			border: '0px ' + core.arrayToRGBA(globalAttribute.borderColor) + ' solid',
+			statusDisplayArr: statusDisplayArr,
+			count: count,
+			col: col,
+			statusBarHeightInVertical: 0, //core.domStyle.isVertical ? (32 * col + 6) * core.domStyle.scale + 2 * BORDER : 0,
+			toolbarHeightInVertical: 0, //core.domStyle.isVertical ? 38 * core.domStyle.scale + 2 * BORDER : 0,
+			extendToolbar: extendToolbar,
+			is15x15: false,
+			hideLeftStatusBar
+		};
+
+		this._doResize(obj);
+		this.setToolbarButton();
+		core.updateStatusBar();
+		core.AllSprites();
+	}
 },
     "drawLight": function () {
 
@@ -1409,461 +1479,900 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 	},
     "sprites": function () {
-		// 基于canvas的sprite化，摘编整理自万宁魔塔
-		// 
-		// ---------------------------------------- 第一部分 js代码 （必装） --------------------------------------- //
+	// 在此增加新插件
+	// 基于canvas的sprite化，摘编整理自万宁魔塔
+	// 
+	// ----------------------------------- 第一部分 必装 js代码 ----------------------------------- //
+	// 
+	// 关于新增的on方法说明：
+	// 该方法类似与样板的registerAction，它允许你能够使用与样板类似的api对sprite进行操作
+	// on(type, handler)
+	// 其中type为操作类型，常见的有click mousedown mouseup mousemove mouseenter mouseleave wheel keydown keyup touchstart touchend touchmove
+	// 这些操作类型分为四类，第一类是鼠标事件，上述的操作中wheel之前的事件均为鼠标事件，它的监听形式为
+	// sprite.on(type, (px, py) => { code });  其中px, py为参数，为点击的横纵坐标（相对sprite左上角）
+	// 第二类是滚轮事件，只有一个事件wheel，它的监听形式为
+	// sprite.on('wheel', (dy, dx, dz) => { code });  dy为滚轮的纵向滑动量，dx为滚轮的横向滑动量，dz为滚轮在垂直屏幕方向上的滑动量（？很奇怪，但是html确实提供了这个东西
+	// 第三类是键盘事件，keydown和keyup都是键盘事件，它的监听形式为
+	// sprite.on(type, (key, keyCode, altKey, ctrlKey, shiftKey) => { code });
+	// 其中key为按键名称，可以通过console.log自行尝试，需要注意的是这个东西是区分大小写的，keyCode是与样板相同的keycode，可自行在网上查询
+	// 后面三个都是布尔值（true or false）分别为alt键、ctrl键、shift键是否被按下
+	// 第四类是触摸屏操作（注意click可能不会被触屏触发），包括touchstart touchend touchmove，有两种使用方法
+	// 第一种：sprite.on(type, ([px, py]) => { code }); px py是点击的坐标，相对于sprite左上角
+	// 第二种：sprite.on(type, (...locs) => { code }); locs是由[px, py]组成的数组，比如locs[0][0]就是第一个点击点的横坐标，locs[2][1]就是第三个点击点的纵坐标
 
-		/* ---------------- 用法说明 ---------------- *
-		 * 1. 创建sprite: var sprite = new Sprite(x, y, w, h, z, reference, name);
-		 *   其中x y w h为画布的横纵坐标及长宽，reference为参考系，只能填game（相对于游戏画面）和window（相对于窗口）
-		 *   且当为相对游戏画面时，长宽与坐标将会乘以放缩比例（相当于用createCanvas创建）
-		 *   z为纵深，表示不同元素之间的覆盖关系，大的覆盖小的
-		 *   name为自定义名称，可以不填
-		 * 2. 删除: sprite.destroy();
-		 * 3. 设置css特效: sprite.setCss(css);
-		 *   其中css直接填 box-shadow: 0px 0px 10px black;的形式即可，与style标签与css文件内写法相同
-		 *   对于已设置的特效，如果之后不需要再次设置，可以不填
-		 * 4. 添加事件监听器: sprite.addEventListener(); 用法与html元素的addEventListener完全一致
-		 * 5. 移除事件监听器: sprite.removeEventListener(); 用法与html元素的removeEventListener完全一致
-		 * 6. 属性列表
-		 *   (1) sprite.x | sprite.y | sprite.width | sprite.height | sprite.zIndex | sprite.reference 顾名思义
-		 *   (2) sprite.canvas 该sprite的画布
-		 *   (3) sprite.context 该画布的CanvasRenderingContext2d对象，即样板中常见的ctx
-		 *   (4) sprite.count 不要改这个玩意
-		 * 7. 使用样板api进行绘制
-		 *   示例：
-		 *   var ctx = sprite.context;
-		 *   core.fillText(ctx, 'xxx', 100, 100);
-		 *   core.fillRect(ctx, 0, 0, 50, 50);
-		 *   当然也可以使用原生js
-		 *   ctx.moveTo(0, 0);
-		 *   ctx.bezierCurveTo(50, 50, 100, 0, 100, 50);
-		 *   ctx.stroke();
-		 * ---------------- 用法说明 ---------------- */
+	/* ---------------- 用法说明 ---------------- *
+	 * 1. 创建sprite: const sprite = new Sprite(x, y, w, h, z, reference, name);
+	 *   其中x y w h为画布的横纵坐标及长宽，reference为参考系，只能填game（相对于游戏画面）和window（相对于窗口）
+	 *   且当为相对游戏画面时，长宽与坐标将会乘以放缩比例（相当于用createCanvas创建）
+	 *   z为纵深，表示不同元素之间的覆盖关系，大的覆盖小的
+	 *   name为自定义名称，可以不填
+	 * 2. 删除: sprite.destroy();
+	 * 3. 设置css特效: sprite.setCss(css);
+	 *   其中css直接填 box-shadow: 0px 0px 10px black;的形式即可，与style标签与css文件内写法相同
+	 *   对于已设置的特效，如果之后不需要再次设置，可以不填
+	 * 4. 添加事件监听器: sprite.addEventListener(); 用法与html元素的addEventListener完全一致
+	 * 5. 移除事件监听器: sprite.removeEventListener(); 用法与html元素的removeEventListener完全一致
+	 * 6. 属性列表
+	 *   (1) sprite.x | sprite.y | sprite.width | sprite.height | sprite.zIndex | sprite.reference 顾名思义
+	 *   (2) sprite.canvas 该sprite的画布
+	 *   (3) sprite.context 该画布的CanvasRenderingContext2d对象，即样板中常见的ctx
+	 *   (4) sprite.count 不要改这个玩意
+	 * 7. 使用样板api进行绘制
+	 *   示例：
+	 *   var ctx = sprite.context;
+	 *   core.fillText(ctx, 'xxx', 100, 100);
+	 *   core.fillRect(ctx, 0, 0, 50, 50);
+	 *   当然也可以使用原生js
+	 *   ctx.moveTo(0, 0);
+	 *   ctx.bezierCurveTo(50, 50, 100, 0, 100, 50);
+	 *   ctx.stroke();
+	 * ---------------- 用法说明 ---------------- */
 
-		var count = 0;
+	const sprites = {};
 
-		/** 创建一个sprite画布
-		 * @param {number} x
-		 * @param {number} y
-		 * @param {number} w
-		 * @param {number} h
-		 * @param {number} z
-		 * @param {'game' | 'window'} reference 参考系，游戏画面或者窗口
-		 * @param {string} name 可选，sprite的名称，方便通过core.dymCanvas获取
-		 */
-		function Sprite (x, y, w, h, z, reference, name) {
+	// 终于能用es6了（恼
+	class Sprite {
+		constructor(x, y, w, h, z, reference, name) {
 			this.x = x;
 			this.y = y;
 			this.width = w;
 			this.height = h;
 			this.zIndex = z;
 			this.reference = reference;
+			/** @type {HTMLCanvasElement} */
 			this.canvas = null;
+			/** @type {CanvasRenderingContext2D} */
 			this.context = null;
 			this.count = 0;
-			this.name = name || '_sprite_' + count;
-			this.style = null;
-			/** 初始化 */
-			this.init = function () {
-				if (reference === 'window') {
-					var canvas = document.createElement('canvas');
-					this.canvas = canvas;
-					this.context = canvas.getContext('2d');
-					canvas.width = w;
-					canvas.height = h;
-					canvas.style.width = w + 'px';
-					canvas.style.height = h + 'px';
-					canvas.style.position = 'absolute';
-					canvas.style.top = y + 'px';
-					canvas.style.left = x + 'px';
-					canvas.style.zIndex = z.toString();
-					document.body.appendChild(canvas);
-					this.style = canvas.style;
-				} else {
-					this.context = core.createCanvas(this.name || '_sprite_' + count, x, y, w, h, z);
-					this.canvas = this.context.canvas;
-					this.canvas.style.pointerEvents = 'auto';
-					this.style = this.canvas.style;
-				}
-				this.count = count;
-				count++;
-			}
+			this.name = name;
+			this.key = [];
 			this.init();
-
-			/** 设置css特效
-			 * @param {string} css
-			 */
-			this.setCss = function (css) {
-				css = css.replace('\n', ';').replace(';;', ';');
-				var effects = css.split(';');
-				var self = this;
-				effects.forEach(function (v) {
-					var content = v.split(':');
-					var name = content[0];
-					var value = content[1];
-					name = name.trim().split('-').reduce(function (pre, curr, i, a) {
-						if (i === 0 && curr !== '') return curr;
-						if (a[0] === '' && i === 1) return curr;
-						return pre + curr.toUpperCase()[0] + curr.slice(1);
-					}, '');
-					var canvas = self.canvas;
-					if (name in canvas.style) canvas.style[name] = value;
-				});
-				return this;
-			}
-
-			/** 
-			 * 移动sprite
-			 * @param {boolean} isDelta 是否是相对位置，如果是，那么sprite会相对于原先的位置进行移动
-			 */
-			this.move = function (x, y, isDelta) {
-				if (x !== undefined && x !== null) this.x = x;
-				if (y !== undefined && y !== null) this.y = y;
-				if (this.reference === 'window') {
-					var ele = this.canvas;
-					ele.style.left = x + (isDelta ? parseFloat(ele.style.left) : 0) + 'px';
-					ele.style.top = y + (isDelta ? parseFloat(ele.style.top) : 0) + 'px';
-				} else core.relocateCanvas(this.context, x, y, isDelta);
-				return this;
-			}
-
-			/** 
-			 * 重新设置sprite的大小
-			 * @param {boolean} styleOnly 是否只修改css效果，如果是，那么将会不高清，如果不是，那么会清空画布
-			 */
-			this.resize = function (w, h, styleOnly) {
-				if (w !== undefined && w !== null) this.w = w;
-				if (h !== undefined && h !== null) this.h = h;
-				if (reference === 'window') {
-					var ele = this.canvas;
-					ele.style.width = w + 'px';
-					ele.style.height = h + 'px';
-					if (!styleOnly) {
-						ele.width = w;
-						ele.height = h;
-					}
-				} else core.resizeCanvas(this.context, w, h, styleOnly);
-				return this;
-			}
-
-			/**
-			 * 旋转画布
-			 */
-			this.rotate = function (angle, cx, cy) {
-				if (this.reference === 'window') {
-					var left = this.x;
-					var top = this.y;
-					this.canvas.style.transformOrigin = (cx - left) + 'px ' + (cy - top) + 'px';
-					if (angle === 0) {
-						canvas.style.transform = '';
-					} else {
-						canvas.style.transform = 'rotate(' + angle + 'deg)';
-					}
-				} else {
-					core.rotateCanvas(this.context, angle, cx, cy);
-				}
-				return this;
-			}
-
-			/**
-			 * 清除sprite
-			 */
-			this.clear = function (x, y, w, h) {
-				if (this.reference === 'window') {
-					this.context.clearRect(x, y, w, h);
-				} else {
-					core.clearMap(this.context, x, y, w, h);
-				}
-				return this;
-			}
-
-			/** 删除 */
-			this.destroy = function () {
-				if (this.reference === 'window') {
-					if (this.canvas) document.body.removeChild(this.canvas);
-				} else {
-					core.deleteCanvas(this.name || '_sprite_' + this.count);
-				}
-			}
-
-			/** 添加事件监听器 */
-			this.addEventListener = function () {
-				this.canvas.addEventListener.apply(this.canvas, arguments);
-			}
-
-			/** 移除事件监听器 */
-			this.removeEventListener = function () {
-				this.canvas.removeEventListener.apply(this.canvas, arguments);
-			}
 		}
 
-		window.Sprite = Sprite;
-	},
-    "hotReload": function () {
-		/* ---------- 功能说明 ---------- *
-
-		1. 当 libs/ main.js index.html 中的任意一个文件被更改后，会自动刷新塔的页面
-		2. 修改楼层文件后自动在塔的页面上显示出来，不需要刷新
-		3. 修改脚本编辑或插件编写后也能自动更新更改的插件或脚本，但不保证不会出问题（一般都不会有问题的
-		4. 修改图块属性、怪物属性等后会自动更新
-		5. 当全塔属性被修改时，会自动刷新塔的页面
-		6. 样板的 styles.css 被修改后也可以直接显示，不需要刷新
-		7. 其余内容修改后不会自动更新也不会刷新
-
-		/* ---------- 使用方式 ---------- *
-
-		1. 前往 https://nodejs.org/en/ 下载node.js的LTS版本（点左边那个绿色按钮）并安装
-		2. 将该插件复制到插件编写中
-		3. 在造塔群的群文件-魔塔样板·改中找到server.js，下载并放到塔的根目录（与启动服务同一级）
-		4. 在该目录下按下shift+鼠标右键（win11只按右键即可），选择在终端打开或在powershell打开
-		5. 运行node server.js即可
-
-		*/
-
-		if (main.mode !== 'play' || main.replayChecking) return;
-
-		/**
-		 * 发送请求
-		 * @param {string} url
-		 * @param {string} type
-		 * @param {string} data
-		 * @returns {Promise<string>}
-		 */
-		async function post(url, type, data) {
-			const xhr = new XMLHttpRequest();
-			xhr.open(type, url);
-			xhr.send(data);
-			const res = await new Promise(res => {
-				xhr.onload = e => {
-					if (xhr.status !== 200) {
-						console.error(`hot reload: http ${xhr.status}`);
-						res('@error');
-					} else res('success');
-				};
-				xhr.onerror = e => {
-					res('@error');
-					console.error(`hot reload: error on connection`);
-				};
-			});
-			if (res === 'success') return xhr.response;
-			else return '@error';
-		}
-
-		/**
-		 * 热重载css
-		 * @param {string} data
-		 */
-		function reloadCss(data) {
-			const all = Array.from(document.getElementsByTagName('link'));
-			all.forEach(v => {
-				if (v.rel !== 'stylesheet') return;
-				if (v.href === `http://127.0.0.1:3000/${data}`) {
-					v.remove();
-					const link = document.createElement('link');
-					link.rel = 'stylesheet';
-					link.type = 'text/css';
-					link.href = data;
-					document.head.appendChild(link);
-					console.log(`css hot reload: ${data}`);
-				}
-			});
-		}
-
-		/**
-		 * 热重载楼层
-		 * @param {string} data
-		 */
-		async function reloadFloor(data) {
-			// 首先重新加载main.floors对应的楼层
-			await import(`/project/floors/${data}.js?v=${Date.now()}`);
-			// 然后写入core.floors并解析
-			core.floors[data] = main.floors[data];
-			const floor = core.loadFloor(data);
-			if (core.isPlaying()) {
-				core.status.maps[data] = floor;
-				delete core.status.mapBlockObjs[data];
-				core.extractBlocks(data);
-				if (data === core.status.floorId) {
-					core.drawMap(data);
-					core.setWeather(
-						core.animateFrame.weather.type,
-						core.animateFrame.weather.level
-					);
-				}
-				core.updateStatusBar(true, true);
-			}
-			console.log(`floor hot reload: ${data}`);
-		}
-
-		/**
-		 * 热重载脚本编辑及插件编写
-		 * @param {string} data
-		 */
-		async function reloadScript(data) {
-			if (data === 'plugins') {
-				// 插件编写比较好办
-				const before = plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1;
-				// 这里不能用动态导入，因为动态导入会变成模块，变量就不是全局的了
-				const script = document.createElement('script');
-				script.src = `/project/plugins.js?v=${Date.now()}`;
-				document.body.appendChild(script);
-				await new Promise(res => {
-					script.onload = () => res('success');
-				});
-				const after = plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1;
-				// 找到差异的函数
-				for (const id in before) {
-					const fn = before[id];
-					if (typeof fn !== 'function') continue;
-					if (fn.toString() !== after[id]?.toString()) {
-						try {
-							core.plugin[id] = after[id];
-							core.plugin[id].call(core.plugin);
-							core.updateStatusBar(true, true);
-							console.log(`plugin hot reload: ${id}`);
-						} catch (e) {
-							console.error(e);
-						}
-					}
-				}
-			} else if (data === 'functions') {
-				// 脚本编辑略微麻烦点
-				const before = functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a;
-				// 这里不能用动态导入，因为动态导入会变成模块，变量就不是全局的了
-				const script = document.createElement('script');
-				script.src = `/project/functions.js?v=${Date.now()}`;
-				document.body.appendChild(script);
-				await new Promise(res => {
-					script.onload = () => res('success');
-				});
-				const after = functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a;
-				// 找到差异的函数
-				for (const mod in before) {
-					const fns = before[mod];
-					for (const id in fns) {
-						const fn = fns[id];
-						if (typeof fn !== 'function' || id === 'hasSpecial')
-							continue;
-						const now = after[mod][id];
-						if (fn.toString() !== now.toString()) {
-							try {
-								if (mod === 'events') {
-									core.events.eventdata[id] = now;
-								} else if (mod === 'enemys') {
-									core.enemys.enemydata[id] = now;
-								} else if (mod === 'actions') {
-									core.actions.actionsdata[id] = now;
-								} else if (mod === 'control') {
-									core.control.controldata[id] = now;
-								} else if (mod === 'ui') {
-									core.ui.uidata[id] = now;
-								}
-								core.updateStatusBar(true, true);
-								console.log(
-									`function hot reload: ${mod}.${id}`
-								);
-							} catch (e) {
-								console.error(e);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		/**
-		 * 属性热重载，包括全塔属性等
-		 * @param {string} data
-		 */
-		async function reloadData(data) {
-			const script = document.createElement('script');
-			script.src = `/project/${data}.js?v=${Date.now()}`;
-			document.body.appendChild(script);
-			await new Promise(res => {
-				script.onload = () => res('success');
-			});
-
-			let after;
-			if (data === 'data')
-				after = data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d;
-			if (data === 'enemys')
-				after = enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80;
-			if (data === 'icons')
-				after = icons_4665ee12_3a1f_44a4_bea3_0fccba634dc1;
-			if (data === 'items')
-				after = items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a;
-			if (data === 'maps')
-				after = maps_90f36752_8815_4be8_b32b_d7fad1d0542e;
-			if (data === 'events')
-				after = events_c12a15a8_c380_4b28_8144_256cba95f760;
-
-			if (data === 'enemys') {
-				core.enemys.enemys = after;
-				for (var enemyId in after) {
-					core.enemys.enemys[enemyId].id = enemyId;
-				}
-				core.material.enemys = core.getEnemys();
-			} else if (data === 'icons') {
-				core.icons.icons = after;
-				core.material.icons = core.getIcons();
-			} else if (data === 'items') {
-				core.items.items = after;
-				for (var itemId in after) {
-					core.items.items[itemId].id = itemId;
-				}
-				core.material.items = core.getItems();
-			} else if (data === 'maps') {
-				core.maps.blocksInfo = after;
-				core.status.mapBlockObjs = {};
-				core.status.number2block = {};
-				Object.values(core.status.maps).forEach(v => delete v.blocks);
-				core.extractBlocks();
-				core.setWeather(
-					core.animateFrame.weather.type,
-					core.animateFrame.weather.level
-				);
-				core.drawMap();
-			} else if (data === 'events') {
-				core.events.commonEvent = after.commonEvent;
-			} else if (data === 'data') {
-				location.reload();
-			}
-			core.updateStatusBar(true, true);
-			console.log(`data hot reload: ${data}`);
-		}
-
-		// 初始化
-		(async function () {
-			const data = await post('/reload', 'POST', 'test');
-			if (data === '@error') {
-				console.log(`未检测到node服务，热重载插件将无法使用`);
+		init() {
+			const name = this.name || `_sprite_${Sprite.count}`;
+			this.name = name;
+			if (this.reference === 'window') {
+				const canvas = document.createElement('canvas');
+				this.canvas = canvas;
+				this.context = canvas.getContext('2d');
+				canvas.width = this.width;
+				canvas.height = this.height;
+				canvas.style.width = this.width + 'px';
+				canvas.style.height = this.height + 'px';
+				canvas.style.position = 'absolute';
+				canvas.style.top = this.y + 'px';
+				canvas.style.left = this.x + 'px';
+				canvas.style.zIndex = this.zIndex.toString();
+				document.body.appendChild(canvas);
 			} else {
-				console.log(`热重载插件加载成功`);
-				// reload
-				setInterval(async () => {
-					const res = await post('/reload', 'POST');
-					if (res === '@error') return;
-					if (res === 'true') location.reload();
-					else return;
-				}, 1000);
-
-				// hot reload
-				setInterval(async () => {
-					const res = await post('/hotReload', 'POST');
-					const data = res.split('@@');
-					data.forEach(v => {
-						if (v === '') return;
-						const [type, file] = v.split(':');
-						if (type === 'css') reloadCss(file);
-						if (type === 'data') reloadData(file);
-						if (type === 'floor') reloadFloor(file);
-						if (type === 'script') reloadScript(file);
-					});
-				}, 1000);
+				this.context = core.createCanvas(name, this.x, this.y, this.width, this.height, this.zIndex);
+				this.canvas = this.context.canvas;
+				this.count = Sprite.count;
+				this.canvas.style.pointerEvents = 'auto';
 			}
-		})();
-	},
+			Sprite.count++;
+			sprites[this.name] = this;
+		}
+
+		setCss(css) {
+			css = css.replace('\n', ';').replace(';;', ';');
+			const effects = css.split(';');
+			const canvas = this.canvas;
+			effects.forEach(v => {
+				const content = v.split(':');
+				let name = content[0];
+				let value = content[1];
+				name = name.trim().split('-').reduce((pre, curr, i, a) => {
+					if (i === 0 && curr !== '')
+						return curr;
+					if (a[0] === '' && i === 1)
+						return curr;
+					return pre + curr.toUpperCase()[0] + curr.slice(1);
+				}, '');
+				if (name in canvas.style)
+					canvas.style[name] = value;
+			});
+			return this;
+		}
+
+		move(x, y, isDelta) {
+			if (x !== undefined && x !== null)
+				this.x = x;
+			if (y !== undefined && y !== null)
+				this.y = y;
+			if (this.reference === 'window') {
+				var ele = this.canvas;
+				ele.style.left = x + (isDelta ? parseFloat(ele.style.left) : 0) + 'px';
+				ele.style.top = y + (isDelta ? parseFloat(ele.style.top) : 0) + 'px';
+			} else
+				core.relocateCanvas(this.context, x, y, isDelta);
+			return this;
+		}
+
+		resize(w, h, styleOnly) {
+			if (w !== undefined && w !== null)
+				this.width = w;
+			if (h !== undefined && h !== null)
+				this.height = h;
+			if (this.reference === 'window') {
+				const ele = this.canvas;
+				ele.style.width = w + 'px';
+				ele.style.height = h + 'px';
+				if (!styleOnly) {
+					ele.width = w;
+					ele.height = h;
+				}
+			} else
+				core.resizeCanvas(this.context, w, h, styleOnly);
+			return this;
+		}
+
+		rotate(angle, cx, cy) {
+			if (this.reference === 'window') {
+				const left = this.x;
+				const top = this.y;
+				this.canvas.style.transformOrigin = (cx - left) + 'px ' + (cy - top) + 'px';
+				if (angle === 0) {
+					canvas.style.transform = '';
+				} else {
+					canvas.style.transform = 'rotate(' + angle + 'deg)';
+				}
+			} else {
+				core.rotateCanvas(this.context, angle, cx, cy);
+			}
+			return this;
+		}
+
+		destroy() {
+			if (this.reference === 'window') {
+				if (this.canvas)
+					document.body.removeChild(this.canvas);
+			} else {
+				core.deleteCanvas(this.name);
+			}
+			this.key.forEach(v => document.removeEventListener(v[0], v[1]));
+			sprites[this.name] = void 0;
+		}
+
+		/**
+		 * 类似样板registerAction接口，但是是以该sprite的左上角为(0,0)计算的
+		 * @param {keyof HTMLElementEventMap} type 
+		 * @param {(...param: any[]) => void} handler 
+		 */
+		on(type, handler) {
+			if (this.reference !== 'game') throw new ReferenceError(`当sprite的reference为window时，不可使用该函数`);
+			const mouse = [
+				'auxclick', 'click', 'contextmenu', 'dblclick', 'mousedown', 'mouseup',
+				'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover'
+			];
+			const key = [
+				'keydown', 'keypress', 'keyup'
+			];
+			const touch = [
+				'touchstart', 'touchend', 'touchcancel', 'touchmove'
+			]
+			if (mouse.includes(type)) {
+				this.addEventListener(type, e => {
+					const px = e.offsetX / core.domStyle.scale,
+						py = e.offsetY / core.domStyle.scale;
+					handler(px, py);
+				})
+			} else if (type === 'wheel') {
+				this.addEventListener('wheel', e => {
+					handler(e.deltaY, e.deltaX, e.deltaZ);
+				});
+			} else if (key.includes(type)) {
+				// 键盘事件只能加到document上
+				const listener = e => {
+					handler(e.key, e.keyCode, e.altKey, e.ctrlKey, e.shiftKey);
+				}
+				this.key.push([type, listener]);
+				document.addEventListener(type, listener)
+			} else if (touch.includes(type)) {
+				this.addEventListener(type, e => {
+					/** @type {TouchList} */
+					const touches = e.touches;
+					const locs = [];
+					for (let i = 0; i < touches.length; i++) {
+						const t = touches[i];
+						const { x, y } = core.actions._getClickLoc(t.clientX, t.clientY);
+						const px = x / core.domStyle.scale,
+							py = y / core.domStyle.scale;
+						locs.push([px, py]);
+					}
+					handler(...locs);
+				})
+			}
+		}
+
+		addEventListener() {
+			this.canvas.addEventListener.apply(this.canvas, arguments);
+		}
+
+		removeEventListener() {
+			this.canvas.removeEventListener.apply(this.canvas, arguments);
+		}
+	}
+
+	this.getSprite = function (name) {
+		const s = sprites[name];
+		//if (!s) throw new ReferenceError(`不能获得不存在的sprite`);
+		return sprites[name];
+	}
+
+	Sprite.count = 0;
+
+	window.Sprite = Sprite;
+},
+    "hotReload": function () {
+
+
+},
+    "状态栏": function () {
+	// 在此增加新插件
+	// 
+
+	core.mystatusNumber = function (ctx, name, num, x, y, col2) {
+		var m = '';
+		if (hero[name] < 0)
+			m = 'invert(100%)';
+		core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)brightness(1.25)' + m)
+
+
+
+		if (!num && name != 'key1' && name != 'key2') {
+			num = hero[name]
+			num = num.toString()
+			if (name === 'atk2') {
+				num = Math.max(0, (hero[name] * 0.01 + 1)).toFixed(2);
+			}
+			if (name === 'def2') {
+				var k = 3;
+				num = ((1 - 100 / (100 + k * Math.abs(hero[name]))) * 100).toFixed(2) + '%'
+				if (hero[name] < 0)
+					num = '-'.concat(num)
+			}
+			for (var i in num) {
+				core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i), y, 16, 16)
+				if (num[i] === '.')
+					core.drawIcon(ctx, 'X' + (10316), x + 5 + 10 * Number(i), y, 16, 16)
+				else if (num[i] === '%')
+					core.drawIcon(ctx, 'X' + (10317), x + 5 + 10 * Number(i), y, 16, 16)
+				else if (num[i] === '-')
+					core.drawIcon(ctx, 'X' + (10318), x + 5 + 10 * Number(i), y, 16, 16)
+				else
+					core.drawIcon(ctx, 'X' + (10305 + Number(num[i])), x + 5 + 10 * Number(i), y, 16, 16)
+			}
+		}
+		if (name === 'key1' || name === 'key2') {
+			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0];
+			var keyCol = [170, 0]
+			if (name === 'key2') {
+				num = [hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
+				keyCol = [140, 250]
+			}
+			for (var k in num) {
+				var numk = num[k]
+				numk = numk.toString()
+				core.setFilter(ctx, 'hue-rotate(' + keyCol[k] + 'deg)')
+				for (var i in numk) {
+					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
+				}
+			}
+			core.setFilter(ctx, '')
+			name = 'key'
+		}
+	}
+
+	core.mystatusbox = function (ctx, name, num, x, y, col2) {
+
+		var m = '';
+		if (hero[name] < 0)
+			m = 'invert(100%)';
+		core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)' + m)
+
+		core.drawImage(ctx, 'b.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
+		core.drawImage(ctx, name + '.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
+		core.drawImage(ctx, 'c.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
+		core.drawIcon(ctx, 'X' + (10315), x - 40 + 32, y - 10, 32, 32)
+
+		//core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)brightness(1.5)' + m)
+
+	}
+
+	core.createSprBack = function (des) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		var left = parseInt(core.dom.gameGroup.style.left);
+		var top_up = parseInt(core.dom.gameGroup.style.top);
+		var width = 1300 //748 + 100;
+		var height = 1200 // 560;
+
+		if (core.getSprite('SprBack') && des) {
+			core.getSprite('SprBack').destroy();
+			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, 1, 'window', 'SprBack');
+			//const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 9, 'window', 'SprBack');
+		} else if (core.getSprite('SprBack')) {
+			core.clearMap(core.getSprite('SprBack').context);
+
+		} else {
+			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, 1, 'window', 'SprBack');
+			//const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 9, 'window', 'SprBack'); 
+		}
+
+		var ctx = core.getSprite('SprBack').context;
+
+		core.clearMap(ctx);
+		//core.fillRect(ctx, 0, 0, width, height, '#000000');
+
+		var col = flags._statuscol_;
+		var brg = flags._statusbrg_;
+		var gry = flags._statusgry_;
+
+		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)brightness(' + (brg || 1) + ')grayscale(' + (gry || 0) + '%)')
+		var alp = flags._backalp_ || 0.5;
+		core.setAlpha(ctx, alp)
+		if (!flags.starOff)
+			core.drawImage(ctx, 'Star.png', 0, 0, 1300, 1200);
+
+		core.setFilter(ctx, '')
+		//	core.getSprite('SprBack').canvas.style.width = core.getSprite('SprBack').canvas.width * core.domStyle.scale + 'px';
+		//	core.getSprite('SprBack').canvas.style.height = core.getSprite('SprBack').canvas.height * core.domStyle.scale + 'px';
+
+	}
+
+	core.createSpr0 = function (des) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		var left = parseInt(core.dom.gameGroup.style.left);
+		var top_up = parseInt(core.dom.gameGroup.style.top);
+		var width = 748 + 100;
+		var height = 560;
+		if (core.domStyle.isVertical) {
+			top_up += core.domStyle.scale * (102 - 16);
+		} else {
+			top_up -= 16 * core.domStyle.scale;
+		}
+		if (core.getSprite('Spr0') && des) {
+			core.getSprite('Spr0').destroy();
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0');
+		} else if (core.getSprite('Spr0')) {
+			core.clearMap(core.getSprite('Spr0').context);
+
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0'); }
+
+		var ctx = core.getSprite('Spr0').context;
+
+		core.clearMap(ctx);
+		//core.fillRect(ctx, 0, 0, width, height, '#000000');
+		var col = flags._statuscol_;
+		var brg = flags._statusbrg_;
+		var gry = flags._statusgry_;
+
+		var fil = 'hue-rotate(' + (col || 0) + 'deg)brightness(' + (brg || 1) + ')grayscale(' + (gry || 0) + '%)'
+
+		core.setFilter(ctx, fil)
+
+
+		//core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 0, 64, 448, 448);
+		//core.drawImage(ctx, 'backw.png', 0, 0, 448, 448, 0, 64, 448, 448);
+		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 20, 64, 448, 448);
+		core.drawImage(ctx, 'backw.png', 0, 126, 752, 448, 20, 64, 752, 448);
+		core.drawImage(ctx, 'backl2.png', 0, 0, 149, 20, 20 + 16, 64 + 16 + 85, 149, 20);
+		core.drawImage(ctx, 'backl2.png', 0, 0, 149, 20, 20 + 16, 64 + 16 + 90 + 200, 149, 20);
+		core.drawImage(ctx, 'backl.png', 0, 0, 149, 416, 20 + 16, 64 + 16, 149, 416);
+
+
+		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 172 + 152, 64, 448, 448);
+		//core.drawImage(ctx, 'backw.png', 0, 0, 448, 448, 172 + 152, 64, 448, 448);
+		core.drawImage(ctx, 'backl2.png', 0, 0, 149, 20, 172 + 416 + 3 + 16, 64 + 16 + 90 + 200, 149, 20);
+		core.drawImage(ctx, 'backl.png', 0, 0, 149, 416, 172 + 416 + 3 + 16, 64 + 16, 149, 416);
+
+		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 172, 64, 448, 448);
+
+
+
+		//按钮
+		core.drawImage(ctx, 'box1.png', 0, 0, 144, 96, 38, 384, 144, 96);
+
+		var btn = ['book', 'fly', 'toolbox', 'save', 'load', 'settings']
+		for (var i in btn) {
+			var h = 0
+			if (flags._Spr1Move_ && flags._Spr1Move_ < 7 && flags._Spr1Move_ === Number(i) + 1) {
+				h = 3
+				core.drawImage(ctx, 'boxLight.png', 0, 0, 48, 48, 38 - 8 + 24 + 32 * ((flags._Spr1Move_ - 1) % 3), 384 - 8 + 16 + 32 * Math.floor((flags._Spr1Move_ - 1) / 3), 48, 48)
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)brightness(2)grayscale(' + (gry || 0) + '%)')
+			} else
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
+			core.drawIcon(ctx, btn[i], 38 + 24 + 32 * (i % 3), 384 + 16 + 32 * Math.floor(i / 3) - h, 32, 32)
+
+		}
+		core.setFilter(ctx, fil)
+
+		//技能栏
+		core.drawImage(ctx, 'box2.png', 0, 0, 144, 96, 38 + 152 + 422, 166, 144, 96);
+		//装备栏
+		core.drawImage(ctx, 'box1.png', 0, 0, 144, 96, 38 + 152 + 422, 384, 144, 96);
+		core.setFilter(ctx, '')
+		core.getSprite('Spr0').canvas.style.width = core.getSprite('Spr0').canvas.width * core.domStyle.scale + 'px';
+		core.getSprite('Spr0').canvas.style.height = core.getSprite('Spr0').canvas.height * core.domStyle.scale + 'px';
+
+		//console.log(0)
+	}
+
+	core.createSpr1 = function (des) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		var left = parseInt(core.dom.gameGroup.style.left);
+		var top_up = parseInt(core.dom.gameGroup.style.top);
+		var width = 748 + 100;
+		var height = 560;
+		if (core.domStyle.isVertical) {
+			top_up += core.domStyle.scale * (102 - 16);
+		} else {
+			top_up -= 16 * core.domStyle.scale;
+		}
+		if (core.getSprite('Spr1') && des) {
+			core.getSprite('Spr1').destroy();
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1');
+		} else if (core.getSprite('Spr1')) {
+			core.clearMap(core.getSprite('Spr1').context);
+
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1'); }
+
+		var ctx = core.getSprite('Spr1').context;
+
+		core.clearMap(ctx);
+
+		var col = flags._statuscol_;
+		var brg = flags._statusbrg_;
+		var gry = flags._statusgry_;
+
+		var fil = 'hue-rotate(' + (col || 0) + 'deg)brightness(' + (brg || 1) + ')grayscale(' + (gry || 0) + '%)'
+
+		var need = core.firstData.levelUp[core.status.hero.lv].need;
+
+		//等级
+		core.mystatusbox(ctx, 'lv', null, 80, 100, 160);
+		core.mystatusbox(ctx, 'exp', null, 80 + 22, 122, 210);
+		//var need = core.firstData.levelUp[core.status.hero.lv].need;
+		core.drawImage(ctx, 'expLt.png', 0, 0, 128 * hero.exp / need, 32, 60 - 16 + 4, 142, 128 * hero.exp / need, 32)
+		core.drawImage(ctx, 'expL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
+		//状态
+		var heroStatus = ['hp', 'atk', 'def']
+		var Scol = [250, 140, 0]
+		var heroStatus2 = ['mdef', 'atk', 'def']
+		var Scol2 = [280, 170, 30, 330]
+		for (var i in heroStatus2)
+			if (heroStatus2[i] != null)
+				core.mystatusbox(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
+		for (var i in heroStatus)
+			core.mystatusbox(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		//魔力
+		core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
+		core.setAlpha(ctx, 0.4)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+		core.setAlpha(ctx, 1)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+		//钥匙/金币
+		core.mystatusbox(ctx, 'key', null, 80 + 152 + 422, 60 * 4, 180);
+		core.mystatusbox(ctx, 'key', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+		core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+
+
+		var btn = ['book', 'fly', 'toolbox', 'save', 'load', 'settings']
+		for (var i in btn) {
+			if (core.getEquip(i))
+				core.drawIcon(ctx, core.getEquip(i), 38 + 152 + 422 + 24 + 32 * (i % 3), 384 + 16 + 32 * Math.floor(i / 3), 32, 32)
+		}
+		var leveltext = [
+			['新兵', '+2攻击，2防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+			['老兵', '+3攻击，3防御'],
+		]
+		var text = [
+			['等级', hero.lv + '  ' + leveltext[hero.lv - 1][0]],
+			['经验', hero.exp + '/' + need],
+			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
+			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
+			['攻击', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
+			['攻速', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
+			['防御', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
+			['护甲', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
+			['魔量', hero.mana + '/' + hero.manamax],
+			['钥匙', core.itemCount('yellowKey') + '黄/' + core.itemCount('blueKey') + '蓝'],
+			['钥匙', core.itemCount('redKey') + '红/' + core.itemCount('greenKey') + '绿'],
+			['金币', (hero.money < 0 ? '\r[red]' : '') + hero.money + '\r'],
+		]
+		var text2 = [
+			['等级', '下级' + leveltext[hero.lv - 1][1]],
+			['经验', '积累达到最大时角色升级'],
+			['生命', '生命不足时游戏结束'],
+			['护盾', '每次战斗会抵挡伤害'],
+			['攻击', '影响角色每次普攻伤害'],
+			['攻速', '每回合普攻伤害×' + Math.max(0, (hero.atk * 0.01 + 1)).toFixed(2)],
+			['防御', '影响角色受到攻击的直接减伤'],
+			['护甲', '受到伤害' + (hero.def2 < 0 ? '\r[red]增加\r' : '减免') + '：' + ((1 - 100 / (100 + 3 * Math.abs(hero.def2))) * 100).toFixed(2) + '%'],
+			['魔量', '用于施放技能的消耗'],
+			['钥匙', '用于开启黄/蓝门'],
+			['钥匙', '用于开启红/绿门'],
+			['金币', '用于商店购买的货币'],
+		]
+
+		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
+
+		if (flags._Spr1Move2_) {
+			core.drawImage(ctx, 'boxLight.png', 0, 0, 48, 48, flags._Spr1Move2_[0] - 24, flags._Spr1Move2_[1] - 24, 48, 48);
+			var h = 20;
+			var list = flags._Spr1Move2_[2]
+
+			core.drawWindowSkin('winskin.png', ctx, flags._Spr1Move2_[0], flags._Spr1Move2_[1] - 40, 100, 40)
+			core.drawWindowSkin('winskin.png', ctx, flags._Spr1Move2_[0], flags._Spr1Move2_[1] - 40 - h, 100, 20)
+
+
+			core.setFilter(ctx, '')
+
+			var config = { left: flags._Spr1Move2_[0] + 4, top: flags._Spr1Move2_[1] - 25 - h - 12, fontSize: 12, maxWidth: 95, bold: false, color: "white" };
+			core.drawTextContent(ctx, text[list][0] + ':' + text[list][1], config);
+			var config = { left: flags._Spr1Move2_[0] + 4, top: flags._Spr1Move2_[1] - 25 - 12, fontSize: 12, maxWidth: 95, bold: false, color: "white" };
+			core.drawTextContent(ctx, text2[list][1], config);
+
+
+			core.setFilter(ctx, fil)
+
+		}
+
+		if (flags._Spr1Move_ == 7) {
+			core.drawImage(ctx, 'box2Light.png', 0, 0, 144, 96, 38 + 152 + 422, 166, 144, 96);
+		}
+		if (flags._Spr1Move_ == 8) {
+			core.drawImage(ctx, 'box1Light.png', 0, 0, 144, 96, 38 + 152 + 422, 384, 144, 96);
+		}
+
+		core.setFilter(ctx, '')
+
+		core.getSprite('Spr1').canvas.style.width = core.getSprite('Spr1').canvas.width * core.domStyle.scale + 'px';
+		core.getSprite('Spr1').canvas.style.height = core.getSprite('Spr1').canvas.height * core.domStyle.scale + 'px';
+
+		if (core.getSprite('Spr1')) {
+			if (core.platform.isPC) {
+				core.getSprite('Spr1').addEventListener("click", core.Spr1Click, false) ///监听点击
+				core.getSprite('Spr1').addEventListener("mousemove", core.Spr1Move, false) ///监听移动
+			} else {
+				core.getSprite('Spr1').addEventListener("touchstart", core.Spr1TS, false) ///监听点击
+				core.getSprite('Spr1').addEventListener("touchend", core.Spr1TE, false) ///监听移动
+			}
+
+		}
+		//console.log(1)
+	}
+
+	core.createSpr2 = function (des) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		var left = parseInt(core.dom.gameGroup.style.left);
+		var top_up = parseInt(core.dom.gameGroup.style.top);
+		var width = 748 + 100;
+		var height = 560;
+		if (core.domStyle.isVertical) {
+			top_up += core.domStyle.scale * (102 - 16);
+		} else {
+			top_up -= 16 * core.domStyle.scale;
+		}
+		if (core.getSprite('Spr2') && des) {
+			core.getSprite('Spr2').destroy();
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2');
+		} else if (core.getSprite('Spr2')) {
+			core.clearMap(core.getSprite('Spr2').context);
+
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2'); }
+
+		var ctx = core.getSprite('Spr2').context;
+
+		core.clearMap(ctx);
+
+		//等级
+		core.mystatusNumber(ctx, 'lv', null, 80, 100, 160);
+		core.mystatusNumber(ctx, 'exp', null, 80 + 22, 122, 210);
+		var need = core.firstData.levelUp[core.status.hero.lv].need;
+		core.drawImage(ctx, 'expLt.png', 0, 0, 128 * hero.exp / need, 32, 60 - 16 + 4, 142, 128 * hero.exp / need, 32)
+		core.drawImage(ctx, 'expL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
+		//状态
+		var heroStatus = ['hp', 'atk', 'def']
+		var Scol = [250, 140, 0]
+		var heroStatus2 = ['mdef', 'atk', 'def']
+		var Scol2 = [280, 170, 30, 330]
+		for (var i in heroStatus2)
+			if (heroStatus2[i] != null)
+				core.mystatusNumber(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
+		for (var i in heroStatus)
+			core.mystatusNumber(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		//魔力
+		core.mystatusNumber(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
+		core.setAlpha(ctx, 0.4)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+		core.setAlpha(ctx, 1)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+		//钥匙/金币
+		core.mystatusNumber(ctx, 'key1', null, 80 + 152 + 422, 60 * 4, 180);
+		core.mystatusNumber(ctx, 'key2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+		core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+
+		core.getSprite('Spr2').canvas.style.width = core.getSprite('Spr2').canvas.width * core.domStyle.scale + 'px';
+		core.getSprite('Spr2').canvas.style.height = core.getSprite('Spr2').canvas.height * core.domStyle.scale + 'px';
+
+
+		//console.log(2)
+	}
+
+	core.Spr1Click = function (e) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		e.stopPropagation();
+
+		var x = e.clientX, ///获取鼠标点击位置
+			y = e.clientY;
+		x = Math.round((x - core.getSprite('Spr1').canvas.offsetLeft) / core.domStyle.scale);
+		y = Math.round((y - core.getSprite('Spr1').canvas.offsetTop) / core.domStyle.scale);
+
+		var i = flags._Spr1Move_ - 1
+		switch (i) {
+		case 0:
+			main.statusBar.image.book.onclick(e);
+			break;
+		case 1:
+			main.statusBar.image.fly.onclick(e);
+			break;
+		case 2:
+			main.statusBar.image.toolbox.onclick(e);
+			break;
+		case 3:
+			main.statusBar.image.save.onclick(e);
+			break;
+		case 4:
+			main.statusBar.image.load.onclick(e);
+			break;
+		case 5:
+			main.statusBar.image.settings.onclick(e);
+			break;
+		case 7:
+			main.core.openEquipbox(true)
+			break;
+		}
+		//console.log("点击的位置合法，x:" + x + 'y:' + y);
+
+	}
+
+	core.Spr1Move = function (e) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		e.stopPropagation();
+		var x = e.clientX, ///获取鼠标点击位置
+			y = e.clientY;
+		x = Math.round((x - core.getSprite('Spr1').canvas.offsetLeft) / core.domStyle.scale);
+		y = Math.round((y - core.getSprite('Spr1').canvas.offsetTop) / core.domStyle.scale);
+
+		//方按钮
+		var i = flags._Spr1Move_;
+		var j;
+
+		for (var nx = 0; nx < 3; nx++)
+			for (var ny = 0; ny < 2; ny++) {
+				if (x >= 62 + 32 * nx && x < 94 + 32 * nx && y >= 400 + 32 * ny && y < 432 + 32 * ny)
+					j = nx + 3 * ny + 1
+			}
+		if (x >= 636 && x < 732 && y >= 180 && y < 212)
+			j = 7
+		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+			j = 8
+
+		if (i !== j) {
+			flags._Spr1Move_ = j;
+			core.createSpr0();
+			core.createSpr1();
+		}
+		//圆按钮
+		var ri = 0;
+		var rj2 = 0;
+		var rj
+		var rx = [80, 102, 80, 102, 80, 102, 80, 102, 654, 654, 676, 654]
+		var ry = [100, 122, 200, 222, 260, 282, 320, 342, 122, 240, 262, 300]
+		for (var r in rx) {
+			if ((rx[r] - 24 - x) * (rx[r] - 24 - x) + (ry[r] + 6 - y) * (ry[r] + 6 - y) <= 16 * 16)
+				rj = [rx[r] - 24, ry[r] + 6, r];
+
+		}
+		if (flags._Spr1Move2_)
+			ri = flags._Spr1Move2_[2];
+		if (rj)
+			rj2 = rj[2];
+		//console.log(rj2 + "点" + rj);
+		if (ri !== rj2) {
+			flags._Spr1Move2_ = rj;
+			core.createSpr1();
+		}
+	}
+
+	core.AllSprites = function () {
+
+		{
+			core.createSprBack(true);
+			core.createSpr0(true);
+			core.createSpr1(true);
+			core.createSpr2(true);
+		}
+
+	}
+},
+    "对话框": function () {
+	ui.prototype.drawWindowSkin = function (background, ctx, x, y, w, h, direction, px, py) {
+		var col = flags._statuscol_;
+		var brg = flags._statusbrg_;
+		var gry = flags._statusgry_;
+
+		var fil = 'hue-rotate(' + (col || 0) + 'deg)brightness(' + (brg || 1) + ')grayscale(' + (gry || 0) + '%)'
+
+		core.setFilter(ctx, fil)
+
+		background = background || core.status.textAttribute.background;
+		// 仿RM窗口皮肤 ↓
+		// 绘制背景
+		core.drawImage(ctx, background, 0, 0, 128, 128, x + 2, y + 2, w - 4, h - 4);
+		// 绘制边框
+		// 上方
+		core.drawImage(ctx, background, 128, 0, 16, 16, x, y, 16, 16);
+		for (var dx = 0; dx < w - 64; dx += 32) {
+			core.drawImage(ctx, background, 144, 0, 32, 16, x + dx + 16, y, 32, 16);
+			core.drawImage(ctx, background, 144, 48, 32, 16, x + dx + 16, y + h - 16, 32, 16);
+		}
+		core.drawImage(ctx, background, 144, 0, w - dx - 32, 16, x + dx + 16, y, w - dx - 32, 16);
+		core.drawImage(ctx, background, 144, 48, w - dx - 32, 16, x + dx + 16, y + h - 16, w - dx - 32, 16);
+		core.drawImage(ctx, background, 176, 0, 16, 16, x + w - 16, y, 16, 16);
+		// 左右
+		for (var dy = 0; dy < h - 64; dy += 32) {
+			core.drawImage(ctx, background, 128, 16, 16, 32, x, y + dy + 16, 16, 32);
+			core.drawImage(ctx, background, 176, 16, 16, 32, x + w - 16, y + dy + 16, 16, 32);
+		}
+		core.drawImage(ctx, background, 128, 16, 16, h - dy - 32, x, y + dy + 16, 16, h - dy - 32);
+		core.drawImage(ctx, background, 176, 16, 16, h - dy - 32, x + w - 16, y + dy + 16, 16, h - dy - 32);
+		// 下方
+		core.drawImage(ctx, background, 128, 48, 16, 16, x, y + h - 16, 16, 16);
+		core.drawImage(ctx, background, 176, 48, 16, 16, x + w - 16, y + h - 16, 16, 16);
+
+		// arrow
+		if (px != null && py != null) {
+			if (direction == 'up') {
+				core.drawImage(ctx, background, 128, 96, 32, 32, px, y + h - 3, 32, 32);
+			} else if (direction == 'down') {
+				core.drawImage(ctx, background, 160, 96, 32, 32, px, y - 29, 32, 32);
+			}
+		}
+		core.setFilter(ctx, null)
+		// 仿RM窗口皮肤 ↑
+	}
+
+
+	ui.prototype._drawTextBox_drawTitleAndIcon = function (titleInfo, hPos, vPos, alpha, ctx) {
+		ctx = ctx || 'ui';
+		core.setTextAlign(ctx, 'left');
+		var textAttribute = core.status.textAttribute;
+		var content_top = vPos.top + 15;
+		var image_top = vPos.top + 15;
+		if (titleInfo.title != null) {
+			var titlefont = textAttribute.titlefont;
+			content_top += titlefont + 5;
+			image_top = vPos.top + 40;
+			core.setFillStyle(ctx, core.arrayToRGB(textAttribute.title));
+			core.setStrokeStyle(ctx, core.arrayToRGB(textAttribute.title));
+
+			// --- title也要居中或者右对齐？
+			var title_width = core.calWidth(ctx, titleInfo.title, this._buildFont(titlefont, true));
+			var title_left = hPos.content_left;
+			if (textAttribute.align == 'center')
+				title_left = hPos.left + (hPos.width - title_width) / 2;
+			else if (textAttribute.align == 'right')
+				title_left = hPos.right - title_width - 12;
+
+			core.fillText(ctx, titleInfo.title, title_left, vPos.top + 8 + titlefont);
+		}
+		if (titleInfo.icon != null) {
+			core.setAlpha(ctx, alpha);
+			core.strokeRect(ctx, hPos.left + 15 - 1, image_top - 1, 34, titleInfo.height + 2, null, 2);
+			core.setAlpha(ctx, 1);
+			core.status.boxAnimateObjs = [];
+			// --- 勇士
+			if (titleInfo.image == core.material.images.hero) {
+				if (core.status.hero.animate) {
+					var direction = core.getHeroLoc('direction');
+					if (direction == 'up') direction = 'down';
+					core.status.boxAnimateObjs.push({
+						'bgx': hPos.left + 15,
+						'bgy': image_top,
+						'bgWidth': 32,
+						'bgHeight': titleInfo.height,
+						'x': hPos.left + 15,
+						'y': image_top,
+						'height': titleInfo.height,
+						'animate': 4,
+						'image': titleInfo.image,
+						'pos': core.material.icons.hero[direction].loc * titleInfo.height,
+						ctx: ctx,
+					})
+				} else {
+					core.clearMap(ctx, hPos.left + 15, image_top, 32, titleInfo.height);
+					core.fillRect(ctx, hPos.left + 15, image_top, 32, titleInfo.height, core.material.groundPattern);
+					core.drawImage(ctx, titleInfo.image, 0, 0, core.material.icons.hero.width || 32, core.material.icons.hero.height,
+						hPos.left + 15, image_top, 32, titleInfo.height);
+				}
+			} else {
+				if (titleInfo.bigImage) {
+					core.status.boxAnimateObjs.push({
+						bigImage: titleInfo.bigImage,
+						face: titleInfo.face,
+						centerX: hPos.left + 15 + 16,
+						centerY: image_top + titleInfo.height / 2,
+						max_width: 50,
+						ctx: ctx
+					});
+				} else {
+					core.status.boxAnimateObjs.push({
+						'bgx': hPos.left + 15,
+						'bgy': image_top,
+						'bgWidth': 32,
+						'bgHeight': titleInfo.height,
+						'x': hPos.left + 15,
+						'y': image_top,
+						'height': titleInfo.height,
+						'animate': titleInfo.animate,
+						'image': titleInfo.image,
+						'pos': titleInfo.icon * titleInfo.height,
+						ctx: ctx,
+					});
+				}
+			}
+			core.drawBoxAnimate();
+		}
+		if (titleInfo.image != null && titleInfo.icon == null) { // 头像图
+			console.log(titleInfo.image)
+			core.strokeRect(ctx, hPos.left + 10 - 5, vPos.top + 10 - 5, 70 + 10, 70 + 10, '#cccccc', 3)
+			core.drawImage(ctx, titleInfo.image, 0, 0, titleInfo.image.width, titleInfo.image.height,
+				hPos.left + 10, vPos.top + 10, 70, 70);
+		}
+		return content_top;
+	}
+},
     "自动拾取！": function () {
 	var enable = true;
 	if (!enable) return;
