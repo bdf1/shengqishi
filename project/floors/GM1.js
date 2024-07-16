@@ -15,6 +15,11 @@ main.floors.GM1=
     "bgm": "mingyunshouhu.mp3",
     "firstArrive": [
         {
+            "type": "setValue",
+            "name": "flag:shengqishi_name",
+            "value": "\"鹿间裕贵\""
+        },
+        {
             "type": "changePos",
             "direction": "up"
         },

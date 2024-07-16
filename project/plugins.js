@@ -2608,7 +2608,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 	// 忽略的道具
 	const ignore = ['superPotion'];
-	const box = ['X10110'];
+	const box = ['X10110', 'X60549'];
 	const portals = ['upPortal', 'downPortal', 'leftPortal', 'rightPortal'];
 
 	// 取消注释下面这句可以减少超大地图的判定。
@@ -2649,7 +2649,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		const hero = core.clone(core.status.hero);
 		const handler = {
 			set(target, key, v) {
-				diff[key] = v - (target[key] || 0);
+				diff[key] = (diff[key] || 0) + v - (target[key] || 0);
 				if (!diff[key]) diff[key] = void 0;
 				return true;
 			}
@@ -2681,6 +2681,9 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				if (!block.event.trigger) {
 					drawItemDetail({ 'atk': 'X' }, x, y);
 				}
+				else if (block.event.trigger == "changeFloor") {
+					drawItemDetail({ 'atk': block.event.data.floorId/*, 'def': block.event.data.loc.join(',')*/ }, x, y);
+				}
 			}
 			if (item && item.cls === 'equips') {
 				// 装备也显示
@@ -2703,7 +2706,9 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 							if ((i.name.indexOf("item:") == 0)) {
 								var itemId = i.name.substring(5),
 									count = core.itemCount(itemId);
-								diff[itemId] = value - count;
+								if (core.material.items[itemId].itemEffect) {
+									for (var i = count; i < value; i++) eval(core.material.items[itemId].itemEffect);
+								} else diff[itemId] = value - count;
 							}
 
 							//core.events._setValue_setBuff(i.name, value);
@@ -2714,7 +2719,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 							//core.events._setValue_setGlobal(i.name, value);
 							//core.events.setValue(i.name, i.operator, i.value);
 						};
-					diff['mana'] += 50;
+					diff['mana'] += { 'X10110': 50, 'X60549': 200 } [block.event.id] || 0;
 				} else
 					eval(item.itemEffect);
 			} catch (error) {}
@@ -2775,7 +2780,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				color = '#8f8';
 				break;
 			default:
-				if (diff[name] == 1) content = name;
+				if (diff[name] == 1) content = core.material.items[name].name;
 			}
 			// 绘制
 			core.status.damage.data.push({

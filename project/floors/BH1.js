@@ -176,8 +176,8 @@ main.floors.BH1=
                             "\t[???,N467]\b[this,0,6]啊?",
                             "\t[光明骑士,N440]\b[this,2,7]殿下，这小子不清不楚的，你怎么能让他留在身边呢……",
                             "\t[辉,hero]\b[hero]我意已决，不用多说。你叫什么名字？",
-                            "\t[???,N467]\b[this,0,6]回殿下，我叫唐佳成。",
-                            "\t[辉,hero]\b[hero]那好，唐佳成，你去圣子宫等着吧。我给你一些东西。",
+                            "\t[???,N467]\b[this,0,6]回殿下，我叫${flag:shengqishi_name}。",
+                            "\t[辉,hero]\b[hero]那好，${flag:shengqishi_name}，你去圣子宫等着吧。我给你一些东西。",
                             {
                                 "type": "setValue",
                                 "name": "status:atk",
@@ -196,8 +196,8 @@ main.floors.BH1=
                                 "operator": "-=",
                                 "value": "200"
                             },
-                            "资助可怜的小乞丐唐佳成，攻防-2，生命上限-200",
-                            "\t[唐佳成,N467]\b[this,0,6]谢谢圣子殿下！",
+                            "资助可怜的小乞丐${flag:shengqishi_name}，攻防-2，生命上限-200",
+                            "\t[${flag:shengqishi_name},N467]\b[this,0,6]谢谢圣子殿下！",
                             {
                                 "type": "hide",
                                 "loc": [
