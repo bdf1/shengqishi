@@ -194,6 +194,15 @@ main.floors.GM2=
                 "type": "turnBlock",
                 "direction": "left"
             }
+        ],
+        "10,6": [
+            "\t[莫析辉,hero]\b[hero]没事还是不去骑士团了吧！",
+            {
+                "type": "moveHero",
+                "steps": [
+                    "left:1"
+                ]
+            }
         ]
     },
     "changeFloor": {

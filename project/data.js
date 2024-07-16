@@ -116,6 +116,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"zone"
 		],
 		"bgms": [
+			"airuying.mp3",
 			"ending.mp3",
 			"mingyunshouhu.mp3",
 			"xian.mp3"
@@ -957,7 +958,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
-								"name": "item:blueKey",
+								"name": "item:redKey",
 								"operator": "+=",
 								"value": "1"
 							}
