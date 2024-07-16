@@ -963,5 +963,6 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"1065": {"cls":"enemys","id":"E1065"},
 	"1066": {"cls":"enemys","id":"E1066"},
 	"1067": {"cls":"terrains","id":"T1067"},
-	"10111": {"cls":"tileset","id":"X10111","event":["这个宝箱是空的!"]}
+	"10111": {"cls":"tileset","id":"X10111","event":["这个宝箱是空的!"]},
+	"60341": {"cls":"tileset","id":"X60341","event":["这个宝箱是空的!"]}
 }
