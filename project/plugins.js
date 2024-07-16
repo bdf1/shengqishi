@@ -1741,7 +1741,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 
 
-		if (!num && name != 'key1' && name != 'key2') {
+		if (!num && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
 			num = hero[name]
 			num = num.toString()
 			if (name === 'atk2') {
@@ -1784,6 +1784,25 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.setFilter(ctx, '')
 			name = 'key'
 		}
+		if (name === 'potion1' || name === 'potion2') {
+			var num = [hero.items.tools.I710 || 0, hero.items.tools.I711 || 0, hero.items.tools.I712 || 0, hero.items.tools.I713 || 0];
+			var keyCol = [140, 0, 170, 250]
+			if (name === 'potion2') {
+				num = [hero.items.tools.I714 || 0, hero.items.tools.I415 || 0, hero.items.tools.I416 || 0,];
+				keyCol = [30, 280, 280]
+			}
+			for (var k in num) {
+				var numk = num[k]
+				numk = numk.toString()
+				core.setFilter(ctx, 'hue-rotate(' + keyCol[k] + 'deg)')
+				for (var i in numk) {
+					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 20 * Number(k) + (name === "potion1" && k > 0 ? 10 : 0), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 20 * Number(k) + (name === "potion1" && k > 0 ? 10 : 0), y, 16, 16)
+				}
+			}
+			core.setFilter(ctx, '')
+			name = 'key'
+		}
 	}
 
 	core.mystatusbox = function (ctx, name, num, x, y, col2) {
@@ -1792,7 +1811,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		if (hero[name] < 0)
 			m = 'invert(100%)';
 		core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)' + m)
-
+		if (name == 'key1' || name == 'key2') name = 'key';
 		core.drawImage(ctx, 'b.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
 		core.drawImage(ctx, name + '.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
 		core.drawImage(ctx, 'c.png', 0, 0, 32, 32, x - 40, y - 10, 32, 32)
@@ -1955,16 +1974,16 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
 
 		//等级
-		core.mystatusbox(ctx, 'lv', null, 80, 100, 160);
-		core.mystatusbox(ctx, 'exp', null, 80 + 22, 122, 210);
+		core.mystatusbox(ctx, 'hpmax', null, 80, 100, 160);
+		core.mystatusbox(ctx, 'hp', null, 80 + 22, 122, 250);
 		//var need = core.firstData.levelUp[core.status.hero.lv].need;
-		core.drawImage(ctx, 'expLt.png', 0, 0, 128 * hero.exp / need, 32, 60 - 16 + 4, 142, 128 * hero.exp / need, 32)
-		core.drawImage(ctx, 'expL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
+		//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
+		//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
 		//状态
-		var heroStatus = ['hp', 'atk', 'def']
-		var Scol = [250, 140, 0]
-		var heroStatus2 = ['mdef', 'atk', 'def']
-		var Scol2 = [280, 170, 30, 330]
+		var heroStatus = ['atk', 'mdef', 'key1']
+		var Scol = [140, 280, 180]
+		var heroStatus2 = ['def', 'mana', 'key2']
+		var Scol2 = [0, 20, 300, 0]
 		for (var i in heroStatus2)
 			if (heroStatus2[i] != null)
 				core.mystatusbox(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
@@ -1978,8 +1997,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 		//钥匙/金币
-		core.mystatusbox(ctx, 'key', null, 80 + 152 + 422, 60 * 4, 180);
-		core.mystatusbox(ctx, 'key', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+		core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
+		core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 		core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
 
 
@@ -2002,9 +2021,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['老兵', '+3攻击，3防御'],
 		]
 		var text = [
-			['等级', hero.lv + '  ' + leveltext[hero.lv - 1][0]],
-			['经验', hero.exp + '/' + need],
-			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
+			//['等级', hero.lv + '  ' + leveltext[hero.lv - 1][0]],
+			//['经验', hero.exp + '/' + need],
+			['生命上限', (hero.hpmax < 0 ? '\r[red]' : '') + hero.hpmax + '\r'],
+			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
+			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
 			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
 			['攻击', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
 			['攻速', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
@@ -2016,8 +2037,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['金币', (hero.money < 0 ? '\r[red]' : '') + hero.money + '\r'],
 		]
 		var text2 = [
-			['等级', '下级' + leveltext[hero.lv - 1][1]],
-			['经验', '积累达到最大时角色升级'],
+			//['等级', '下级' + leveltext[hero.lv - 1][1]],
+			//['经验', '积累达到最大时角色升级'],
+			['生命上限', '玩家最多拥有的生命'],
+			['生命', '生命不足时游戏结束'],
 			['生命', '生命不足时游戏结束'],
 			['护盾', '每次战斗会抵挡伤害'],
 			['攻击', '影响角色每次普攻伤害'],
@@ -2103,16 +2126,16 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.clearMap(ctx);
 
 		//等级
-		core.mystatusNumber(ctx, 'lv', null, 80, 100, 160);
-		core.mystatusNumber(ctx, 'exp', null, 80 + 22, 122, 210);
+		core.mystatusNumber(ctx, 'hpmax', null, 80, 100, 160);
+		core.mystatusNumber(ctx, 'hp', null, 80 + 22, 122, 250);
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
-		core.drawImage(ctx, 'expLt.png', 0, 0, 128 * hero.exp / need, 32, 60 - 16 + 4, 142, 128 * hero.exp / need, 32)
-		core.drawImage(ctx, 'expL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
+		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
 		//状态
-		var heroStatus = ['hp', 'atk', 'def']
-		var Scol = [250, 140, 0]
-		var heroStatus2 = ['mdef', 'atk', 'def']
-		var Scol2 = [280, 170, 30, 330]
+		var heroStatus = ['atk', 'mdef', 'key1']
+		var Scol = [140, 280, 180]
+		var heroStatus2 = ['def', 'mana', 'key2']
+		var Scol2 = [0, 20, 300, 0]
 		for (var i in heroStatus2)
 			if (heroStatus2[i] != null)
 				core.mystatusNumber(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
@@ -2126,8 +2149,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 		//钥匙/金币
-		core.mystatusNumber(ctx, 'key1', null, 80 + 152 + 422, 60 * 4, 180);
-		core.mystatusNumber(ctx, 'key2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+		core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
+		core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 		core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
 
 		core.getSprite('Spr2').canvas.style.width = core.getSprite('Spr2').canvas.width * core.domStyle.scale + 'px';
@@ -2225,6 +2248,64 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 	}
 
+	core.Spr1TS = function(e) {
+		if (main.replayChecking || !core.status.played)
+			return;
+		e.stopPropagation();
+
+		var x = e.touches[0].clientX, ///获取鼠标点击位置
+			y = e.touches[0].clientY;
+		x = Math.round((x - core.getSprite('Spr1').canvas.offsetLeft) / core.domStyle.scale);
+		y = Math.round((y - core.getSprite('Spr1').canvas.offsetTop) / core.domStyle.scale);
+		//方按钮
+		var i = flags._Spr1Move_;
+		var j;
+
+		for (var nx = 0; nx < 3; nx++)
+			for (var ny = 0; ny < 2; ny++) {
+				if (x >= 62 + 32 * nx && x < 94 + 32 * nx && y >= 400 + 32 * ny && y < 432 + 32 * ny)
+					j = nx + 3 * ny + 1
+			}
+		if (x >= 636 && x < 732 && y >= 180 && y < 212)
+			j = 7
+		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+			j = 8
+
+		if (i !== j) {
+			flags._Spr1Move_ = j;
+			core.createSpr0();
+			core.createSpr1();
+		}
+		
+		i = flags._Spr1Move_ - 1
+		switch (i) {
+		case 0:
+			main.statusBar.image.book.onclick(e);
+			break;
+		case 1:
+			main.statusBar.image.fly.onclick(e);
+			break;
+		case 2:
+			main.statusBar.image.toolbox.onclick(e);
+			break;
+		case 3:
+			main.statusBar.image.save.onclick(e);
+			break;
+		case 4:
+			main.statusBar.image.load.onclick(e);
+			break;
+		case 5:
+			main.statusBar.image.settings.onclick(e);
+			break;
+		case 7:
+			main.core.openEquipbox(true)
+			break;
+		}
+	}
+
+	core.Spr1TE = function(e) {
+		
+	}
 	core.AllSprites = function () {
 
 		{
