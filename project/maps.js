@@ -964,5 +964,8 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"1066": {"cls":"enemys","id":"E1066"},
 	"1067": {"cls":"terrains","id":"T1067"},
 	"10111": {"cls":"tileset","id":"X10111","event":["这个宝箱是空的!"]},
-	"60341": {"cls":"tileset","id":"X60341","event":["这个宝箱是空的!"]}
+	"20249": {"cls":"tileset","id":"X20249","canBreak":true},
+	"60341": {"cls":"tileset","id":"X60341","event":["这个宝箱是空的!"]},
+	"60395": {"cls":"tileset","id":"X60395","event":["这个罐子是空的!"]},
+	"80531": {"cls":"tileset","id":"X80531","canBreak":true}
 }

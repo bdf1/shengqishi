@@ -28,7 +28,9 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"SN7",
 			"SN8",
 			"SN9",
-			"SN10"
+			"SN10",
+			"GM7",
+			"XY1"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -87,7 +89,10 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"Riqueza.png",
 			"12.png",
 			"026-Castle02.png",
-			"tilesets.min.png"
+			"tilesets.min.png",
+			"yjzhiquan.png",
+			"deepforest.png",
+			"cs5.png"
 		],
 		"animates": [
 			"atkUp",
@@ -157,6 +162,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		],
 		"bgms": [
 			"airuying.mp3",
+			"bxsgzz.mp3",
 			"ending.mp3",
 			"mingyunshouhu.mp3",
 			"xian.mp3"

@@ -142,7 +142,28 @@ main.floors.GM3=
                 "\t[辉,hero]\b[hero]emmm，${flag:shengqishi_name}，你待在光明神殿最好还是找个事儿做。我总不能一直养着你吧?",
                 "\t[${flag:shengqishi_name},N467]\b[this]是，我想当骑士！",
                 "\t[辉,hero]\b[hero]是个不错的想法，那你去教皇殿右边的骑士团吧！",
-                "\t[${flag:shengqishi_name},N467]\b[this]是！"
+                "\t[${flag:shengqishi_name},N467]\b[this]是！",
+                {
+                    "type": "setValue",
+                    "name": "flag:shengqishi",
+                    "operator": "+=",
+                    "value": "1"
+                },
+                {
+                    "type": "hide",
+                    "remove": true
+                },
+                {
+                    "type": "hide",
+                    "loc": [
+                        [
+                            6,
+                            11
+                        ]
+                    ],
+                    "floorId": "GM6",
+                    "remove": true
+                }
             ]
         }
     },

@@ -143,17 +143,186 @@ main.floors.GM6=
                 ]
             ],
             "remove": true
+        },
+        {
+            "type": "if",
+            "condition": "(flag:shengqishi===1)",
+            "true": [
+                "\t[莫析辉,hero]\b[hero]对了，我得去看看${flag:shengqishi_name}怎么样了。骑士队长，你知道那位新来的骑士吗？",
+                "\t[汪周,N468]\b[this,6,3]圣子殿下，那位新来的骑士，正在南边的骑士团训练，你可以去看看。",
+                "\t[莫析辉,hero]\b[hero]好。"
+            ],
+            "false": [
+                "\t[汪周,N468]\b[this,6,3]圣子殿下，你记得去\r[red]光明学院\r[]学习呀！教皇陛下特地交代的。",
+                "\t[莫析辉,hero]\b[hero]知道啦",
+                {
+                    "type": "hide",
+                    "loc": [
+                        [
+                            3,
+                            1
+                        ]
+                    ],
+                    "floorId": "GM1",
+                    "remove": true
+                }
+            ]
         }
     ],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "6,11": [
+            "\t[莫析辉,hero]\b[hero]没事还是不要乱走吧！",
+            {
+                "type": "moveHero",
+                "steps": [
+                    "up:1"
+                ]
+            }
+        ],
+        "10,2": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得进阶神之血*1",
+                            {
+                                "type": "setValue",
+                                "name": "item:I711",
+                                "operator": "+=",
+                                "value": "1"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ],
+        "2,2": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得二阶白宝石*1",
+                            {
+                                "type": "setValue",
+                                "name": "item:I598",
+                                "operator": "+=",
+                                "value": "1"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ],
+        "1,5": [
+            "\t[光明骑士,N440]\b[this]光明在我心中",
+            {
+                "type": "turnBlock",
+                "direction": "down"
+            }
+        ],
+        "1,7": [
+            "\t[光明骑士,N440]\b[this]光明在我心中！",
+            {
+                "type": "turnBlock",
+                "direction": "up"
+            }
+        ],
+        "11,5": [
+            "\t[光明骑士,N440]\b[this]光明在我心中！",
+            {
+                "type": "turnBlock",
+                "direction": "down"
+            }
+        ],
+        "11,7": [
+            "\t[光明骑士,N440]\b[this]光明在我心中！",
+            {
+                "type": "turnBlock",
+                "direction": "up"
+            }
+        ],
+        "5,11": [
+            "\t[光明骑士,N440]\b[this]光明在我心中！",
+            {
+                "type": "turnBlock",
+                "direction": "right"
+            }
+        ],
+        "7,11": [
+            "\t[光明骑士,N440]\b[this]光明在我心中！",
+            {
+                "type": "turnBlock",
+                "direction": "left"
+            }
+        ]
+    },
     "changeFloor": {
         "0,6": {
             "floorId": "GM2",
             "loc": [
                 11,
                 6
+            ]
+        },
+        "6,12": {
+            "floorId": "GM7",
+            "loc": [
+                6,
+                0
             ]
         }
     },
@@ -167,7 +336,7 @@ main.floors.GM6=
     "map": [
     [50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049],
     [50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049,50049],
-    [50049,50167,  0,  0,  0,  0,  0,  0,  0,  0,  0,50167,50049],
+    [50049,50167,10110,  0,  0,  0,  0,  0,  0,  0,10110,50167,50049],
     [50049,  0,  0,20636,  0,  0,468,  0,  0,20636,  0,  0,50049],
     [50049,  0,  0,584,  0,  0,  0,  0,  0,  0,  0,  0,50049],
     [50049,440,  0,  0,  0,  0,  0,  0,  0,  0,  0,440,50049],
