@@ -188,6 +188,34 @@ main.floors.GM5=
                     }
                 ]
             }
+        ],
+        "4,5": [
+            "\t[沂蒙贤,N570]一边去，别烦我。",
+            {
+                "type": "turnBlock",
+                "direction": "right"
+            }
+        ],
+        "4,7": [
+            "\t[冷霜迪,N657]\b[this]一边去，别烦我。",
+            {
+                "type": "turnBlock",
+                "direction": "right"
+            }
+        ],
+        "8,9": [
+            "\t[司默缇,N653]\b[this]小圣子，有什么事吗？",
+            {
+                "type": "turnBlock",
+                "direction": "left"
+            }
+        ],
+        "8,7": [
+            "\t[枯云窦,N669]\b[this]小圣子，有什么事吗？",
+            {
+                "type": "turnBlock",
+                "direction": "left"
+            }
         ]
     },
     "changeFloor": {

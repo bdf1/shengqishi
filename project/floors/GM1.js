@@ -331,6 +331,13 @@ main.floors.GM1=
                 6,
                 0
             ]
+        },
+        "3,0": {
+            "floorId": "XY1",
+            "loc": [
+                6,
+                12
+            ]
         }
     },
     "beforeBattle": {},

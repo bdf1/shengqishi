@@ -257,6 +257,34 @@ main.floors.SN10=
         ],
         "6,2": [
             "\t[蜜茜娅,N489]\b[this]啊，你说我怎么知道你和希娜的婚事的，当然是听说啦，听说啦！"
+        ],
+        "7,11": [
+            "\t[光明骑士,N440]\b[this]誓死效忠圣女殿下！",
+            {
+                "type": "turnBlock",
+                "direction": "left"
+            }
+        ],
+        "7,12": [
+            "\t[光明骑士,N440]\b[this]誓死效忠圣女殿下！",
+            {
+                "type": "turnBlock",
+                "direction": "left"
+            }
+        ],
+        "5,11": [
+            "\t[光明骑士,N440]\b[this]誓死效忠圣女殿下！",
+            {
+                "type": "turnBlock",
+                "direction": "right"
+            }
+        ],
+        "5,12": [
+            "\t[光明骑士,N440]\b[this]誓死效忠圣女殿下！",
+            {
+                "type": "turnBlock",
+                "direction": "right"
+            }
         ]
     },
     "changeFloor": {
