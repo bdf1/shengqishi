@@ -2608,7 +2608,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 	// 忽略的道具
 	const ignore = ['superPotion'];
-	const box = ['X10110', 'X60549'];
+	const box = ['X10110', 'X60549', 'X60408'];
 	const portals = ['upPortal', 'downPortal', 'leftPortal', 'rightPortal'];
 
 	// 取消注释下面这句可以减少超大地图的判定。
@@ -2680,9 +2680,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			if (portals.includes(block.event.id)) {
 				if (!block.event.trigger) {
 					drawItemDetail({ 'atk': 'X' }, x, y);
-				}
-				else if (block.event.trigger == "changeFloor") {
-					drawItemDetail({ 'atk': block.event.data.floorId/*, 'def': block.event.data.loc.join(',')*/ }, x, y);
+				} else if (block.event.trigger == "changeFloor") {
+					drawItemDetail({ 'atk': block.event.data.floorId /*, 'def': block.event.data.loc.join(',')*/ }, x, y);
 				}
 			}
 			if (item && item.cls === 'equips') {
@@ -2719,7 +2718,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 							//core.events._setValue_setGlobal(i.name, value);
 							//core.events.setValue(i.name, i.operator, i.value);
 						};
-					diff['mana'] += { 'X10110': 50, 'X60549': 200 } [block.event.id] || 0;
+					diff['mana'] += { 'X10110': 50, 'X60549': 200, 'X60408': 80 } [block.event.id] || 0;
+					var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
+					diff['point'] = 0;
+					for (var i in addPoint)
+						if (diff[i]) diff['point'] += diff[i] * addPoint[i], diff[i] = 0;
 				} else
 					eval(item.itemEffect);
 			} catch (error) {}
@@ -2779,8 +2782,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			case 'greenKey':
 				color = '#8f8';
 				break;
+			case 'point':
+				content = '+' + content;
+				break;
 			default:
+				console.log(name, diff[name])
 				if (diff[name] == 1) content = core.material.items[name].name;
+				else if (diff[name]) content = core.material.items[name].name + '*' + diff[name];
 			}
 			// 绘制
 			core.status.damage.data.push({
