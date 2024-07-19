@@ -243,11 +243,11 @@ main.floors.XY1=
                 "shadow": 0
             },
             "data": [
-                "\t[唐佳成,N472]\b[this]圣子殿下。",
+                "\t[${flag:shengqishi_name},N472]\b[this]圣子殿下。",
                 "\t[莫析辉,hero]\b[hero]你怎么也进来了。",
-                "\t[唐佳成,N472]\b[this]嘿嘿，是教皇陛下看我天赋很高，让我进入光明学院的，嘻嘻",
+                "\t[${flag:shengqishi_name},N472]\b[this]嘿嘿，是教皇陛下看我天赋很高，让我进入光明学院的，嘻嘻",
                 "\t[莫析辉,hero]\b[hero]那还不错，希望你能尽快变强，成为光明骑士！",
-                "\t[唐佳成,N472]\b[this]光明骑士？不，我要成为圣子殿下的守护骑士……",
+                "\t[${flag:shengqishi_name},N472]\b[this]光明骑士？不，我要成为圣子殿下的守护骑士……",
                 "\t[莫析辉,hero]\b[hero]好，我很期待。",
                 {
                     "type": "hide",

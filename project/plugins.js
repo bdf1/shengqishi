@@ -1743,6 +1743,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		if (!num && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
 			num = hero[name]
+			if(name == 'shengqishi') num = flags[name]
 			num = num.toString()
 			if (name === 'atk2') {
 				num = Math.max(0, (hero[name] * 0.01 + 1)).toFixed(2);
@@ -2142,7 +2143,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		for (var i in heroStatus)
 			core.mystatusNumber(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
 		//魔力
-		core.mystatusNumber(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
+		core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 20);
 		core.setAlpha(ctx, 0.4)
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 		core.setAlpha(ctx, 1)
@@ -2640,6 +2641,87 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.getItemDetail(floorId); // 宝石血瓶详细信息
 		this.drawDamage(ctx);
 	};
+	core.control._updateDamage_damage = function (floorId, onMap) {
+		core.status.damage.data = [];
+		if (!core.flags.displayEnemyDamage && !core.flags.displayExtraDamage) return;
+
+		core.extractBlocks(floorId);
+		core.status.maps[floorId].blocks.forEach(function (block) {
+			var x = block.x,
+				y = block.y;
+
+			// v2优化，只绘制范围内的部分
+			if (onMap && core.bigmap.v2) {
+				if (x < core.bigmap.posX - core.bigmap.extend || x > core.bigmap.posX + core._WIDTH_ + core.bigmap.extend ||
+					y < core.bigmap.posY - core.bigmap.extend || y > core.bigmap.posY + core._HEIGHT_ + core.bigmap.extend) {
+					return;
+				}
+			}
+
+			if (!block.disable && block.event.cls.indexOf('enemy') == 0 && block.event.displayDamage !== false) {
+				if (core.flags.displayCritical) {
+					var critical = core.enemys.nextCriticals(block.event.id, 1, x, y, floorId);
+					critical = core.formatBigNumber((critical[0] || [])[0], true);
+					if (critical == '???') critical = '?';
+					core.status.damage.data.push({ text: critical, px: 32 * x + 1, py: 32 * (y + 1) - 11, color: '#FFFFFF' });
+				}
+				if (core.flags.displayEnemyDamage) {
+					var damageString = core.enemys.getDamageString(block.event.id, x, y, floorId);
+					core.status.damage.data.push({ text: damageString.damage, px: 32 * x + 1, py: 32 * (y + 1) - 1, color: damageString.color });
+					if (core.material.enemys[block.event.id].beforeBattle) {
+						var t = core.material.enemys[block.event.id].beforeBattle[0].condition;
+						if (t[0] == '(') t = t.substring(1, t.length - 1);
+						t = t.replace('flag:shengqishi', '');
+						core.status.damage.data.push({ text: t, px: 32 * x + 1, py: 32 * (y + 1) - 21, color: '#FFFFFF' });
+						t = core.material.enemys[block.event.id].beforeBattle[0].condition;
+						t = t.replace('flag:shengqishi', flags.shengqishi || 0);
+						if (eval(t)) {
+							core.status.damage.data = core.status.damage.data.filter(t => (t.px != 32 * x + 1 || (t.py != 32 * (y + 1) - 1 && t.py != 32 * (y + 1) - 11 && t.py != 32 * (y + 1) - 21)))
+							diff = {}
+							const before = core.status.hero;
+							const hero = core.clone(core.status.hero);
+							const handler = {
+								set(target, key, v) {
+									diff[key] = (diff[key] || 0) + v - (target[key] || 0);
+									if (!diff[key]) diff[key] = void 0;
+									return true;
+								}
+							};
+							core.status.hero = new Proxy(hero, handler);
+							for (var i of (core.material.enemys[block.event.id].beforeBattle[0].true))
+								if (i.type == 'setValue') {
+									var value = core.events._updateValueByOperator(core.calValue(i.value), core.calValue(i.name), i.operator);
+									core.events._setValue_setStatus(i.name, value);
+									if ((i.name.indexOf("item:") == 0)) {
+										var itemId = i.name.substring(5),
+											count = core.itemCount(itemId);
+										if (core.material.items[itemId].itemEffect) {
+											for (var i = count; i < value; i++) eval(core.material.items[itemId].itemEffect);
+										} else diff[itemId] = value - count;
+									}
+
+									//core.events._setValue_setBuff(i.name, value);
+									//core.events._setValue_setItem(i.name, value);
+									//core.events._setValue_setFlag(i.name, value);
+									//core.events._setValue_setSwitch(i.name, value);
+									//core.events._setValue_setTemp(i.name, value);
+									//core.events._setValue_setGlobal(i.name, value);
+									//core.events.setValue(i.name, i.operator, i.value);
+								};
+							var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
+							diff['point'] = 0;
+							for (var i in addPoint)
+								if (diff[i]) diff['point'] += diff[i] * addPoint[i], diff[i] = 0;
+							drawItemDetail(diff, x, y);
+							core.status.hero = before;
+							window.hero = before;
+							window.flags = before.flags;
+						}
+					}
+				}
+			}
+		});
+	}
 	// 获取宝石信息 并绘制
 	this.getItemDetail = function (floorId) {
 		if (!core.getFlag('itemDetail')) return;
@@ -2723,8 +2805,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 					diff['point'] = 0;
 					for (var i in addPoint)
 						if (diff[i]) diff['point'] += diff[i] * addPoint[i], diff[i] = 0;
-				} else
+				} else {
+
 					eval(item.itemEffect);
+					var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
+					if (addPoint[block.event.id])
+						diff['point'] = addPoint[block.event.id]
+				}
 			} catch (error) {}
 			drawItemDetail(diff, x, y);
 		});
@@ -2784,6 +2871,9 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				break;
 			case 'point':
 				content = '+' + content;
+				break;
+			case 'money':
+				color = '#7f7f7f'
 				break;
 			default:
 				console.log(name, diff[name])

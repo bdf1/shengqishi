@@ -119,7 +119,7 @@ main.floors.XY7=
                 "type": "if",
                 "condition": "(flag:shengqishi>1)",
                 "true": [
-                    "\t[唐佳成,N472]\b[this]可恶，那准圣子殿下，你能告诉我是谁吗？",
+                    "\t[${flag:shengqishi_name},N472]\b[this]可恶，那准圣子殿下，你能告诉我是谁吗？",
                     "\t[葛尔丹,N566]\b[this,5,4]呵呵",
                     "\t[葛尔丹,N566]\b[this,5,4]这内奸啊，不仅敢对光明圣子干坏事，他啊，嗨忠于光明圣女呢。圣子弟弟，你可要小心点咯。"
                 ],
