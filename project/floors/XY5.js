@@ -52,7 +52,7 @@ main.floors.XY5=
                                 "type": "setValue",
                                 "name": "item:I357",
                                 "operator": "+=",
-                                "value": "3"
+                                "value": "1"
                             }
                         ]
                     }

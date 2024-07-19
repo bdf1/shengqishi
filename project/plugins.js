@@ -2761,9 +2761,20 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			const item = core.material.items[id];
 			if (portals.includes(block.event.id)) {
 				if (!block.event.trigger) {
-					drawItemDetail({ 'atk': 'X' }, x, y);
+					var dx = [0, 0, 1, -1],
+						dy = [1, -1, 0, 0];
+					for (var i = 0; i <= 4; i++) {
+						if (i == 4) {
+							drawItemDetail({ 'atk': 'X' }, x, y);
+							break;
+						}
+						if (core.getBlock(x + dx[i], y + dy[i], floorId) && core.getBlock(x + dx[i], y + dy[i], floorId).event.trigger == "changeFloor") {
+							drawItemDetail({ 'atk': core.getBlock(x + dx[i], y + dy[i], floorId).event.data.floorId }, x, y);
+							break;
+						}
+					}
 				} else if (block.event.trigger == "changeFloor") {
-					drawItemDetail({ 'atk': block.event.data.floorId /*, 'def': block.event.data.loc.join(',')*/ }, x, y);
+					drawItemDetail({ 'atk': block.event.data.floorId }, x, y);
 				}
 			}
 			if (item && item.cls === 'equips') {
