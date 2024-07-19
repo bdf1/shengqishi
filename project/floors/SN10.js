@@ -134,7 +134,8 @@ main.floors.SN10=
             ],
             "floorId": "GM2",
             "remove": true
-        }
+        },
+        "\t[莫析辉,hero]\b[hero]看来，我最近修为停滞的事情，也被教皇爷爷发觉了，也许，去骑士队锻炼锻炼，能够让我的修为有所增长呢。"
     ],
     "eachArrive": [],
     "parallelDo": "",

@@ -30,7 +30,17 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"SN9",
 			"SN10",
 			"GM7",
-			"XY1"
+			"XY1",
+			"XY2",
+			"XY3",
+			"XY4",
+			"XY5",
+			"XY6",
+			"XY7",
+			"XY8",
+			"XY9",
+			"XY10",
+			"YS1"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -92,7 +102,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"tilesets.min.png",
 			"yjzhiquan.png",
 			"deepforest.png",
-			"cs5.png"
+			"cs5.png",
+			"em.png"
 		],
 		"animates": [
 			"atkUp",

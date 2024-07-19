@@ -967,5 +967,6 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"20249": {"cls":"tileset","id":"X20249","canBreak":true},
 	"60341": {"cls":"tileset","id":"X60341","event":["这个宝箱是空的!"]},
 	"60395": {"cls":"tileset","id":"X60395","event":["这个罐子是空的!"]},
-	"80531": {"cls":"tileset","id":"X80531","canBreak":true}
+	"80531": {"cls":"tileset","id":"X80531","canBreak":true},
+	"104454": {"cls":"tileset","id":"X104454","canBreak":true}
 }
