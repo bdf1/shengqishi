@@ -532,6 +532,33 @@ main.floors.GM7=
                 }
             ]
         },
+        {
+            "type": "if",
+            "condition": "(flag:shengqishi>1)",
+            "true": [
+                {
+                    "type": "show",
+                    "loc": [
+                        [
+                            7,
+                            1
+                        ]
+                    ],
+                    "floorId": "XY1"
+                },
+                {
+                    "type": "show",
+                    "loc": [
+                        [
+                            4,
+                            7
+                        ]
+                    ],
+                    "floorId": "XY7"
+                }
+            ],
+            "false": []
+        },
         "\t[罗涛,N582]\b[this,5,1]圣子殿下，咱们得去\r[red]光明学院\r[]学习法术了。",
         "\t[莫析辉,hero]\b[hero]好。",
         {
