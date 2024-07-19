@@ -1021,7 +1021,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "equips",
 		"name": "光明法杖",
 		"canUseItemEffect": "true",
-		"text": "攻击力+5",
+		"text": "攻击力+8",
 		"equip": {
 			"type": "法杖",
 			"value": {
