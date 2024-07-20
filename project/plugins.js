@@ -1743,7 +1743,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		if (!num && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
 			num = hero[name]
-			if(name == 'shengqishi') num = flags[name]
+			if(name == 'shengqishi') num = flags[name] || 0
 			num = num.toString()
 			if (name === 'atk2') {
 				num = Math.max(0, (hero[name] * 0.01 + 1)).toFixed(2);
@@ -1767,19 +1767,19 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			}
 		}
 		if (name === 'key1' || name === 'key2') {
-			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0];
-			var keyCol = [170, 0]
+			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0, hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
+			var keyCol = [170, 0, 140, 250]
 			if (name === 'key2') {
-				num = [hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
-				keyCol = [140, 250]
+				//num = [hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
+				//keyCol = [140, 250]
 			}
 			for (var k in num) {
 				var numk = num[k]
 				numk = numk.toString()
 				core.setFilter(ctx, 'hue-rotate(' + keyCol[k] + 'deg)')
 				for (var i in numk) {
-					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
-					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k) - (k == 3 ? 10 : 0), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 30 * Number(k) - (k == 3 ? 10 : 0), y, 16, 16)
 				}
 			}
 			core.setFilter(ctx, '')
@@ -1983,8 +1983,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'key2']
-		var Scol2 = [0, 20, 300, 0]
+		var heroStatus2 = ['def', 'mana', 'money']
+		var Scol2 = [0, 20, 180, 0]
 		for (var i in heroStatus2)
 			if (heroStatus2[i] != null)
 				core.mystatusbox(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
@@ -2135,8 +2135,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'key2']
-		var Scol2 = [0, 20, 300, 0]
+		var heroStatus2 = ['def', 'mana', 'money']
+		var Scol2 = [0, 20, 180, 0]
 		for (var i in heroStatus2)
 			if (heroStatus2[i] != null)
 				core.mystatusNumber(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
