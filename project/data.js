@@ -40,7 +40,17 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"XY8",
 			"XY9",
 			"XY10",
-			"YS1"
+			"YS1",
+			"CZ1",
+			"CZ2",
+			"CZ3",
+			"CZ4",
+			"CZ5",
+			"CZ6",
+			"CZ7",
+			"CZ8",
+			"CZ9",
+			"CZ10"
 		],
 		"floorPartitions": [],
 		"images": [
