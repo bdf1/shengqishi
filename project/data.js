@@ -40,7 +40,16 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"XY8",
 			"XY9",
 			"XY10",
-			"YS1"
+			"YS1",
+			"YS2",
+			"YS3",
+			"YS4",
+			"YS5",
+			"YS6",
+			"YS7",
+			"YS8",
+			"YS9",
+			"YS10"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -134,6 +143,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"bgms": [
 			"airuying.mp3",
 			"bxsgzz.mp3",
+			"cbzc.mp3",
 			"ending.mp3",
 			"mingyunshouhu.mp3",
 			"xian.mp3"
@@ -936,8 +946,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "蓝钥匙(80金币)",
-						"need": "status:money>=80",
+						"text": "蓝钥匙(120金币)",
+						"need": "status:money>=120",
 						"icon": "blueKey",
 						"action": [
 							{
@@ -948,7 +958,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "80"
+								"value": "120"
 							},
 							{
 								"type": "setValue",
@@ -959,8 +969,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "红钥匙(200金币)",
-						"need": "status:money>=200",
+						"text": "红钥匙(300金币)",
+						"need": "status:money>=300",
 						"icon": "redKey",
 						"action": [
 							{
@@ -971,7 +981,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "200"
+								"value": "300"
 							},
 							{
 								"type": "setValue",
@@ -1005,7 +1015,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "40金币(蓝钥匙)",
+						"text": "60金币(蓝钥匙)",
 						"need": "item:blueKey>=1",
 						"icon": "coin",
 						"action": [
@@ -1023,12 +1033,12 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "+=",
-								"value": "40"
+								"value": "60"
 							}
 						]
 					},
 					{
-						"text": "100金币(红钥匙)",
+						"text": "150金币(红钥匙)",
 						"need": "item:redKey>=1",
 						"icon": "coin",
 						"action": [
@@ -1046,7 +1056,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "+=",
-								"value": "100"
+								"value": "150"
 							}
 						]
 					}
@@ -1059,6 +1069,29 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				"mustEnable": false,
 				"disablePreview": false,
 				"choices": [
+					{
+						"text": "魔力药水（50金币）",
+						"need": "status:money>=50",
+						"icon": "I716",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "50"
+							},
+							{
+								"type": "setValue",
+								"name": "item:I716",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
 					{
 						"text": "琼浆（200金币）",
 						"need": "status:money>=200",
@@ -1238,6 +1271,36 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							{
 								"type": "setValue",
 								"name": "item:earthquake",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "大魔法水（5000金币）",
+						"need": "status:money>=5000",
+						"icon": "I715",
+						"condition": "flag:shop3<1",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "5000"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop3",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "item:I715",
 								"operator": "+=",
 								"value": "1"
 							}

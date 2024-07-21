@@ -16,11 +16,7 @@ main.floors.XY10=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {
-        "6,8": [
-            "\t[考核法师,E1027]\b[this,6,5]拜见圣子殿下。我是考核法师，需要考验一下圣子殿下。"
-        ]
-    },
+    "events": {},
     "changeFloor": {
         "6,12": {
             "floorId": "XY9",
@@ -70,7 +66,11 @@ main.floors.XY10=
         ]
     },
     "afterGetItem": {},
-    "afterOpenDoor": {},
+    "afterOpenDoor": {
+        "6,8": [
+            "\t[考核法师,E1027]\b[this,6,5]拜见圣子殿下。我是考核法师，需要考验一下圣子殿下。"
+        ]
+    },
     "autoEvent": {},
     "cannotMove": {},
     "cannotMoveIn": {},
