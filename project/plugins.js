@@ -1743,7 +1743,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		if (!num && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
 			num = hero[name]
-			if(name == 'shengqishi') num = flags[name] || 0
+			if(name == 'shengqishi' || name == 'guangmingshengnv' || name == 'zhunshengzi') num = flags[name] || 0
 			num = num.toString()
 			if (name === 'atk2') {
 				num = Math.max(0, (hero[name] * 0.01 + 1)).toFixed(2);
@@ -1899,7 +1899,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 0, 64, 448, 448);
 		//core.drawImage(ctx, 'backw.png', 0, 0, 448, 448, 0, 64, 448, 448);
 		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 20, 64, 448, 448);
-		core.drawImage(ctx, 'backw.png', 0, 126, 752, 448, 20, 64, 752, 448);
+		core.drawImage(ctx, 'backw.png', 180, 160, 752, 448, 20, 64, 752, 448);
 		core.drawImage(ctx, 'backl2.png', 0, 0, 149, 20, 20 + 16, 64 + 16 + 85, 149, 20);
 		core.drawImage(ctx, 'backl2.png', 0, 0, 149, 20, 20 + 16, 64 + 16 + 90 + 200, 149, 20);
 		core.drawImage(ctx, 'backl.png', 0, 0, 149, 416, 20 + 16, 64 + 16, 149, 416);
@@ -1918,6 +1918,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.drawImage(ctx, 'box1.png', 0, 0, 144, 96, 38, 384, 144, 96);
 
 		var btn = ['book', 'fly', 'toolbox', 'save', 'load', 'settings']
+		if (core.isReplaying()) 
+			btn = [core.status.replay.pausing ? 'play' : 'pause', 'stop', 'rewind', 'speedDown', 'speedUp', 'save'];
 		for (var i in btn) {
 			var h = 0
 			if (flags._Spr1Move_ && flags._Spr1Move_ < 7 && flags._Spr1Move_ === Number(i) + 1) {
@@ -1927,6 +1929,20 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			} else
 				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
 			core.drawIcon(ctx, btn[i], 38 + 24 + 32 * (i % 3), 384 + 16 + 32 * Math.floor(i / 3) - h, 32, 32)
+
+		}
+		var btn = ['keyboard', 'shop', 'play']
+		if (core.isReplaying()) 
+			btn = ['book', 'floor', '']
+		for (var i in btn) {
+			var h = 0
+			if (flags._Spr1Move_ && flags._Spr1Move_ < 11 && flags._Spr1Move_ === Number(i) + 8) {
+				h = 3
+				//core.drawImage(ctx, 'boxLight.png', 0, 0, 48, 48, 38 - 8 + 24 + 32 * ((flags._Spr1Move_ - 1) % 3), 384 - 8 + 16 + 32 * Math.floor((flags._Spr1Move_ - 1) / 3), 48, 48)
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)brightness(2)grayscale(' + (gry || 0) + '%)')
+			} else
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
+			core.drawIcon(ctx, btn[i], 38 + 152 + 422 + 24 + 32 * (i % 3), 164 + 16 + 32 * Math.floor(i / 3) - h, 32, 32)
 
 		}
 		core.setFilter(ctx, fil)
@@ -2001,7 +2017,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
 		core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 		core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
-
+		core.setFilter(ctx, 'hue-rotate(' + (0) + 'deg)')
 
 		var btn = ['book', 'fly', 'toolbox', 'save', 'load', 'settings']
 		for (var i in btn) {
@@ -2026,32 +2042,32 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			//['经验', hero.exp + '/' + need],
 			['生命上限', (hero.hpmax < 0 ? '\r[red]' : '') + hero.hpmax + '\r'],
 			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
-			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
-			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
 			['攻击', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
-			['攻速', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
 			['防御', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
-			['护甲', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
+			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
 			['魔量', hero.mana + '/' + hero.manamax],
-			['钥匙', core.itemCount('yellowKey') + '黄/' + core.itemCount('blueKey') + '蓝'],
-			['钥匙', core.itemCount('redKey') + '红/' + core.itemCount('greenKey') + '绿'],
+			['钥匙', core.itemCount('yellowKey') + '/' + core.itemCount('blueKey') + '/' + core.itemCount('redKey') + '/' + core.itemCount('greenKey')],
 			['金币', (hero.money < 0 ? '\r[red]' : '') + hero.money + '\r'],
+			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
+			['攻速', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
+			['护甲', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
+			['钥匙', ],
 		]
 		var text2 = [
 			//['等级', '下级' + leveltext[hero.lv - 1][1]],
 			//['经验', '积累达到最大时角色升级'],
 			['生命上限', '玩家最多拥有的生命'],
 			['生命', '生命不足时游戏结束'],
-			['生命', '生命不足时游戏结束'],
-			['护盾', '每次战斗会抵挡伤害'],
 			['攻击', '影响角色每次普攻伤害'],
-			['攻速', '每回合普攻伤害×' + Math.max(0, (hero.atk * 0.01 + 1)).toFixed(2)],
 			['防御', '影响角色受到攻击的直接减伤'],
-			['护甲', '受到伤害' + (hero.def2 < 0 ? '\r[red]增加\r' : '减免') + '：' + ((1 - 100 / (100 + 3 * Math.abs(hero.def2))) * 100).toFixed(2) + '%'],
+			['护盾', '每次战斗会抵挡伤害'],
 			['魔量', '用于施放技能的消耗'],
-			['钥匙', '用于开启黄/蓝门'],
-			['钥匙', '用于开启红/绿门'],
+			['钥匙', '用于开启黄/蓝/红/绿门'],
 			['金币', '用于商店购买的货币'],
+			['生命', '生命不足时游戏结束'],
+			['攻速', '每回合普攻伤害×' + Math.max(0, (hero.atk * 0.01 + 1)).toFixed(2)],
+			['护甲', '受到伤害' + (hero.def2 < 0 ? '\r[red]增加\r' : '减免') + '：' + ((1 - 100 / (100 + 3 * Math.abs(hero.def2))) * 100).toFixed(2) + '%'],
+			['钥匙', '用于开启门'],
 		]
 
 		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
@@ -2077,10 +2093,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		}
 
-		if (flags._Spr1Move_ == 7) {
+		if (flags._Spr1Move_ >= 8) {
 			core.drawImage(ctx, 'box2Light.png', 0, 0, 144, 96, 38 + 152 + 422, 166, 144, 96);
 		}
-		if (flags._Spr1Move_ == 8) {
+		if (flags._Spr1Move_ == 7) {
 			core.drawImage(ctx, 'box1Light.png', 0, 0, 144, 96, 38 + 152 + 422, 384, 144, 96);
 		}
 
@@ -2143,7 +2159,9 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		for (var i in heroStatus)
 			core.mystatusNumber(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
 		//魔力
-		core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 20);
+		core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
+		core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
+		core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
 		core.setAlpha(ctx, 0.4)
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 		core.setAlpha(ctx, 1)
@@ -2191,9 +2209,17 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		case 5:
 			main.statusBar.image.settings.onclick(e);
 			break;
-		case 7:
+		case 6:
 			main.core.openEquipbox(true)
 			break;
+		case 7:
+			main.statusBar.image.keyboard.onclick(e);
+			break;
+		case 8:
+			main.statusBar.image.shop.onclick(e);
+			break;
+		case 9:
+			main.core.ui._drawReplay();
 		}
 		//console.log("点击的位置合法，x:" + x + 'y:' + y);
 
@@ -2217,10 +2243,14 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				if (x >= 62 + 32 * nx && x < 94 + 32 * nx && y >= 400 + 32 * ny && y < 432 + 32 * ny)
 					j = nx + 3 * ny + 1
 			}
-		if (x >= 636 && x < 732 && y >= 180 && y < 212)
-			j = 7
-		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+		if (x >= 636 && x < 668 && y >= 180 && y < 212)
 			j = 8
+		if (x >= 668 && x < 700 && y >= 180 && y < 212)
+			j = 9
+		if (x >= 700 && x < 732 && y >= 180 && y < 212)
+			j = 10
+		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+			j = 7
 
 		if (i !== j) {
 			flags._Spr1Move_ = j;
@@ -2267,10 +2297,14 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				if (x >= 62 + 32 * nx && x < 94 + 32 * nx && y >= 400 + 32 * ny && y < 432 + 32 * ny)
 					j = nx + 3 * ny + 1
 			}
-		if (x >= 636 && x < 732 && y >= 180 && y < 212)
-			j = 7
-		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+		if (x >= 636 && x < 668 && y >= 180 && y < 212)
 			j = 8
+		if (x >= 668 && x < 700 && y >= 180 && y < 212)
+			j = 9
+		if (x >= 700 && x < 732 && y >= 180 && y < 212)
+			j = 10
+		if (x >= 636 && x < 732 && y >= 400 && y < 464)
+			j = 7
 
 		if (i !== j) {
 			flags._Spr1Move_ = j;
@@ -2298,9 +2332,17 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		case 5:
 			main.statusBar.image.settings.onclick(e);
 			break;
-		case 7:
+		case 6:
 			main.core.openEquipbox(true)
 			break;
+		case 7:
+			main.statusBar.image.keyboard.onclick(e);
+			break;
+		case 8:
+			main.statusBar.image.shop.onclick(e);
+			break;
+		case 9:
+			main.core.ui._drawReplay();
 		}
 	}
 
