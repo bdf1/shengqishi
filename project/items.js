@@ -1044,9 +1044,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I410": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "湛蓝光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+30，击败怪物后，获得3点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 30
+			},
+			"percentage": {}
+		}
 	},
 	"I411": {
 		"cls": "items",
@@ -2604,13 +2612,18 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I715": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "大魔法瓶",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.events.setGlobalAttribute('equipName', core.status.globalAttribute.equipName.concat([\"卷轴\"]))",
+		"itemEffectTip": "卷轴栏+1",
+		"text": "增加一个卷轴栏位置，即买即用。"
 	},
 	"I716": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "魔力药水",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 200;",
+		"itemEffectTip": "魔力值提升200点"
 	},
 	"I717": {
 		"cls": "items",
