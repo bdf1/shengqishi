@@ -32,9 +32,9 @@ main.floors.YS1=
                         ]
                     ]
                 },
-                "\t[唐佳成,N472]\b[this,6,7]哇，圣子殿下，这里好大呢，一点也不逊色于光明神殿……",
+                "\t[${flag:shengqishi_name},N472]\b[this,6,7]哇，圣子殿下，这里好大呢，一点也不逊色于光明神殿……",
                 "\t[莫析辉,hero]\b[hero]隐世学院不比光明神殿，你行事可不能冲动了。",
-                "\t[唐佳成,N472]\b[this,6,7]是，圣子殿下！",
+                "\t[${flag:shengqishi_name},N472]\b[this,6,7]是，圣子殿下！",
                 {
                     "type": "hide",
                     "loc": [

@@ -20,7 +20,7 @@ main.floors.YS5=
             "type": "if",
             "condition": "(flag:shengqishi>1)",
             "true": [
-                "\t[卡鲁鲁,N1068]唐佳成的实力回回都是第一，这次又拿了个第一，智慧神殿和水神殿的那两个小子，分别拿了第二和第三。不过咱们光明圣子保存实力没有参赛，我看你也不逊于他们呢！",
+                "\t[卡鲁鲁,N1068]${flag:shengqishi_name}的实力回回都是第一，这次又拿了个第一，智慧神殿和水神殿的那两个小子，分别拿了第二和第三。不过咱们光明圣子保存实力没有参赛，我看你也不逊于他们呢！",
                 "\t[莫析辉,hero]\b[hero]这种比赛，本少爷才不屑参加呢！"
             ],
             "false": [
@@ -38,8 +38,8 @@ main.floors.YS5=
             "type": "if",
             "condition": "(flag:shengqishi===1)",
             "true": [
-                "\t[长倾,N506]佳成哥哥，你有空来精灵族玩啊！",
-                "\t[唐佳成,N472]嗯。"
+                "\t[长倾,N506]${core.status.hero.flags.shengqishi_name.substring(1)}哥哥，你有空来精灵族玩啊！",
+                "\t[${flag:shengqishi_name},N472]嗯。"
             ],
             "false": []
         },
