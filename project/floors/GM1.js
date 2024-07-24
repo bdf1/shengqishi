@@ -338,6 +338,13 @@ main.floors.GM1=
                 6,
                 12
             ]
+        },
+        "0,3": {
+            "floorId": "GM8",
+            "loc": [
+                6,
+                12
+            ]
         }
     },
     "beforeBattle": {},

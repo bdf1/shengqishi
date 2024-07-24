@@ -13,7 +13,7 @@ main.floors.YS3=
     "ratio": 1,
     "defaultGround": "X20061",
     "bgm": "cbzc.mp3",
-    "firstArrive": [],
+    "firstArrive": null,
     "eachArrive": [],
     "parallelDo": "",
     "events": {},

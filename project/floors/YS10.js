@@ -13,7 +13,57 @@ main.floors.YS10=
     "ratio": 1,
     "defaultGround": "X20061",
     "bgm": "cbzc.mp3",
-    "firstArrive": [],
+    "firstArrive": [
+        {
+            "type": "jumpHero",
+            "loc": [
+                6,
+                9
+            ],
+            "time": 500
+        },
+        {
+            "type": "changePos",
+            "direction": "up"
+        },
+        "\t[莫析辉,hero]\b[hero]看来，这应该就是进入魔界的入口了……",
+        {
+            "type": "setBlock",
+            "number": "N443",
+            "loc": [
+                [
+                    6,
+                    11
+                ]
+            ]
+        },
+        "\t[光明骑士,N440]\b[this,6,11]圣子殿下。",
+        "\t[莫析辉,hero]\b[hero]何事？",
+        "\t[光明骑士,N440]\b[this,6,11]圣子殿下，三长老和五长老请您去一趟准圣子宫。",
+        "\t[莫析辉,hero]\b[hero]准圣子宫？什么事？",
+        "\t[光明骑士,N440]\b[this,6,11]属下不知。属下告退！",
+        {
+            "type": "hide",
+            "loc": [
+                [
+                    6,
+                    11
+                ]
+            ],
+            "remove": true
+        },
+        {
+            "type": "hide",
+            "loc": [
+                [
+                    1,
+                    3
+                ]
+            ],
+            "floorId": "GM1",
+            "remove": true
+        }
+    ],
     "eachArrive": [],
     "parallelDo": "",
     "events": {
@@ -143,6 +193,9 @@ main.floors.YS10=
                     }
                 ]
             }
+        ],
+        "8,9": [
+            "\t[江鹤依浩,fairy]\b[this]你好，我是神奇的江鹤依浩，你要做什么呢？"
         ]
     },
     "changeFloor": {

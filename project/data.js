@@ -49,7 +49,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"YS7",
 			"YS8",
 			"YS9",
-			"YS10"
+			"YS10",
+			"GM8"
 		],
 		"floorPartitions": [],
 		"images": [
