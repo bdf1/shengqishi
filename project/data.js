@@ -50,6 +50,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"YS8",
 			"YS9",
 			"YS10",
+			"GM8",
 			"CZ1",
 			"CZ2",
 			"CZ3",

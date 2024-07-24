@@ -157,7 +157,57 @@ main.floors.GM2=
             "remove": true
         }
     ],
-    "eachArrive": [],
+    "eachArrive": [
+        {
+            "type": "if",
+            "condition": "(flag:luotao===2)",
+            "true": [
+                {
+                    "type": "jumpHero",
+                    "loc": [
+                        6,
+                        11
+                    ],
+                    "time": 500
+                },
+                {
+                    "type": "changePos",
+                    "direction": "up"
+                },
+                {
+                    "type": "moveHero",
+                    "time": 500,
+                    "steps": [
+                        "up:4"
+                    ]
+                },
+                "\t[莫析辉,hero]\b[hero]拜见教皇爷爷！",
+                "\t[光明教皇,N464]\b[this,6,5]起来吧！孩子。",
+                "\t[莫析辉,hero]\b[hero]是，教皇爷爷，找我什么事呀？",
+                "\t[光明教皇,N464]\b[this,6,5]真是个急性子，在光明神殿的西方，有黑暗势力的入侵，本来想派几个厉害的长老去，思来想去，还是决定趁此机会历练历练年轻一辈。",
+                "\t[莫析辉,hero]\b[hero]那教皇爷爷派准圣子哥哥或者圣女姐姐去吧，我在后面给他们加油！",
+                "\t[光明教皇,N464]\b[this,6,5]他们已经做过几次任务了，你快去西边的村子探查一下，有没有黑暗势力的入侵。",
+                "\t[莫析辉,hero]\b[hero]那好吧，我告退了。",
+                {
+                    "type": "hide",
+                    "loc": [
+                        [
+                            1,
+                            6
+                        ]
+                    ],
+                    "floorId": "GM1",
+                    "remove": true
+                },
+                {
+                    "type": "setValue",
+                    "name": "flag:luotao",
+                    "value": "0"
+                }
+            ],
+            "false": []
+        }
+    ],
     "parallelDo": "",
     "events": {
         "6,5": [
