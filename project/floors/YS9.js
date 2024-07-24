@@ -16,7 +16,7 @@ main.floors.YS9=
     "firstArrive": [
         {
             "type": "if",
-            "condition": "(flag:shengqishi===1)",
+            "condition": "(flag:shengqishi>1)",
             "true": [
                 {
                     "type": "setBlock",

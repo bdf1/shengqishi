@@ -36,7 +36,7 @@ main.floors.YS5=
         "\t[莫析辉,hero]\b[hero]一定叫你。",
         {
             "type": "if",
-            "condition": "(flag:shengqishi===1)",
+            "condition": "(flag:shengqishi>1)",
             "true": [
                 "\t[长倾,N506]${core.status.hero.flags.shengqishi_name.substring(1)}哥哥，你有空来精灵族玩啊！",
                 "\t[${flag:shengqishi_name},N472]嗯。"
