@@ -241,7 +241,12 @@ main.floors.CZ10=
             },
             "data": [
                 {
-                    "type": "changeFloor"
+                    "type": "changeFloor",
+                    "floorId": "SR1",
+                    "loc": [
+                        6,
+                        12
+                    ]
                 }
             ]
         }
@@ -903,15 +908,6 @@ main.floors.CZ10=
                                 "remove": true
                             },
                             {
-                                "type": "show",
-                                "loc": [
-                                    [
-                                        6,
-                                        0
-                                    ]
-                                ]
-                            },
-                            {
                                 "type": "hide",
                                 "loc": [
                                     [
@@ -920,17 +916,26 @@ main.floors.CZ10=
                                     ]
                                 ],
                                 "remove": true
-                            },
-                            {
-                                "type": "setBlock",
-                                "number": "upPortal",
-                                "loc": [
-                                    [
-                                        6,
-                                        0
-                                    ]
-                                ]
                             }
+                        ]
+                    },
+                    {
+                        "type": "setBlock",
+                        "number": "upPortal",
+                        "loc": [
+                            [
+                                6,
+                                0
+                            ]
+                        ]
+                    },
+                    {
+                        "type": "show",
+                        "loc": [
+                            [
+                                6,
+                                0
+                            ]
                         ]
                     },
                     {
