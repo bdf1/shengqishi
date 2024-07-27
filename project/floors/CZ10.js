@@ -423,7 +423,7 @@ main.floors.CZ10=
                                     ]
                                 ]
                             },
-                            "\t[唐佳成,N472]\b[down]殿下小心!",
+                            "\t[${flag:shengqishi_name},N472]\b[down]殿下小心!",
                             "\t[莫析辉,hero]\b[hero]好险!究竟是什么人，竟然偷袭本少爷!",
                             {
                                 "type": "changePos",
@@ -627,9 +627,9 @@ main.floors.CZ10=
                                 "remove": true
                             },
                             "\t[莫析辉,hero]\b[hero]黑暗圣子……竟然是黑暗神殿的圣子……他好像比我厉害……",
-                            "\t[唐佳成,N472]\b[down]殿下，别担心，我会保护你的!",
+                            "\t[${flag:shengqishi_name},N472]\b[down]殿下，别担心，我会保护你的!",
                             "\t[莫析辉,hero]\b[hero]没事，我先派人向教皇爷爷禀报一下这里的情况，同时先深入去探查一下黑暗圣子的情况。",
-                            "\t[唐佳成,N472]\b[down]是!那我们一起去吗",
+                            "\t[${flag:shengqishi_name},N472]\b[down]是!那我们一起去吗",
                             "\t[莫析辉,hero]\b[hero]走吧！",
                             {
                                 "type": "hide",

@@ -99,7 +99,7 @@ main.floors.CZ7=
                             6
                         ]
                     },
-                    "\t[唐佳成,N472]\b[this,3,6]殿下小心!",
+                    "\t[${flag:shengqishi_name},N472]\b[this,3,6]殿下小心!",
                     {
                         "type": "hide",
                         "remove": true
@@ -121,11 +121,11 @@ main.floors.CZ7=
                         ]
                     },
                     "\t[光明圣子,hero]\b[hero]你怎么来了",
-                    "\t[唐佳成,N472]\b[this,3,6]属下担心殿下，就随殿下来了",
+                    "\t[${flag:shengqishi_name},N472]\b[this,3,6]属下担心殿下，就随殿下来了",
                     "\t[光明圣子,hero]\b[hero]这个骷髅很厉害，幸好你来了!",
-                    "\t[唐佳成,N472]\b[up]嘿嘿",
+                    "\t[${flag:shengqishi_name},N472]\b[up]嘿嘿",
                     "\t[光明圣子,hero]\b[hero]你既然来了，就帮我去前面探探路吧",
-                    "\t[唐佳成,N472]\b[up]嘿嘿，遵命",
+                    "\t[${flag:shengqishi_name},N472]\b[up]嘿嘿，遵命",
                     {
                         "type": "hide",
                         "remove": true
