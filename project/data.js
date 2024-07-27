@@ -60,7 +60,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"CZ7",
 			"CZ8",
 			"CZ9",
-			"CZ10"
+			"CZ10",
+			"MM1"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -196,7 +197,9 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"bxsgzz.mp3",
 			"cbzc.mp3",
 			"ending.mp3",
+			"mingyuetianya.mp3",
 			"mingyunshouhu.mp3",
+			"mingzhentankenanlansegubao.mp3",
 			"xian.mp3"
 		],
 		"sounds": [

@@ -1057,9 +1057,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I411": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "荧粉光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+100，击败怪物后，获得5点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 100
+			},
+			"percentage": {}
+		}
 	},
 	"I412": {
 		"cls": "items",
@@ -2659,9 +2667,18 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I720": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "无根卷轴",
+		"canUseItemEffect": "true",
+		"text": "攻防+6%",
+		"equip": {
+			"type": "卷轴",
+			"value": {},
+			"percentage": {
+				"atk": 6,
+				"def": 6
+			}
+		}
 	},
 	"I721": {
 		"cls": "items",
