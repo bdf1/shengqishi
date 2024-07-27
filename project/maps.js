@@ -16,7 +16,7 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"14": {"cls":"animates","id":"curseNet","canPass":true,"trigger":"null","script":"(function () {\n\tif (!core.hasItem('amulet')) {\n\t\tcore.triggerDebuff('get', 'curse');\n\t\tcore.updateStatusBar();\n\t}\n\n\t// 如果要做一次性咒网，可直接注释掉下面这句话：\n\t// core.removeBlock(core.getHeroLoc('x'), core.getHeroLoc('y'));\n})()","name":"咒网"},
 	"15": {"cls":"animates","id":"blueLava"},
 	"16": {"cls":"animates","id":"water"},
-	"20": {"cls":"autotile","id":"autotile"},
+	"20": {"cls":"autotile","id":"autotile","canBreak":true},
 	"21": {"cls":"items","id":"yellowKey"},
 	"22": {"cls":"items","id":"blueKey"},
 	"23": {"cls":"items","id":"redKey"},

@@ -1754,6 +1754,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				if (hero[name] < 0)
 					num = '-'.concat(num)
 			}
+			if (name === 'atk' || name === 'def' || name === 'mdef') num = core.getRealStatus(name).toString()
 			for (var i in num) {
 				core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i), y, 16, 16)
 				if (num[i] === '.')
