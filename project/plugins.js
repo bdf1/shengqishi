@@ -1832,13 +1832,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		if (core.getSprite('SprBack') && des) {
 			core.getSprite('SprBack').destroy();
-			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, 1, 'window', 'SprBack');
+			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, core.domStyle.isVertical ? -1 : 1, 'window', 'SprBack');
 			//const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 9, 'window', 'SprBack');
 		} else if (core.getSprite('SprBack')) {
 			core.clearMap(core.getSprite('SprBack').context);
 
 		} else {
-			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, 1, 'window', 'SprBack');
+			const sprite = new Sprite(left - 280, top_up - 350, 1300, 1200, core.domStyle.isVertical ? -1 : 1, 'window', 'SprBack');
 			//const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 9, 'window', 'SprBack'); 
 		}
 
@@ -1871,7 +1871,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (102 - 16);
+			top_up += core.domStyle.scale * (-64);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -1895,7 +1895,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		core.setFilter(ctx, fil)
 
-
+		if (!core.domStyle.isVertical) {
 		//core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 0, 64, 448, 448);
 		//core.drawImage(ctx, 'backw.png', 0, 0, 448, 448, 0, 64, 448, 448);
 		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 20, 64, 448, 448);
@@ -1911,7 +1911,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.drawImage(ctx, 'backl.png', 0, 0, 149, 416, 172 + 416 + 3 + 16, 64 + 16, 149, 416);
 
 		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 172, 64, 448, 448);
-
+		}
 
 
 		//按钮
@@ -1966,7 +1966,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (102 - 16);
+			top_up += core.domStyle.scale * (-64);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -1991,8 +1991,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
 
 		//等级
-		core.mystatusbox(ctx, 'hpmax', null, 80, 100, 160);
-		core.mystatusbox(ctx, 'hp', null, 80 + 22, 122, 250);
+		if (core.domStyle.isVertical) {
+			core.mystatusbox(ctx, 'hpmax', null, 48, 16, 160);
+			core.mystatusbox(ctx, 'hp', null, 48 + 22, 16 + 22, 250);
+		} else {
+			core.mystatusbox(ctx, 'hpmax', null, 80, 100, 160);
+			core.mystatusbox(ctx, 'hp', null, 80 + 22, 122, 250);
+		}
 		//var need = core.firstData.levelUp[core.status.hero.lv].need;
 		//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
 		//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
@@ -2001,22 +2006,44 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var Scol = [140, 280, 180]
 		var heroStatus2 = ['def', 'mana', 'money']
 		var Scol2 = [0, 20, 180, 0]
-		for (var i in heroStatus2)
-			if (heroStatus2[i] != null)
-				core.mystatusbox(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
-		for (var i in heroStatus)
-			core.mystatusbox(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		if (core.domStyle.isVertical) {
+			for (var i in heroStatus2)
+				if (heroStatus2[i] != null)
+					core.mystatusbox(ctx, heroStatus2[i], null, 48 + 22 + 128 * Number(i), 80 + 22, Scol2[i]);
+			for (var i in heroStatus)
+				core.mystatusbox(ctx, heroStatus[i], null, 48 + 128 * Number(i), 80, Scol[i]);
+		}
+		else {
+			for (var i in heroStatus2)
+				if (heroStatus2[i] != null)
+					core.mystatusbox(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
+			for (var i in heroStatus)
+				core.mystatusbox(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		}
 		//魔力
-		core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
-		core.setAlpha(ctx, 0.4)
-		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
-		core.setAlpha(ctx, 1)
-		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
-		//钥匙/金币
-		core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
-		core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
-		core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+		if (core.domStyle.isVertical) {
+			core.mystatusbox(ctx, 'mana', null, 48 + 128, 16, 20);
+			core.setAlpha(ctx, 0.4)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			core.setAlpha(ctx, 1)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//钥匙/金币
+			core.mystatusbox(ctx, 'potion', null, 48 + 256, 16, 180);
+			core.mystatusbox(ctx, 'potion', null, 48 + 22 + 256, 16 + 22, 300);
+		}
+		else {
+			core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
+			core.setAlpha(ctx, 0.4)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			core.setAlpha(ctx, 1)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//钥匙/金币
+			core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
+			core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+			core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+		}
 		core.setFilter(ctx, 'hue-rotate(' + (0) + 'deg)')
 
 		var btn = ['book', 'fly', 'toolbox', 'save', 'load', 'settings']
@@ -2126,7 +2153,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (102 - 16);
+			top_up += core.domStyle.scale * (-64);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -2143,8 +2170,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.clearMap(ctx);
 
 		//等级
-		core.mystatusNumber(ctx, 'hpmax', null, 80, 100, 160);
-		core.mystatusNumber(ctx, 'hp', null, 80 + 22, 122, 250);
+		if (core.domStyle.isVertical) {
+			core.mystatusNumber(ctx, 'hpmax', null, 48, 16, 160);
+			core.mystatusNumber(ctx, 'hp', null, 48 + 22, 16 + 22, 250);
+		} else {
+			core.mystatusNumber(ctx, 'hpmax', null, 80, 100, 160);
+			core.mystatusNumber(ctx, 'hp', null, 80 + 22, 122, 250);
+		}
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
 		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
@@ -2153,24 +2185,48 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var Scol = [140, 280, 180]
 		var heroStatus2 = ['def', 'mana', 'money']
 		var Scol2 = [0, 20, 180, 0]
-		for (var i in heroStatus2)
-			if (heroStatus2[i] != null)
-				core.mystatusNumber(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
-		for (var i in heroStatus)
-			core.mystatusNumber(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		if (core.domStyle.isVertical) {
+			for (var i in heroStatus2)
+				if (heroStatus2[i] != null)
+					core.mystatusNumber(ctx, heroStatus2[i], null, 48 + 22 + 128 * Number(i), 80 + 22, Scol2[i]);
+			for (var i in heroStatus)
+				core.mystatusNumber(ctx, heroStatus[i], null, 48 + 128 * Number(i), 80, Scol[i]);
+		}
+		else {
+			for (var i in heroStatus2)
+				if (heroStatus2[i] != null)
+					core.mystatusNumber(ctx, heroStatus2[i], null, 80 + 22, 100 + 122 + 60 * Number(i), Scol2[i]);
+			for (var i in heroStatus)
+				core.mystatusNumber(ctx, heroStatus[i], null, 80, 100 + 100 + 60 * Number(i), Scol[i]);
+		}
 		//魔力
-		core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
-		core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
-		core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
-		core.setAlpha(ctx, 0.4)
-		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
-		core.setAlpha(ctx, 1)
-		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
-		//钥匙/金币
-		core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
-		core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
-		core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+		if (core.domStyle.isVertical) {
+			core.mystatusNumber(ctx, 'shengqishi', null, 48 + 128, 16, 120);
+			core.mystatusNumber(ctx, 'zhunshengzi', null, 48 + 128 + 20, 16, 0);
+			core.mystatusNumber(ctx, 'guangmingshengnv', null, 48 + 128 + 50, 16, 300);
+			core.setAlpha(ctx, 0.4)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			core.setAlpha(ctx, 1)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//钥匙/金币
+			core.mystatusNumber(ctx, 'potion1', null, 48 + 256, 16, 180);
+			core.mystatusNumber(ctx, 'potion2', null, 48 + 256 + 22, 16 + 22, 300);
+		}
+		else {
+			core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
+			core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
+			core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
+			core.setAlpha(ctx, 0.4)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			core.setAlpha(ctx, 1)
+			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//钥匙/金币
+			core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
+			core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+			core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+		}
 
 		core.getSprite('Spr2').canvas.style.width = core.getSprite('Spr2').canvas.width * core.domStyle.scale + 'px';
 		core.getSprite('Spr2').canvas.style.height = core.getSprite('Spr2').canvas.height * core.domStyle.scale + 'px';
