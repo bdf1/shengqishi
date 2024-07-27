@@ -180,6 +180,10 @@ main.floors.SN10=
                     ],
                     "time": 500
                 },
+                {
+                    "type": "changePos",
+                    "direction": "up"
+                },
                 "\t[蜜西娅,N489]\b[this,6,2]莫析辉，你来了。",
                 "\t[莫析辉,hero]\b[hero]哼，蜜茜娅，你还有脸找我！",
                 "\t[蜜西娅,N489]\b[this,6,2]莫析辉，你也够狠，罗涛跟了你多年，就这么处死了。",
@@ -229,6 +233,16 @@ main.floors.SN10=
                 },
                 "\t[凌依,N574]\b[this,8,7]殿下，教皇陛下有请。",
                 "\t[莫析辉,hero]\b[hero]嗯，走吧！",
+                {
+                    "type": "hide",
+                    "loc": [
+                        [
+                            8,
+                            7
+                        ]
+                    ],
+                    "remove": true
+                },
                 {
                     "type": "setValue",
                     "name": "flag:luotao",

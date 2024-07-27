@@ -860,6 +860,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							44,
 							1
 						],
+						"condition": "flag:shop1<=50",
 						"action": [
 							{
 								"type": "comment",
@@ -886,6 +887,146 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
+						"text": "攻击+20",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							235,
+							3,
+							44,
+							1
+						],
+						"condition": "flag:shop1>50&&flag:shop1<=100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "20"
+							}
+						]
+					},
+					{
+						"text": "攻击+100",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							235,
+							3,
+							44,
+							1
+						],
+						"condition": "flag:shop1>100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "防御+20",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							11,
+							252,
+							246,
+							1
+						],
+						"condition": "flag:shop1>50&&flag:shop1<=100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "20"
+							}
+						]
+					},
+					{
+						"text": "防御+100",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							11,
+							252,
+							246,
+							1
+						],
+						"condition": "flag:shop1>100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "100"
+							}
+						]
+					},
+					{
 						"text": "防御+4",
 						"need": "status:money>=80+10*flag:shop1",
 						"color": [
@@ -894,6 +1035,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							246,
 							1
 						],
+						"condition": "flag:shop1<=50",
 						"action": [
 							{
 								"type": "comment",
@@ -928,6 +1070,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							149,
 							1
 						],
+						"condition": "flag:shop1<=50",
 						"action": [
 							{
 								"type": "comment",
@@ -968,6 +1111,112 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"name": "status:mana",
 								"operator": "+=",
 								"value": "50"
+							}
+						]
+					},
+					{
+						"text": "护盾+120，生命上限+1000，生命值+1000，魔力+500",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							22,
+							242,
+							149,
+							1
+						],
+						"condition": "flag:shop1>50&&flag:shop1<=100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "120"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "1000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "1000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "+=",
+								"value": "500"
+							}
+						]
+					},
+					{
+						"text": "护盾+1200，生命上限+10000，生命值+10000，魔力+5000",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							22,
+							242,
+							149,
+							1
+						],
+						"condition": "flag:shop1>100",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "1200"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "10000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "10000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "+=",
+								"value": "5000"
 							}
 						]
 					}
