@@ -28,7 +28,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"poisonBat": {"name":"紫蝙蝠","hp":1000,"atk":450,"def":135,"money":24,"exp":0,"point":0,"special":[1]},
 	"skeletonPriest": {"name":"骷髅法师","hp":38000,"atk":1550,"def":1225,"money":84,"exp":0,"point":0,"special":[],"damage":1000,"notBomb":false,"displayIdInBook":null,"level":"灵海高阶","fantan":30},
 	"skeletonKing": {"name":"骷髅王","hp":42500,"atk":1650,"def":1125,"money":84,"exp":0,"point":0,"special":[36],"damage":1000,"notBomb":false,"displayIdInBook":null,"level":"灵海高阶","fantan":30,"X":30},
-	"evilHero": {"name":"须弥勇者","hp":84000,"atk":2150,"def":1240,"money":120,"exp":0,"point":0,"special":[5],"level":"玄海初阶","notBomb":true},
+	"evilHero": {"name":"须弥勇者","hp":84000,"atk":2150,"def":1240,"money":120,"exp":0,"point":0,"special":[4],"level":"玄海初阶","notBomb":true},
 	"demonPriest": {"name":"魔神法师","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":0},
 	"goldHornSlime": {"name":"金角怪","hp":5000,"atk":720,"def":385,"money":56,"exp":0,"point":0,"special":[32],"X":12,"W":20,"displayIdInBook":null,"Z":60,"level":"地品初阶"},
 	"silverSlime": {"name":"银头怪","hp":100,"atk":120,"def":0,"money":15,"exp":0,"point":0,"special":14},

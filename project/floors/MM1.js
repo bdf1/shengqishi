@@ -5,10 +5,10 @@ main.floors.MM1=
     "name": "1",
     "width": 13,
     "height": 13,
-    "canFlyTo": true,
-    "canFlyFrom": true,
-    "canUseQuickShop": true,
-    "cannotViewMap": false,
+    "canFlyTo": false,
+    "canFlyFrom": false,
+    "canUseQuickShop": false,
+    "cannotViewMap": true,
     "images": [],
     "ratio": 1,
     "defaultGround": "X10025",
@@ -51,5 +51,6 @@ main.floors.MM1=
 ],
     "fg2map": [
 
-]
+],
+    "cannotMoveDirectly": false
 }
