@@ -1182,9 +1182,20 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"itemEffect": "core.addItem('greenKey', 3);"
 	},
 	"I595": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "七彩光明法杖",
+		"canUseItemEffect": "true",
+		"text": "全属性提升10%，击败怪物后获得10点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {},
+			"percentage": {
+				"atk": 10,
+				"def": 10,
+				"mdef": 10,
+				"hpmax": 10
+			}
+		}
 	},
 	"I596": {
 		"cls": "tools",
@@ -2330,18 +2341,24 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I702": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十一阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 3200;",
+		"itemEffectTip": "魔力值提升3200点"
 	},
 	"I703": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十二阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 6400;",
+		"itemEffectTip": "魔力值提升6400点"
 	},
 	"I704": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十三阶粉臻宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.mana += 10000;",
+		"itemEffectTip": "魔力值提升10000点"
 	},
 	"I705": {
 		"cls": "items",

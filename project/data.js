@@ -62,7 +62,19 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"CZ9",
 			"CZ10",
 			"MM1",
-			"SR1"
+			"SR1",
+			"SR2",
+			"SR3",
+			"SR4",
+			"SR5",
+			"SR6",
+			"SR7",
+			"SR8",
+			"SR9",
+			"SR10",
+			"MM2",
+			"MM3",
+			"XW1"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -125,7 +137,9 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"yjzhiquan.png",
 			"deepforest.png",
 			"cs5.png",
-			"em.png"
+			"em.png",
+			"TombeauOri.png",
+			"Map-Cave02.png"
 		],
 		"animates": [
 			"atkUp",
@@ -170,7 +184,6 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"jinshu3",
 			"kulou",
 			"light",
-			"light2",
 			"rage_buff",
 			"re",
 			"red",
@@ -195,9 +208,11 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		],
 		"bgms": [
 			"airuying.mp3",
+			"boss3.mp3",
 			"bxsgzz.mp3",
 			"cbzc.mp3",
 			"ending.mp3",
+			"lfmg.mp3",
 			"mingyuetianya.mp3",
 			"mingyunshouhu.mp3",
 			"mingzhentankenanlansegubao.mp3",
