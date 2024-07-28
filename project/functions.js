@@ -697,7 +697,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		"guards": guards, // 返回支援情况
 	};
 },
-        "getDamageInfo": function (enemy, hero, x, y, floorId) {
+        "getDamageInfo": function (enemy, hero, x, y, floorId, allEquip = false) {
 	// 获得战斗伤害信息（实际伤害计算函数）
 	// 
 	// 参数说明：
@@ -706,6 +706,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	// x,y：该怪物的坐标（查看手册和强制战斗时为undefined）
 	// floorId：该怪物所在的楼层
 	// 后面三个参数主要是可以在光环等效果上可以适用
+	if (!allEquip && core.getFlag('bestEquip')) return this.getDamageInfo1(enemy, hero, x, y, floorId);
 	floorId = floorId || core.status.floorId;
 
 	var hero_hp = core.getRealStatusOrDefault(hero, 'hp'),
@@ -917,6 +918,52 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		"turn": Math.floor(turn),
 		"damage": Math.floor(damage)
 	};
+},
+        "getDamageInfo1": function (enemy, hero, x, y, floorId) {
+	var changeLoc = hero ? Object.keys(hero)[0] : null,
+		change = hero ? hero[changeLoc] - core.status.hero[changeLoc] : null;
+	var cur = core.clone(core.status.hero.equipment);
+	core.setFlag("__quickLoadEquip__", true);
+	core.setFlag("__equipCalc__", true);
+	var info = null
+	for (var I = 0; I <= 10; I++) {
+		var current = core.getFlag("saveEquips", [])[I];
+		if (I == 10) current = cur;
+		if (!current) continue;
+		// 检查所有的装备
+		var equipSize = core.status.globalAttribute.equipName.length;
+		/*for (var i = 0; i < equipSize; i++) {
+			var v = current[i];
+			if (v && !this.canEquip(v, true)) { current = null; break; }
+		}
+		if (!current) continue;*/
+		// 快速换装
+		var toEquip = [];
+		for (var i = 0; i < equipSize; i++) {
+			var now = core.status.hero.equipment[i];
+			// --- 只考虑diff的装备
+			var to = current[i];
+			if (now != to) {
+				toEquip.push(to || null);
+				if (now) {
+					core.items.unloadEquip(i);
+				}
+			}
+		}
+		for (var i in toEquip) {
+			var to = toEquip[i];
+			if (to) {
+				core.items.loadEquip(to);
+			}
+		}
+		if (changeLoc) hero[changeLoc] = core.status.hero[changeLoc] + change;
+		var damageInfo = this.getDamageInfo(enemy, hero, x, y, floorId, true)
+		if (damageInfo && (!info || info.damage > damageInfo.damage)) info = damageInfo
+
+	}
+	core.removeFlag("__quickLoadEquip__");
+	core.removeFlag("__equipCalc__");
+	return info;
 }
     },
     "actions": {

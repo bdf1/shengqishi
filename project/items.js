@@ -1306,6 +1306,57 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 								]
 							}
 						]
+					},
+					{
+						"text": "自动计算最优装备",
+						"color": [
+							0,
+							255,
+							255,
+							1
+						],
+						"action": [
+							{
+								"type": "choices",
+								"text": "自动计算最优装备(需保存套装)",
+								"choices": [
+									{
+										"text": "打开自动计算最优装备",
+										"color": [
+											237,
+											3,
+											120,
+											1
+										],
+										"action": [
+											"自动计算最优装备已打开!",
+											{
+												"type": "setValue",
+												"name": "flag:bestEquip",
+												"value": "true"
+											}
+										]
+									},
+									{
+										"text": "关闭自动计算最优装备",
+										"color": [
+											233,
+											233,
+											23,
+											1
+										],
+										"action": [
+											"自动计算最优装备已关闭!",
+											{
+												"type": "setValue",
+												"name": "flag:bestEquip",
+												"value": "false"
+											}
+										]
+									}
+								]
+							}
+						]
 					}
 				]
 			}

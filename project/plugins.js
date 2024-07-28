@@ -6,7 +6,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 	}
 	core.enemys.getDamageString = function (enemy, x, y, floorId) {
 		if (typeof enemy == 'string') enemy = core.material.enemys[enemy];
-		var damage = this.getDamage(enemy, x, y, floorId);
+		//console.log('start')
+		var damage = core.getFlag('bestEquip') ? this.enemydata.getDamageInfo1(enemy, null, x, y, floorId) : this.enemydata.getDamageInfo(enemy, null, x, y, floorId);
+		//console.log('end')
+		if (damage) damage = damage.damage
 
 		var color = '#000000';
 
@@ -122,6 +125,36 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		this.setToolbarButton();
 		core.updateStatusBar();
 		core.AllSprites();
+	}
+	core.items._realLoadEquip = function (type, loadId, unloadId, callback) {
+		var loadEquip = core.material.items[loadId] || {},
+			unloadEquip = core.material.items[unloadId] || {};
+
+		// --- 音效
+		this._realLoadEquip_playSound();
+
+		// --- 实际换装
+		this._loadEquipEffect(loadId, unloadId);
+
+		// --- 加减
+		if (core.getFlag('__equipCalc__')) {
+			if (unloadId) core.status.hero.items.equips[unloadId] = (core.status.hero.items.equips[unloadId] || 0) + 1;
+			if (loadId) core.status.hero.items.equips[loadId] -= 1;
+			if (loadId && !core.status.hero.items.equips[loadId]) delete core.status.hero.items.equips[loadId];
+		} else {
+			if (unloadId) core.status.hero.items.equips[unloadId] = (core.status.hero.items.equips[unloadId] || 0) + 1;
+			if (loadId) core.status.hero.items.equips[loadId] -= 1;
+			if (loadId && !core.status.hero.items.equips[loadId]) delete core.status.hero.items.equips[loadId];
+		}
+		core.status.hero.equipment[type] = loadId || null;
+
+		// --- 提示
+		if (core.getFlag('__quickLoadEquip__'));
+		else
+		if (loadId) core.drawTip("已装备上" + loadEquip.name, loadId);
+		else if (unloadId) core.drawTip("已卸下" + unloadEquip.name, unloadId);
+
+		if (callback) callback();
 	}
 },
     "drawLight": function () {
