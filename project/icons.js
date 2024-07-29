@@ -1014,6 +1014,7 @@ var icons_4665ee12_3a1f_44a4_bea3_0fccba634dc1 =
 		"autotile3": 0,
 		"autotile4": 0,
 		"autotile5": 0,
-		"autotile6": 0
+		"autotile6": 0,
+		"autotile7": 0
 	}
 }
