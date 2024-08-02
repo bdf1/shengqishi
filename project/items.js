@@ -403,9 +403,9 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "(function() {\n\treturn core.hasFlag('poison') || core.hasFlag('weak') || core.hasFlag('curse');\n})();"
 	},
 	"hammer": {
-		"cls": "tools",
+		"cls": "constants",
 		"name": "圣锤",
-		"text": "该道具尚未被定义"
+		"text": "剧情道具，能够直接击杀黑暗圣子"
 	},
 	"lifeWand": {
 		"cls": "tools",
@@ -1070,9 +1070,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I412": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "赤血光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+1000，击败怪物后，获得7点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 1000
+			},
+			"percentage": {}
+		}
 	},
 	"I413": {
 		"cls": "items",
@@ -1146,9 +1154,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I422": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "tools",
+		"name": "黑暗之钥",
+		"canUseItemEffect": "true",
+		"text": "可以打开一扇黑暗之门"
 	},
 	"I423": {
 		"cls": "items",
@@ -2003,13 +2012,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "黑暗光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前7倍魔力值的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前9倍魔力值的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*7)"
+				"value": "(status:mana*9)"
 			},
 			{
 				"type": "setValue",
@@ -2023,13 +2032,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "圣阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前（8倍魔力值）的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前（18倍魔力值）的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*8)"
+				"value": "(status:mana*18)"
 			},
 			{
 				"type": "setValue",
@@ -2069,9 +2078,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I632": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "福灵甲",
+		"canUseItemEffect": "true",
+		"text": "防御力1000",
+		"equip": {
+			"type": "法袍",
+			"value": {
+				"def": 1000
+			},
+			"percentage": {}
+		}
 	},
 	"I633": {
 		"cls": "items",
@@ -2711,5 +2728,11 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "items",
 		"name": "新物品",
 		"canUseItemEffect": "true"
+	},
+	"whiteKey": {
+		"cls": "tools",
+		"name": "光明之钥",
+		"canUseItemEffect": "true",
+		"text": "可以打开一扇光明之门"
 	}
 }

@@ -6,9 +6,9 @@ main.floors.XW1=
     "width": 13,
     "height": 13,
     "canFlyTo": false,
-    "canFlyFrom": false,
+    "canFlyFrom": true,
     "canUseQuickShop": false,
-    "cannotViewMap": true,
+    "cannotViewMap": false,
     "cannotMoveDirectly": false,
     "images": [],
     "ratio": 1,
@@ -53,8 +53,7 @@ main.floors.XW1=
         "\t[莫析辉,hero]\b[hero]什么人？",
         {
             "type": "playBgm",
-            "name": "boss3.mp3",
-            "keep": true
+            "name": "boss3.mp3"
         },
         {
             "type": "animate",

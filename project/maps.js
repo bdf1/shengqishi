@@ -973,10 +973,18 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"1073": {"cls":"npc48","id":"N1073","faceIds":{"down":"N1072","left":"N1073","right":"N1074","up":"N1075"}},
 	"1074": {"cls":"npc48","id":"N1074","faceIds":{"down":"N1072","left":"N1073","right":"N1074","up":"N1075"}},
 	"1075": {"cls":"npc48","id":"N1075","faceIds":{"down":"N1072","left":"N1073","right":"N1074","up":"N1075"}},
+	"1076": {"cls":"animates","id":"A1076","name":"黑暗之门","trigger":"openDoor","animate":1,"doorInfo":{"time":160,"openSound":"door.mp3","closeSound":"door.mp3","keys":{"I422":1}}},
+	"1077": {"cls":"animates","id":"A1077","trigger":"openDoor","name":"光明之门","animate":1,"doorInfo":{"time":160,"openSound":"door.mp3","closeSound":"door.mp3","keys":{"whiteKey":1}}},
+	"1078": {"cls":"animates","id":"A1078","name":"光暗之门","trigger":"openDoor","animate":1,"doorInfo":{"time":160,"openSound":"door.mp3","closeSound":"door.mp3","keys":{"whiteKey":1,"I422":1}}},
+	"1079": {"cls":"items","id":"whiteKey"},
+	"1080": {"cls":"enemy48","id":"E1080"},
 	"10111": {"cls":"tileset","id":"X10111","event":["这个宝箱是空的!"]},
 	"20249": {"cls":"tileset","id":"X20249","canBreak":true},
+	"20336": {"cls":"tileset","id":"X20336","canBreak":true},
 	"60341": {"cls":"tileset","id":"X60341","event":["这个宝箱是空的!"]},
 	"60395": {"cls":"tileset","id":"X60395","event":["这个罐子是空的!"]},
 	"80531": {"cls":"tileset","id":"X80531","canBreak":true},
-	"104454": {"cls":"tileset","id":"X104454","canBreak":true}
+	"104454": {"cls":"tileset","id":"X104454","canBreak":true},
+	"120004": {"cls":"tileset","id":"X120004","canBreak":true},
+	"120007": {"cls":"tileset","id":"X120007","canBreak":true}
 }
