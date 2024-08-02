@@ -2,7 +2,6 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 {
 	"main": {
 		"floorIds": [
-			"MT0",
 			"GM1",
 			"GM2",
 			"GM3",
@@ -74,7 +73,39 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"SR10",
 			"MM2",
 			"MM3",
-			"XW1"
+			"XW1",
+			"SR11",
+			"SR12",
+			"SR13",
+			"SR14",
+			"SR15",
+			"SR16",
+			"SR17",
+			"SR18",
+			"SR19",
+			"SR20",
+			"SR21",
+			"SR22",
+			"SR23",
+			"SR24",
+			"SR25",
+			"SR26",
+			"SR27",
+			"SR28",
+			"SR29",
+			"SR30",
+			"MM4",
+			"ZL1",
+			"ZL2",
+			"ZL3",
+			"ZL4",
+			"ZL5",
+			"ZL6",
+			"ZL7",
+			"ZL8",
+			"ZL9",
+			"ZL10",
+			"MT0"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -212,11 +243,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"bxsgzz.mp3",
 			"cbzc.mp3",
 			"ending.mp3",
+			"gaolikangzhikb.mp3",
 			"lfmg.mp3",
 			"mingyuetianya.mp3",
 			"mingyunshouhu.mp3",
 			"mingzhentankenanlansegubao.mp3",
-			"xian.mp3"
+			"shuiyu.mp3",
+			"tiankong.mp3",
+			"xian.mp3",
+			"zhuangkuoshishi.mp3"
 		],
 		"sounds": [
 			"048-Explosion01.ogg",
@@ -1624,6 +1659,104 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							{
 								"type": "setValue",
 								"name": "item:I715",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": "shop4",
+				"text": "\t[光明圣子,hero]我需要足够的魔力值才能：",
+				"textInList": "魔力炼钥",
+				"mustEnable": true,
+				"disablePreview": false,
+				"choices": [
+					{
+						"text": "光明之钥（2000魔力）",
+						"need": "status:mana>=2000",
+						"icon": "whiteKey",
+						"color": [
+							255,
+							255,
+							255,
+							1
+						],
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "-=",
+								"value": "2000"
+							},
+							{
+								"type": "setValue",
+								"name": "item:whiteKey",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "黑暗之钥(8000魔力)",
+						"need": "status:mana>=8000",
+						"icon": "I422",
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"condition": "flag:heianshengzi<=0",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "-=",
+								"value": "8000"
+							},
+							{
+								"type": "setValue",
+								"name": "item:I422",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "黑暗之钥(2000魔力)",
+						"need": "status:mana>=2000",
+						"icon": "I422",
+						"color": [
+							0,
+							0,
+							0,
+							1
+						],
+						"condition": "flag:heianshengzi>0",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "-=",
+								"value": "2000"
+							},
+							{
+								"type": "setValue",
+								"name": "item:I422",
 								"operator": "+=",
 								"value": "1"
 							}
