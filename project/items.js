@@ -282,7 +282,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"coin": {
 		"cls": "constants",
 		"name": "幸运金币",
-		"text": "持有时打败怪物可得双倍金币"
+		"text": "持有时打败怪物可得额外获得3枚金币"
 	},
 	"freezeBadge": {
 		"cls": "constants",
@@ -2771,19 +2771,57 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I722": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "魔力卷轴",
+		"canUseItemEffect": "true",
+		"text": "战后恢复6点魔力值",
+		"equip": {
+			"type": "卷轴",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"I723": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "生命卷轴",
+		"canUseItemEffect": "true",
+		"text": "战后恢复1%的最大生命值的生命",
+		"equip": {
+			"type": "卷轴",
+			"value": {},
+			"percentage": {}
+		}
 	},
 	"whiteKey": {
 		"cls": "tools",
 		"name": "光明之钥",
 		"canUseItemEffect": "true",
 		"text": "可以打开一扇光明之门"
+	},
+	"I1085": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1086": {
+		"cls": "tools",
+		"name": "天命之盾",
+		"canUseItemEffect": null,
+		"text": "战士所用的强大装备"
+	},
+	"I1087": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1088": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1089": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
 	}
 }

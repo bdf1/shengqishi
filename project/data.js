@@ -105,7 +105,18 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"ZL8",
 			"ZL9",
 			"ZL10",
-			"MT0"
+			"ZH1",
+			"MT0",
+			"MT1",
+			"MT2",
+			"MT3",
+			"MT4",
+			"MT5",
+			"MT6",
+			"MT7",
+			"MT8",
+			"MT9",
+			"MT10"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -238,6 +249,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"zone"
 		],
 		"bgms": [
+			"21-30.mp3",
 			"airuying.mp3",
 			"boss3.mp3",
 			"bxsgzz.mp3",
@@ -1566,26 +1578,10 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "瞬移飞行器（1500金币）",
-						"need": "status:money>=1500",
-						"icon": "I596",
+						"text": "为了防止炸录像，本项留空",
+						"need": "status:money>=1e9",
+						"icon": "greenSlime",
 						"action": [
-							{
-								"type": "comment",
-								"text": "新版商店中需要手动扣减金币和增加访问次数"
-							},
-							{
-								"type": "setValue",
-								"name": "status:money",
-								"operator": "-=",
-								"value": "1500"
-							},
-							{
-								"type": "setValue",
-								"name": "item:I596",
-								"operator": "+=",
-								"value": "1"
-							}
 						]
 					},
 					{
