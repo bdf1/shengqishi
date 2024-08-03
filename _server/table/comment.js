@@ -385,6 +385,20 @@ var comment_c456ea59_6018_45ef_8bcc_211a24c627dc = {
 					"_docs": "固伤",
 					"_data": "战前扣血的点数"
 				},
+				"value30_1": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "法力燃烧数值",
+					"_data": "法力燃烧数值"
+				},
+				"value30_2": {
+					"_leaf": true,
+					"_type": "textarea",
+					"_range": "thiseval==~~thiseval||thiseval==null",
+					"_docs": "法力燃烧伤害倍数",
+					"_data": "法力燃烧伤害倍数"
+				},
 				"beforeBattle": {
 					"_leaf": true,
 					"_type": "event",

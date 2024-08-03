@@ -408,6 +408,9 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.setFlag('skill', 0);
 		core.setFlag('skillName', '无');
 	}
+	if (core.hasSpecial(special, 30)) {
+		core.status.hero.mana = Math.max(0, core.status.hero.mana - enemy.value30_1);
+	}
 	//回复魔力值
 	if (core.hasEquip('I409')) { core.status.hero.mana += 1 }
 	if (core.hasEquip('I410')) { core.status.hero.mana += 3 }
@@ -417,7 +420,6 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasEquip('I595')) { core.status.hero.mana += 10 }
 	if (core.hasEquip('I722')) { core.status.hero.mana += 6 }
 	//回复生命值
-	if (core.hasEquip('I723')) { core.status.hero.hp += core.status.hero.hpmax * 0.01 }
 	// 事件的处理
 	var todo = [];
 
@@ -563,6 +565,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		[27, "捕捉", function (enemy) { return "当走到怪物周围" + (enemy.zoneSquare ? "九宫格" : "十字") + "时会强制进行战斗。"; }, "#c0ddbb"],
 		[28, "回溯", "战斗后回复战斗后生命20%生命值，已计入伤害。", "red"],
 		[29, "反弹", function (enemy) { return "将对手" + (enemy.fantan || 0) + "%的伤害反弹回去。"; }, "#FF9900"],
+		[30, "法力燃烧", function (enemy) { return "燃烧对方\r[yellow]" + (enemy.value30_1 || 0) + "\r点能量，并造成不足部分\r[yellow]" + core.formatBigNumber(enemy.value30_2 || 0) + "\r倍的伤害。"; }, "#c677dd"],
 		[32, "破盾", function (enemy) { return "无视对手" + (enemy.Z || 0) + "%的护盾。"; }, "#66ff00"],
 		[33, "毁灭", "战斗后将周围3*3格图块炸毁", "yellow"],
 		[34, "复制", "怪物属性为勇者的80%(怪物攻击力大于勇者攻击力的80%则怪物属性不变)", "#c0ddbb"],
@@ -897,12 +900,18 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasSpecial(mon_special, 22)) { // 固伤
 		damage += enemy.damage || 0;
 	}
+	if (core.hasSpecial(mon_special, 30)) {
+		var cur_mana = core.status.hero.mana;
+		damage += Math.max(0, enemy.value30_1 - cur_mana) * enemy.value30_2;
+	}
 	//魔力铠甲
 	if (core.hasEquip("I630")) { damage -= (Math.min(hero_atk + hero_def, core.status.hero.mana * 0.01)) }
+	
 	//禁术
 	if (core.hasItem("I673")) { damage *= 1.1 }
 
 	if (core.getFlag('skill', 0) == 3) { damage -= hero_def * 0.5 + hero_mdef * 0.2 + 50 }
+	if (core.hasEquip('I723')) { damage -= core.status.hero.hpmax * 0.01 }
 	if (core.hasSpecial(mon_special, 28)) {
 		var vampire_damage = (hero_hp - damage) / -5;
 
