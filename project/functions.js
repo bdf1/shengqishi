@@ -310,7 +310,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	var money = guards.reduce(function (curr, g) {
 		return curr + core.material.enemys[g[2]].money;
 	}, core.getEnemyValue(enemy, "money", x, y));
-	if (core.hasItem('coin')) money *= 2; // 幸运金币：双倍
+	if (core.hasItem('coin')) money += 3; // 幸运金币：双倍
 	if (core.hasFlag('curse')) money = 0; // 诅咒效果
 	core.status.hero.money += money;
 	core.status.hero.statistics.money += money;
@@ -352,7 +352,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	}
 	//回溯
 	if (core.enemys.hasSpecial(special, 28)) {
-		
+
 	}
 	//毁灭
 	if (core.enemys.hasSpecial(special, 33)) {
@@ -415,6 +415,9 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasEquip('I412')) { core.status.hero.mana += 7 }
 	if (core.hasEquip('I413')) { core.status.hero.mana += 9 }
 	if (core.hasEquip('I595')) { core.status.hero.mana += 10 }
+	if (core.hasEquip('I722')) { core.status.hero.mana += 6 }
+	//回复生命值
+	if (core.hasEquip('I723')) { core.status.hero.hp += core.status.hero.hpmax * 0.01 }
 	// 事件的处理
 	var todo = [];
 
