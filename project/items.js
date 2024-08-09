@@ -2152,9 +2152,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I635": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "白色法袍",
+		"canUseItemEffect": "true",
+		"text": "穿上后，获得2点护盾值",
+		"equip": {
+			"type": "法袍",
+			"value": {
+				"mdef": 2
+			},
+			"percentage": {}
+		}
 	},
 	"I636": {
 		"cls": "items",

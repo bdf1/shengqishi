@@ -18,7 +18,13 @@ main.floors.BH6=
     "parallelDo": "",
     "events": {
         "6,1": [
-            "\t[罗涛,N582]\b[this]殿下，那个僵尸史莱姆王很厉害，你现在应该应付不了，不过好在它没有挡路，以后你能够解决了再来练手吧！",
+            "\t[罗涛,N582]\b[this]殿下，那个僵尸史莱姆王很厉害，你现在应该应付不了，不过好在它没有挡路，以后你能够解决了再来练手吧！我这里有一瓶绿血瓶，交给殿下了",
+            {
+                "type": "setValue",
+                "name": "item:greenPotion",
+                "operator": "+=",
+                "value": "1"
+            },
             {
                 "type": "hide",
                 "remove": true

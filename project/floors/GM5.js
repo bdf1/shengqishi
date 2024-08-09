@@ -132,7 +132,7 @@ main.floors.GM5=
                     "\t[安南奎,N546]\b[this]小圣子，快来快来，给你个好东西",
                     {
                         "type": "setValue",
-                        "name": "item:I630",
+                        "name": "item:I635",
                         "operator": "+=",
                         "value": "1"
                     },

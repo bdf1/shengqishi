@@ -98,7 +98,13 @@ var icons_4665ee12_3a1f_44a4_bea3_0fccba634dc1 =
 		"magentaWall": 28,
 		"A1076": 29,
 		"A1077": 30,
-		"A1078": 31
+		"A1078": 31,
+		"yellowflowerDoor": 32,
+		"blueflowerDoor": 35,
+		"redflowerDoor": 36,
+		"greenflowerDoor": 37,
+		"yellowtwoflowerDoor": 34,
+		"blacktwoflowerDoor": 33
 	},
 	"npcs": {
 		"man": 0,
