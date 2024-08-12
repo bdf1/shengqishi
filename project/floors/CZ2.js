@@ -6,7 +6,7 @@ main.floors.CZ2=
     "width": 13,
     "height": 13,
     "canFlyTo": true,
-    "canFlyFrom": true,
+    "canFlyFrom": false,
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],

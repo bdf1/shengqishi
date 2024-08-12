@@ -507,7 +507,15 @@ main.floors.XW1=
     "eachArrive": [],
     "parallelDo": "",
     "events": {},
-    "changeFloor": {},
+    "changeFloor": {
+        "12,6": {
+            "floorId": "SR30",
+            "loc": [
+                0,
+                6
+            ]
+        }
+    },
     "beforeBattle": {},
     "afterBattle": {},
     "afterGetItem": {},

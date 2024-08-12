@@ -47,7 +47,7 @@ main.floors.ZL3=
                                 "type": "setBlock",
                                 "number": "X10111"
                             },
-                            "获得一把蓝钥匙",
+                            "获得三把黄钥匙",
                             {
                                 "type": "setValue",
                                 "name": "item:yellowKey",
