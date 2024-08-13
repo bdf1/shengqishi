@@ -2109,10 +2109,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['魔量', hero.mana + '/' + hero.manamax],
 			['钥匙', core.itemCount('yellowKey') + '/' + core.itemCount('blueKey') + '/' + core.itemCount('redKey') + '/' + core.itemCount('greenKey')],
 			['金币', (hero.money < 0 ? '\r[red]' : '') + hero.money + '\r'],
-			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
-			['攻速', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
-			['护甲', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
-			['钥匙', ],
+			['亲密度', ''],
+			['神之血', ''],
+			['琼浆玉露', ''],
+			['金币', ''],
 		]
 		var text2 = [
 			//['等级', '下级' + leveltext[hero.lv - 1][1]],
@@ -2125,10 +2125,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['魔量', '用于施放技能的消耗'],
 			['钥匙', '用于开启黄/蓝/红/绿门'],
 			['金币', '用于商店购买的货币'],
-			['生命', '生命不足时游戏结束'],
-			['攻速', '每回合普攻伤害×' + Math.max(0, (hero.atk * 0.01 + 1)).toFixed(2)],
-			['护甲', '受到伤害' + (hero.def2 < 0 ? '\r[red]增加\r' : '减免') + '：' + ((1 - 100 / (100 + 3 * Math.abs(hero.def2))) * 100).toFixed(2) + '%'],
-			['钥匙', '用于开启门'],
+			['亲密度', '和圣骑士、准圣子、圣女亲密度'],
+			['神之血', '按生命上限一定比例回血'],
+			['琼浆玉露', '按生命上限一定比例回血'],
+			['金币', ''],
 		]
 
 		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
