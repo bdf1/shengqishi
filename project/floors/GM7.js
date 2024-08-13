@@ -602,11 +602,11 @@ main.floors.GM7=
             "data": [
                 {
                     "type": "if",
-                    "condition": "(flag:shengqishi>=30)",
+                    "condition": "(flag:shengqishi>=90)",
                     "true": [
                         {
                             "type": "if",
-                            "condition": "(flag:shengqishi>35)",
+                            "condition": "(flag:shengqishi>95)",
                             "true": [
                                 {
                                     "type": "if",
@@ -697,7 +697,7 @@ main.floors.GM7=
                                                 },
                                                 {
                                                     "type": "if",
-                                                    "condition": "(flag:shengqishi===30)",
+                                                    "condition": "(flag:shengqishi===90)",
                                                     "true": [
                                                         {
                                                             "type": "animate",

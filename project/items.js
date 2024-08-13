@@ -282,7 +282,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"coin": {
 		"cls": "constants",
 		"name": "幸运金币",
-		"text": "持有时打败怪物可得额外获得3枚金币"
+		"text": "持有时打败怪物可得额外获得12枚金币"
 	},
 	"freezeBadge": {
 		"cls": "constants",
@@ -1956,8 +1956,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I622": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "圣阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 1000000;",
+		"itemEffectTip": "生命上限提升1000000点"
 	},
 	"I623": {
 		"cls": "constants",
@@ -2043,13 +2045,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "超阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前6倍魔力值的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前10倍魔力值的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*6)"
+				"value": "(status:mana*10)"
 			},
 			{
 				"type": "setValue",
@@ -2063,13 +2065,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "黑暗光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前9倍魔力值的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前50倍魔力值的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*9)"
+				"value": "(status:mana*50)"
 			},
 			{
 				"type": "setValue",
@@ -2083,13 +2085,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "圣阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前（18倍魔力值）的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前（100倍魔力值）的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*18)"
+				"value": "(status:mana*100)"
 			},
 			{
 				"type": "setValue",
@@ -2823,9 +2825,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I1088": {
-		"cls": "items",
+		"cls": "tools",
 		"name": "新物品",
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "flag:shengqishi",
+				"operator": "+=",
+				"value": "30"
+			}
+		]
 	},
 	"I1089": {
 		"cls": "items",

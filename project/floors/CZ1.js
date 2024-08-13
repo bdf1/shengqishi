@@ -71,19 +71,19 @@ main.floors.CZ1=
                 "shadow": 0
             },
             "data": [
-                "\t[光明圣子]你在这里干嘛",
-                "\t[乞丐,N1147]你要干什么",
+                "\t[光明圣子,hero]\b[hero]你在这里干嘛",
+                "\t[乞丐,N467]你要干什么",
                 {
                     "type": "choices",
                     "text": "\t[光明圣子]选择",
                     "choices": [
                         {
-                            "text": "我要你身后的宝石，还不速速滚开",
+                            "text": "我要你身后的玉露，还不速速滚开",
                             "action": [
-                                "\t[乞丐,N1147]该死的光明圣子，我不会放过你的!",
+                                "\t[乞丐,N467]该死的光明圣子，我不会放过你的!",
                                 {
                                     "type": "setValue",
-                                    "name": "flag:A",
+                                    "name": "flag:shengqishi",
                                     "operator": "-=",
                                     "value": "1"
                                 },

@@ -34,6 +34,94 @@ main.floors.ZL10=
                 ]
             ],
             "remove": true
+        },
+        {
+            "type": "hide",
+            "loc": [
+                [
+                    6,
+                    2
+                ]
+            ],
+            "floorId": "MT0",
+            "remove": true
+        },
+        {
+            "type": "hide",
+            "loc": [
+                [
+                    8,
+                    3
+                ]
+            ],
+            "floorId": "MT0",
+            "remove": true
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    11,
+                    5
+                ]
+            ],
+            "floorId": "MT0"
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    11,
+                    7
+                ]
+            ],
+            "floorId": "MT0"
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    1,
+                    5
+                ]
+            ],
+            "floorId": "MT0"
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    1,
+                    7
+                ]
+            ],
+            "floorId": "MT0"
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    5,
+                    11
+                ]
+            ],
+            "floorId": "MT0"
+        },
+        {
+            "type": "setBlock",
+            "number": "N444",
+            "loc": [
+                [
+                    7,
+                    11
+                ]
+            ],
+            "floorId": "MT0"
         }
     ],
     "eachArrive": [],

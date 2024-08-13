@@ -260,6 +260,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"mingyuetianya.mp3",
 			"mingyunshouhu.mp3",
 			"mingzhentankenanlansegubao.mp3",
+			"shenweiqianchong.mp3",
 			"shuiyu.mp3",
 			"tiankong.mp3",
 			"xian.mp3",
@@ -1581,8 +1582,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						"text": "为了防止炸录像，本项留空",
 						"need": "status:money>=1e9",
 						"icon": "greenSlime",
-						"action": [
-						]
+						"action": []
 					},
 					{
 						"text": "强力炸弹（2500金币）",

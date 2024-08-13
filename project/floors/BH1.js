@@ -148,6 +148,28 @@ main.floors.BH1=
                                 "value": "1"
                             },
                             {
+                                "type": "setBlock",
+                                "number": "N467",
+                                "loc": [
+                                    [
+                                        7,
+                                        3
+                                    ]
+                                ],
+                                "floorId": "CZ1"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "I416",
+                                "loc": [
+                                    [
+                                        8,
+                                        3
+                                    ]
+                                ],
+                                "floorId": "CZ1"
+                            },
+                            {
                                 "type": "hide",
                                 "loc": [
                                     [

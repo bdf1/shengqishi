@@ -48,11 +48,11 @@ main.floors.ZL1=
             "type": "if",
             "condition": "(flag:shengqishi>1)",
             "true": [
-                "\t[唐佳成,N510]\b[this,2,5]殿下……",
-                "\t[莫析辉,hero]\b[hero]唐佳成，你实力又大有长进呀？",
-                "\t[唐佳成,N510]\b[this,2,5]是的，殿下，我已经通过了光明骑士的考核，正式成为了一名光明骑士。愿为殿下效力。",
+                "\t[${flag:shengqishi_name},N510]\b[this,2,5]殿下……",
+                "\t[莫析辉,hero]\b[hero]${flag:shengqishi_name}，你实力又大有长进呀？",
+                "\t[${flag:shengqishi_name},N510]\b[this,2,5]是的，殿下，我已经通过了光明骑士的考核，正式成为了一名光明骑士。愿为殿下效力。",
                 "\t[莫析辉,hero]\b[hero]嗯，那先去莫析家族吧！",
-                "\t[唐佳成,N510]\b[this,2,5]是！",
+                "\t[${flag:shengqishi_name},N510]\b[this,2,5]是！",
                 {
                     "type": "hide",
                     "loc": [
@@ -240,6 +240,29 @@ main.floors.ZL1=
                     }
                 ],
                 "no": []
+            }
+        ],
+        "12,6": [
+            {
+                "type": "choices",
+                "text": "\t[提交成绩,hero]选择",
+                "choices": [
+                    {
+                        "text": "是",
+                        "action": [
+                            {
+                                "type": "win",
+                                "reason": "圣骑士"
+                            }
+                        ]
+                    },
+                    {
+                        "text": "否",
+                        "action": [
+                            "未完待续"
+                        ]
+                    }
+                ]
             }
         ]
     },

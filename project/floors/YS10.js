@@ -73,14 +73,7 @@ main.floors.YS10=
                 "type": "if",
                 "condition": "switch:A",
                 "true": [
-                    {
-                        "type": "changeFloor",
-                        "floorId": "MJ1",
-                        "loc": [
-                            6,
-                            6
-                        ]
-                    }
+                    "魔界剧情暂未开启，请通关西武帝国后再来哦！"
                 ],
                 "false": [
                     {
