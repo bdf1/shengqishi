@@ -5,7 +5,7 @@ main.floors.MT3=
     "name": "莫析家族3",
     "width": 13,
     "height": 13,
-    "canFlyTo": false,
+    "canFlyTo": true,
     "canFlyFrom": true,
     "canUseQuickShop": true,
     "cannotViewMap": false,
@@ -13,7 +13,7 @@ main.floors.MT3=
     "ratio": 8,
     "defaultGround": "ground",
     "bgm": "21-30.mp3",
-    "firstArrive": [],
+    "firstArrive": null,
     "eachArrive": [],
     "parallelDo": "",
     "events": {
@@ -29,6 +29,12 @@ main.floors.MT3=
             {
                 "type": "hide",
                 "remove": true
+            },
+            {
+                "type": "setFloor",
+                "name": "canFlyTo",
+                "floorId": "MT0",
+                "value": "true"
             }
         ]
     },

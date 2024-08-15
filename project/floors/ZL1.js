@@ -241,29 +241,6 @@ main.floors.ZL1=
                 ],
                 "no": []
             }
-        ],
-        "12,6": [
-            {
-                "type": "choices",
-                "text": "\t[提交成绩,hero]选择",
-                "choices": [
-                    {
-                        "text": "是",
-                        "action": [
-                            {
-                                "type": "win",
-                                "reason": "圣骑士"
-                            }
-                        ]
-                    },
-                    {
-                        "text": "否",
-                        "action": [
-                            "未完待续"
-                        ]
-                    }
-                ]
-            }
         ]
     },
     "changeFloor": {
@@ -279,6 +256,13 @@ main.floors.ZL1=
             "loc": [
                 6,
                 12
+            ]
+        },
+        "12,6": {
+            "floorId": "DL1",
+            "loc": [
+                0,
+                6
             ]
         }
     },

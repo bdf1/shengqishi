@@ -1969,34 +1969,47 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"useItemEvent": [
 			{
 				"type": "if",
-				"condition": "(((status:atk)+(status:def))<=50)",
+				"condition": "(status:mana>=50)",
 				"true": [
 					{
-						"type": "setValue",
-						"name": "status:hp",
-						"operator": "+=",
-						"value": "200"
-					},
-					{
-						"type": "setValue",
-						"name": "status:mana",
-						"operator": "-=",
-						"value": "50"
+						"type": "if",
+						"condition": "(((status:atk)+(status:def))<=50)",
+						"true": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "200"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "-=",
+								"value": "50"
+							}
+						],
+						"false": [
+							{
+								"type": "setValue",
+								"name": "status:hp",
+								"operator": "+=",
+								"value": "100"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mana",
+								"operator": "-=",
+								"value": "50"
+							}
+						]
 					}
 				],
 				"false": [
 					{
-						"type": "setValue",
-						"name": "status:hp",
-						"operator": "+=",
-						"value": "100"
+						"type": "playSound",
+						"name": "操作失败"
 					},
-					{
-						"type": "setValue",
-						"name": "status:mana",
-						"operator": "-=",
-						"value": "50"
-					}
+					"魔力值不够！"
 				]
 			}
 		]

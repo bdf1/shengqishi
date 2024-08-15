@@ -5,7 +5,7 @@ main.floors.MT6=
     "name": "莫析家族6",
     "width": 13,
     "height": 13,
-    "canFlyTo": false,
+    "canFlyTo": true,
     "canFlyFrom": true,
     "canUseQuickShop": true,
     "cannotViewMap": false,
