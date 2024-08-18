@@ -69,6 +69,28 @@ main.floors.MT10=
                 "floorId": "ZL1",
                 "remove": true
             },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        8,
+                        5
+                    ]
+                ],
+                "floorId": "GM5",
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        4,
+                        9
+                    ]
+                ],
+                "floorId": "GM5",
+                "remove": true
+            },
             "可以前往东凌帝国啦（从东凌走廊1进入）"
         ]
     },

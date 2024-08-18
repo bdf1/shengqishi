@@ -10,7 +10,7 @@ main.floors.BN10=
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X10003",
     "bgm": "ending.mp3",
     "firstArrive": [],
@@ -19,7 +19,7 @@ main.floors.BN10=
     "events": {},
     "changeFloor": {
         "6,12": {
-            "floorId": "BN13",
+            "floorId": "BN9",
             "loc": [
                 6,
                 9

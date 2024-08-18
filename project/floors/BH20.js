@@ -10,7 +10,7 @@ main.floors.BH20=
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X10000",
     "bgm": "xieedushi.mp3",
     "weather": null,

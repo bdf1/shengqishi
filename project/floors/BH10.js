@@ -163,6 +163,13 @@ main.floors.BH10=
                 6,
                 12
             ]
+        },
+        "6,0": {
+            "floorId": "BH11",
+            "loc": [
+                6,
+                12
+            ]
         }
     },
     "beforeBattle": {},

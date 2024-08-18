@@ -156,7 +156,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"BH17",
 			"BH18",
 			"BH19",
-			"BH20",
+			"BH20"
 		],
 		"floorPartitions": [],
 		"images": [
@@ -307,6 +307,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"shuiyu.mp3",
 			"tiankong.mp3",
 			"xian.mp3",
+			"xieedushi.mp3",
+			"yuanye.mp3",
 			"zhuangkuoshishi.mp3"
 		],
 		"sounds": [
@@ -1037,7 +1039,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							44,
 							1
 						],
-						"condition": "flag:shop1>100",
+						"condition": "flag:shop1>100&&flag:shop1<=150",
 						"action": [
 							{
 								"type": "comment",
@@ -1060,6 +1062,76 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"name": "status:atk",
 								"operator": "+=",
 								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "攻击+500",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							235,
+							3,
+							44,
+							1
+						],
+						"condition": "flag:shop1>150&&flag:shop1<=200",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "500"
+							}
+						]
+					},
+					{
+						"text": "攻击+2500",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							235,
+							3,
+							44,
+							1
+						],
+						"condition": "flag:shop1>200&&flag:shop1<=250",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "2500"
 							}
 						]
 					},
@@ -1107,7 +1179,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							246,
 							1
 						],
-						"condition": "flag:shop1>100",
+						"condition": "flag:shop1>100&&flag:shop1<=150",
 						"action": [
 							{
 								"type": "comment",
@@ -1130,6 +1202,76 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"name": "status:def",
 								"operator": "+=",
 								"value": "100"
+							}
+						]
+					},
+					{
+						"text": "防御+500",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							11,
+							252,
+							246,
+							1
+						],
+						"condition": "flag:shop1>150&&flag:shop1<=200",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "500"
+							}
+						]
+					},
+					{
+						"text": "防御+2500",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							11,
+							252,
+							246,
+							1
+						],
+						"condition": "flag:shop1>200&&flag:shop1<=250",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "2500"
 							}
 						]
 					},
@@ -1283,7 +1425,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							149,
 							1
 						],
-						"condition": "flag:shop1>100",
+						"condition": "flag:shop1>100&&flag:shop1<=150",
 						"action": [
 							{
 								"type": "comment",
@@ -1324,6 +1466,88 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"name": "status:mana",
 								"operator": "+=",
 								"value": "5000"
+							}
+						]
+					},
+					{
+						"text": "护盾+12000，生命上限+100000",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							22,
+							242,
+							149,
+							1
+						],
+						"condition": "flag:shop1>150&&flag:shop1<=200",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "12000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "100000"
+							}
+						]
+					},
+					{
+						"text": "护盾+120000，生命上限+1000000",
+						"need": "status:money>=80+10*flag:shop1",
+						"color": [
+							22,
+							242,
+							149,
+							1
+						],
+						"condition": "flag:shop1>200&&flag:shop1<=250",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "80+10*flag:shop1"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:shop1",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "120000"
+							},
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "1000000"
 							}
 						]
 					}
