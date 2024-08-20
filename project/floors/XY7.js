@@ -20,7 +20,7 @@ main.floors.XY7=
         "1,4": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个罐子吗?",
+                "text": "确认要打开这个罐子吗? (花费80点魔力)",
                 "yes": [
                     {
                         "type": "if",

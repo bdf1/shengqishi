@@ -49,6 +49,11 @@ main.floors.GM2=
             "operator": "+=",
             "value": "1"
         },
+        {
+            "type": "setValue",
+            "name": "flag:itemDetail",
+            "value": "true"
+        },
         "\t[莫析辉,hero]\b[hero]多谢教皇陛下！",
         "\t[光明教皇,N464]\b[this,6,5]哈哈，以后你和蜜西娅、葛尔丹一样就叫我教皇爷爷吧！",
         "\t[莫析辉,hero]\b[hero]好。",

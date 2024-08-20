@@ -51,7 +51,7 @@ main.floors.YS5=
         "10,9": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -94,7 +94,7 @@ main.floors.YS5=
         "11,1": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",

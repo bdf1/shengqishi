@@ -48,7 +48,7 @@ main.floors.SR4=
         "1,9": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",

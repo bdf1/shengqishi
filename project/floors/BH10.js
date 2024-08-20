@@ -20,7 +20,7 @@ main.floors.BH10=
         "2,3": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -63,7 +63,7 @@ main.floors.BH10=
         "2,5": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -106,7 +106,7 @@ main.floors.BH10=
         "2,4": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",

@@ -73,7 +73,7 @@ main.floors.ZL1=
         "11,1": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -116,7 +116,7 @@ main.floors.ZL1=
         "11,11": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -159,7 +159,7 @@ main.floors.ZL1=
         "1,11": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -202,7 +202,7 @@ main.floors.ZL1=
         "1,1": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",

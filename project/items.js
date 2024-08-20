@@ -1228,7 +1228,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				"text": "\t[选择打开自动拾取或者宝石血瓶详细信息]",
 				"choices": [
 					{
-						"text": "宝石血瓶详细信息",
+						"text": "宝石血瓶详细信息 [${flag:itemDetail?\"ON\":\"OFF\"}]",
 						"color": [
 							254,
 							17,
@@ -1277,7 +1277,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "自动拾取",
+						"text": "自动拾取 [${flag:shiqu?\"ON\":\"OFF\"}]",
 						"color": [
 							7,
 							245,
@@ -1328,7 +1328,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "自动计算最优装备",
+						"text": "自动计算最优装备 [${flag:bestEquip?\"ON\":\"OFF\"}]",
 						"color": [
 							0,
 							255,

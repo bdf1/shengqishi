@@ -20,7 +20,7 @@ main.floors.MT6=
         "4,2": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -63,7 +63,7 @@ main.floors.MT6=
         "8,2": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个宝箱吗?",
+                "text": "确认要打开这个宝箱吗? (花费50点魔力)",
                 "yes": [
                     {
                         "type": "if",
