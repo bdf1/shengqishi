@@ -43,7 +43,8 @@ main.floors.SN2=
                     ]
                 ],
                 "remove": true
-            }
+            },
+            "\t[莫析辉,hero]\b[hero]\\c[30]本层魔力门和白宝石红必须开，否则打不过boss，因为boss有法力燃烧属性。"
         ]
     },
     "changeFloor": {

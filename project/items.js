@@ -1426,6 +1426,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+1%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1483,6 +1484,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+2%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1540,6 +1542,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+4%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1597,6 +1600,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+8%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1654,6 +1658,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+16%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1711,6 +1716,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+32%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1768,6 +1774,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+64%",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",
@@ -1825,6 +1832,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 					},
 					{
 						"text": "生命+100%，魔力值+1000",
+						"need": "false",
 						"action": [
 							{
 								"type": "setValue",

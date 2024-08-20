@@ -1789,8 +1789,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "炸弹（500金币）",
-						"need": "status:money>=500",
+						"text": "炸弹（${flag:zhadan*500+500}金币）",
+						"need": "status:money>=flag:zhadan*500+500",
 						"icon": "bomb",
 						"action": [
 							{
@@ -1799,9 +1799,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
+								"name": "flag:zhadan",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "500"
+								"value": "flag:zhadan*500"
 							},
 							{
 								"type": "setValue",
@@ -1812,8 +1818,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "对称飞行器（500金币）",
-						"need": "status:money>=500",
+						"text": "对称飞行器（${flag:fei*500+500}金币）",
+						"need": "status:money>=flag:fei*500+500",
 						"icon": "centerFly",
 						"action": [
 							{
@@ -1822,9 +1828,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
+								"name": "flag:fei",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "500"
+								"value": "flag:fei*500"
 							},
 							{
 								"type": "setValue",
@@ -1835,8 +1847,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "破墙镐（600金币）",
-						"need": "status:money>=600",
+						"text": "破墙镐（${flag:po*300+600}金币）",
+						"need": "status:money>=flag:po*300+600",
 						"icon": "pickaxe",
 						"action": [
 							{
@@ -1847,7 +1859,13 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "600"
+								"value": "flag:po*300+600"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:po",
+								"operator": "+=",
+								"value": "1"
 							},
 							{
 								"type": "setValue",
@@ -1858,15 +1876,9 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "为了防止炸录像，本项留空",
-						"need": "status:money>=1e9",
-						"icon": "greenSlime",
-						"action": []
-					},
-					{
-						"text": "强力炸弹（2500金币）",
-						"need": "status:money>=2500",
-						"icon": "I407",
+						"text": "破墙镐（${flag:poqiang*300+600}金币）",
+						"need": "status:money>=flag:poqiang*300+600",
+						"icon": "pickaxe",
 						"action": [
 							{
 								"type": "comment",
@@ -1876,7 +1888,42 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "2500"
+								"value": "flag:poqiang*300+600"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:poqiang",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "item:pickaxe",
+								"operator": "+=",
+								"value": "1"
+							}
+						]
+					},
+					{
+						"text": "强力炸弹（${2500+flag:qiangli*2500}金币）",
+						"need": "status:money>=2500+flag:qiangli*2500",
+						"icon": "I407",
+						"action": [
+							{
+								"type": "comment",
+								"text": "新版商店中需要手动扣减金币和增加访问次数"
+							},
+							{
+								"type": "setValue",
+								"name": "flag:qiangli",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
+								"name": "status:money",
+								"operator": "-=",
+								"value": "2500*flag:qiangli"
 							},
 							{
 								"type": "setValue",
@@ -1887,8 +1934,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "地震卷轴（3000金币）",
-						"need": "status:money>=3000",
+						"text": "地震卷轴（${3000+flag:dizhen*3000}金币）",
+						"need": "status:money>=3000+flag:dizhen*3000",
 						"icon": "earthquake",
 						"action": [
 							{
@@ -1897,9 +1944,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
+								"name": "flag:dizhen",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "3000"
+								"value": "3000*flag:dizhen"
 							},
 							{
 								"type": "setValue",

@@ -160,7 +160,8 @@ main.floors.GM2=
             ],
             "floorId": "GM1",
             "remove": true
-        }
+        },
+        "\\c[30]本塔主要加攻击，且需要留怪。"
     ],
     "eachArrive": [
         {
