@@ -1731,8 +1731,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "琼浆（200金币）",
-						"need": "status:money>=200",
+						"text": "琼浆（${flag:qiongjiang*200+200}金币）",
+						"need": "status:money>=flag:qiongjiang*200+200",
 						"icon": "I415",
 						"action": [
 							{
@@ -1741,9 +1741,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
+								"name": "flag:qiongjiang",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "200"
+								"value": "200*flag:qiongjiang"
 							},
 							{
 								"type": "setValue",
@@ -1754,8 +1760,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "玉露（400金币）",
-						"need": "status:money>=400",
+						"text": "玉露（${flag:yulu*400+400}金币）",
+						"need": "status:money>=flag:yulu*400+400",
 						"icon": "I416",
 						"action": [
 							{
@@ -1764,9 +1770,15 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							},
 							{
 								"type": "setValue",
+								"name": "flag:yulu",
+								"operator": "+=",
+								"value": "1"
+							},
+							{
+								"type": "setValue",
 								"name": "status:money",
 								"operator": "-=",
-								"value": "400"
+								"value": "400*flag:yulu"
 							},
 							{
 								"type": "setValue",
@@ -1937,7 +1949,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				"disablePreview": false,
 				"choices": [
 					{
-						"text": "光明之钥（2000魔力）",
+						"text": "光明之钥[${item:whiteKey}]（2000魔力）",
 						"need": "status:mana>=2000",
 						"icon": "whiteKey",
 						"color": [
@@ -1966,7 +1978,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "黑暗之钥(8000魔力)",
+						"text": "黑暗之钥[${item:I422}](8000魔力)",
 						"need": "status:mana>=8000",
 						"icon": "I422",
 						"color": [
@@ -1996,7 +2008,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					},
 					{
-						"text": "黑暗之钥(2000魔力)",
+						"text": "黑暗之钥[${item:I422}](2000魔力)",
 						"need": "status:mana>=2000",
 						"icon": "I422",
 						"color": [

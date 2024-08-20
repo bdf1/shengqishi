@@ -60,10 +60,10 @@ main.floors.DL3=
                         6
                     ]
                 },
-                "\t[唐佳成,N510]\b[this,7,6]啊这……殿下，你真的确定此事是图毅所做吗",
+                "\t[${flag:shengqishi_name},N510]\b[this,7,6]啊这……殿下，你真的确定此事是图毅所做吗",
                 "\t[莫析辉,hero]\b[hero]哼，能做到这一点的，教皇爷爷、大长老、黑暗教皇都可以，但是他们会做吗？我能想到的只有东凌皇室、北寒皇室、北纳家族一起做的",
                 "\t[凌依,N574]\b[this,5,6]殿下说的是，大长老还硬说北纳家族没有参与，安撒和东方溪的对话，殿下可全听到了",
-                "\t[唐佳成,N510]\b[this,7,6]大长老是为了光明神殿考虑，不希望殿下与光明圣女内斗",
+                "\t[${flag:shengqishi_name},N510]\b[this,7,6]大长老是为了光明神殿考虑，不希望殿下与光明圣女内斗",
                 "\t[莫析辉,hero]\b[hero]是我要内斗吗？是她！平日里就算了，如今竟然对莫析家族做出如此事，我定然不会放过她！",
                 {
                     "type": "animate",
@@ -103,7 +103,7 @@ main.floors.DL3=
                         ]
                     ]
                 },
-                "\t[唐佳成,N510]\b[this,7,6]什么人！",
+                "\t[${flag:shengqishi_name},N510]\b[this,7,6]什么人！",
                 {
                     "type": "jump",
                     "from": [
@@ -171,7 +171,7 @@ main.floors.DL3=
                     "time": 500,
                     "keep": true
                 },
-                "\t[唐佳成,N510]哪里走！",
+                "\t[${flag:shengqishi_name},N510]哪里走！",
                 {
                     "type": "turnBlock",
                     "direction": "down",
@@ -247,7 +247,7 @@ main.floors.DL3=
                 },
                 "\t[芹宣,N466]\b[this,6,10]这是什么人！",
                 "\t[莫析辉,hero]\b[this,6,4]定是图毅派来刺杀我的！快追！",
-                "\t[唐佳成,N510]\b[this,6,6]是！",
+                "\t[${flag:shengqishi_name},N510]\b[this,6,6]是！",
                 {
                     "type": "jump",
                     "from": [

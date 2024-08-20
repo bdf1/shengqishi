@@ -2794,10 +2794,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I722": {
-		"cls": "equips",
+		"cls": "constants",
 		"name": "魔力卷轴",
 		"canUseItemEffect": "true",
-		"text": "战后恢复6点魔力值",
+		"text": "战后恢复敌人生命万分之四魔力值",
 		"equip": {
 			"type": "卷轴",
 			"value": {},
@@ -2808,7 +2808,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "equips",
 		"name": "生命卷轴",
 		"canUseItemEffect": "true",
-		"text": "战后恢复1%的最大生命值的生命",
+		"text": "战后恢复0.5%的最大生命值的生命",
 		"equip": {
 			"type": "卷轴",
 			"value": {},
