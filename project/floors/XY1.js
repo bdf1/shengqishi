@@ -20,7 +20,7 @@ main.floors.XY1=
         "7,8": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个罐子吗?",
+                "text": "确认要打开这个罐子吗? (花费80点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -63,7 +63,7 @@ main.floors.XY1=
         "5,8": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个罐子吗?",
+                "text": "确认要打开这个罐子吗? (花费80点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -113,7 +113,7 @@ main.floors.XY1=
         "7,4": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个罐子吗?",
+                "text": "确认要打开这个罐子吗? (花费80点魔力)",
                 "yes": [
                     {
                         "type": "if",
@@ -156,7 +156,7 @@ main.floors.XY1=
         "5,4": [
             {
                 "type": "confirm",
-                "text": "确认要打开这个罐子吗?",
+                "text": "确认要打开这个罐子吗? (花费80点魔力)",
                 "yes": [
                     {
                         "type": "if",

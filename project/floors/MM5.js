@@ -61,7 +61,7 @@ main.floors.MM5=
                 "type": "if",
                 "condition": "(flag:shengqishi>=1)",
                 "true": [
-                    "\t[唐佳成,N510]\b[this,5,4]（传音）圣子殿下，这两人确实该杀，不过……我感觉在幕后，有一双手，正推着我们做这些事……要不要杀死他们？"
+                    "\t[${flag:shengqishi_name},N510]\b[this,5,4]（传音）圣子殿下，这两人确实该杀，不过……我感觉在幕后，有一双手，正推着我们做这些事……要不要杀死他们？"
                 ],
                 "false": [
                     "\t[希娜,N538]\b[this,5,3]（传音）圣子殿下，这两人确实该杀，不过……我总怕真正的幕后黑手不是他们，而是故意在……到底要不要杀死他们？"
@@ -342,7 +342,7 @@ main.floors.MM5=
                                 "true": [],
                                 "false": [
                                     "圣骑士亲密度-1",
-                                    "\t[唐佳成,N510]\b[this,5,4]神经病！",
+                                    "\t[${flag:shengqishi_name},N510]\b[this,5,4]神经病！",
                                     {
                                         "type": "setValue",
                                         "name": "flag:shengqishi",
