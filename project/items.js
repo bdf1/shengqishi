@@ -258,7 +258,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"name": "圣水",
 		"itemEffect": "core.status.hero.hp *= 2",
 		"itemEffectTip": "，生命值翻倍",
-		"useItemEffect": "core.status.hero.hp *= 2;core.playSound('回血');",
+		"useItemEffect": "core.status.hero.hp *= 2;\ncore.playSound('回血');",
 		"canUseItemEffect": "true",
 		"text": "生命值翻倍"
 	},
@@ -852,12 +852,20 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I375": {
 		"cls": "items",
-		"name": "新物品",
+		"name": "十阶红宝石",
+		"text": "攻击+${core.values.redGem*512}",
+		"itemEffect": "core.status.hero.atk += core.values.redGem * core.status.thisMap.ratio * 512",
+		"itemEffectTip": "，攻击+${core.values.redGem * core.status.thisMap.ratio*512}",
+		"useItemEffect": "core.status.hero.atk += core.values.redGem * 512",
 		"canUseItemEffect": "true"
 	},
 	"I376": {
 		"cls": "items",
-		"name": "新物品",
+		"name": "十阶蓝宝石",
+		"text": "，防御+${core.values.blueGem*512}",
+		"itemEffect": "core.status.hero.def += core.values.blueGem * core.status.thisMap.ratio * 512",
+		"itemEffectTip": "，防御+${core.values.blueGem * core.status.thisMap.ratio*512}",
+		"useItemEffect": "core.status.hero.def += core.values.blueGem * 512",
 		"canUseItemEffect": "true"
 	},
 	"I377": {
@@ -1083,9 +1091,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		}
 	},
 	"I413": {
-		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"cls": "equips",
+		"name": "紫金光明法杖",
+		"canUseItemEffect": "true",
+		"text": "攻击力+10000，击败怪物后，获得9点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {
+				"atk": 10000
+			},
+			"percentage": {}
+		}
 	},
 	"I414": {
 		"cls": "items",
@@ -1192,17 +1208,17 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I595": {
 		"cls": "equips",
-		"name": "七彩光明法杖",
+		"name": "七彩圣杖",
 		"canUseItemEffect": "true",
-		"text": "全属性提升10%，击败怪物后获得10点魔力值",
+		"text": "全属性提升25%，击败怪物后获得20点魔力值",
 		"equip": {
 			"type": "法杖",
 			"value": {},
 			"percentage": {
-				"atk": 10,
-				"def": 10,
-				"mdef": 10,
-				"hpmax": 10
+				"mdef": 25,
+				"hpmax": 25,
+				"def": 25,
+				"atk": 25
 			}
 		}
 	},
@@ -1939,35 +1955,45 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I617": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十三阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 100000;",
+		"itemEffectTip": "生命上限提升100000点"
 	},
 	"I618": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十四阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 200000;",
+		"itemEffectTip": "生命上限提升200000点"
 	},
 	"I619": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十五阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 500000;",
+		"itemEffectTip": "生命上限提升500000点"
 	},
 	"I620": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十六阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 1000000;",
+		"itemEffectTip": "生命上限提升1000000点"
 	},
 	"I621": {
 		"cls": "items",
-		"name": "新物品",
-		"canUseItemEffect": "true"
+		"name": "十七阶血红宝石",
+		"canUseItemEffect": "true",
+		"itemEffect": "core.status.hero.hpmax += 2000000;",
+		"itemEffectTip": "生命上限提升2000000点"
 	},
 	"I622": {
 		"cls": "items",
 		"name": "圣阶血红宝石",
 		"canUseItemEffect": "true",
-		"itemEffect": "core.status.hero.hpmax += 1000000;",
-		"itemEffectTip": "生命上限提升1000000点"
+		"itemEffect": "core.status.hero.hpmax += 1000000 * core.status.thisMap.ratio;",
+		"itemEffectTip": "，生命上限+${core.status.thisMap.ratio*1000000}"
 	},
 	"I623": {
 		"cls": "constants",
@@ -2861,6 +2887,339 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I1089": {
 		"cls": "items",
 		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1097": {
+		"cls": "items",
+		"name": "九阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+200",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "200"
+							}
+						]
+					},
+					{
+						"text": "防御+200",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "200"
+							}
+						]
+					},
+					{
+						"text": "生命上限+10000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "10000"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I1098": {
+		"cls": "items",
+		"name": "十阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+400",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "400"
+							}
+						]
+					},
+					{
+						"text": "防御+400",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "400"
+							}
+						]
+					},
+					{
+						"text": "生命上限+20000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "20000"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I1099": {
+		"cls": "items",
+		"name": "十一阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+800",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "800"
+							}
+						]
+					},
+					{
+						"text": "防御+800",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "800"
+							}
+						]
+					},
+					{
+						"text": "生命上限+40000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "40000"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I1100": {
+		"cls": "items",
+		"name": "十二阶白宝石",
+		"canUseItemEffect": "true",
+		"useItemEvent": [
+			{
+				"type": "choices",
+				"choices": [
+					{
+						"text": "攻击+1600",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:atk",
+								"operator": "+=",
+								"value": "1600"
+							}
+						]
+					},
+					{
+						"text": "防御+1600",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:def",
+								"operator": "+=",
+								"value": "1600"
+							}
+						]
+					},
+					{
+						"text": "生命上限+80000",
+						"action": [
+							{
+								"type": "setValue",
+								"name": "status:hpmax",
+								"operator": "+=",
+								"value": "80000"
+							}
+						]
+					}
+				]
+			}
+		],
+		"text": "进行加点"
+	},
+	"I1101": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1102": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1103": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1104": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1105": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1106": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1107": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1108": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1109": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1110": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1111": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1112": {
+		"cls": "items",
+		"name": "新物品",
+		"canUseItemEffect": "true"
+	},
+	"I1113": {
+		"cls": "tools",
+		"name": "光明药水",
+		"canUseItemEffect": "true",
+		"itemEffect": "",
+		"itemEffectTip": "",
+		"text": "交换魔力值与生命值",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "flag:sm",
+				"value": "status:hp"
+			},
+			{
+				"type": "setValue",
+				"name": "flag:ml",
+				"value": "status:mana"
+			},
+			{
+				"type": "setValue",
+				"name": "status:mana",
+				"value": "flag:sm"
+			},
+			{
+				"type": "setValue",
+				"name": "status:hp",
+				"value": "flag:ml"
+			}
+		]
+	},
+	"I1114": {
+		"cls": "tools",
+		"name": "黑暗药水",
+		"canUseItemEffect": "true",
+		"text": "使用后，光明神殿光明之神的赐福次数减少20%（减少商店20%次数）",
+		"useItemEvent": [
+			{
+				"type": "setValue",
+				"name": "flag:shop1",
+				"operator": "*=",
+				"value": "0.8"
+			}
+		]
+	},
+	"I1115": {
+		"cls": "equips",
+		"name": "光明神杖",
+		"canUseItemEffect": "true",
+		"text": "防御力+20%，护盾+20%，击败敌人后获得10点魔力值。",
+		"equip": {
+			"type": "法杖",
+			"value": {},
+			"percentage": {
+				"mdef": 20,
+				"def": 20
+			}
+		}
+	},
+	"I1116": {
+		"cls": "equips",
+		"name": "黑暗神杖",
+		"canUseItemEffect": "true",
+		"text": "攻击+20%，击败敌人后获得10点魔力值",
+		"equip": {
+			"type": "法杖",
+			"value": {},
+			"percentage": {
+				"atk": 20
+			}
+		}
+	},
+	"I1117": {
+		"cls": "items",
+		"name": "光明血瓶",
+		"text": "，生命+${core.values.greenPotion*800}",
+		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 800",
+		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*800}",
+		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 800",
+		"canUseItemEffect": "true"
+	},
+	"I1118": {
+		"cls": "items",
+		"name": "黑暗血瓶",
+		"text": "，生命翻倍",
+		"itemEffect": "core.status.hero.hp *= 2",
+		"itemEffectTip": "，生命翻倍",
+		"useItemEffect": "core.status.hero.hp *= 2",
 		"canUseItemEffect": "true"
 	}
 }

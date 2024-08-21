@@ -314,6 +314,59 @@ main.floors.ZH1=
                     }
                 ]
             }
+        ],
+        "6,3": [
+            {
+                "type": "if",
+                "condition": "switch:A",
+                "true": [
+                    {
+                        "type": "if",
+                        "condition": "((item:I1115===1)&&(item:I1116===1))",
+                        "true": [
+                            "\t[涂歆,N558]\b[this]想不到，你竟然能够同时获得这两种神杖！",
+                            "\t[涂歆,N558]\b[this]我来试试，嘛哩嘛哩哄！",
+                            {
+                                "type": "animate",
+                                "name": "chuansong",
+                                "loc": [
+                                    6,
+                                    3
+                                ]
+                            },
+                            {
+                                "type": "setValue",
+                                "name": "item:I1115",
+                                "operator": "-=",
+                                "value": "1"
+                            },
+                            {
+                                "type": "setValue",
+                                "name": "item:I1116",
+                                "operator": "-=",
+                                "value": "1"
+                            },
+                            {
+                                "type": "setValue",
+                                "name": "item:I595",
+                                "operator": "+=",
+                                "value": "1"
+                            }
+                        ],
+                        "false": []
+                    }
+                ],
+                "false": [
+                    "\t[涂歆,N558]\b[this]我在研究一种让两种对立的力量融合在一起的宝物。如果你同时有\r[yellow]\\c[30]光明神杖\\c[]\r[]和\\c[30]黑暗神杖\\c[]，我可以试试能不能炼成更强大的神杖哦。",
+                    "\t[莫析辉,hero]\b[hero]好你个涂歆，你有毛病吧？光明神殿和黑暗神殿水火不容，我怎么同时获得光明神杖和黑暗神杖。而且世界上有黑暗神杖这种东西吗？",
+                    "\t[涂歆,N558]\b[this]有的有的，光明神杖是光明法杖的究极形态，黑暗神杖嘛，也是黑暗利刃的究极形态。黑暗利刃在刺客手里是利刃，在法师手里，就变成了法杖，你可以去找找看。",
+                    {
+                        "type": "setValue",
+                        "name": "switch:A",
+                        "value": "true"
+                    }
+                ]
+            }
         ]
     },
     "changeFloor": {
