@@ -93,7 +93,180 @@ main.floors.DL1=
     ],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "11,1": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得五把黄钥匙",
+                            {
+                                "type": "setValue",
+                                "name": "item:yellowKey",
+                                "operator": "+=",
+                                "value": "5"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ],
+        "11,11": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得三把蓝钥匙",
+                            {
+                                "type": "setValue",
+                                "name": "item:blueKey",
+                                "operator": "+=",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ],
+        "1,1": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得五瓶神之血",
+                            {
+                                "type": "setValue",
+                                "name": "item:I710",
+                                "operator": "+=",
+                                "value": "5"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ],
+        "1,11": [
+            {
+                "type": "confirm",
+                "text": "确认要打开这个宝箱吗?",
+                "yes": [
+                    {
+                        "type": "if",
+                        "condition": "(status:mana<50)",
+                        "true": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "你的魔力不足!"
+                        ],
+                        "false": [
+                            {
+                                "type": "setValue",
+                                "name": "status:mana",
+                                "operator": "-=",
+                                "value": "50"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "door.mp3"
+                            },
+                            {
+                                "type": "setBlock",
+                                "number": "X10111"
+                            },
+                            "获得一枚十二阶血红宝石",
+                            {
+                                "type": "setValue",
+                                "name": "item:I616",
+                                "operator": "+=",
+                                "value": "1"
+                            }
+                        ]
+                    }
+                ],
+                "no": []
+            }
+        ]
+    },
     "changeFloor": {
         "0,6": {
             "floorId": "ZL1",

@@ -42,7 +42,8 @@ main.floors.SN1=
             ],
             "remove": true
         },
-        "\t[莫析辉,hero]\b[hero]我刚刚没听错吧？蜜茜娅的侍女跟我讲这个……"
+        "\t[莫析辉,hero]\b[hero]我刚刚没听错吧？蜜茜娅的侍女跟我讲这个……",
+        "\r[red]\\c[20]之后的boss需要消耗一定数量的魔力值，本区魔力值不够，需要咸门拿魔力值\\c[]\r[]"
     ],
     "eachArrive": [],
     "parallelDo": "",
