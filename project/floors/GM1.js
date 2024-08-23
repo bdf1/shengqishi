@@ -16,6 +16,11 @@ main.floors.GM1=
     "firstArrive": [
         {
             "type": "setValue",
+            "name": "flag:itemDetail",
+            "value": "true"
+        },
+        {
+            "type": "setValue",
             "name": "flag:shengqishi_name",
             "value": "\"鹿间裕贵\""
         },

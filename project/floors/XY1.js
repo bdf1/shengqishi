@@ -13,7 +13,9 @@ main.floors.XY1=
     "ratio": 1,
     "defaultGround": "X20061",
     "bgm": "bxsgzz.mp3",
-    "firstArrive": [],
+    "firstArrive": [
+        "本区boss有法力燃烧属性，且进入下一区传送阵需要2000魔力值开启！请注意保留魔力值"
+    ],
     "eachArrive": [],
     "parallelDo": "",
     "events": {
