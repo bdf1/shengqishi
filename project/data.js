@@ -73,7 +73,6 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"SR10",
 			"MM2",
 			"MM3",
-			"XW1",
 			"SR11",
 			"SR12",
 			"SR13",
@@ -157,7 +156,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"BH17",
 			"BH18",
 			"BH19",
-			"BH20"
+			"BH20",
+			"XW1"
 		],
 		"floorPartitions": [],
 		"images": [

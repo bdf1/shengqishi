@@ -6,7 +6,7 @@ main.floors.BH20=
     "width": 13,
     "height": 13,
     "canFlyTo": true,
-    "canFlyFrom": true,
+    "canFlyFrom": false,
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
@@ -14,7 +14,136 @@ main.floors.BH20=
     "defaultGround": "X10000",
     "bgm": "xieedushi.mp3",
     "weather": null,
-    "firstArrive": [],
+    "firstArrive": [
+        {
+            "type": "moveHero",
+            "steps": [
+                "up:5"
+            ]
+        },
+        "\t[希羽,demonPriest]\b[this,6,3]圣子殿下，没想到能来北寒帝国。",
+        "\t[希娜,N538]\b[this,5,7]拜见父皇。",
+        "\t[希羽,demonPriest]\b[this,6,3]不过，我的女儿女婿，你们今天来找我，应该不是唠家常吧？",
+        "\t[光明圣子,hero]\b[hero]是的，岳父大人。我想知道，莫析家族被灭，您该作何解释呢？",
+        "\t[希羽,demonPriest]\b[this,6,3]作何解释？国与国之间，家族与家族之间，这些摩擦，不是常有的吗？",
+        {
+            "type": "if",
+            "condition": "(flag:shengqishi>55)",
+            "true": [
+                "\t[希羽,demonPriest]\b[this,6,3]辉儿，你那个守护骑士唐佳成，去了哪里呀？",
+                "\t[莫析辉,hero]\b[hero]哦，岳父大人，教皇陛下要我去取一件宝物，所以我让他先回去一趟"
+            ],
+            "false": []
+        },
+        "\t[希娜,N538]\b[this,5,7]小心一些，父皇的状态不对劲。",
+        "\t[莫析辉,hero]\b[hero]什么？",
+        "\t[希羽,demonPriest]\b[this,6,3]哈哈哈哈哈，不愧是希娜公主，这么快就发现了！",
+        "\t[莫析辉,hero]\b[hero]什么意思?",
+        {
+            "type": "vibrate",
+            "direction": "diagonal1",
+            "time": 2000,
+            "speed": 10,
+            "power": 10
+        },
+        {
+            "type": "screenFlash",
+            "color": [
+                231,
+                50,
+                50,
+                1
+            ],
+            "time": 500,
+            "times": 1
+        },
+        "\t[???]哈哈哈哈哈！",
+        {
+            "type": "playBgm",
+            "name": "shenweiqianchong.mp3"
+        },
+        {
+            "type": "animate",
+            "name": "heidong3",
+            "loc": [
+                6,
+                11
+            ]
+        },
+        {
+            "type": "setBlock",
+            "number": "N484",
+            "loc": [
+                [
+                    6,
+                    11
+                ]
+            ]
+        },
+        "\t[默默,N481]\b[this,6,11]哈哈哈哈哈！圣子哥哥，好久不见！",
+        {
+            "type": "changePos",
+            "loc": [
+                6,
+                7
+            ],
+            "direction": "down"
+        },
+        {
+            "type": "turnBlock",
+            "direction": "down",
+            "loc": [
+                [
+                    5,
+                    7
+                ]
+            ]
+        },
+        "\t[莫析辉,hero]\b[hero]默默，是你！你怎么来这里了，你不是在南荒帝国吗？",
+        "\t[希娜,N538]\b[this,5,7]好强的杀气……她，是我们的敌人！",
+        "\t[默默,N481]\b[this,6,11]重新介绍一下，圣子哥哥，我叫黛默琳，是黑暗神殿的圣女。",
+        "\t[莫析辉,hero]\b[hero]什么！",
+        "\t[黛默琳,N481]\b[this,6,11]很惊讶吧，圣子哥哥。夜馨夜馨，在夜晚绽放的芬芳，这才是黑暗，夜馨公会就是黑暗神殿。",
+        "\t[莫析辉,hero]\b[hero]呵，莫析家族是你灭的？",
+        "\t[黛默琳,N481]\b[this,6,11]怎么会呢，若不是你的好岳父，还有东凌帝国的皇帝和北纳家族的族长大人有此贪念，我怎么能够趁虚而入呢？",
+        "\t[黛默琳,N481]\b[this,6,11]东凌皇帝只想削弱莫析家族，北寒皇帝只想拿到莫析家族所占领的土地，而北纳家族嘛，也只想削弱一下莫析家族。",
+        "\t[黛默琳,N481]\b[this,6,11]希羽派出了安撒，图毅派了东方溪。北纳家族则出了罗涛给的情报。不过圣子哥哥也不算冤枉他们，他们确实对莫析家族出手了。",
+        "\t[黛默琳,N481]\b[this,6,11]既然出手了，那小妹就帮他们做得更彻底一些咯。可怜的圣子哥哥，为了报仇，也是煞费苦心呢。",
+        "\t[莫析辉,hero]\b[hero]无耻！黛默琳，你好歹毒！你在南荒帝国又干了些什么？",
+        "\t[黛默琳,N481]\b[this,6,11]没干什么。不过是把南荒帝国的皇帝和皇后杀了，本来想让童轩继位的，没想到光明神殿来了援手，只好暂且让童澈皇子继位了。",
+        "\t[希娜,N538]\b[this,5,7]呵，难道你以为，自己的实力能够战胜光明圣子和北寒帝国一众高手?",
+        "\t[黛莫琳,N481]\b[this,6,11]怎么会呢，小妹我从不做无把握的事",
+        "\t[希羽,demonPriest]\b[this,6,3]吼！",
+        "\t[希娜,N538]\b[this,5,7]父皇！！！",
+        "\t[黛莫琳,N481]\b[this,6,11]希羽，让你的女儿女婿，瞧瞧你的厉害吧",
+        "\t[北寒皇帝,demonPriest]\b[this,6,3]吼！",
+        {
+            "type": "vibrate",
+            "direction": "diagonal1",
+            "time": 2000,
+            "speed": 10,
+            "power": 10
+        },
+        "\t[希娜,N538]\b[this,5,7]啊！父皇怎么会……",
+        "\t[莫析辉,hero]\b[hero]摄魂术！",
+        "\t[莫析辉,hero]\b[hero]是摄魂术！岳父大人被控制了",
+        "\t[希娜,N538]\b[this,5,7]可恶！我不敢和父皇动手啊……",
+        "\t[莫析辉,hero]\b[hero]娜娜，你拖住黛莫琳，我来对付你父皇",
+        "\t[希娜,N1330]\b[this,5,7]好",
+        {
+            "type": "jump",
+            "from": [
+                5,
+                7
+            ],
+            "to": [
+                6,
+                10
+            ],
+            "time": 500,
+            "keep": true
+        }
+    ],
     "eachArrive": [],
     "parallelDo": "",
     "events": {},
@@ -28,7 +157,288 @@ main.floors.BH20=
         }
     },
     "beforeBattle": {},
-    "afterBattle": {},
+    "afterBattle": {
+        "6,4": [
+            {
+                "type": "setBlock",
+                "number": "demonPriest",
+                "loc": [
+                    [
+                        6,
+                        2
+                    ]
+                ]
+            },
+            "\t[希羽,demonPriest]\b[this,6,2]啊！辉儿，你怎么……",
+            "\t[莫析辉,hero]\b[hero]岳父大人，您可总算醒了",
+            {
+                "type": "jump",
+                "from": [
+                    6,
+                    10
+                ],
+                "to": [
+                    5,
+                    4
+                ],
+                "time": 500,
+                "keep": true
+            },
+            "\t[希娜,N538]\b[this,5,4]啊！",
+            {
+                "type": "changePos",
+                "direction": "down"
+            },
+            "\t[莫析辉,hero]\b[hero]希娜！",
+            "\t[黑暗圣女,N1161]\b[this,6,11]圣子哥哥，该你啦",
+            "\t[莫析辉,hero]\b[hero]哼！",
+            {
+                "type": "moveHero",
+                "steps": [
+                    "down:3"
+                ]
+            },
+            "\t[莫析辉,hero]\b[hero]光明……",
+            {
+                "type": "animate",
+                "name": "heidong3",
+                "loc": [
+                    6,
+                    11
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        11
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "animate",
+                "name": "heidong3",
+                "loc": [
+                    6,
+                    8
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "N1164",
+                "loc": [
+                    [
+                        6,
+                        8
+                    ]
+                ]
+            },
+            {
+                "type": "animate",
+                "name": "baozha2",
+                "loc": [
+                    6,
+                    7
+                ]
+            },
+            {
+                "type": "jumpHero",
+                "loc": [
+                    6,
+                    4
+                ],
+                "time": 500
+            },
+            "\t[莫析辉,hero]\b[hero]啊啊啊啊啊！",
+            {
+                "type": "setValue",
+                "name": "status:hp",
+                "value": "1"
+            },
+            "\t[黛默琳,N481]\b[this,6,8]圣子哥哥，竟然如此不堪一击！",
+            "\t[希娜,N538]\b[this,5,4]唔……",
+            "\t[希羽,demonPriest]\b[this,6,2]娜娜，辉儿，你们快走！你们不是她的对手",
+            "\t[黛默琳,N481]\b[this,6,8]走的了吗",
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    3,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    4,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    5,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    7,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    8,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "animate",
+                "name": "die",
+                "loc": [
+                    9,
+                    7
+                ],
+                "async": true
+            },
+            {
+                "type": "waitAsync"
+            },
+            "\t[希娜,N538]\b[this,5,4]好强大的黑暗魔法……我们现在受了重伤，怕是难以逃脱了……",
+            "\t[莫析辉,hero]\b[hero]……",
+            "\t[希羽,demonPriest]\b[this,6,2]哼！",
+            {
+                "type": "jump",
+                "from": [
+                    6,
+                    2
+                ],
+                "to": [
+                    6,
+                    7
+                ],
+                "time": 500,
+                "keep": true
+            },
+            "\t[希羽,demonPriest]\b[this,6,2]我跟你拼了！",
+            {
+                "type": "animate",
+                "name": "baozha",
+                "loc": [
+                    6,
+                    7
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        7
+                    ]
+                ],
+                "remove": true
+            },
+            "\t[黛默琳,N481]\b[this,6,8]啊！",
+            "\t[希娜,N538]\b[this,5,4]父皇！",
+            "\t[黛默琳,N481]\b[this,6,8]该死！我受了重伤，暂且饶恕你们！",
+            "\t[黛默琳,N481]\b[this,6,8]哼！算你们好运！",
+            {
+                "type": "animate",
+                "name": "heidong3",
+                "loc": [
+                    6,
+                    8
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        8
+                    ]
+                ],
+                "remove": true
+            },
+            "\t[希娜,N538]\b[this,5,4]好厉害的黑暗圣女……",
+            "\t[莫析辉,hero]\b[hero]可恶，我以为打败了黑暗圣子，便已经无忧了，没想到 这个黑暗圣女如此强大……",
+            "\t[希娜,N538]\b[this,5,4]……",
+            "\t[希娜,N538]\b[this,5,4]父皇陨落，我先整合北寒帝国吧，然后集北寒帝国之力，助你对付黑暗神殿。",
+            "\t[莫析辉,hero]\b[hero]黛默琳已经扰乱了东凌帝国、南荒帝国、北寒帝国……糟了，下一步定是\r[red]\\c[30]西武帝国\\c[]\r[]。看来不能多留了，我得去西武帝国看看。",
+            {
+                "type": "setBlock",
+                "number": "I416",
+                "loc": [
+                    [
+                        3,
+                        5
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I350",
+                "loc": [
+                    [
+                        9,
+                        5
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I351",
+                "loc": [
+                    [
+                        6,
+                        2
+                    ]
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        5,
+                        4
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        1,
+                        6
+                    ]
+                ],
+                "floorId": "SR30",
+                "remove": true
+            },
+            {
+                "type": "setFloor",
+                "name": "canFlyTo",
+                "floorId": "XW1",
+                "value": "true"
+            }
+        ]
+    },
     "afterGetItem": {},
     "afterOpenDoor": {},
     "autoEvent": {},
@@ -39,10 +449,10 @@ main.floors.BH20=
     [90041,90041,90041,90041,90041,90041,90041,90041,90041,90041,90041,90041,90041],
     [90041,90041,50165,  0,50159,  0,  0,  0,50159,  0,50165,90041,90041],
     [90041,90041,  0,  0,50167,50100,  0,50100,50167,  0,  0,90041,90041],
+    [90041,90041,  0,  0,  0,  0,243,  0,  0,  0,  0,90041,90041],
     [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
     [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
-    [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
-    [90041,90041,41160,  0,  0,  0,  0,  0,  0,  0,41160,90041,90041],
+    [90041,90041,41160,  0,  0,541,  0,  0,  0,  0,41160,90041,90041],
     [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
     [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
     [90041,90041,  0,  0,  0,  0,  0,  0,  0,  0,  0,90041,90041],
