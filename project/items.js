@@ -2891,7 +2891,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I1097": {
 		"cls": "items",
-		"name": "九阶白宝石。",
+		"name": "九阶白宝石",
 		"canUseItemEffect": "true",
 		"useItemEvent": [
 			{
@@ -2937,7 +2937,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I1098": {
 		"cls": "items",
-		"name": "十阶白宝石。",
+		"name": "十阶白宝石",
 		"canUseItemEffect": "true",
 		"useItemEvent": [
 			{
@@ -2983,7 +2983,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I1099": {
 		"cls": "items",
-		"name": "十一阶白宝石。",
+		"name": "十一阶白宝石",
 		"canUseItemEffect": "true",
 		"useItemEvent": [
 			{
@@ -3029,7 +3029,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	},
 	"I1100": {
 		"cls": "items",
-		"name": "十二阶白宝石。",
+		"name": "十二阶白宝石",
 		"canUseItemEffect": "true",
 		"useItemEvent": [
 			{
@@ -3227,189 +3227,5 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"itemEffectTip": "，生命翻倍",
 		"useItemEffect": "core.status.hero.hp *= 2",
 		"canUseItemEffect": "true"
-	},
-	"I1123": {
-		"cls": "items",
-		"name": "九阶白宝石",
-		"canUseItemEffect": "true",
-		"useItemEvent": [
-			{
-				"type": "choices",
-				"choices": [
-					{
-						"text": "攻击+200",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:atk",
-								"operator": "+=",
-								"value": "200"
-							}
-						]
-					},
-					{
-						"text": "防御+200",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:def",
-								"operator": "+=",
-								"value": "200"
-							}
-						]
-					},
-					{
-						"text": "生命上限+10000",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hpmax",
-								"operator": "+=",
-								"value": "10000"
-							}
-						]
-					}
-				]
-			}
-		],
-		"text": "进行加点"
-	},
-	"I1124": {
-		"cls": "items",
-		"name": "十阶白宝石",
-		"canUseItemEffect": "true",
-		"useItemEvent": [
-			{
-				"type": "choices",
-				"choices": [
-					{
-						"text": "攻击+400",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:atk",
-								"operator": "+=",
-								"value": "400"
-							}
-						]
-					},
-					{
-						"text": "防御+400",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:def",
-								"operator": "+=",
-								"value": "400"
-							}
-						]
-					},
-					{
-						"text": "生命上限+20000",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hpmax",
-								"operator": "+=",
-								"value": "20000"
-							}
-						]
-					}
-				]
-			}
-		],
-		"text": "进行加点"
-	},
-	"I1125": {
-		"cls": "items",
-		"name": "十一阶白宝石",
-		"canUseItemEffect": "true",
-		"useItemEvent": [
-			{
-				"type": "choices",
-				"choices": [
-					{
-						"text": "攻击+800",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:atk",
-								"operator": "+=",
-								"value": "800"
-							}
-						]
-					},
-					{
-						"text": "防御+800",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:def",
-								"operator": "+=",
-								"value": "800"
-							}
-						]
-					},
-					{
-						"text": "生命上限+40000",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hpmax",
-								"operator": "+=",
-								"value": "40000"
-							}
-						]
-					}
-				]
-			}
-		],
-		"text": "进行加点"
-	},
-	"I1126": {
-		"cls": "items",
-		"name": "十二阶白宝石",
-		"canUseItemEffect": "true",
-		"useItemEvent": [
-			{
-				"type": "choices",
-				"choices": [
-					{
-						"text": "攻击+1600",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:atk",
-								"operator": "+=",
-								"value": "1600"
-							}
-						]
-					},
-					{
-						"text": "防御+1600",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:def",
-								"operator": "+=",
-								"value": "1600"
-							}
-						]
-					},
-					{
-						"text": "生命上限+80000",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hpmax",
-								"operator": "+=",
-								"value": "80000"
-							}
-						]
-					}
-				]
-			}
-		],
-		"text": "进行加点"
 	}
 }

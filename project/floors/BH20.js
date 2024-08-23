@@ -30,7 +30,7 @@ main.floors.BH20=
             "type": "if",
             "condition": "(flag:shengqishi>55)",
             "true": [
-                "\t[希羽,demonPriest]\b[this,6,3]辉儿，你那个守护骑士唐佳成，去了哪里呀？",
+                "\t[希羽,demonPriest]\b[this,6,3]辉儿，你那个守护骑士${flag:shengqishi_name}，去了哪里呀？",
                 "\t[莫析辉,hero]\b[hero]哦，岳父大人，教皇陛下要我去取一件宝物，所以我让他先回去一趟"
             ],
             "false": []
@@ -142,7 +142,8 @@ main.floors.BH20=
             ],
             "time": 500,
             "keep": true
-        }
+        },
+        "\t[莫析辉,hero]\b[hero]打完希羽后，会自爆，勇者血量会变成一血！！"
     ],
     "eachArrive": [],
     "parallelDo": "",

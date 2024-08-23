@@ -3918,6 +3918,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			// 跟数据统计原理一样 执行效果 前后比较
 			core.setFlag('__statistics__', true);
 			try {
+				var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100, 'I1097': 200, 'I1098': 400, 'I1099': 800, 'I1100': 1600 };
 				if (box.includes(block.event.id)) {
 					for (var i of (block.event.data[0].yes[0].false))
 						if (i.type == 'setValue') {
@@ -3940,14 +3941,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 							//core.events.setValue(i.name, i.operator, i.value);
 						};
 					diff['mana'] += { 'X10110': 50, 'X60549': 200, 'X60408': 80 } [block.event.id] || 0;
-					var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
 					diff['point'] = 0;
 					for (var i in addPoint)
 						if (diff[i]) diff['point'] += diff[i] * addPoint[i], diff[i] = 0;
 				} else {
-
 					eval(item.itemEffect);
-					var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
 					if (addPoint[block.event.id])
 						diff['point'] = addPoint[block.event.id]
 				}

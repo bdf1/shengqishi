@@ -321,7 +321,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E798": {"name":"金色武士","hp":1050000,"atk":215000,"def":118000,"money":480,"exp":0,"point":0,"special":[],"level":"三阶无上","displayIdInBook":null},
 	"E799": {"name":"墨武骑士","hp":1650000,"atk":240000,"def":136000,"money":520,"exp":0,"point":0,"special":[],"level":"四阶无上","displayIdInBook":null},
 	"E800": {"name":"黑影武士","hp":1480000,"atk":252000,"def":125000,"money":500,"exp":0,"point":0,"special":[30],"level":"四阶无上","displayIdInBook":null,"value30_1":3000,"value30_2":30},
-	"E801": {"name":"血色骑士","hp":2080000,"atk":232000,"def":65000,"money":500,"exp":0,"point":0,"special":[36,37],"level":"四阶无上","displayIdInBook":null,"value30_1":3000,"value30_2":30,"X":60,"Y":20,"beforeBattle":[{"type":"if","condition":"(flag:shengqishi>=55)","true":[{"type":"animate","name":"yijianzhanqianye"},"\t[唐佳成,N510]\b[this]让我来！","金币+550",{"type":"setValue","name":"status:money","operator":"+=","value":"550"}],"false":[]}]},
+	"E801": {"name":"血色骑士","hp":2080000,"atk":232000,"def":65000,"money":500,"exp":0,"point":0,"special":[36,37],"level":"四阶无上","displayIdInBook":null,"value30_1":3000,"value30_2":30,"X":60,"Y":20,"beforeBattle":[{"type":"if","condition":"(flag:shengqishi>=55)","true":[{"type":"animate","name":"yijianzhanqianye"},"\t[${flag:shengqishi_name},N510]\b[this]让我来！","金币+550",{"type":"setValue","name":"status:money","operator":"+=","value":"550"}],"false":[]}]},
 	"E802": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E803": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E804": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
