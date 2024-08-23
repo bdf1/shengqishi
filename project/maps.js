@@ -109,6 +109,8 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"141": {"cls":"autotile","id":"autotile5","canBreak":true},
 	"142": {"cls":"autotile","id":"autotile6"},
 	"143": {"cls":"autotile","id":"autotile7"},
+	"144": {"cls":"autotile","id":"autotile8","canBreak":true},
+	"145": {"cls":"autotile","id":"autotile9"},
 	"151": {"cls":"autotile","id":"autotile1","canBreak":true},
 	"152": {"cls":"autotile","id":"autotile2","canBreak":true},
 	"153": {"cls":"autotile","id":"autotile3"},
