@@ -78,12 +78,18 @@ main.floors.NH6=
     },
     "changeFloor": {
         "1,12": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "NH5",
+            "loc": [
+                1,
+                12
+            ]
         },
         "11,12": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "NH7",
+            "loc": [
+                11,
+                12
+            ]
         }
     },
     "beforeBattle": {},

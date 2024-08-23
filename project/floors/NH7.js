@@ -19,12 +19,18 @@ main.floors.NH7=
     "events": {},
     "changeFloor": {
         "11,12": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "NH6",
+            "loc": [
+                11,
+                12
+            ]
         },
         "1,12": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "NH8",
+            "loc": [
+                1,
+                12
+            ]
         }
     },
     "beforeBattle": {},

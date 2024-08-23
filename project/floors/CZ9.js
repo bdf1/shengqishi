@@ -19,12 +19,18 @@ main.floors.CZ9=
     "events": {},
     "changeFloor": {
         "6,0": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "CZ8",
+            "loc": [
+                6,
+                0
+            ]
         },
         "6,12": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "CZ10",
+            "loc": [
+                6,
+                12
+            ]
         }
     },
     "beforeBattle": {},

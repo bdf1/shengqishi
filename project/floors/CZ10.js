@@ -253,8 +253,11 @@ main.floors.CZ10=
     },
     "changeFloor": {
         "6,12": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "CZ9",
+            "loc": [
+                6,
+                12
+            ]
         }
     },
     "beforeBattle": {},

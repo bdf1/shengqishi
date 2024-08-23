@@ -34,8 +34,11 @@ main.floors.NH1=
             ]
         },
         "1,12": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "NH2",
+            "loc": [
+                1,
+                12
+            ]
         }
     },
     "beforeBattle": {},

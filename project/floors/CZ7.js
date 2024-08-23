@@ -80,8 +80,11 @@ main.floors.CZ7=
             ]
         },
         "3,12": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "CZ8",
+            "loc": [
+                3,
+                12
+            ]
         }
     },
     "beforeBattle": {
