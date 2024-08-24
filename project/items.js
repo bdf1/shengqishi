@@ -3213,8 +3213,8 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I1117": {
 		"cls": "items",
 		"name": "光明血瓶",
-		"text": "，生命+${core.values.greenPotion*800}",
-		"itemEffect": "core.status.hero.hp += core.values.greenPotion * core.status.thisMap.ratio * 800",
+		"text": "，生命+已损生命值的50%",
+		"itemEffect": "core.status.hero.hp += (core.getRealStatus('hpmax') - core.status.hero.hp) * 0.5;",
 		"itemEffectTip": "，生命+${core.values.greenPotion * core.status.thisMap.ratio*800}",
 		"useItemEffect": "core.status.hero.hp += core.values.greenPotion * 800",
 		"canUseItemEffect": "true"

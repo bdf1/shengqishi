@@ -10,9 +10,9 @@ main.floors.HA12=
     "canUseQuickShop": true,
     "cannotViewMap": true,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X40339",
-    "bgm": "hyzsam.mp3",
+    "bgm": "gentaiyangxishuozaijian.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
@@ -81,5 +81,11 @@ main.floors.HA12=
     "flyPoint": [
         6,
         12
-    ]
+    ],
+    "bg2map": [
+
+],
+    "fg2map": [
+
+]
 }

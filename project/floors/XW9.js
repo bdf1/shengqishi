@@ -45,26 +45,204 @@ main.floors.XW9=
         }
     },
     "beforeBattle": {},
-    "afterBattle": {},
+    "afterBattle": {
+        "1,6": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "1,7": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "3,6": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "3,7": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "9,6": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "9,7": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "11,6": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "11,7": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_5",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "9,12": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_11",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "11,12": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_10_11",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "1,12": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_11",
+                "operator": "+=",
+                "value": "1"
+            }
+        ],
+        "3,12": [
+            {
+                "type": "setValue",
+                "name": "flag:door_XW9_2_11",
+                "operator": "+=",
+                "value": "1"
+            }
+        ]
+    },
     "afterGetItem": {},
     "afterOpenDoor": {},
-    "autoEvent": {},
+    "autoEvent": {
+        "2,5": {
+            "0": {
+                "condition": "flag:door_XW9_2_5==4",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_XW9_2_5",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        },
+        "10,5": {
+            "0": {
+                "condition": "flag:door_XW9_10_5==4",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_XW9_10_5",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        },
+        "10,11": {
+            "0": {
+                "condition": "flag:door_XW9_10_11==2",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_XW9_10_11",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        },
+        "2,11": {
+            "0": {
+                "condition": "flag:door_XW9_2_11==2",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_XW9_2_11",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        }
+    },
     "cannotMove": {},
     "cannotMoveIn": {},
     "map": [
     [144,144,144,144,144,144,144,144,144,144,144,144,144],
-    [144,  0, 93,  0,144,  0, 93,  0,144,  0, 93,  0,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,144,  0,144,144,144,  0,144,144,144,  0,144,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,144,  0,144,144,  0,  0,  0,144,144,  0,144,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,144,  0,144,144,  0,  0,  0,144,144,  0,144,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,  0,  0,  0,144,  0,  0,  0,144,  0,  0,  0,144],
-    [144,144,  0,144,144,144,  0,144,144,144,  0,144,144],
-    [144,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,144]
+    [144,  0, 91,  0,144,  0, 93,  0,144,  0, 91,  0,144],
+    [144,688,  0,688,144,687,  0,687,144,688,  0,688,144],
+    [144,144,755,144,144,144,1022,144,144,144,755,144,144],
+    [144,688,  0,688,144,  0,  0,  0,144,688,  0,688,144],
+    [144,144, 85,144,144,851,144,851,144,144, 85,144,144],
+    [144,737,  0,737,144,  0,144,  0,144,737,  0,737,144],
+    [144,737,  0,737,144,347,144,346,144,737,  0,737,144],
+    [144,144, 82,144,144, 21,144, 21,144,144, 82,144,144],
+    [144,687,  0,687,144,  0,144,  0,144,687,  0,687,144],
+    [144,687,  0,687,144,1024,  0,1024,144,687,  0,687,144],
+    [144,144, 85,144,144,144,1021,144,144,144, 85,144,144],
+    [144,1022,  0,1022,  0,  0,  0,  0,  0,1022,  0,1022,144]
 ],
     "bgmap": [
 
@@ -75,5 +253,11 @@ main.floors.XW9=
     "flyPoint": [
         6,
         1
-    ]
+    ],
+    "bg2map": [
+
+],
+    "fg2map": [
+
+]
 }

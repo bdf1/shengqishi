@@ -228,7 +228,7 @@ main.floors.BH20=
             },
             {
                 "type": "setBlock",
-                "number": "N1164",
+                "number": "N484",
                 "loc": [
                     [
                         6,

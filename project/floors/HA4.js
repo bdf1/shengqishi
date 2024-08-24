@@ -10,9 +10,9 @@ main.floors.HA4=
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X140137",
-    "bgm": "shuiyu.mp3",
+    "bgm": "gentaiyangxishuozaijian.mp3",
     "firstArrive": [],
     "eachArrive": null,
     "parallelDo": "",
@@ -78,14 +78,15 @@ main.floors.HA4=
     [  0,  0,  0,  0,  0,41719,  0,41719,  0,  0,  0,  0,  0],
     [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
 ],
-    "color": [
-        0,
-        0,
-        0,
-        1
-    ],
+    "color": null,
     "flyPoint": [
         6,
         12
-    ]
+    ],
+    "bg2map": [
+
+],
+    "fg2map": [
+
+]
 }

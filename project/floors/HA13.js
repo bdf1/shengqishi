@@ -10,9 +10,9 @@ main.floors.HA13=
     "canUseQuickShop": true,
     "cannotViewMap": true,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X40098",
-    "bgm": "hyzsam.mp3",
+    "bgm": "gentaiyangxishuozaijian.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
@@ -65,5 +65,11 @@ main.floors.HA13=
     [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     [  0,41152,41152,41152,41152,41738,  0,41738,41152,41152,41152,41152,  0],
     [  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0]
+],
+    "bg2map": [
+
+],
+    "fg2map": [
+
 ]
 }

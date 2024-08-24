@@ -1045,5 +1045,10 @@ var maps_90f36752_8815_4be8_b32b_d7fad1d0542e =
 	"130018": {"cls":"tileset","id":"X130018","canBreak":true},
 	"130019": {"cls":"tileset","id":"X130019","canPass":false,"canBreak":true},
 	"130029": {"cls":"tileset","id":"X130029","canBreak":true},
-	"130031": {"cls":"tileset","id":"X130031","canBreak":true}
+	"130031": {"cls":"tileset","id":"X130031","canBreak":true},
+	"140004": {"cls":"tileset","id":"X140004","canBreak":true},
+	"140165": {"cls":"tileset","id":"X140165","canBreak":true},
+	"140166": {"cls":"tileset","id":"X140166","canBreak":true},
+	"140171": {"cls":"tileset","id":"X140171","canBreak":true},
+	"140180": {"cls":"tileset","id":"X140180","canBreak":true}
 }
