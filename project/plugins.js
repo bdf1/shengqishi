@@ -156,6 +156,24 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		if (callback) callback();
 	}
+	core.ui._drawCenterFly = function () {
+		core.lockControl();
+		core.status.event.id = 'centerFly';
+		var fillstyle = 'rgba(255,0,0,0.5)';
+		if (core.canUseItem('centerFly')) fillstyle = 'rgba(0,255,0,0.5)';
+		var toX = core.bigmap.width - 1 - core.getHeroLoc('x'),
+			toY = core.bigmap.height - 1 - core.getHeroLoc('y');
+		this.clearUI();
+		core.fillRect('ui', 0, 0, core._PX_, core._PY_, '#000000');
+		core.drawThumbnail(null, null, { heroLoc: core.status.hero.loc, heroIcon: core.status.hero.image, ctx: 'ui', centerX: toX, centerY: toY, noHD: true });
+		var offsetX = core.clamp(toX - core._HALF_WIDTH_, 0, core.bigmap.width - core._WIDTH_),
+			offsetY = core.clamp(toY - core._HALF_HEIGHT_, 0, core.bigmap.height - core._HEIGHT_);
+		core.fillRect('ui', (toX - offsetX) * 32, (toY - offsetY) * 32, 32, 32, fillstyle);
+		core.status.event.data = { "x": toX, "y": toY, "posX": toX - offsetX, "posY": toY - offsetY };
+		core.playSound('打开界面');
+		core.drawTip("请确认当前" + core.material.items['centerFly'].name + "的位置", 'centerFly');
+		return;
+	}
 },
     "drawLight": function () {
 
@@ -3818,26 +3836,27 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 								}
 							};
 							core.status.hero = new Proxy(hero, handler);
-							for (var i of (core.material.enemys[block.event.id].beforeBattle[0].true))
-								if (i.type == 'setValue') {
-									var value = core.events._updateValueByOperator(core.calValue(i.value), core.calValue(i.name), i.operator);
-									core.events._setValue_setStatus(i.name, value);
-									if ((i.name.indexOf("item:") == 0)) {
-										var itemId = i.name.substring(5),
-											count = core.itemCount(itemId);
-										if (core.material.items[itemId].itemEffect) {
-											for (var i = count; i < value; i++) eval(core.material.items[itemId].itemEffect);
-										} else diff[itemId] = value - count;
-									}
+							if (core.status.thisMap)
+								for (var i of (core.material.enemys[block.event.id].beforeBattle[0].true))
+									if (i.type == 'setValue') {
+										var value = core.events._updateValueByOperator(core.calValue(i.value), core.calValue(i.name), i.operator);
+										core.events._setValue_setStatus(i.name, value);
+										if ((i.name.indexOf("item:") == 0)) {
+											var itemId = i.name.substring(5),
+												count = core.itemCount(itemId);
+											if (core.material.items[itemId].itemEffect) {
+												for (var i = count; i < value; i++) eval(core.material.items[itemId].itemEffect);
+											} else diff[itemId] = value - count;
+										}
 
-									//core.events._setValue_setBuff(i.name, value);
-									//core.events._setValue_setItem(i.name, value);
-									//core.events._setValue_setFlag(i.name, value);
-									//core.events._setValue_setSwitch(i.name, value);
-									//core.events._setValue_setTemp(i.name, value);
-									//core.events._setValue_setGlobal(i.name, value);
-									//core.events.setValue(i.name, i.operator, i.value);
-								};
+										//core.events._setValue_setBuff(i.name, value);
+										//core.events._setValue_setItem(i.name, value);
+										//core.events._setValue_setFlag(i.name, value);
+										//core.events._setValue_setSwitch(i.name, value);
+										//core.events._setValue_setTemp(i.name, value);
+										//core.events._setValue_setGlobal(i.name, value);
+										//core.events.setValue(i.name, i.operator, i.value);
+									};
 							var addPoint = { 'I359': 1, 'I598': 2, 'I599': 4, 'I600': 8, 'I601': 16, 'I602': 32, 'I603': 64, 'I604': 100 };
 							diff['point'] = 0;
 							for (var i in addPoint)
