@@ -20,7 +20,45 @@ main.floors.XW10=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "6,3": [
+            "\t[栗柴湖,E937]\b[this,6,6]见过光明圣子殿下，圣子殿下驾到，有失远迎。",
+            "\t[莫析辉,hero]\b[hero]啧啧，不错嘛",
+            "\t[栗柴湖,E937]\b[this,6,6]圣子殿下所说何事呀",
+            "\t[莫析辉,hero]\b[hero]我以为西武帝国一片荒凉，西武帝国的皇宫应该会很破旧的，没想到呀……",
+            "\t[莫析辉,hero]\b[hero]百姓过的那么苦，你却过的如此逍遥，栗柴•湖，你可真行。",
+            "\t[栗柴湖,E937]\b[this,6,6]圣子殿下是来怪罪朕的么",
+            "\t[莫析辉,hero]\b[hero]我怎敢怪罪尊贵的西武帝国皇帝，如果没有猜错，你已经舍弃光明，投靠黑暗神殿了吧。",
+            "\t[栗柴湖,E937]\b[this,6,6]圣子殿下英明啊",
+            "\t[莫析辉,hero]\b[hero]你可以受死了",
+            "\t[栗柴湖,E937]\b[this,6,6]圣子殿下，您小看我了！我现在就让你知道，我在黑暗神殿的培养下，变得多么强大！",
+            {
+                "type": "screenFlash",
+                "color": [
+                    255,
+                    255,
+                    255,
+                    1
+                ],
+                "time": 500,
+                "times": 1
+            },
+            {
+                "type": "setBlock",
+                "number": "specialDoor",
+                "loc": [
+                    [
+                        6,
+                        2
+                    ]
+                ]
+            },
+            {
+                "type": "hide",
+                "remove": true
+            }
+        ]
+    },
     "changeFloor": {
         "6,0": {
             "floorId": "XW9",
@@ -31,7 +69,52 @@ main.floors.XW10=
         }
     },
     "beforeBattle": {},
-    "afterBattle": {},
+    "afterBattle": {
+        "6,6": [
+            "\t[栗柴湖,E937]\b[this]啊！圣子殿下饶命啊",
+            "\t[莫析辉,hero]\b[hero]是你要投靠黑暗的，怪不得我！",
+            {
+                "type": "setBlock",
+                "number": "I1100",
+                "loc": [
+                    [
+                        5,
+                        6
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I620",
+                "loc": [
+                    [
+                        7,
+                        6
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I416",
+                "loc": [
+                    [
+                        6,
+                        4
+                    ]
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        2
+                    ]
+                ],
+                "remove": true
+            }
+        ]
+    },
     "afterGetItem": {},
     "afterOpenDoor": {},
     "autoEvent": {},

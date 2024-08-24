@@ -121,7 +121,8 @@ var icons_4665ee12_3a1f_44a4_bea3_0fccba634dc1 =
 		"princess": 11,
 		"greenMan": 12,
 		"blueTrader": 13,
-		"N1096": 14
+		"N1096": 14,
+		"N1123": 15
 	},
 	"npc48": {
 		"npc0": 0,
@@ -346,7 +347,8 @@ var icons_4665ee12_3a1f_44a4_bea3_0fccba634dc1 =
 		"N1081": 219,
 		"N1082": 220,
 		"N1083": 221,
-		"N1084": 222
+		"N1084": 222,
+		"N1124": 223
 	},
 	"enemys": {
 		"greenSlime": 0,

@@ -16,7 +16,25 @@ main.floors.HA8=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "3,6": [
+            "\t[闪影护法,E857]什么人！",
+            {
+                "type": "setBlock",
+                "number": "specialDoor",
+                "loc": [
+                    [
+                        2,
+                        6
+                    ]
+                ]
+            },
+            {
+                "type": "hide",
+                "remove": true
+            }
+        ]
+    },
     "changeFloor": {
         "0,6": {
             "floorId": "HA7",
@@ -27,7 +45,71 @@ main.floors.HA8=
         }
     },
     "beforeBattle": {},
-    "afterBattle": {},
+    "afterBattle": {
+        "6,6": [
+            {
+                "type": "setBlock",
+                "number": "I350",
+                "loc": [
+                    [
+                        8,
+                        6
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "blueKey",
+                "loc": [
+                    [
+                        6,
+                        4
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I351",
+                "loc": [
+                    [
+                        4,
+                        6
+                    ]
+                ]
+            },
+            {
+                "type": "setBlock",
+                "number": "I1117",
+                "loc": [
+                    [
+                        6,
+                        8
+                    ]
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        2,
+                        6
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        8,
+                        11
+                    ]
+                ],
+                "floorId": "HA15",
+                "remove": true
+            }
+        ]
+    },
     "afterGetItem": {},
     "afterOpenDoor": {},
     "autoEvent": {},

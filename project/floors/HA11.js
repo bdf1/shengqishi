@@ -16,7 +16,191 @@ main.floors.HA11=
     "firstArrive": [],
     "eachArrive": null,
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "3,10": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "right:1",
+                            "down:1"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "2,10": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "down:1"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "1,10": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "down:1",
+                            "left:1"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "1,11": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "down:1",
+                            "left:1",
+                            "down:1"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "1,12": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "down:1",
+                            "left:1",
+                            "down:2"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "3,11": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "right:1",
+                            "down:2"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ],
+        "3,12": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzi===1)",
+                "true": [],
+                "false": [
+                    "\t[黑暗神使,E907]小子找死！吼！",
+                    {
+                        "type": "move",
+                        "loc": [
+                            2,
+                            9
+                        ],
+                        "time": 500,
+                        "keep": true,
+                        "steps": [
+                            "right:1",
+                            "down:3"
+                        ]
+                    },
+                    {
+                        "type": "battle"
+                    }
+                ]
+            }
+        ]
+    },
     "changeFloor": {
         "12,6": {
             "floorId": "HA10",
@@ -33,7 +217,42 @@ main.floors.HA11=
             ]
         }
     },
-    "beforeBattle": {},
+    "beforeBattle": {
+        "2,9": [
+            {
+                "type": "if",
+                "condition": "(flag:heianshengzhi===1)",
+                "true": [
+                    "\t[黑暗神使,E907]愿为殿下效犬马之劳",
+                    {
+                        "type": "setValue",
+                        "name": "status:atk",
+                        "operator": "+=",
+                        "value": "1000"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "status:def",
+                        "operator": "+=",
+                        "value": "1000"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "status:mdef",
+                        "operator": "+=",
+                        "value": "20000"
+                    },
+                    {
+                        "type": "hide",
+                        "remove": true
+                    }
+                ],
+                "false": [
+                    "\t[黑暗神使,E907]吼！"
+                ]
+            }
+        ]
+    },
     "afterBattle": {},
     "afterGetItem": {},
     "afterOpenDoor": {},

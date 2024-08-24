@@ -328,6 +328,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"cbzc.mp3",
 			"ending.mp3",
 			"gaolikangzhikb.mp3",
+			"gentaiyangxishuozaijian.mp3",
 			"jw.mp3",
 			"lfmg.mp3",
 			"mingyuetianya.mp3",

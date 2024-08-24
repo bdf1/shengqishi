@@ -20,7 +20,63 @@ main.floors.XW7=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "7,11": [
+            {
+                "type": "if",
+                "condition": "switch:A",
+                "true": [
+                    "\t[林霄,N485]\b[this]黑暗药水本来是给我们圣子殿下提升实力的。",
+                    {
+                        "type": "comment",
+                        "text": "下一条指令可视情况使用或不使用"
+                    },
+                    {
+                        "type": "hide",
+                        "remove": true,
+                        "time": 250
+                    }
+                ],
+                "false": [
+                    "\t[林霄,N485]\b[this]殿下，我这里有一瓶黑暗药水，能够使光明神殿的购买次数减少20%。你用3瓶玉露就送给你了。",
+                    {
+                        "type": "if",
+                        "condition": "(item:I416>=3)",
+                        "true": [
+                            {
+                                "type": "setValue",
+                                "name": "item:I416",
+                                "operator": "-=",
+                                "value": "3"
+                            },
+                            {
+                                "type": "setValue",
+                                "name": "item:I1114",
+                                "operator": "+=",
+                                "value": "1"
+                            },
+                            {
+                                "type": "playSound",
+                                "name": "确定"
+                            },
+                            {
+                                "type": "setValue",
+                                "name": "switch:A",
+                                "value": "true"
+                            }
+                        ],
+                        "false": [
+                            {
+                                "type": "playSound",
+                                "name": "操作失败"
+                            },
+                            "\t[林霄,N485]\b[this]你的玉露不够！"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     "changeFloor": {
         "1,11": {
             "floorId": "XW6",

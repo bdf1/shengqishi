@@ -16,7 +16,38 @@ main.floors.HA12=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "8,4": [
+            "\t[莫析辉,hero]\b[hero]这是什么?",
+            {
+                "type": "vibrate",
+                "direction": "horizontal",
+                "time": 2000,
+                "speed": 10,
+                "power": 10
+            },
+            "\t[莫析辉,hero]\b[hero]啊！",
+            {
+                "type": "changeFloor",
+                "floorId": "HA13",
+                "loc": [
+                    6,
+                    11
+                ]
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        8,
+                        4
+                    ]
+                ],
+                "floorId": "HA12",
+                "remove": true
+            }
+        ]
+    },
     "changeFloor": {
         "6,12": {
             "floorId": "HA11",

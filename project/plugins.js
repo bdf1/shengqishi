@@ -3800,9 +3800,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 						var t = core.material.enemys[block.event.id].beforeBattle[0].condition;
 						if (t[0] == '(') t = t.substring(1, t.length - 1);
 						t = t.replace('flag:shengqishi', '');
+						t = t.replace('flag:heianshengzi===1', '黑暗');
 						core.status.damage.data.push({ text: t, px: 32 * x + 1, py: 32 * (y + 1) - 21, color: '#FFFFFF' });
 						t = core.material.enemys[block.event.id].beforeBattle[0].condition;
 						t = t.replace('flag:shengqishi', flags.shengqishi || 0);
+						t = t.replace('flag:heianshengzi', flags.heianshengzi || 0);
 						if (eval(t)) {
 							core.status.damage.data = core.status.damage.data.filter(t => (t.px != 32 * x + 1 || (t.py != 32 * (y + 1) - 1 && t.py != 32 * (y + 1) - 11 && t.py != 32 * (y + 1) - 21)))
 							diff = {}
