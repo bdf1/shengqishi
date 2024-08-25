@@ -994,7 +994,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"startText": [
 			{
 				"type": "function",
-				"function": "function(){\nflags._statusgry_ = 0;\nflags._statusbrg_ = 0.8;\ncore.createSpr0();\ncore.createSprBack();\n}"
+				"function": "function(){\nflags._statusgry_ = 0;\nflags._statusbrg_ = 0.75;\ncore.createSpr0();\ncore.createSprBack();\n}"
 			},
 			{
 				"type": "comment",

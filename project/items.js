@@ -1413,7 +1413,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				]
 			}
 		],
-		"text": "进行系统设置"
+		"text": "进行系统设置；你当前溢出了${flag:overflow}点生命"
 	},
 	"I359": {
 		"cls": "items",

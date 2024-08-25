@@ -2809,7 +2809,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var m = '';
 		if (hero[name] < 0)
 			m = 'invert(100%)';
-		core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)brightness(1.25)' + m)
+		core.setFilter(ctx, 'hue-rotate(' + (col2 || 0) + 'deg)brightness(1.25)contrast(1.25)' + m)
 
 
 
