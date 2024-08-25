@@ -63,7 +63,7 @@ main.floors.YS10=
             "floorId": "GM1",
             "remove": true
         },
-        "提示：先去 GM8 ，然后去 SN10 ，最后去 GM2 。"
+        "前往\r[red]\\c[50]准圣子宫\\c[]\r[]"
     ],
     "eachArrive": [],
     "parallelDo": "",

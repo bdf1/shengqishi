@@ -481,7 +481,8 @@ main.floors.GM8=
             ],
             "floorId": "GM3",
             "remove": true
-        }
+        },
+        "前往\r[red]\\c[50]圣女宫\\c[]\r[]"
     ],
     "eachArrive": [],
     "parallelDo": "",

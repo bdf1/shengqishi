@@ -248,7 +248,8 @@ main.floors.SN10=
                     "name": "flag:luotao",
                     "operator": "+=",
                     "value": "1"
-                }
+                },
+                "前往\r[red]\\c[50]光明神殿\\c[]\r[]"
             ],
             "false": []
         }

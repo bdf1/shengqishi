@@ -13,7 +13,17 @@ main.floors.HA12=
     "ratio": 512,
     "defaultGround": "X40339",
     "bgm": "gentaiyangxishuozaijian.mp3",
-    "firstArrive": [],
+    "firstArrive": [
+        "\t[莫析辉,hero]\b[hero]黑暗圣子宫……好气派的房间，一点也不比光明圣子宫差呢……",
+        {
+            "type": "setHeroOpacity",
+            "opacity": 0
+        },
+        {
+            "type": "changeFloor",
+            "floorId": "MM6"
+        }
+    ],
     "eachArrive": [],
     "parallelDo": "",
     "events": {

@@ -2168,11 +2168,11 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "equips",
 		"name": "蕴灵甲",
 		"canUseItemEffect": "true",
-		"text": "防御力+12",
+		"text": "防御力+32",
 		"equip": {
 			"type": "法袍",
 			"value": {
-				"def": 12
+				"def": 32
 			},
 			"percentage": {}
 		}
