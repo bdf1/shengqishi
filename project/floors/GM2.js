@@ -160,8 +160,7 @@ main.floors.GM2=
             ],
             "floorId": "GM1",
             "remove": true
-        },
-        "\\c[30]本塔主要加攻击，且需要留怪。"
+        }
     ],
     "eachArrive": [
         {
@@ -209,7 +208,8 @@ main.floors.GM2=
                     "type": "setValue",
                     "name": "flag:luotao",
                     "value": "0"
-                }
+                },
+                "前往\r[red]\\c[50]西面的村庄\\c[]\r[]"
             ],
             "false": []
         }

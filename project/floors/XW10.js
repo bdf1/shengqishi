@@ -10,7 +10,7 @@ main.floors.XW10=
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "X140283",
     "bgm": "lfmg.mp3",
     "weather": [
