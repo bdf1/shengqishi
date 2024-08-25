@@ -48,8 +48,20 @@ main.floors.HA18=
                                 "value": "status:atk+status:def"
                             },
                             {
-                                "type": "win",
-                                "reason": ""
+                                "type": "if",
+                                "condition": "flag:heianshengzi",
+                                "true": [
+                                    {
+                                        "type": "win",
+                                        "reason": "吴璋达"
+                                    }
+                                ],
+                                "false": [
+                                    {
+                                        "type": "win",
+                                        "reason": "苗健壮"
+                                    }
+                                ]
                             }
                         ]
                     },

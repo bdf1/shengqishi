@@ -535,8 +535,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				]
 			},
 			{
-				"title": "困难",
-				"name": "Hard",
+				"title": "普通",
+				"name": "Normal",
 				"hard": 3,
 				"color": [
 					255,
@@ -547,8 +547,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				"action": []
 			},
 			{
-				"title": "？？？",
-				"name": "???",
+				"title": "困难",
+				"name": "Hard",
 				"hard": 4,
 				"color": [
 					255,
@@ -557,7 +557,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 					1
 				],
 				"action": [
-					"？？？难度琼浆玉露和神之血效果归零。"
+					"困难难度琼浆玉露和神之血不可用。"
 				]
 			}
 		],
