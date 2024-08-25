@@ -174,6 +174,31 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.drawTip("请确认当前" + core.material.items['centerFly'].name + "的位置", 'centerFly');
 		return;
 	}
+	this.calcEquip = function () {
+		var yifu_ = ['I635', 'I630', 'I631', 'I632'];
+		var fazhang_ = ['I337', 'I408', 'I409', 'I410', 'I411', 'I412', 'I413', 'I1116', 'I1115', 'I595'];
+		var juanzhou_ = ['I718', 'I719', 'I720', 'I723'];
+		var yifu = null,
+			fazhang = null;
+		for (var i of yifu_)
+			if (core.status.hero.equipment.includes(i) || core.hasItem(i)) yifu = i;
+		for (var i of fazhang_)
+			if (core.status.hero.equipment.includes(i) || core.hasItem(i)) fazhang = i;
+		juanzhou = core.clone(juanzhou_).filter(i => core.status.hero.equipment.includes(i) || core.hasItem(i));
+		flags.saveEquips = []
+		if (flags.shop3) {
+			while (juanzhou.length < 2) juanzhou.push(null);
+			for (var i = 0; i < juanzhou.length; i++)
+				for (var j = i + 1; j < juanzhou.length; j++)
+					flags.saveEquips.push([yifu, juanzhou[i], fazhang, juanzhou[j]]);
+		} else {
+			while (juanzhou.length < 1) juanzhou.push(null);
+			for (var i = 0; i < juanzhou.length; i++)
+				flags.saveEquips.push([yifu, juanzhou[i], fazhang]);
+		}
+
+
+	}
 },
     "drawLight": function () {
 
@@ -2818,12 +2843,15 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0, hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
 			var keyCol = [170, 0, 140, 250]
 			if (name === 'key2') {
-				//num = [hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
-				//keyCol = [140, 250]
+				num = [hero.items.tools.whiteKey || 0, hero.items.tools.I422 || 0];
+				keyCol = [-1, -2]
 			}
 			for (var k in num) {
 				var numk = num[k]
 				numk = numk.toString()
+				if (keyCol[k] < 0)
+					core.setFilter(ctx, 'grayscale(' + 100 + '%)');
+				else
 				core.setFilter(ctx, 'hue-rotate(' + keyCol[k] + 'deg)')
 				for (var i in numk) {
 					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k) - (k == 3 ? 10 : 0), y, 16, 16)
@@ -3052,7 +3080,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'money']
+		var heroStatus2 = ['def', 'mana', 'key2']
 		var Scol2 = [0, 20, 180, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
@@ -3070,7 +3098,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		//魔力
 		if (core.domStyle.isVertical) {
-			core.mystatusbox(ctx, 'mana', null, 48 + 128, 16, 20);
+			core.mystatusbox(ctx, 'mana', null, 48 + 128, 16, 20 + (flags.heianshengzi ? 120 : 0));
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
@@ -3079,9 +3107,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			//钥匙/金币
 			core.mystatusbox(ctx, 'potion', null, 48 + 256, 16, 180);
 			core.mystatusbox(ctx, 'potion', null, 48 + 22 + 256, 16 + 22, 300);
+			core.mystatusbox(ctx, 'money', null, 48 + 22 + 128, 16 + 22, 180);
 		}
 		else {
-			core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20);
+			core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20 + (flags.heianshengzi ? 120 : 0));
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
@@ -3115,34 +3144,34 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var text = [
 			//['等级', hero.lv + '  ' + leveltext[hero.lv - 1][0]],
 			//['经验', hero.exp + '/' + need],
-			['生命上限', (hero.hpmax < 0 ? '\r[red]' : '') + hero.hpmax + '\r'],
+			['血限', (hero.hpmax < 0 ? '\r[red]' : '') + hero.hpmax + '\r'],
 			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
 			['攻击', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
 			['防御', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
 			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
-			['魔量', hero.mana + '/' + hero.manamax],
+			['魔量', hero.mana],
 			['钥匙', core.itemCount('yellowKey') + '/' + core.itemCount('blueKey') + '/' + core.itemCount('redKey') + '/' + core.itemCount('greenKey')],
-			['金币', (hero.money < 0 ? '\r[red]' : '') + hero.money + '\r'],
+			['钥匙', core.itemCount('whiteKey') + '/' + core.itemCount('I422') + '\r'],
 			['亲密度', ''],
 			['神之血', ''],
 			['琼浆玉露', ''],
-			['金币', ''],
+			['金币', hero.money],
 		]
 		var text2 = [
 			//['等级', '下级' + leveltext[hero.lv - 1][1]],
 			//['经验', '积累达到最大时角色升级'],
-			['生命上限', '玩家最多拥有的生命'],
+			['血限', '玩家最多拥有的生命'],
 			['生命', '生命不足时游戏结束'],
 			['攻击', '影响角色每次普攻伤害'],
 			['防御', '影响角色受到攻击的直接减伤'],
 			['护盾', '每次战斗会抵挡伤害'],
 			['魔量', '用于施放技能的消耗'],
 			['钥匙', '用于开启黄/蓝/红/绿门'],
-			['金币', '用于商店购买的货币'],
+			['钥匙', '用于开启白/黑门'],
 			['亲密度', '和圣骑士、准圣子、圣女亲密度'],
-			['神之血', '按生命上限一定比例回血'],
-			['琼浆玉露', '按生命上限一定比例回血'],
-			['金币', ''],
+			['神之血', '增加生命上限一定比例的生命'],
+			['琼浆玉露', '增加生命上限一定比例的生命'],
+			['金币', '用于商店购买的货币'],
 		]
 
 		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
@@ -3223,7 +3252,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.mystatusNumber(ctx, 'hp', null, 48 + 22, 16 + 22, 250);
 		} else {
 			core.mystatusNumber(ctx, 'hpmax', null, 80, 100, 160);
-			core.mystatusNumber(ctx, 'hp', null, 80 + 22, 122, 250);
+			core.mystatusNumber(ctx, 'hp', null, 80 + 12, 122, 250);
 		}
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
@@ -3231,7 +3260,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'money']
+		var heroStatus2 = ['def', 'mana', 'key2']
 		var Scol2 = [0, 20, 180, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
@@ -3260,6 +3289,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			//钥匙/金币
 			core.mystatusNumber(ctx, 'potion1', null, 48 + 256, 16, 180);
 			core.mystatusNumber(ctx, 'potion2', null, 48 + 256 + 22, 16 + 22, 300);
+			core.mystatusNumber(ctx, 'money', null, 48 + 128 + 22, 16 + 22, 180);
 		}
 		else {
 			core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);

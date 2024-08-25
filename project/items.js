@@ -1111,7 +1111,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I415": {
 		"cls": "tools",
 		"name": "琼浆",
-		"canUseItemEffect": "true",
+		"canUseItemEffect": "core.status.hero.flags.hard<=3",
 		"text": "喝下后回复50%生命值",
 		"useItemEvent": [
 			{
@@ -1122,14 +1122,14 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:hpmax*0.5)"
+				"value": "(status:hpmax*0.5)*(flags.hard==1?2:1)"
 			}
 		]
 	},
 	"I416": {
 		"cls": "tools",
 		"name": "玉露",
-		"canUseItemEffect": "true",
+		"canUseItemEffect": "core.status.hero.flags.hard<=3",
 		"text": "喝下后恢复100%生命值",
 		"useItemEvent": [
 			{
@@ -1141,6 +1141,18 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				"name": "status:hp",
 				"operator": "+=",
 				"value": "(status:hpmax)"
+			},
+			{
+				"type": "if",
+				"condition": "flag:hard==1",
+				"true": [
+					{
+						"type": "setValue",
+						"name": "item:I415",
+						"operator": "+=",
+						"value": "1"
+					}
+				]
 			}
 		]
 	},
@@ -1366,6 +1378,10 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 										],
 										"action": [
 											"自动计算最优装备已打开!",
+											{
+												"type": "function",
+												"function": "function(){\ncore.plugin.calcEquip()\n}"
+											},
 											{
 												"type": "setValue",
 												"name": "flag:bestEquip",
@@ -2549,13 +2565,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						"type": "setValue",
 						"name": "status:hp",
 						"operator": "+=",
-						"value": "flag:input*(status:hpmax*0.05)"
+						"value": "flag:input*(status:hpmax*0.05)*(flags.hard==1?2:1)"
 					},
 					{
 						"type": "playSound",
 						"name": "回血"
 					},
-					"成功使用${flag:input}次初阶神之血，恢复${flag:input*(status:hpmax*0.05)}点生命。"
+					"成功使用${flag:input}次初阶神之血，恢复${flag:input*(status:hpmax*0.05)*(flags.hard==1?2:1)}点生命。"
 				],
 				"false": [
 					{
@@ -2566,7 +2582,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				]
 			}
 		],
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "core.status.hero.flags.hard<=3"
 	},
 	"I711": {
 		"cls": "tools",
@@ -2607,13 +2623,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						"type": "setValue",
 						"name": "status:hp",
 						"operator": "+=",
-						"value": "flag:input*(status:hpmax*0.1)"
+						"value": "flag:input*(status:hpmax*0.1)*(flags.hard==1?2:1)"
 					},
 					{
 						"type": "playSound",
 						"name": "回血"
 					},
-					"成功使用${flag:input}次进阶神之血，恢复${flag:input*(status:hpmax*0.1)}点生命。"
+					"成功使用${flag:input}次进阶神之血，恢复${flag:input*(status:hpmax*0.1)*(flags.hard==1?2:1)}点生命。"
 				],
 				"false": [
 					{
@@ -2624,7 +2640,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				]
 			}
 		],
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "core.status.hero.flags.hard<=3"
 	},
 	"I712": {
 		"cls": "tools",
@@ -2665,13 +2681,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						"type": "setValue",
 						"name": "status:hp",
 						"operator": "+=",
-						"value": "flag:input*(status:hpmax*0.15)"
+						"value": "flag:input*(status:hpmax*0.15)*(flags.hard==1?2:1)"
 					},
 					{
 						"type": "playSound",
 						"name": "回血"
 					},
-					"成功使用${flag:input}次中阶神之血，恢复${flag:input*(status:hpmax*0.15)}点生命。"
+					"成功使用${flag:input}次中阶神之血，恢复${flag:input*(status:hpmax*0.15)*(flags.hard==1?2:1)}点生命。"
 				],
 				"false": [
 					{
@@ -2682,7 +2698,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				]
 			}
 		],
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "core.status.hero.flags.hard<=3"
 	},
 	"I713": {
 		"cls": "tools",
@@ -2723,13 +2739,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						"type": "setValue",
 						"name": "status:hp",
 						"operator": "+=",
-						"value": "flag:input*(status:hpmax*0.2)"
+						"value": "flag:input*(status:hpmax*0.2)*(flags.hard==1?2:1)"
 					},
 					{
 						"type": "playSound",
 						"name": "回血"
 					},
-					"成功使用${flag:input}次高阶神之血，恢复${flag:input*(status:hpmax*0.2)}点生命。"
+					"成功使用${flag:input}次高阶神之血，恢复${flag:input*(status:hpmax*0.2)*(flags.hard==1?2:1)}点生命。"
 				],
 				"false": [
 					{
@@ -2740,12 +2756,12 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				]
 			}
 		],
-		"canUseItemEffect": "true"
+		"canUseItemEffect": "core.status.hero.flags.hard<=3"
 	},
 	"I714": {
 		"cls": "tools",
 		"name": "超阶神之血",
-		"canUseItemEffect": "true",
+		"canUseItemEffect": "core.status.hero.flags.hard<=3",
 		"text": "喝下后回复25%生命值",
 		"useItemEvent": [
 			{
@@ -2756,7 +2772,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:hpmax*0.25)"
+				"value": "(status:hpmax*0.25)*(flags.hard==1?2:1)"
 			}
 		]
 	},
@@ -3223,9 +3239,9 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "items",
 		"name": "黑暗血瓶",
 		"text": "，生命翻倍",
-		"itemEffect": "core.status.hero.hp *= 2",
+		"itemEffect": "core.status.hero.hp += Math.min(core.status.hero.hp, core.getRealStatus('hpmax') - core.status.hero.hp)",
 		"itemEffectTip": "，生命翻倍",
-		"useItemEffect": "core.status.hero.hp *= 2",
+		"useItemEffect": "core.status.hero.hp += Math.min(core.status.hero.hp, core.getRealStatus('hpmax') - core.status.hero.hp)",
 		"canUseItemEffect": "true"
 	}
 }

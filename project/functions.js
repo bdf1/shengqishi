@@ -505,7 +505,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.playSound('宝石')
 	else
 		core.playSound('获得道具');
-
+	if (core.material.items[itemId].cls == 'equips' || itemId == 'I715') core.plugin.calcEquip();
 	var todo = [];
 	// 检查该点的获得道具后事件。
 	if (core.status.floorId == null) return;

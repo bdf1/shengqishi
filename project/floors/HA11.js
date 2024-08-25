@@ -284,7 +284,12 @@ main.floors.HA11=
         12,
         6
     ],
-    "color": null,
+    "color": [
+        0,
+        0,
+        0,
+        0.5
+    ],
     "bg2map": [
 
 ],

@@ -166,8 +166,8 @@
 }
 
 #floorMsgGroup {
-    top: 3px;
-    right: 3px;
+    top: 0px;
+    right: 0px;
     position: absolute;
     text-align: center;
     display: none;
@@ -243,7 +243,7 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     display: none;
-    padding: 3px;
+    padding: 0px;
 }
 #toolBar .tools{
     position: relative;
