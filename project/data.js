@@ -490,18 +490,16 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 					1
 				],
 				"action": [
-					"简单模式赠送100瓶琼浆和100瓶玉露",
+					"简单难度琼浆玉露和神之血效果翻倍，玉露效果为回满血后再得一瓶琼浆。同时送琼浆玉露各【10】瓶。",
 					{
 						"type": "setValue",
 						"name": "item:I415",
-						"operator": "+=",
-						"value": "100"
+						"value": "10"
 					},
 					{
 						"type": "setValue",
 						"name": "item:I416",
-						"operator": "+=",
-						"value": "100"
+						"value": "10"
 					}
 				]
 			},
@@ -511,11 +509,25 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				"hard": 3,
 				"color": [
 					255,
-					68,
+					255,
 					64,
 					1
 				],
 				"action": []
+			},
+			{
+				"title": "？？？",
+				"name": "???",
+				"hard": 4,
+				"color": [
+					255,
+					68,
+					64,
+					1
+				],
+				"action": [
+					"？？？难度琼浆玉露和神之血效果归零。"
+				]
 			}
 		],
 		"equipName": [

@@ -10,7 +10,7 @@ main.floors.XW8=
     "canUseQuickShop": true,
     "cannotViewMap": false,
     "images": [],
-    "ratio": 1,
+    "ratio": 512,
     "defaultGround": "autotile7",
     "bgm": "lfmg.mp3",
     "weather": [

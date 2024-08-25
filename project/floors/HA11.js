@@ -221,7 +221,7 @@ main.floors.HA11=
         "2,9": [
             {
                 "type": "if",
-                "condition": "(flag:heianshengzhi===1)",
+                "condition": "(flag:heianshengzi===1)",
                 "true": [
                     "\t[黑暗神使,E907]愿为殿下效犬马之劳",
                     {
@@ -288,7 +288,7 @@ main.floors.HA11=
         0,
         0,
         0,
-        1
+        0.5
     ],
     "bg2map": [
 
