@@ -228,13 +228,13 @@ main.floors.HA11=
                         "type": "setValue",
                         "name": "status:atk",
                         "operator": "+=",
-                        "value": "1000"
+                        "value": "10000"
                     },
                     {
                         "type": "setValue",
                         "name": "status:def",
                         "operator": "+=",
-                        "value": "1000"
+                        "value": "10000"
                     },
                     {
                         "type": "setValue",

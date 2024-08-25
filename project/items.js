@@ -1446,25 +1446,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+50",
+						"text": "护盾+3，生命上限+50",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "3"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "50"
-							}
-						]
-					},
-					{
-						"text": "生命+1%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.01)"
 							}
 						]
 					}
@@ -1504,25 +1498,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+100",
+						"text": "护盾+6，生命上限+100",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "6"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "100"
-							}
-						]
-					},
-					{
-						"text": "生命+2%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.02)"
 							}
 						]
 					}
@@ -1562,25 +1550,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+200",
+						"text": "护盾+12，生命上限+200",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "12"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "200"
-							}
-						]
-					},
-					{
-						"text": "生命+4%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.04)"
 							}
 						]
 					}
@@ -1620,25 +1602,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+400",
+						"text": "护盾+24，生命上限+400",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "24"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "400"
-							}
-						]
-					},
-					{
-						"text": "生命+8%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.08)"
 							}
 						]
 					}
@@ -1678,25 +1654,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+800",
+						"text": "护盾+48，生命上限+800",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "48"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "800"
-							}
-						]
-					},
-					{
-						"text": "生命+16%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.16)"
 							}
 						]
 					}
@@ -1736,25 +1706,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+1600",
+						"text": "护盾+96，生命上限+1600",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "96"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "1600"
-							}
-						]
-					},
-					{
-						"text": "生命+32%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.32)"
 							}
 						]
 					}
@@ -1794,25 +1758,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+3200",
+						"text": "护盾+192，生命上限+3200",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "192"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "3200"
-							}
-						]
-					},
-					{
-						"text": "生命+64%",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax*0.64)"
 							}
 						]
 					}
@@ -1852,31 +1810,19 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+5000",
+						"text": "护盾+300，生命上限+5000",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "300"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
 								"operator": "+=",
 								"value": "5000"
-							}
-						]
-					},
-					{
-						"text": "生命+100%，魔力值+1000",
-						"need": "false",
-						"action": [
-							{
-								"type": "setValue",
-								"name": "status:hp",
-								"operator": "+=",
-								"value": "(status:hpmax)"
-							},
-							{
-								"type": "setValue",
-								"name": "status:mana",
-								"operator": "+=",
-								"value": "1000"
 							}
 						]
 					}
@@ -2936,8 +2882,14 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+10000",
+						"text": "护盾+600，生命上限+10000",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "600"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
@@ -2982,8 +2934,14 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+20000",
+						"text": "护盾+1200，生命上限+20000",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "1200"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
@@ -3028,8 +2986,14 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+40000",
+						"text": "护盾+2400，生命上限+40000",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "2400"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",
@@ -3074,8 +3038,14 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 						]
 					},
 					{
-						"text": "生命上限+80000",
+						"text": "护盾+4800，生命上限+80000",
 						"action": [
+							{
+								"type": "setValue",
+								"name": "status:mdef",
+								"operator": "+=",
+								"value": "4800"
+							},
 							{
 								"type": "setValue",
 								"name": "status:hpmax",

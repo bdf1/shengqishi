@@ -68,25 +68,25 @@ main.floors.HA4=
                         "type": "setValue",
                         "name": "status:atk",
                         "operator": "+=",
-                        "value": "5000"
+                        "value": "20000"
                     },
                     {
                         "type": "setValue",
                         "name": "status:def",
                         "operator": "+=",
-                        "value": "5000"
+                        "value": "20000"
                     },
                     {
                         "type": "setValue",
                         "name": "status:mdef",
                         "operator": "+=",
-                        "value": "5000"
+                        "value": "20000"
                     },
                     {
                         "type": "playSound",
                         "name": "回血"
                     },
-                    "\r[yellow]全属性提升50000\r[]",
+                    "\r[yellow]全属性提升20000\r[]",
                     "\t[莫析辉,hero]多谢黑暗之神",
                     "\t[墨奈,N1124]莫析辉，我有一个事情，不知道该不该说",
                     "\t[莫析辉,hero]你我一体，有什么不能说的。",
