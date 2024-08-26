@@ -1,8 +1,8 @@
-main.floors.MJ8=
+main.floors.LZ8=
 {
-    "floorId": "MJ8",
-    "title": "魔界 8 ",
-    "name": "魔界8",
+    "floorId": "LZ8",
+    "title": "龙族 8 ",
+    "name": "龙族8",
     "width": 13,
     "height": 13,
     "canFlyTo": true,
@@ -11,23 +11,23 @@ main.floors.MJ8=
     "cannotViewMap": false,
     "images": [],
     "ratio": 512,
-    "defaultGround": "ground",
+    "defaultGround": "grass",
     "bgm": "bgm.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
     "events": {
-        "0,4": [
+        "2,10": [
             {
                 "type": "if",
                 "condition": "(flag:hard===0)",
                 "true": [
-                    "\t[商人,hero]\b[this]另一个自己啊，我这有20000生命值，送给你吧！",
+                    "\t[商人,hero]\b[this]另一个自己啊，我这里有三把红钥匙，送给你啦",
                     {
                         "type": "setValue",
-                        "name": "status:hp",
+                        "name": "item:redKey",
                         "operator": "+=",
-                        "value": "20000"
+                        "value": "3"
                     },
                     {
                         "type": "hide",
@@ -37,7 +37,7 @@ main.floors.MJ8=
                 "false": [
                     {
                         "type": "confirm",
-                        "text": "我有20000生命值，\n你出2000金币就卖给你。",
+                        "text": "我有3把红钥匙，\n你出2000金币就卖给你。",
                         "yes": [
                             {
                                 "type": "if",
@@ -51,9 +51,9 @@ main.floors.MJ8=
                                     },
                                     {
                                         "type": "setValue",
-                                        "name": "status:hp",
+                                        "name": "item:redKey",
                                         "operator": "+=",
-                                        "value": "20000"
+                                        "value": "3"
                                     },
                                     {
                                         "type": "playSound",
@@ -80,74 +80,42 @@ main.floors.MJ8=
         ]
     },
     "changeFloor": {
-        "10,12": {
-            "floorId": ":before",
-            "stair": "upFloor"
+        "0,1": {
+            "floorId": "LZ7",
+            "loc": [
+                0,
+                1
+            ]
         },
-        "0,10": {
-            "floorId": ":next",
-            "stair": "downFloor"
+        "0,11": {
+            "floorId": "LZ9",
+            "loc": [
+                0,
+                11
+            ]
         }
     },
     "beforeBattle": {},
-    "afterBattle": {
-        "3,8": [
-            {
-                "type": "setValue",
-                "name": "flag:door_MT38_2_7",
-                "operator": "+=",
-                "value": "1"
-            }
-        ],
-        "3,6": [
-            {
-                "type": "setValue",
-                "name": "flag:door_MT38_2_7",
-                "operator": "+=",
-                "value": "1"
-            }
-        ]
-    },
+    "afterBattle": {},
     "afterGetItem": {},
     "afterOpenDoor": {},
-    "autoEvent": {
-        "2,7": {
-            "0": {
-                "condition": "flag:door_MT38_2_7==2",
-                "currentFloor": true,
-                "priority": 0,
-                "delayExecute": false,
-                "multiExecute": false,
-                "data": [
-                    {
-                        "type": "openDoor"
-                    },
-                    {
-                        "type": "setValue",
-                        "name": "flag:door_MT38_2_7",
-                        "operator": "=",
-                        "value": "null"
-                    }
-                ]
-            }
-        }
-    },
+    "autoEvent": {},
     "cannotMove": {},
     "cannotMoveIn": {},
     "map": [
-    [684,684,684,760, 82,750,  1, 21, 21, 21,  1,358,360],
-    [  1,  1,  1,  0,  1,  0,  1,685, 23,685, 81,358,360],
-    [362,362,362,757,  1,683,  1, 22, 22, 22,  1,358,360],
-    [  1,  1,  1,  1,  1,  0,  1,  0,247,  0,  1,  1,  1],
-    [122,  0,245,683,  1,761,  1,  1, 83,  1,  1,683,365],
-    [  1,  1,  1,  0,  1,  0,758,  0,683,  0, 82,760,363],
-    [  0,684,  1,759,  1, 81,  1,  1,  1,  1,  1,683,364],
-    [366,  0, 85,  0, 81,  0,761, 21,361,683,  1,  1,  1],
-    [  0, 21,  1,759,  1,245,  1,  1,  1,  1,  1,  0,360],
-    [  1,  1,  1,  1,  1,  0,  1,  0,245,  0, 81,757,  0],
-    [ 87,  0,761,  0, 81,  0,750,361,  1,683,  1,  0,358],
-    [  1, 81,  1,  1,  0,  1,  1,  1,  1,  0,  1,  1,  1],
-    [683,365,683,  1,683,  1, 21, 21,758,  0, 88,245,357]
+    [  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1],
+    [ 94,  0,  0,  1,679,  0,224,  0, 81,  0,  1,679,  1],
+    [  1,  0,344,212,  0,342,  1,216,  1,225,  1,679,  1],
+    [  1,216,  1,  1,  1,  1,  1, 21,  1,  0,  1,212,  1],
+    [  1,  0,  1,  0,346,679,  1,679,  1, 21,  1, 81,  1],
+    [  1,  0, 81,227, 21,348,  1, 21,  1,  0,224,  0,  1],
+    [  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,344,  1],
+    [  1,  0,345,680,  1,351,347,225,  1,348,  1,  0,  1],
+    [  1,227,679, 30,  1,  1,  1,  0,  1,344,  1,212,  1],
+    [  1, 81,  1,  1,279,342,343,222,  1,222,  1,  0,  1],
+    [  1,  0,122,  1,  1,  1,  1, 82,  1,  0,  1,679,  1],
+    [ 92,  0,  0,679, 81,212,  0,  0, 81,216, 81,  0,  1],
+    [  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1]
 ],
     "bgmap": [
 
@@ -162,7 +130,7 @@ main.floors.MJ8=
 
 ],
     "flyPoint": [
-        10,
-        12
+        0,
+        1
     ]
 }

@@ -1,8 +1,8 @@
-main.floors.LZ2=
+main.floors.MJ2=
 {
-    "floorId": "LZ2",
-    "title": "龙族 2 ",
-    "name": "龙族2",
+    "floorId": "MJ2",
+    "title": "魔界 2 ",
+    "name": "魔界2",
     "width": 13,
     "height": 13,
     "canFlyTo": true,
