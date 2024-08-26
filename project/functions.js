@@ -421,7 +421,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasEquip('I1115')) { core.status.hero.mana += 10 }
 	if (core.hasEquip('I1116'))
 		(core.status.hero.mana += 10)
-	if (core.hasItem('I722')) { core.status.hero.mana += damageInfo.mon_hp / 2500 }
+	if (core.hasItem('I722')) { core.status.hero.mana += damageInfo.mon_hp / 5000 }
 	//回复生命值
 	// 事件的处理
 	var todo = [];

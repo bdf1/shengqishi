@@ -569,7 +569,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E1031": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1032": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1033": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
-	"E1034": {"name":"黑暗教皇","hp":10000000,"atk":1000000,"def":400000,"money":10000,"exp":0,"point":0,"special":[],"notBomb":true,"beforeBattle":[{"type":"if","condition":"(flag:heianshengzi===1)","true":["\t[黑暗教皇,E1034]臭小子，还知道向我要东西了！莫析辉，要是你欺负小奈，我绝不会饶恕你！",{"type":"setValue","name":"status:money","operator":"+=","value":"75000"},{"type":"playSound","name":"获得道具"},"获得75000金币",{"type":"insert","name":"回收钥匙商店"},{"type":"hide","remove":true}],"false":[]}],"afterBattle":["\t[黑暗教皇,E1034]\b[this]黑暗永存！"]},
+	"E1034": {"name":"黑暗教皇","hp":20000000,"atk":2000000,"def":800000,"money":10000,"exp":0,"point":0,"special":[],"notBomb":true,"beforeBattle":[{"type":"if","condition":"(flag:heianshengzi===1)","true":["\t[黑暗教皇,E1034]臭小子，还知道向我要东西了！莫析辉，要是你欺负小奈，我绝不会饶恕你！",{"type":"setValue","name":"status:money","operator":"+=","value":"75000"},{"type":"playSound","name":"获得道具"},"获得75000金币",{"type":"insert","name":"回收钥匙商店"},{"type":"hide","remove":true}],"false":[]}],"afterBattle":["\t[黑暗教皇,E1034]\b[this]黑暗永存！"]},
 	"E1035": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1036": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1037": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},

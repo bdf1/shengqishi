@@ -2793,7 +2793,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "魔力卷轴",
 		"canUseItemEffect": "true",
-		"text": "战后恢复敌人生命万分之四魔力值",
+		"text": "战后恢复敌人生命万分之二魔力值",
 		"equip": {
 			"type": "卷轴",
 			"value": {},
