@@ -16,7 +16,30 @@ main.floors.MJ5=
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
-    "events": {},
+    "events": {
+        "6,9": [
+            "\t[唐佳成,N510]\b[this]这个家伙应该就是殿下的毕业任务啦！",
+            {
+                "type": "hide",
+                "remove": true
+            }
+        ],
+        "11,11": [
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>=72)",
+                "true": [
+                    {
+                        "type": "hide",
+                        "remove": true
+                    }
+                ],
+                "false": [
+                    "与圣骑士亲密度没有达到72，不允许通行"
+                ]
+            }
+        ]
+    },
     "changeFloor": {
         "6,12": {
             "floorId": ":before",
@@ -29,18 +52,28 @@ main.floors.MJ5=
     },
     "beforeBattle": {},
     "afterBattle": {
-        "3,10": [
+        "6,7": [
             {
                 "type": "setValue",
-                "name": "flag:door_MJ5_2_11",
+                "name": "flag:door_MJ5_5_3",
                 "operator": "+=",
                 "value": "1"
-            }
-        ],
-        "3,12": [
+            },
             {
                 "type": "setValue",
-                "name": "flag:door_MJ5_2_11",
+                "name": "flag:door_MJ5_7_3",
+                "operator": "+=",
+                "value": "1"
+            },
+            {
+                "type": "setValue",
+                "name": "flag:door_MJ5_10_7",
+                "operator": "+=",
+                "value": "1"
+            },
+            {
+                "type": "setValue",
+                "name": "flag:door_MJ5_6_2",
                 "operator": "+=",
                 "value": "1"
             }
@@ -49,9 +82,9 @@ main.floors.MJ5=
     "afterGetItem": {},
     "afterOpenDoor": {},
     "autoEvent": {
-        "2,11": {
+        "5,3": {
             "0": {
-                "condition": "flag:door_MJ5_2_11==2",
+                "condition": "flag:door_MJ5_5_3==1",
                 "currentFloor": true,
                 "priority": 0,
                 "delayExecute": false,
@@ -62,7 +95,68 @@ main.floors.MJ5=
                     },
                     {
                         "type": "setValue",
-                        "name": "flag:door_MJ5_2_11",
+                        "name": "flag:door_MJ5_5_3",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        },
+        "7,3": {
+            "0": {
+                "condition": "flag:door_MJ5_7_3==1",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ5_7_3",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            },
+            "1": null
+        },
+        "10,7": {
+            "0": {
+                "condition": "flag:door_MJ5_10_7==1",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ5_10_7",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        },
+        "6,2": {
+            "0": {
+                "condition": "flag:door_MJ5_6_2==1",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ5_6_2",
                         "operator": "=",
                         "value": "null"
                     }
@@ -73,19 +167,19 @@ main.floors.MJ5=
     "cannotMove": {},
     "cannotMoveIn": {},
     "map": [
-    [361,  4, 21,  0, 21,  4,360,358,684,760, 81,683,  0],
-    [361,  4,  0,363,  0,  4,360,358,684,  0,  4,  0,757],
-    [361,  4, 21,759, 21,  4,684,684,750,  4,  4,  4, 81],
-    [  0,  4,  4, 81,  4,  4,  4,  4, 82,  4,361,  0,  0],
-    [  0, 81,757,  0,683,  0,761,  4,  0,  4,  0, 22,  0],
-    [  4,  4, 83,  4,  4,  4, 81,  4,  0, 81,759,  0,361],
-    [  4,683,683,683,  4,  0,  0,  4, 81,  4,  4,  4,  4],
-    [  4,683,683,683,  4,683,  0,  4,  0,760, 82,  0,683],
-    [  4,683,683,683,  4,  0,245,  4, 21, 21,  4,  0,  4],
-    [  4,  4,  4,  4,  4,  4, 81,  4, 21, 21,  4,750,  4],
-    [  0,684,  4,245,  0,  4,  0,  4,  0,  0,  4, 81,  4],
-    [362,  0, 85,  0,  0,  4,  0, 81,758,  0,  4,  0,  4],
-    [  0, 23,  4,245,  0, 82, 88,  4,  4,  4,  4, 87,  4]
+    [  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4,  4],
+    [  4,  4,  4,  4,  4,  4,1115,  4,  4,  4,  4,  4,  4],
+    [  4,  4,703,703,703,  4, 85,  4,714,714,714,  4,  4],
+    [  4,  4, 21, 21, 21, 85,  0, 85,349,349,349,  4,  4],
+    [  4,  4,  4,  4,  4,  4,  0,  4,  4,  4,  4,  4,  4],
+    [  4,  4,  4,  4,  4,1161,1170,1162,  4,  4,  4,  4,  4],
+    [  4,  4,  4,  4,  4,1163,1164,1165,  4,  4,  4,  4,  4],
+    [  4,  4,  4,  4,  4,1166,1169,1168,  0,  0, 85,  0,  4],
+    [  4,  4,  4,  4,  4,  4, 83,  4,  4,  4,  4,  0,  4],
+    [  4,  4,  4,  4,  4,  4,510,  4,  4,  4,  4,  0,  4],
+    [  4,  4,  4,  4,  4,  4,  0,  4,  4,  4,  4,  0,  4],
+    [  4,  4,  4,  4,  4,  4,  0,  4,  4,  4,  4,1095,  4],
+    [  4,  4,  4,  4,  4,  4, 91,  4,  4,  4,  4, 93,  4]
 ],
     "bgmap": [
 

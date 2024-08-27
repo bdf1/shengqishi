@@ -88,7 +88,7 @@ main.floors.YS9=
                 "operator": "+=",
                 "value": "2"
             },
-            "\t[孟芸,magicMaster]去吧，你的毕业任务是前往魔界，击杀百眼魔君！击杀百眼魔君之后，可以找江鹤依浩仙子提交任务获得奖励。"
+            "\t[孟芸,magicMaster]去吧，你的毕业任务是前往魔界，击杀幽冥魔君！击杀幽冥魔君之后，可以找江鹤依浩仙子提交任务获得奖励。"
         ]
     },
     "afterGetItem": {},
@@ -146,7 +146,7 @@ main.floors.YS9=
                 "type": "if",
                 "condition": "(flag:shengqishi>1)",
                 "true": [
-                    "\t[孟芸老师,magicMaster]\b[this,6,8]${flag:shengqishi_name}，你的任务……是去魔界，击杀一头魔龙。",
+                    "\t[孟芸老师,magicMaster]\b[this,6,8]${flag:shengqishi_name}，你的任务……是去魔界，击杀美面魔帝。",
                     "\t[莫析辉,hero]\b[hero]老师，${flag:shengqishi_name}的任务是不是太难了一些？",
                     "\t[孟芸老师,magicMaster]\b[this,6,8]${flag:shengqishi_name}的实力比平常人也强一些，所以任务也更难一点，不过，光明圣子阁下可以帮他一起完成毕业任务。",
                     "\t[莫析辉,hero]\b[hero]好。${flag:shengqishi_name}，你先退下吧！",

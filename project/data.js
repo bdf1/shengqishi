@@ -244,6 +244,8 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"def.png",
 			"def2.png",
 			"dragon.png",
+			"dragon1_compress.png",
+			"dragonknight.png",
 			"exp.png",
 			"expL.png",
 			"expLt.png",
@@ -256,6 +258,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"manaLt.png",
 			"mdef.png",
 			"money.png",
+			"octopus.png",
 			"potion.png",
 			"shengzi.png",
 			"winskin.png"
@@ -622,6 +625,24 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 				"width": 384,
 				"height": 96,
 				"prefix": "dragon_"
+			},
+			{
+				"name": "dragon1_compress.png",
+				"width": 384,
+				"height": 96,
+				"prefix": "dragon1_compress_"
+			},
+			{
+				"name": "dragonknight.png",
+				"width": 384,
+				"height": 96,
+				"prefix": "dragonknight_"
+			},
+			{
+				"name": "octopus.png",
+				"width": 384,
+				"height": 96,
+				"prefix": "octopus_"
 			}
 		]
 	},
