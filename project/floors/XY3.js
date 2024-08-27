@@ -13,7 +13,9 @@ main.floors.XY3=
     "ratio": 1,
     "defaultGround": "X20061",
     "bgm": "bxsgzz.mp3",
-    "firstArrive": [],
+    "firstArrive": [
+        "你看见骑士的\">4\"了吗，当圣骑士亲密度>4时就可以免打。\n当亲密度>4时骑士会变成一个灰色的44，表示圣骑士会打掉这个骑士，然后主角获得44金币。\n后面同理。\n有些怪会有一个\"黑暗\"，表示和黑暗圣子融合后可以免打。"
+    ],
     "eachArrive": [],
     "parallelDo": "",
     "events": {

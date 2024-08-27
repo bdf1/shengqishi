@@ -37,7 +37,8 @@ main.floors.BH1=
             "steps": [
                 "up:8"
             ]
-        }
+        },
+        "宝箱会显示宝箱内的物品，灰色表示金币。"
     ],
     "eachArrive": [],
     "parallelDo": "",

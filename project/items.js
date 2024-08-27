@@ -1112,7 +1112,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "tools",
 		"name": "琼浆",
 		"canUseItemEffect": "core.status.hero.flags.hard<=3",
-		"text": "喝下后回复50%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(50*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "playSound",
@@ -1130,7 +1130,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "tools",
 		"name": "玉露",
 		"canUseItemEffect": "core.status.hero.flags.hard<=3",
-		"text": "喝下后恢复100%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"喝下后恢复100%生命值\"+(flag:hard==1?\"再得一瓶琼浆\":\"\")}",
 		"useItemEvent": [
 			{
 				"type": "playSound",
@@ -2475,7 +2475,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I710": {
 		"cls": "tools",
 		"name": "初阶神之血",
-		"text": "可以恢复5%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(5*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "comment",
@@ -2533,7 +2533,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I711": {
 		"cls": "tools",
 		"name": "进阶神之血",
-		"text": "可以恢复10%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(10*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "comment",
@@ -2591,7 +2591,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I712": {
 		"cls": "tools",
 		"name": "中阶神之血",
-		"text": "可以恢复15%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(15*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "comment",
@@ -2649,7 +2649,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 	"I713": {
 		"cls": "tools",
 		"name": "高阶神之血",
-		"text": "可以恢复20%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(20*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "comment",
@@ -2708,7 +2708,7 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "tools",
 		"name": "超阶神之血",
 		"canUseItemEffect": "core.status.hero.flags.hard<=3",
-		"text": "喝下后回复25%生命值",
+		"text": "${flag:hard>3?\"该难度下不可用！\":\"可以恢复\"+(25*(flags.hard==1?2:1))+\"%生命值\"}",
 		"useItemEvent": [
 			{
 				"type": "playSound",

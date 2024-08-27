@@ -3353,7 +3353,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			main.statusBar.image.shop.onclick(e);
 			break;
 		case 9:
-			main.core.ui._drawReplay();
+			if (!core.status.lockControl) main.core.ui._drawReplay();
 		}
 		//console.log("点击的位置合法，x:" + x + 'y:' + y);
 
@@ -4025,7 +4025,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			switch (name) {
 			case 'atk':
 			case 'atkper':
-				color = '#FF7A7A';
+				color = '#FF3A3A';
 				break;
 			case 'def':
 			case 'defper':
