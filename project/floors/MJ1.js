@@ -28,8 +28,11 @@ main.floors.MJ1=
     "events": {},
     "changeFloor": {
         "12,1": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "MJ2",
+            "loc": [
+                12,
+                0
+            ]
         },
         "6,11": {
             "floorId": "YS10",

@@ -417,11 +417,11 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasEquip('I411')) { core.status.hero.mana += 5 }
 	if (core.hasEquip('I412')) { core.status.hero.mana += 7 }
 	if (core.hasEquip('I413')) { core.status.hero.mana += 9 }
-	if (core.hasEquip('I595')) { core.status.hero.mana += 20 }
+	if (core.hasEquip('I595')) { core.status.hero.mana += 100 }
 	if (core.hasEquip('I1115')) { core.status.hero.mana += 10 }
 	if (core.hasEquip('I1116'))
 		(core.status.hero.mana += 10)
-	if (core.hasItem('I722')) { core.status.hero.mana += damageInfo.mon_hp / 5000 }
+	if (core.hasItem('I722')) { core.status.hero.mana += Math.min(Math.sqrt(damageInfo.mon_hp / 500), 50) }
 	//回复生命值
 	// 事件的处理
 	var todo = [];

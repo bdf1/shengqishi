@@ -92,7 +92,8 @@ main.floors.GM1=
                 ]
             ],
             "remove": true
-        }
+        },
+        "\t[莫析辉,hero]\b[hero]\\c[30]本塔存在幸运金币，和打怪回魔力的法杖，且越到后面获得的法杖回魔力效果越强，因此建议留怪。"
     ],
     "eachArrive": [],
     "parallelDo": "",

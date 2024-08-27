@@ -658,7 +658,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"lv": 1,
 			"hpmax": 1000,
 			"hp": 1000,
-			"manamax": -1,
+			"manamax": 602214,
 			"mana": 100,
 			"atk": 10,
 			"def": 10,
@@ -1225,7 +1225,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							44,
 							1
 						],
-						"condition": "flag:shop1>200&&flag:shop1<292",
+						"condition": "flag:shop1>200&&flag:shop1<392",
 						"action": [
 							{
 								"type": "comment",
@@ -1260,7 +1260,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							44,
 							1
 						],
-						"condition": "flag:shop1>=292",
+						"condition": "flag:shop1>=392",
 						"action": [
 							{
 								"type": "comment",
@@ -1394,7 +1394,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							246,
 							1
 						],
-						"condition": "flag:shop1>200&&flag:shop1<292",
+						"condition": "flag:shop1>200&&flag:shop1<392",
 						"action": [
 							{
 								"type": "comment",
@@ -1429,7 +1429,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							246,
 							1
 						],
-						"condition": "flag:shop1>=292",
+						"condition": "flag:shop1>=392",
 						"action": [
 							{
 								"type": "comment",
@@ -1657,7 +1657,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							149,
 							1
 						],
-						"condition": "flag:shop1>200&&flag:shop1<292",
+						"condition": "flag:shop1>200&&flag:shop1<392",
 						"action": [
 							{
 								"type": "comment",
@@ -1698,7 +1698,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 							149,
 							1
 						],
-						"condition": "flag:shop1>=292",
+						"condition": "flag:shop1>=392",
 						"action": [
 							{
 								"type": "comment",

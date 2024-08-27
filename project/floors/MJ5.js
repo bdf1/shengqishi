@@ -27,7 +27,7 @@ main.floors.MJ5=
         "11,11": [
             {
                 "type": "if",
-                "condition": "(flag:shengqishi>=72)",
+                "condition": "(flag:shengqishi>=99)",
                 "true": [
                     {
                         "type": "hide",
@@ -35,7 +35,7 @@ main.floors.MJ5=
                     }
                 ],
                 "false": [
-                    "与圣骑士亲密度没有达到72，不允许通行"
+                    "与圣骑士亲密度没有达到99，不允许通行"
                 ]
             }
         ]
@@ -76,6 +76,86 @@ main.floors.MJ5=
                 "name": "flag:door_MJ5_6_2",
                 "operator": "+=",
                 "value": "1"
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        5,
+                        5
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        5,
+                        6
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        5,
+                        7
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        5
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        6,
+                        6
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        7,
+                        5
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        7,
+                        6
+                    ]
+                ],
+                "remove": true
+            },
+            {
+                "type": "hide",
+                "loc": [
+                    [
+                        7,
+                        7
+                    ]
+                ],
+                "remove": true
             }
         ]
     },

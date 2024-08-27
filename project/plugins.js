@@ -2826,7 +2826,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				if (hero[name] < 0)
 					num = '-'.concat(num)
 			}
-			if (name === 'atk' || name === 'def' || name === 'mdef') num = core.getRealStatus(name).toString()
+			if (name === 'atk' || name === 'def' || name === 'mdef' || name === 'hpmax') num = core.getRealStatus(name).toString()
 			for (var i in num) {
 				core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i), y, 16, 16)
 				if (num[i] === '.')
@@ -3144,7 +3144,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var text = [
 			//['等级', hero.lv + '  ' + leveltext[hero.lv - 1][0]],
 			//['经验', hero.exp + '/' + need],
-			['血限', (hero.hpmax < 0 ? '\r[red]' : '') + hero.hpmax + '\r'],
+			['血限', (hero.hpmax < 0 ? '\r[red]' : '') + core.getRealStatus('hpmax') + '\r'],
 			['生命', (hero.mdef < 0 ? '\r[red]' : '') + hero.hp + '\r'],
 			['攻击', (hero.atk < 0 ? '\r[red]' : '') + hero.atk + '\r'],
 			['防御', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
@@ -3255,7 +3255,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.mystatusNumber(ctx, 'hp', null, 80 + 12, 122, 250);
 		}
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
-		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
+		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / core.getRealStatus('hpmax'), 32, 60 - 16 + 4, 142, 128 * hero.hp / core.getRealStatus('hpmax'), 32)
 		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']

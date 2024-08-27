@@ -131,7 +131,7 @@ main.floors.ZH1=
                     "你已经购买了此物"
                 ],
                 "false": [
-                    "魔力卷轴，购买价格5000金币，效果：击败敌人后额外获得敌人生命值2‱魔力值。",
+                    "魔力卷轴，购买价格5000金币，效果：击败敌人后额外获得敌人生命值20‱再开根号的魔力值，最多50点。",
                     {
                         "type": "choices",
                         "text": "\t[魔力卷轴,I722]选择",
@@ -322,6 +322,16 @@ main.floors.ZH1=
                 "true": [
                     {
                         "type": "if",
+                        "condition": "((item:I1115 && core.hasEquip('I1116'))||(item:I1116 && core.hasEquip('I1115')))",
+                        "true": [
+                            {
+                                "type": "unloadEquip",
+                                "pos": 0
+                            }
+                        ]
+                    },
+                    {
+                        "type": "if",
                         "condition": "((item:I1115===1)&&(item:I1116===1))",
                         "true": [
                             "\t[涂歆,N558]\b[this]想不到，你竟然能够同时获得这两种神杖！",
@@ -353,7 +363,9 @@ main.floors.ZH1=
                                 "value": "1"
                             }
                         ],
-                        "false": []
+                        "false": [
+                            "\t[涂歆,N558]\b[this]生命卷轴和魔力卷轴为咸鱼卷轴，MAX玩家不建议购买"
+                        ]
                     }
                 ],
                 "false": [
@@ -364,7 +376,8 @@ main.floors.ZH1=
                         "type": "setValue",
                         "name": "switch:A",
                         "value": "true"
-                    }
+                    },
+                    "\t[涂歆,N558]\b[this]生命卷轴和魔力卷轴为咸鱼卷轴，MAX玩家不建议购买"
                 ]
             }
         ]
