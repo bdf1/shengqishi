@@ -12,7 +12,7 @@ main.floors.MJ5=
     "images": [],
     "ratio": 512,
     "defaultGround": "ground",
-    "bgm": "bgm.mp3",
+    "bgm": "douguishen.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
@@ -24,21 +24,35 @@ main.floors.MJ5=
                 "remove": true
             }
         ],
-        "11,11": [
-            {
-                "type": "if",
-                "condition": "(flag:shengqishi>=99)",
-                "true": [
-                    {
-                        "type": "hide",
-                        "remove": true
-                    }
-                ],
-                "false": [
-                    "与圣骑士亲密度没有达到99，不允许通行"
-                ]
-            }
-        ]
+        "11,11": {
+            "trigger": "action",
+            "enable": true,
+            "noPass": null,
+            "displayDamage": true,
+            "opacity": 1,
+            "filter": {
+                "blur": 0,
+                "hue": 0,
+                "grayscale": 0,
+                "invert": false,
+                "shadow": 0
+            },
+            "data": [
+                {
+                    "type": "if",
+                    "condition": "(flag:shengqishi>=100)",
+                    "true": [
+                        {
+                            "type": "hide",
+                            "remove": true
+                        }
+                    ],
+                    "false": [
+                        "与圣骑士亲密度没有达到100，不允许通行"
+                    ]
+                }
+            ]
+        }
     },
     "changeFloor": {
         "6,12": {
@@ -75,6 +89,11 @@ main.floors.MJ5=
                 "type": "setValue",
                 "name": "flag:door_MJ5_6_2",
                 "operator": "+=",
+                "value": "1"
+            },
+            {
+                "type": "setValue",
+                "name": "flag:youmingmojun",
                 "value": "1"
             },
             {

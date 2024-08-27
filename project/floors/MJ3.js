@@ -12,7 +12,7 @@ main.floors.MJ3=
     "images": [],
     "ratio": 512,
     "defaultGround": "ground",
-    "bgm": "bgm.mp3",
+    "bgm": "douguishen.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",

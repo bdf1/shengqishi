@@ -196,7 +196,115 @@ main.floors.YS10=
             }
         ],
         "8,9": [
-            "\t[江鹤依浩,fairy]\b[this]你好，我是神奇的江鹤依浩，你要做什么呢？"
+            "\t[江鹤依浩,fairy]\b[this]你好，我是神奇的江鹤依浩，你要做什么呢？",
+            {
+                "type": "choices",
+                "text": "\t[江鹤依浩,fairy]你可以在这里提交毕业任务",
+                "choices": [
+                    {
+                        "text": "幽冥魔君",
+                        "action": [
+                            {
+                                "type": "if",
+                                "condition": "(flag:youmingmojun===2)",
+                                "true": [
+                                    "\t[江鹤依浩,fairy]\b[this]该任务已经提交！"
+                                ],
+                                "false": [
+                                    {
+                                        "type": "if",
+                                        "condition": "(flag:youmingmojun===1)",
+                                        "true": [
+                                            "\t[江鹤依浩,fairy]\b[this]不错啊，竟然完成了击杀幽冥魔君的毕业任务，这是你的毕业奖励。攻防护盾+1w，魔力值+1000，生命上限+10w",
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:hpmax",
+                                                "operator": "+=",
+                                                "value": "100000"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:atk",
+                                                "operator": "+=",
+                                                "value": "10000"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:def",
+                                                "operator": "+=",
+                                                "value": "10000"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:mdef",
+                                                "operator": "+=",
+                                                "value": "10000"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:mana",
+                                                "operator": "+=",
+                                                "value": "10000"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "flag:youmingmojun",
+                                                "operator": "+=",
+                                                "value": "1"
+                                            }
+                                        ],
+                                        "false": [
+                                            "\t[江鹤依浩,fairy]\b[this]你还没有完成该任务！"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "text": "美面魔帝",
+                        "action": [
+                            {
+                                "type": "if",
+                                "condition": "(flag:meimianmodi===2)",
+                                "true": [
+                                    "\t[江鹤依浩,fairy]\b[this]该任务已经提交！"
+                                ],
+                                "false": [
+                                    {
+                                        "type": "if",
+                                        "condition": "(flag:meimianmodi===1)",
+                                        "true": [
+                                            "\t[江鹤依浩,fairy]\b[this]美面魔帝这么难的任务，你们两个竟然击败了它！",
+                                            "\t[莫析辉,hero]\b[hero]还是学院教导的好",
+                                            "\t[江鹤依浩,fairy]\b[this]这是你的奖励。",
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I1088",
+                                                "operator": "+=",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "flag:meimianmodi",
+                                                "operator": "+=",
+                                                "value": "1"
+                                            }
+                                        ],
+                                        "false": [
+                                            "\t[江鹤依浩,fairy]\b[this]你还没有完成该任务！"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "text": "无事",
+                        "action": []
+                    }
+                ]
+            }
         ],
         "6,8": [
             "此传送阵需要魔力值开启，建议通关黑暗神殿区域之后再进入",

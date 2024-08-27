@@ -12,7 +12,7 @@ main.floors.LZ1=
     "images": [],
     "ratio": 512,
     "defaultGround": "grass",
-    "bgm": "bgm.mp3",
+    "bgm": "mingyuetianya.mp3",
     "firstArrive": [
         "龙族剧情按照与圣骑士亲密度极好情况进行（亲密度不够依旧按照亲密度达到进行），玩法还是按照实际亲密度进行（亲密度不够不会额外获得帮助）。",
         "因圣骑士唐佳成的感应，光明圣子莫析辉与圣骑士二人来到了龙族，这块神秘的，远离光明神殿的岛屿……",

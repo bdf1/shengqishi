@@ -512,7 +512,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E1168": {"name":"火蝙蝠","hp":60000000,"atk":405000,"def":98000,"money":300,"exp":0,"point":0,"special":[35]},
 	"E1169": {"name":"幽冥魔君","hp":10000000,"atk":940000,"def":465000,"money":1000,"exp":0,"point":0,"special":[30],"level":"八阶无上","value30_1":10000,"value30_2":50,"displayIdInBook":null},
 	"E1170": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
-	"E1171": {"name":"美面魔帝","hp":100000000,"atk":3200000,"def":0,"money":0,"exp":0,"point":0,"special":[30],"level":"九阶无上","value30_1":602214,"value30_2":200},
+	"E1171": {"name":"美面魔帝","hp":200000000,"atk":3600000,"def":0,"money":0,"exp":0,"point":0,"special":[30],"level":"九阶无上","value30_1":602214,"value30_2":60,"notBomb":true},
 	"E1172": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1173": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1174": {"name":"火焰史莱姆王","hp":8000000,"atk":68000,"def":16040,"money":192,"exp":0,"point":0,"special":[21,35,39],"Mdefvalue":null,"mdefValue":100,"Atkvalue":35,"Defvalue":35},
@@ -521,7 +521,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E1177": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1178": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1179": {"name":"冰骨蝙蝠","hp":480000000000,"atk":60000000,"def":24500000,"money":30000,"exp":0,"point":0,"special":[42]},
-	"E1180": {"name":"新敌人","hp":36000000,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[10,17],"bigImage":"dragonknight_1.png"},
+	"E1180": {"name":"赤焰黑龙","hp":36000000,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[10,17],"bigImage":"dragonknight_1.png","level":"八阶无上"},
 	"E1246": {"name":"混沌魔君(阵法削弱状态)","hp":5000000000000,"atk":100000000,"def":20000000,"money":100000,"exp":0,"point":0,"special":[2],"description":"灵兽榜上第二名，混沌属性最强灵兽","notBomb":true},
 	"E827": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E988": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
@@ -620,7 +620,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E1136": {"name":"深渊巨龙","hp":20000000,"atk":1000000,"def":350000,"money":5000,"exp":0,"point":0,"special":[30,35],"level":"九阶无上","value30_1":10000,"value30_2":60},
 	"E1159": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1160": {"name":"棒锥","hp":10000000,"atk":940000,"def":465000,"money":1000,"exp":0,"point":0,"special":[30],"level":"八阶无上","value30_1":10000,"value30_2":50},
-	"E1181": {"name":"新敌人","hp":10000,"atk":5000,"def":0,"money":0,"exp":0,"point":0,"special":[2,3,9],"bigImage":"dragon1_compress_0.png","purify":-9},
-	"E1182": {"name":"新敌人","hp":25,"atk":2000000,"def":0,"money":0,"exp":0,"point":0,"special":[3],"bigImage":"dragon1_compress_1.png"},
-	"E1183": {"name":"新敌人","hp":1000000000,"atk":40000,"def":0,"money":0,"exp":0,"point":0,"special":[2],"bigImage":"octopus_1.png"}
+	"E1181": {"name":"骨龙","hp":10000,"atk":5000,"def":0,"money":0,"exp":0,"point":0,"special":[2,3,9],"bigImage":"dragon1_compress_0.png","purify":-9,"level":"八阶无上"},
+	"E1182": {"name":"金魔龙","hp":25,"atk":2000000,"def":0,"money":0,"exp":0,"point":0,"special":[3],"bigImage":"dragon1_compress_1.png","level":"八阶无上"},
+	"E1183": {"name":"魔章鱼","hp":1000000000,"atk":40000,"def":0,"money":0,"exp":0,"point":0,"special":[2],"bigImage":"octopus_1.png","level":"八阶无上"}
 }

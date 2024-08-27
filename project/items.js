@@ -2834,17 +2834,11 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"canUseItemEffect": "true"
 	},
 	"I1088": {
-		"cls": "tools",
-		"name": "新物品",
+		"cls": "constants",
+		"name": "火焰纹章",
 		"canUseItemEffect": "true",
-		"useItemEvent": [
-			{
-				"type": "setValue",
-				"name": "flag:shengqishi",
-				"operator": "+=",
-				"value": "30"
-			}
-		]
+		"useItemEvent": null,
+		"text": "击败美面魔帝的毕业奖励，拥有此物，最后评分提高20%"
 	},
 	"I1089": {
 		"cls": "items",

@@ -12,7 +12,7 @@ main.floors.MJ7=
     "images": [],
     "ratio": 512,
     "defaultGround": "ground",
-    "bgm": "bgm.mp3",
+    "bgm": "douguishen.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
@@ -28,10 +28,40 @@ main.floors.MJ7=
         }
     },
     "beforeBattle": {},
-    "afterBattle": {},
+    "afterBattle": {
+        "6,8": [
+            {
+                "type": "setValue",
+                "name": "flag:door_MJ7_10_11",
+                "operator": "+=",
+                "value": "1"
+            }
+        ]
+    },
     "afterGetItem": {},
     "afterOpenDoor": {},
-    "autoEvent": {},
+    "autoEvent": {
+        "10,11": {
+            "0": {
+                "condition": "flag:door_MJ7_10_11==1",
+                "currentFloor": true,
+                "priority": 0,
+                "delayExecute": false,
+                "multiExecute": false,
+                "data": [
+                    {
+                        "type": "openDoor"
+                    },
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ7_10_11",
+                        "operator": "=",
+                        "value": "null"
+                    }
+                ]
+            }
+        }
+    },
     "cannotMove": {},
     "cannotMoveIn": {},
     "map": [
@@ -46,7 +76,7 @@ main.floors.MJ7=
     [  0,  4,  4,  4,  4,  0,1182,  0,  4,  4,  0,  4,  4],
     [  0,  4,  4,  4,  4,  4,  0,  4,  4,  4,  0,  4,  4],
     [  0,  4,  4,  4,  4,  4,  0,  4,  4,  4,  0,  4,  4],
-    [  0,  0,  0,  0,  0,  0,  0,  4,  4,  4,  0,  4,  4],
+    [  0,  0,  0,  0,  0,  0,  0,  4,  4,  4, 85,  4,  4],
     [  4,  4,  4,  4,  4,  4,  4,  4,  4,  4, 93,  4,  4]
 ],
     "bgmap": [

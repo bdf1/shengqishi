@@ -12,7 +12,7 @@ main.floors.LZ9=
     "images": [],
     "ratio": 512,
     "defaultGround": "grass",
-    "bgm": "bgm.mp3",
+    "bgm": "mingyuetianya.mp3",
     "firstArrive": [],
     "eachArrive": [],
     "parallelDo": "",
