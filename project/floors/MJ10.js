@@ -28,11 +28,11 @@ main.floors.MJ10=
             "direction": "up"
         },
         "\t[莫析辉,hero]\b[hero]咦？怎么回事？",
-        "\t[唐佳成,N510]\b[this,6,10]圣子殿下，小心一些！",
+        "\t[${flag:shengqishi_name},N510]\b[this,6,10]圣子殿下，小心一些！",
         "\t[莫析辉,hero]\b[hero]你打不过它吗？要我帮忙吗？",
-        "\t[唐佳成,N510]\b[this,6,10]我能打过它，但是……它有两个头，上下两个头，只要其中一个不死，就会立刻复活……",
+        "\t[${flag:shengqishi_name},N510]\b[this,6,10]我能打过它，但是……它有两个头，上下两个头，只要其中一个不死，就会立刻复活……",
         "\t[莫析辉,hero]\b[hero]原来如此！那你攻上面，我攻下面！",
-        "\t[唐佳成,N510]\b[this,6,10]好，那就拜托殿下了！",
+        "\t[${flag:shengqishi_name},N510]\b[this,6,10]好，那就拜托殿下了！",
         {
             "type": "jump",
             "from": [
@@ -150,7 +150,7 @@ main.floors.MJ10=
                     ]
                 ]
             },
-            "\t[唐佳成,N510]\b[this,6,7]殿下，幸不辱命！",
+            "\t[${flag:shengqishi_name},N510]\b[this,6,7]殿下，幸不辱命！",
             "\t[莫析辉,hero]\b[hero]那咱们去找江鹤仙子提交毕业任务吧！",
             {
                 "type": "setValue",

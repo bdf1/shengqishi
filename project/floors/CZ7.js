@@ -130,6 +130,10 @@ main.floors.CZ7=
                     "\t[光明圣子,hero]\b[hero]你既然来了，就帮我去前面探探路吧",
                     "\t[${flag:shengqishi_name},N472]\b[up]嘿嘿，遵命",
                     {
+                        "type": "insert",
+                        "name": "回收钥匙商店"
+                    },
+                    {
                         "type": "hide",
                         "remove": true
                     }

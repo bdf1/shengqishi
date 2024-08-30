@@ -1778,6 +1778,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		},
         "drawStatusBar": function () {
 			// 这真的是人能写出来的东西？
+			return;
 			var ctx, fill = function (text, x, y, style) {
 				core.ui.setFont(ctx, (/\w+/.test(text) ? 'italic ' : '') + 'bold 18px Verdana');
 				core.ui.fillBoldText(ctx, text, x, y, style);

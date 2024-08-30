@@ -18,7 +18,7 @@ main.floors.MJ5=
     "parallelDo": "",
     "events": {
         "6,9": [
-            "\t[唐佳成,N510]\b[this]这个家伙应该就是殿下的毕业任务啦！",
+            "\t[${flag:shengqishi_name},N510]\b[this]这个家伙应该就是殿下的毕业任务啦！",
             {
                 "type": "hide",
                 "remove": true

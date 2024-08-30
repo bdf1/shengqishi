@@ -16,7 +16,7 @@ main.floors.NH6=
     "firstArrive": [
         {
             "type": "if",
-            "condition": "(flag:shengqishi>=40)",
+            "condition": "(flag:shengqishi>=37)",
             "true": [
                 {
                     "type": "setBlock",
