@@ -2087,13 +2087,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "高阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前五倍魔力值的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前10倍魔力值的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*5)"
+				"value": "(status:mana*10)"
 			},
 			{
 				"type": "setValue",
@@ -2107,13 +2107,13 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 		"cls": "constants",
 		"name": "超阶光明宝典",
 		"canUseItemEffect": "true",
-		"text": "使用后，消耗当前100%魔力值，恢复自身当前10倍魔力值的生命值",
+		"text": "使用后，消耗当前100%魔力值，恢复自身当前20倍魔力值的生命值",
 		"useItemEvent": [
 			{
 				"type": "setValue",
 				"name": "status:hp",
 				"operator": "+=",
-				"value": "(status:mana*10)"
+				"value": "(status:mana*20)"
 			},
 			{
 				"type": "setValue",

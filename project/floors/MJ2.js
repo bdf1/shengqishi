@@ -27,7 +27,36 @@ main.floors.MJ2=
             "stair": "downFloor"
         }
     },
-    "beforeBattle": {},
+    "beforeBattle": {
+        "4,10": [
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>=68)",
+                "true": [
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ2_5_11",
+                        "operator": "+=",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "6,10": [
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>=68)",
+                "true": [
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_MJ2_5_11",
+                        "operator": "+=",
+                        "value": "1"
+                    }
+                ]
+            }
+        ]
+    },
     "afterBattle": {
         "4,10": [
             {
