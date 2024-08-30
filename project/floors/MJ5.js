@@ -54,57 +54,6 @@ main.floors.MJ5=
             ]
         },
         "10,8": [
-            {
-                "type": "if",
-                "condition": "switch:A",
-                "true": [
-                    {
-                        "type": "unloadEquip",
-                        "pos": 0
-                    },
-                    {
-                        "type": "unloadEquip",
-                        "pos": 1
-                    },
-                    {
-                        "type": "unloadEquip",
-                        "pos": 2
-                    },
-                    {
-                        "type": "unloadEquip",
-                        "pos": 3
-                    },
-                    {
-                        "type": "setValue",
-                        "name": "status:hp",
-                        "value": "status:atk+status:def+status:mdef/6+status:hpmax/300+(flag:shop3)*5000"
-                    },
-                    {
-                        "type": "if",
-                        "condition": "flag:shengqishi>=90",
-                        "true": [
-                            {
-                                "type": "win",
-                                "reason": "paladin"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "if",
-                        "condition": "flag:heianshengzi",
-                        "true": [
-                            {
-                                "type": "win",
-                                "reason": "the son of darkness"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "win",
-                        "reason": "saint"
-                    }
-                ]
-            },
             "这里可以计分。\n本塔的计分方式是攻击+防御+护盾/6+血限/300。如果买了额外的装备孔则分数+5000。\n圣骑士路线拿到火焰纹章后可以将分数乘以1.2。\n这里可以把神之血和琼浆玉露卖掉，然后在商店加点换取分数。\n钥匙也可以按照商店的原价卖掉。",
             "圣骑士结局：\n和圣骑士亲密度>=100\n黑暗圣子结局：\n融合黑暗圣子，和圣骑士亲密度在-1~99之间，和准圣子及圣女亲密度均<5\n光明圣子或光明圣女结局：\n不融合黑暗圣子，和圣骑士亲密度在-1~99之间，准圣子或圣女亲密度>5\n黑暗圣子+光明圣子或光明圣女结局：\n融合黑暗圣子，和圣骑士亲密度在-1~99之间，准圣子或圣女亲密度>5\n孤胆英雄结局：\n不融合黑暗圣子，和圣骑士亲密度在-1~99之间，和准圣子及圣女亲密度均<5\n天命主角结局：\n和圣骑士亲密度<=-2",
             "这里由于部分内容还没实装，因此这里圣骑士结局需要圣骑士的亲密度需求为90，且火焰纹章不可能拿到，且准圣子或圣女亲密度视为>5。",
@@ -113,11 +62,61 @@ main.floors.MJ5=
                 "id": "itemShop",
                 "open": true
             },
-            "再访问我即计分。通过按V访问快捷商店来再次访问此商店。",
             {
                 "type": "setValue",
-                "name": "switch:A",
-                "value": "true"
+                "name": "status:money",
+                "operator": "+=",
+                "value": "item:I710*100+item:I711*200+item:I712*300+item:I713*400+item:I714*500+item:I415*1000+item:I416*2000+item:yellowKey*40+item:blueKey*120+item:redKey*300"
+            },
+            {
+                "type": "openShop",
+                "id": "shop1",
+                "open": true
+            },
+            {
+                "type": "unloadEquip",
+                "pos": 0
+            },
+            {
+                "type": "unloadEquip",
+                "pos": 1
+            },
+            {
+                "type": "unloadEquip",
+                "pos": 2
+            },
+            {
+                "type": "unloadEquip",
+                "pos": 3
+            },
+            {
+                "type": "setValue",
+                "name": "status:hp",
+                "value": "status:atk+status:def+status:mdef/6+status:hpmax/300+(flag:shop3)*5000"
+            },
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>=90)",
+                "true": [
+                    {
+                        "type": "win",
+                        "reason": "paladin"
+                    }
+                ]
+            },
+            {
+                "type": "if",
+                "condition": "flag:heianshengzi",
+                "true": [
+                    {
+                        "type": "win",
+                        "reason": "the son of darkness"
+                    }
+                ]
+            },
+            {
+                "type": "win",
+                "reason": "saint"
             }
         ]
     },
