@@ -143,7 +143,7 @@ main.floors.BH20=
             "time": 500,
             "keep": true
         },
-        "\t[莫析辉,hero]\b[hero]打完希羽后，会自爆，勇者血量会变成一血！！"
+        "\t[莫析辉,hero]\b[hero]打完希羽后，会自爆，我血量会变成一血！！"
     ],
     "eachArrive": [],
     "parallelDo": "",
@@ -191,7 +191,7 @@ main.floors.BH20=
                 "direction": "down"
             },
             "\t[莫析辉,hero]\b[hero]希娜！",
-            "\t[黑暗圣女,N1161]\b[this,6,11]圣子哥哥，该你啦",
+            "\t[黑暗圣女,N481]\b[this,6,11]圣子哥哥，该你啦",
             "\t[莫析辉,hero]\b[hero]哼！",
             {
                 "type": "moveHero",

@@ -1409,6 +1409,59 @@ var items_296f5d02_12fd_4166_a7c1_b5e830c9ee3a =
 								]
 							}
 						]
+					},
+					{
+						"text": "调整背景图亮度 [${flags._statusbrg_}]",
+						"color": [
+							127,
+							127,
+							127,
+							1
+						],
+						"action": [
+							{
+								"type": "choices",
+								"text": "调整背景图亮度",
+								"choices": [
+									{
+										"text": "调亮",
+										"color": [
+											237,
+											3,
+											120,
+											1
+										],
+										"action": [
+											{
+												"type": "setValue",
+												"name": "flag:_statusbrg_",
+												"value": "Math.min(1, flags._statusbrg_+0.05)"
+											}
+										]
+									},
+									{
+										"text": "调暗",
+										"color": [
+											233,
+											233,
+											23,
+											1
+										],
+										"action": [
+											{
+												"type": "setValue",
+												"name": "flag:_statusbrg_",
+												"value": "Math.max(0, flags._statusbrg_-0.05)"
+											}
+										]
+									}
+								]
+							},
+							{
+								"type": "function",
+								"function": "function(){\ncore.createSpr0()\n}"
+							}
+						]
 					}
 				]
 			}

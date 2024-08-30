@@ -115,7 +115,7 @@ main.floors.CZ7=
                     },
                     {
                         "type": "setBlock",
-                        "number": "N1152",
+                        "number": "N472",
                         "loc": [
                             [
                                 3,

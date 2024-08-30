@@ -2264,6 +2264,55 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						]
 					}
 				]
+			},
+			{
+				"id": "itemShop",
+				"item": true,
+				"textInList": "道具回收商店",
+				"use": "money",
+				"mustEnable": true,
+				"choices": [
+					{
+						"id": "I710",
+						"sell": "100"
+					},
+					{
+						"id": "I711",
+						"sell": "200"
+					},
+					{
+						"id": "I712",
+						"sell": "300"
+					},
+					{
+						"id": "I713",
+						"sell": "400"
+					},
+					{
+						"id": "I714",
+						"sell": "500"
+					},
+					{
+						"id": "I415",
+						"sell": "1000"
+					},
+					{
+						"id": "I416",
+						"sell": "2000"
+					},
+					{
+						"id": "yellowKey",
+						"sell": "40"
+					},
+					{
+						"id": "blueKey",
+						"sell": "120"
+					},
+					{
+						"id": "redKey",
+						"sell": "300"
+					}
+				]
 			}
 		],
 		"levelUp": [
@@ -2363,6 +2412,6 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"enableRouteFolding": true,
 		"disableShopOnDamage": false,
 		"blurFg": false,
-		"hideLeftStatusBar": false
+		"hideLeftStatusBar": true
 	}
 }

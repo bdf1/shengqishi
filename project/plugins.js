@@ -199,6 +199,50 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 
 	}
+	core.control.setToolbarButton = function (useButton) {
+		if (!core.domStyle.showStatusBar) {
+			// 隐藏状态栏时检查竖屏
+			if (!core.domStyle.isVertical && !core.flags.extendToolbar) {
+				for (var i = 0; i < core.dom.tools.length; ++i)
+					core.dom.tools[i].style.display = 'none';
+				return;
+			}
+			if (!core.hasFlag('showToolbox')) return;
+			else core.dom.tools.hard.style.display = 'block';
+		}
+
+		if (useButton == null) useButton = core.domStyle.toolbarBtn;
+		if ((!core.domStyle.isVertical && !core.flags.extendToolbar)) useButton = false;
+		core.domStyle.toolbarBtn = useButton;
+		if (!core.domStyle.isVertical) {
+			["book", "fly", "toolbox", "keyboard", "shop", "save", "load", "settings"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'none';
+			});
+			["btn1", "btn2", "btn3", "btn4", "btn5", "btn6", "btn7", "btn8"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'none';
+			})
+			core.statusBar.hard.style.display = 'none';
+		} else
+		if (useButton) {
+			["book", "fly", "toolbox", "keyboard", "shop", "save", "load", "settings"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'none';
+			});
+			["btn1", "btn2", "btn3", "btn4", "btn5", "btn6", "btn7", "btn8"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'block';
+			})
+			main.statusBar.image.btn8.style.filter = core.getLocalStorage('altKey') ? 'sepia(1) contrast(1.5)' : '';
+			core.statusBar.hard.style.display = 'block';
+		} else {
+			["btn1", "btn2", "btn3", "btn4", "btn5", "btn6", "btn7", "btn8"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'none';
+			});
+			["book", "fly", "toolbox", "save", "load", "settings"].forEach(function (t) {
+				core.statusBar.image[t].style.display = 'block';
+			});
+			core.statusBar.image.keyboard.style.display = core.statusBar.image.shop.style.display = core.domStyle.isVertical || core.flags.extendToolbar ? "block" : "none";
+			core.statusBar.hard.style.display = 'block';
+		}
+	}
 },
     "drawLight": function () {
 
@@ -2953,11 +2997,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		if (core.getSprite('Spr0') && des) {
 			core.getSprite('Spr0').destroy();
-			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0');
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0');
 		} else if (core.getSprite('Spr0')) {
 			core.clearMap(core.getSprite('Spr0').context);
 
-		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0'); }
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr0'); }
 
 		var ctx = core.getSprite('Spr0').context;
 
@@ -3048,11 +3092,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		if (core.getSprite('Spr1') && des) {
 			core.getSprite('Spr1').destroy();
-			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1');
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1');
 		} else if (core.getSprite('Spr1')) {
 			core.clearMap(core.getSprite('Spr1').context);
 
-		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1'); }
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 12, 'window', 'Spr1'); }
 
 		var ctx = core.getSprite('Spr1').context;
 
@@ -3236,11 +3280,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		if (core.getSprite('Spr2') && des) {
 			core.getSprite('Spr2').destroy();
-			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2');
+			const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2');
 		} else if (core.getSprite('Spr2')) {
 			core.clearMap(core.getSprite('Spr2').context);
 
-		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 - 129 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2'); }
+		} else { const sprite = new Sprite(core.domStyle.isVertical ? 0 : Math.floor(left - (16 + 172 - 0) * core.domStyle.scale), Math.floor(top_up - (64 + 0) * core.domStyle.scale), width, height, 10, 'window', 'Spr2'); }
 
 		var ctx = core.getSprite('Spr2').context;
 

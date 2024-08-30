@@ -75,7 +75,36 @@ main.floors.YS8=
             ]
         }
     },
-    "beforeBattle": {},
+    "beforeBattle": {
+        "9,4": [
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>8)",
+                "true": [
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_YS8_10_3",
+                        "operator": "+=",
+                        "value": "1"
+                    }
+                ]
+            }
+        ],
+        "11,4": [
+            {
+                "type": "if",
+                "condition": "(flag:shengqishi>8)",
+                "true": [
+                    {
+                        "type": "setValue",
+                        "name": "flag:door_YS8_10_3",
+                        "operator": "+=",
+                        "value": "1"
+                    }
+                ]
+            }
+        ]
+    },
     "afterBattle": {
         "9,4": [
             {
