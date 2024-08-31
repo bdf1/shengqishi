@@ -367,9 +367,11 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"boss3.mp3",
 			"bxsgzz.mp3",
 			"cbzc.mp3",
+			"douguishen.mp3",
 			"ending.mp3",
 			"gaolikangzhikb.mp3",
 			"gentaiyangxishuozaijian.mp3",
+			"guijiezhouyuan.mp3",
 			"jw.mp3",
 			"lfmg.mp3",
 			"mingyuetianya.mp3",
@@ -382,6 +384,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 			"xian.mp3",
 			"xieedushi.mp3",
 			"yuanye.mp3",
+			"zhandou.mp3",
 			"zhuangkuoshishi.mp3"
 		],
 		"sounds": [
