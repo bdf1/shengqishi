@@ -275,6 +275,10 @@ main.floors.BH1=
                         ]
                     }
                 ]
+            },
+            {
+                "type": "hide",
+                "remove": true
             }
         ],
         "11,6": [
