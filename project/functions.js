@@ -422,6 +422,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	if (core.hasEquip('I1116'))
 		(core.status.hero.mana += 10)
 	if (core.hasItem('I722')) { core.status.hero.mana += Math.min(Math.sqrt(damageInfo.mon_hp / 500), 50) }
+	if (core.hasItem('I421')) { core.status.hero.mana += Math.min(damageInfo.mon_hp / 5000, 10000) }
 	//回复生命值
 	// 事件的处理
 	var todo = [];
@@ -505,7 +506,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.playSound('宝石')
 	else
 		core.playSound('获得道具');
-	if (core.material.items[itemId].cls == 'equips' || itemId == 'I715') core.plugin.calcEquip();
+	if (core.material.items[itemId].cls == 'equips' || itemId == 'I715' || itemId == 'I421') core.plugin.calcEquip();
 	var todo = [];
 	// 检查该点的获得道具后事件。
 	if (core.status.floorId == null) return;
@@ -915,6 +916,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 
 	if (core.getFlag('skill', 0) == 3) { damage -= hero_def * 0.5 + hero_mdef * 0.2 + 50 }
 	if (core.hasEquip('I723')) { damage -= core.status.hero.hpmax / 200 }
+	if (core.hasItem('I421')) { damage -= core.status.hero.hpmax / 100 }
 	if (core.hasSpecial(mon_special, 28)) {
 		var vampire_damage = (hero_hp - damage) / -5;
 

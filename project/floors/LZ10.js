@@ -965,6 +965,16 @@ main.floors.LZ10=
                     ],
                     "floorId": "GM1",
                     "remove": true
+                },
+                {
+                    "type": "setValue",
+                    "name": "status:money",
+                    "operator": "+=",
+                    "value": "5000"
+                },
+                {
+                    "type": "insert",
+                    "name": "回收钥匙商店"
                 }
             ],
             "false": [

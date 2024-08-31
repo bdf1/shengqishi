@@ -19,12 +19,18 @@ main.floors.MJ8=
     "events": {},
     "changeFloor": {
         "10,12": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "MJ7",
+            "loc": [
+                10,
+                12
+            ]
         },
         "0,10": {
-            "floorId": ":next",
-            "stair": "downFloor"
+            "floorId": "MJ9",
+            "loc": [
+                0,
+                10
+            ]
         }
     },
     "beforeBattle": {},

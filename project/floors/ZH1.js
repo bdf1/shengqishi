@@ -128,7 +128,84 @@ main.floors.ZH1=
                 "type": "if",
                 "condition": "switch:A",
                 "true": [
-                    "你已经购买了此物"
+                    {
+                        "type": "if",
+                        "condition": "((!item:I421)&&(item:I723||core.hasEquip('I723')))",
+                        "true": [
+                            {
+                                "type": "confirm",
+                                "text": "确认要合成圣杯吗? （花费5000金币）",
+                                "yes": [
+                                    {
+                                        "type": "if",
+                                        "condition": "(status:money>=5000)",
+                                        "true": [
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:money",
+                                                "operator": "-=",
+                                                "value": "5000"
+                                            },
+                                            {
+                                                "type": "if",
+                                                "condition": "(equip:1=='I723')",
+                                                "true": [
+                                                    {
+                                                        "type": "unloadEquip",
+                                                        "pos": 1
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "if",
+                                                "condition": "(equip:3=='I723')",
+                                                "true": [
+                                                    {
+                                                        "type": "unloadEquip",
+                                                        "pos": 3
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I722",
+                                                "operator": "+=",
+                                                "value": "-1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I723",
+                                                "operator": "+=",
+                                                "value": "-1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I421",
+                                                "operator": "+=",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:manamax",
+                                                "value": "-1"
+                                            }
+                                        ],
+                                        "false": [
+                                            {
+                                                "type": "playSound",
+                                                "name": "操作失败"
+                                            },
+                                            "你的金币不足！"
+                                        ]
+                                    }
+                                ],
+                                "no": []
+                            }
+                        ],
+                        "false": [
+                            "你已经购买了此物"
+                        ]
+                    }
                 ],
                 "false": [
                     "魔力卷轴，购买价格5000金币，效果：击败敌人后额外获得敌人生命值20‱再开根号的魔力值，最多50点。",
@@ -189,7 +266,84 @@ main.floors.ZH1=
                 "type": "if",
                 "condition": "switch:A",
                 "true": [
-                    "你已经购买了此物"
+                    {
+                        "type": "if",
+                        "condition": "((!item:I421)&&item:I722)",
+                        "true": [
+                            {
+                                "type": "confirm",
+                                "text": "确认要合成圣杯吗? （花费5000金币）",
+                                "yes": [
+                                    {
+                                        "type": "if",
+                                        "condition": "(status:money>=5000)",
+                                        "true": [
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:money",
+                                                "operator": "-=",
+                                                "value": "5000"
+                                            },
+                                            {
+                                                "type": "if",
+                                                "condition": "(equip:1=='I723')",
+                                                "true": [
+                                                    {
+                                                        "type": "unloadEquip",
+                                                        "pos": 1
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "if",
+                                                "condition": "(equip:3=='I723')",
+                                                "true": [
+                                                    {
+                                                        "type": "unloadEquip",
+                                                        "pos": 3
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I722",
+                                                "operator": "+=",
+                                                "value": "-1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I723",
+                                                "operator": "+=",
+                                                "value": "-1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "item:I421",
+                                                "operator": "+=",
+                                                "value": "1"
+                                            },
+                                            {
+                                                "type": "setValue",
+                                                "name": "status:manamax",
+                                                "value": "-1"
+                                            }
+                                        ],
+                                        "false": [
+                                            {
+                                                "type": "playSound",
+                                                "name": "操作失败"
+                                            },
+                                            "你的金币不足！"
+                                        ]
+                                    }
+                                ],
+                                "no": []
+                            }
+                        ],
+                        "false": [
+                            "你已经购买了此物"
+                        ]
+                    }
                 ],
                 "false": [
                     "生命卷轴，购买价格5000金币，效果：击败敌人后额外获得5‰最大生命值的生命。",

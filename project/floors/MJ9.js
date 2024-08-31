@@ -19,8 +19,11 @@ main.floors.MJ9=
     "events": {},
     "changeFloor": {
         "0,10": {
-            "floorId": ":before",
-            "stair": "upFloor"
+            "floorId": "MJ8",
+            "loc": [
+                0,
+                10
+            ]
         },
         "11,10": {
             "floorId": "MJ10",
