@@ -3861,11 +3861,46 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		core.getItemDetail(floorId); // 宝石血瓶详细信息
 		this.drawDamage(ctx);
 	};
+	this.nextCriticals = function (enemy, number, x, y, floorId) {
+		if (typeof enemy == 'string') enemy = core.material.enemys[enemy];
+		if (core.lhjnb[enemy]) return core.lhjnb[enemy];
+		number = number || 1;
+	
+		var specialCriticals = core.enemys._nextCriticals_special(enemy, number, x, y, floorId);
+		if (specialCriticals != null) return core.lhjnb[enemy] = specialCriticals;
+		var info = core.enemys.getDamageInfo(enemy, null, x, y, floorId);
+		if (info == null) { // 如果未破防...
+			var overAtk = core.enemys._nextCriticals_overAtk(enemy, x, y, floorId);
+			if (overAtk == null) return core.lhjnb[enemy] = [];
+			if (typeof overAtk[1] == 'number') return core.lhjnb[enemy] = [[overAtk[0], -overAtk[1]]];
+			info = overAtk[1];
+			info.__over__ = true;
+			info.__overAtk__ = overAtk[0];
+		}
+	
+		if (typeof info == 'number') return core.lhjnb[enemy] = [[0, 0]];
+		if (info.damage <= 0 && !core.flags.enableNegativeDamage) {
+			return core.lhjnb[enemy] = [[info.__overAtk__ || 0, 0]];
+		}
+	
+		if (core.flags.useLoop) {
+			if (core.status.hero.atk <= (main.criticalUseLoop || 1)) {
+				return core.lhjnb[enemy] = core.enemys._nextCriticals_useLoop(enemy, info, number, x, y, floorId);
+			}
+			else {
+				return core.lhjnb[enemy] = core.enemys._nextCriticals_useBinarySearch(enemy, info, number, x, y, floorId);
+			}
+		}
+		else {
+			return core.lhjnb[enemy] = core.enemys._nextCriticals_useTurn(enemy, info, number, x, y, floorId);
+		}
+	}
 	core.control._updateDamage_damage = function (floorId, onMap) {
 		core.status.damage.data = [];
 		if (!core.flags.displayEnemyDamage && !core.flags.displayExtraDamage) return;
 
 		core.extractBlocks(floorId);
+		core.lhjnb = {}
 		core.status.maps[floorId].blocks.forEach(function (block) {
 			var x = block.x,
 				y = block.y;
@@ -3877,10 +3912,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 					return;
 				}
 			}
+			
 
 			if (!block.disable && block.event.cls.indexOf('enemy') == 0 && block.event.displayDamage !== false) {
 				if (core.flags.displayCritical) {
-					var critical = core.enemys.nextCriticals(block.event.id, 1, x, y, floorId);
+					var critical = core.plugin.nextCriticals(block.event.id, 1, x, y, floorId);
 					critical = core.formatBigNumber((critical[0] || [])[0], true);
 					if (critical == '???') critical = '?';
 					core.status.damage.data.push({ text: critical, px: 32 * x + 1, py: 32 * (y + 1) - 11, color: '#FFFFFF' });

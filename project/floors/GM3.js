@@ -91,7 +91,8 @@ main.floors.GM3=
                 ]
             ],
             "remove": true
-        }
+        },
+        "\t[葛尔丹,N566]\b[this,6,2]请你去一下左边的圣子寝殿。"
     ],
     "eachArrive": [],
     "parallelDo": "",

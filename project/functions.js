@@ -504,6 +504,8 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.playSound('heal.mp3');
 	else if (itemId.endsWith('Gem') && core.material.items[itemId].cls == 'items')
 		core.playSound('宝石')
+	else if (['I342', 'I343', 'I344', 'I345', 'I346', 'I347', 'I348', 'I349', 'I350', 'I351', 'I352', 'I353', 'I354', 'I355', 'I356', 'I357', 'I358', 'I359', 'I360', 'I361', 'I362', 'I363', 'I364', 'I365', 'I366', 'I367', 'I368', 'I369', 'I370', 'I371', 'I372', 'I373', 'I374', 'I375', 'I376', 'I598', 'I599', 'I600', 'I601', 'I602', 'I603', 'I604', 'I605', 'I606', 'I607', 'I608', 'I609', 'I610', 'I611', 'I612', 'I613', 'I614', 'I615', 'I616', 'I617', 'I618', 'I619', 'I620', 'I621', 'I692', 'I693', 'I694', 'I695', 'I696', 'I697', 'I698', 'I699', 'I700', 'I701', 'I702', 'I703', 'I704', 'I705', 'I706', 'I707', 'I708', 'I709', 'I1097', 'I1098', 'I1099', 'I1100'].includes(itemId))
+		core.playSound('宝石')
 	else
 		core.playSound('获得道具');
 	if (core.material.items[itemId].cls == 'equips' || itemId == 'I715' || itemId == 'I421') core.plugin.calcEquip();
@@ -1384,7 +1386,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 
 	// 设置魔力值; status:manamax 只有在非负时才生效。
 	if (core.status.hero.manamax != null && core.getRealStatus('manamax') >= 0) {
-		core.status.hero.mana = Math.min(core.status.hero.mana, core.getRealStatus('manamax'));
+		core.status.hero.mana = Math.min(core.status.hero.mana, core.getRealStatus('manamax') + core.getRealStatus('hpmax'));
 		core.setStatusBarInnerHTML('mana', core.status.hero.mana + "/" + core.getRealStatus('manamax'));
 	} else {
 		core.setStatusBarInnerHTML("mana", core.status.hero.mana);
@@ -1855,48 +1857,55 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 			}
 		},
         "drawStatistics": function () {
-			// 浏览地图时参与的统计项目
+	// 浏览地图时参与的统计项目
 
-			return [
-				'yellowDoor', 'blueDoor', 'redDoor', 'greenDoor', 'steelDoor',
-				'yellowKey', 'blueKey', 'redKey', 'greenKey', 'steelKey',
-				'redGem', 'blueGem', 'greenGem', 'yellowGem',
-				'redPotion', 'bluePotion', 'greenPotion', 'yellowPotion', 'superPotion',
-				'pickaxe', 'bomb', 'centerFly', 'icePickaxe', 'freezeBadge',
-				'earthquake', 'upFly', 'downFly', 'jumpShoes', 'lifeWand',
-				'poisonWine', 'weakWine', 'curseWine', 'superWine',
-				'sword1', 'sword2', 'sword3', 'sword4', 'sword5',
-				'shield1', 'shield2', 'shield3', 'shield4', 'shield5',
-				// 在这里可以增加新的ID来进行统计个数，只能增加道具ID
-			];
-		},
+	return [
+		'yellowDoor', 'blueDoor', 'redDoor', 'greenDoor', 'steelDoor',
+		'yellowKey', 'blueKey', 'redKey', 'greenKey', 'steelKey',
+		'pickaxe', 'bomb', 'centerFly', 'icePickaxe', 'freezeBadge',
+		'earthquake', 'upFly', 'downFly', 'jumpShoes', 'lifeWand',
+		'poisonWine', 'weakWine', 'curseWine', 'superWine',
+		'sword1', 'sword2', 'sword3', 'sword4', 'sword5',
+		'shield1', 'shield2', 'shield3', 'shield4', 'shield5',
+		'I692', 'I693', 'I694', 'I695', 'I696', 'I697', 'I698', 'I699', 'I700', 'I701', 'I702', 'I703'
+
+		// 在这里可以增加新的ID来进行统计个数，只能增加道具ID
+	];
+},
         "drawAbout": function () {
-			// 绘制“关于”界面
-			core.ui.closePanel();
-			core.lockControl();
-			core.status.event.id = 'about';
+	// 绘制“关于”界面
+	core.ui.closePanel();
+	core.lockControl();
+	core.status.event.id = 'about';
 
-			var left = 48,
-				top = 36,
-				right = (core._PX_ || core.__PIXELS__) - 2 * left,
-				bottom = (core._PY_ || core.__PIXELS__) - 2 * top;
+	var left = 48,
+		top = 36,
+		right = (core._PX_ || core.__PIXELS__) - 2 * left,
+		bottom = (core._PY_ || core.__PIXELS__) - 2 * top;
 
-			core.setAlpha('ui', 0.85);
-			core.fillRect('ui', left, top, right, bottom, '#000000');
-			core.setAlpha('ui', 1);
-			core.strokeRect('ui', left - 1, top - 1, right + 1, bottom + 1, '#FFFFFF', 2);
+	core.setAlpha('ui', 0.85);
+	core.fillRect('ui', left, top, right, bottom, '#000000');
+	core.setAlpha('ui', 1);
+	core.strokeRect('ui', left - 1, top - 1, right + 1, bottom + 1, '#FFFFFF', 2);
 
-			var text_start = left + 24;
+	var text_start = left + 24;
 
-			// 名称
-			core.setTextAlign('ui', 'left');
-			var globalAttribute = core.status.globalAttribute || core.initStatus.globalAttribute;
-			core.fillText('ui', "HTML5 魔塔样板", text_start, top + 35, globalAttribute.selectColor, "bold 22px " + globalAttribute.font);
-			core.fillText('ui', "版本： " + main.__VERSION__, text_start, top + 80, "#FFFFFF", "bold 17px " + globalAttribute.font);
-			core.fillText('ui', "作者： 艾之葵", text_start, top + 112);
-			core.fillText('ui', 'HTML5魔塔交流群：539113091', text_start, top + 112 + 32);
-			// TODO: 写自己的“关于”页面，每次增加32像素即可
-			core.playSound('打开界面');
-		}
+	// 名称
+	core.setTextAlign('ui', 'left');
+	var globalAttribute = core.status.globalAttribute || core.initStatus.globalAttribute;
+	core.fillText('ui', "新圣骑士", text_start, top + 35, globalAttribute.selectColor, "bold 22px " + globalAttribute.font);
+	core.fillText('ui', "版本： " + main.__VERSION__, text_start, top + 72, "#FFFFFF", "bold 17px " + globalAttribute.font);
+	core.fillText('ui', "作者： bdf1 迷迭香", text_start, top + 100);
+	core.fillText('ui', 'HTML5魔塔交流群：', text_start, top + 100 + 28);
+	core.fillText('ui', '539113091 624253557', text_start, top + 100 + 56);
+	core.fillText('ui', 'HTML5魔塔技术群：959329661', text_start, top + 100 + 84);
+	core.fillText('ui', '迷迭香粉丝群：901012439', text_start, top + 100 + 112);
+	core.fillText('ui', '童元粉丝群：1026767730', text_start, top + 100 + 140);
+	core.fillText('ui', '蛋蛋粉丝群：598458601', text_start, top + 100 + 168);
+	core.fillText('ui', '本塔为第七届蓝海赛参赛塔', text_start, top + 100 + 196);
+	core.fillText('ui', '第七届蓝海赛总奖金 5,672 元', text_start, top + 100 + 224);
+	// TODO: 写自己的“关于”页面，每次增加32像素即可
+	core.playSound('打开界面');
+}
     }
 }

@@ -160,7 +160,12 @@ main.floors.GM2=
             ],
             "floorId": "GM1",
             "remove": true
-        }
+        },
+        {
+            "type": "openShop",
+            "id": "shop1"
+        },
+        "\t[光明教皇,N464]\b[this,6,5]请你去一下你的圣子宫。"
     ],
     "eachArrive": [
         {
