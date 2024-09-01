@@ -1231,44 +1231,48 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 			return data;
 		},
         "loadData": function (data, callback) {
-			// 读档操作；从存储中读取了内容后的行为
+	// 读档操作；从存储中读取了内容后的行为
 
-			// 重置游戏和路线
-			core.resetGame(data.hero, data.hard, data.floorId, core.maps.loadMap(data.maps, null, data.hero.flags), data.values);
-			core.status.route = core.decodeRoute(data.route);
-			core.control._bindRoutePush();
-			// 文字属性，全局属性
-			core.status.textAttribute = core.getFlag('textAttribute', core.status.textAttribute);
-			var toAttribute = core.getFlag('globalAttribute', core.status.globalAttribute);
-			if (!core.same(toAttribute, core.status.globalAttribute)) {
-				core.status.globalAttribute = toAttribute;
-				core.resize();
-			}
-			// 重置音量
-			core.events.setVolume(core.getFlag("__volume__", 1), 0);
-			// 加载勇士图标
-			var icon = core.status.hero.image;
-			icon = core.getMappedName(icon);
-			if (core.material.images.images[icon]) {
-				core.material.images.hero = core.material.images.images[icon];
-				core.material.icons.hero.width = core.material.images.images[icon].width / 4;
-				core.material.icons.hero.height = core.material.images.images[icon].height / 4;
-			}
-			core.setFlag('__fromLoad__', true);
+	// 重置游戏和路线
+	core.resetGame(data.hero, data.hard, data.floorId, core.maps.loadMap(data.maps, null, data.hero.flags), data.values);
+	core.status.route = core.decodeRoute(data.route);
+	core.control._bindRoutePush();
+	// 文字属性，全局属性
+	core.status.textAttribute = core.getFlag('textAttribute', core.status.textAttribute);
+	var toAttribute = core.getFlag('globalAttribute', core.status.globalAttribute);
+	if (!core.same(toAttribute, core.status.globalAttribute)) {
+		core.status.globalAttribute = toAttribute;
+		core.resize();
+	}
+	// 重置音量
+	core.events.setVolume(core.getFlag("__volume__", 1), 0);
+	// 加载勇士图标
+	var icon = core.status.hero.image;
+	icon = core.getMappedName(icon);
+	if (core.material.images.images[icon]) {
+		core.material.images.hero = core.material.images.images[icon];
+		core.material.icons.hero.width = core.material.images.images[icon].width / 4;
+		core.material.icons.hero.height = core.material.images.images[icon].height / 4;
+	}
+	core.setFlag('__fromLoad__', true);
 
-			// TODO：增加自己的一些读档处理
+	// TODO：增加自己的一些读档处理
+	if (!flags.version) {
+		flags._statusbrg_ -= 0.15
+		flags.version = 1
+		core.createSpr0()
+	}
+	// 切换到对应的楼层
+	core.changeFloor(data.floorId, null, data.hero.loc, 0, function () {
+		// TODO：可以在这里设置读档后播放BGM
+		if (core.hasFlag("__bgm__")) { // 持续播放
+			core.playBgm(core.getFlag("__bgm__"));
+		}
 
-			// 切换到对应的楼层
-			core.changeFloor(data.floorId, null, data.hero.loc, 0, function () {
-				// TODO：可以在这里设置读档后播放BGM
-				if (core.hasFlag("__bgm__")) { // 持续播放
-					core.playBgm(core.getFlag("__bgm__"));
-				}
-
-				core.removeFlag('__fromLoad__');
-				if (callback) callback();
-			});
-		},
+		core.removeFlag('__fromLoad__');
+		if (callback) callback();
+	});
+},
         "getStatusLabel": function (name) {
 			// 返回某个状态英文名的对应中文标签，如atk -> 攻击，def -> 防御等。
 			// 请注意此项仅影响 libs/ 下的内容（如绘制怪物手册、数据统计等）
