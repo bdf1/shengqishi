@@ -1259,10 +1259,11 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	core.setFlag('__fromLoad__', true);
 
 	// TODO：增加自己的一些读档处理
-	if (!flags.version) {
-		flags._statusbrg_ -= 0.15
-		flags.version = 1
+	if (flags.version != 2) {
+		flags._statusbrg_ = 0.6
+		flags.version = 2
 		core.createSpr0()
+		if (flags.hard == 1) core.addBuff('atk', 0.1), core.addBuff('def', 0.1), core.addBuff('mdef', 0.1)
 	}
 	// 切换到对应的楼层
 	core.changeFloor(data.floorId, null, data.hero.loc, 0, function () {
@@ -1361,8 +1362,8 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 
 	// 检查HP上限
 	if (core.flags.statusBarItems.indexOf('enableHPMax') >= 0) {
-		if (core.getRealStatus('hpmax')<core.getStatus('hp')) core.addFlag('overflow', core.getStatus('hp') - core.getRealStatus('hpmax'))
-		core.setStatus('hp', Math.min(core.getRealStatus('hpmax'), core.getStatus('hp')));
+		if (core.getRealStatus('hpmax')*(flags.hard==1?2:1)<core.getStatus('hp')) core.addFlag('overflow', core.getStatus('hp') - core.getRealStatus('hpmax')*(flags.hard==1?2:1))
+		core.setStatus('hp', Math.min(core.getRealStatus('hpmax')*(flags.hard==1?2:1), core.getStatus('hp')));
 	}
 
 	// 设置楼层名

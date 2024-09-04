@@ -547,7 +547,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 					1
 				],
 				"action": [
-					"简单难度琼浆玉露和神之血效果翻倍，玉露效果为回满血后再得一瓶琼浆。同时送琼浆玉露各【10】瓶。",
+					"简单难度琼浆玉露和神之血效果翻倍，玉露效果为回满血后再得一瓶琼浆。同时送琼浆玉露各【10】瓶。\n简单难度勇士的全属性额外给与10%的增幅。\n简单难度勇士开局获得幸运金币。\n简单难度勇士最多可以有最大生命2倍的生命。",
 					{
 						"type": "setValue",
 						"name": "item:I415",
@@ -557,6 +557,40 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 						"type": "setValue",
 						"name": "item:I416",
 						"value": "10"
+					},
+					{
+						"type": "setValue",
+						"name": "buff:atk",
+						"operator": "+=",
+						"value": "0.1"
+					},
+					{
+						"type": "setValue",
+						"name": "buff:def",
+						"operator": "+=",
+						"value": "0.1"
+					},
+					{
+						"type": "setValue",
+						"name": "buff:mdef",
+						"operator": "+=",
+						"value": "0.1"
+					},
+					{
+						"type": "setValue",
+						"name": "item:coin",
+						"value": "1"
+					},
+					{
+						"type": "hide",
+						"loc": [
+							[
+								2,
+								2
+							]
+						],
+						"floorId": "ZH1",
+						"remove": true
 					}
 				]
 			},
@@ -1038,7 +1072,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"startText": [
 			{
 				"type": "function",
-				"function": "function(){\nflags._statusgry_ = 0;\nflags._statusbrg_ = 0.6;\ncore.createSpr0();\ncore.createSprBack();\n}"
+				"function": "function(){\nflags._statusgry_ = 0;\nflags._statusbrg_ = 0.6;\ncore.createSpr0();\ncore.createSprBack();\nflags.version = 2;\n}"
 			},
 			{
 				"type": "comment",
