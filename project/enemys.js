@@ -612,7 +612,7 @@ var enemys_fcae963b_31c9_42b4_b48c_bb48d09f3f80 =
 	"E1127": {"name":"蓝影骷髅","hp":4250000,"atk":920000,"def":420000,"money":100,"exp":0,"point":0,"special":[39],"beforeBattle":[{"type":"if","condition":"(flag:shengqishi>=68)","true":[{"type":"animate","name":"yijianzhanqianye"},"\t[${flag:shengqishi_name},N510]\b[this]让我来！","金币+120，防御力+4000",{"type":"setValue","name":"status:money","operator":"+=","value":"120"},{"type":"setValue","name":"status:def","operator":"+=","value":"4000"},{"type":"insert","name":"回收钥匙商店"},{"type":"hide","remove":true}],"false":[]}],"Defvalue":4000,"level":"七阶无上"},
 	"E1128": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
 	"E1129": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},
-	"E1130": {"name":"黑暗兽君","hp":5800000,"atk":860000,"def":450000,"money":125,"exp":0,"point":0,"special":[30,36,39],"level":"八阶无上","X":25,"Atkvalue":4000,"Defvalue":4000,"Mdefvalue":12000,"value30_1":1000,"value30_2":50},
+	"E1130": {"name":"黑暗兽君","hp":5800000,"atk":860000,"def":450000,"money":125,"exp":0,"point":0,"special":[30,36,39],"level":"八阶无上","X":25,"Atkvalue":4000,"Defvalue":4000,"Mdefvalue":12000,"value30_1":1000,"value30_2":50,"notBomb":true},
 	"E1131": {"name":"青龙","hp":16000000,"atk":825000,"def":200000,"money":560,"exp":0,"point":0,"special":[]},
 	"E1132": {"name":"虹眼龙","hp":10000000,"atk":250000,"def":425000,"money":580,"exp":0,"point":0,"special":[2]},
 	"E1133": {"name":"新敌人","hp":0,"atk":0,"def":0,"money":0,"exp":0,"point":0,"special":[]},

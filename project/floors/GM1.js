@@ -94,7 +94,38 @@ main.floors.GM1=
             "remove": true
         },
         "\\c[30]本塔存在幸运金币，和打怪回魔力的法杖，且越到后面获得的法杖回魔力效果越强，因此建议留怪。",
-        "计分前琼浆玉露和神之血可以卖钱换属性：\n琼浆1000金币；玉露2000金币；\n神之血红绿黄蓝紫分别是100，200，300，400，500金币"
+        "计分前琼浆玉露和神之血可以卖钱换属性：\n琼浆1000金币；玉露2000金币；\n神之血红绿黄蓝紫分别是100，200，300，400，500金币",
+        {
+            "type": "confirm",
+            "text": "确认要跳过开局探索吗?",
+            "yes": [
+                {
+                    "type": "changeFloor",
+                    "floorId": "GM2",
+                    "loc": [
+                        6,
+                        11
+                    ]
+                },
+                {
+                    "type": "changeFloor",
+                    "floorId": "GM3",
+                    "loc": [
+                        6,
+                        11
+                    ]
+                },
+                {
+                    "type": "changeFloor",
+                    "floorId": "GM4"
+                },
+                {
+                    "type": "changeFloor",
+                    "floorId": "BH1"
+                }
+            ],
+            "no": []
+        }
     ],
     "eachArrive": [],
     "parallelDo": "",
