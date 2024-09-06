@@ -3032,7 +3032,9 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		core.drawImage(ctx, 'backg.png', 0, 0, 448, 448, 172, 64, 448, 448);
 		}
-
+		else
+		core.drawImage(ctx, 'backw.png', 180, 160, 752, 448, 0, 0, 752, 448);
+		
 
 		//按钮
 		core.drawImage(ctx, 'box1.png', 0, 0, 144, 96, 38, 384, 144, 96);
@@ -3124,7 +3126,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'key2']
+		var heroStatus2 = ['def', 'mana', core.isShopVisited('shop4') ? 'key2' : null]
 		var Scol2 = [0, 20, 180, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
@@ -3142,6 +3144,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		//魔力
 		if (core.domStyle.isVertical) {
+			if (flags.qmd)
 			core.mystatusbox(ctx, 'mana', null, 48 + 128, 16, 20 + (flags.heianshengzi ? 120 : 0));
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
@@ -3149,11 +3152,14 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
+			if (flags.szx)
 			core.mystatusbox(ctx, 'potion', null, 48 + 256, 16, 180);
+			if (flags.szx)
 			core.mystatusbox(ctx, 'potion', null, 48 + 22 + 256, 16 + 22, 300);
 			core.mystatusbox(ctx, 'money', null, 48 + 22 + 128, 16 + 22, 180);
 		}
 		else {
+			if (flags.qmd)
 			core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20 + (flags.heianshengzi ? 120 : 0));
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
@@ -3161,9 +3167,13 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
+			if (flags.szx)
 			core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
+			if (flags.szx)
 			core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 			core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
+			// 难度
+			core.drawTextContent(ctx, core.status.hard || "", { left: 45 + 152 + 422, top: 60 * 5.5, fontSize: 30, bold: true, color: "white" });
 		}
 		core.setFilter(ctx, 'hue-rotate(' + (0) + 'deg)')
 
@@ -3304,7 +3314,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//状态
 		var heroStatus = ['atk', 'mdef', 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', 'key2']
+		var heroStatus2 = ['def', 'mana', core.isShopVisited('shop4') ? 'key2' : null]
 		var Scol2 = [0, 20, 180, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
@@ -3322,30 +3332,38 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		//魔力
 		if (core.domStyle.isVertical) {
-			core.mystatusNumber(ctx, 'shengqishi', null, 48 + 128, 16, 120);
-			core.mystatusNumber(ctx, 'zhunshengzi', null, 48 + 128 + 20, 16, 0);
-			core.mystatusNumber(ctx, 'guangmingshengnv', null, 48 + 128 + 50, 16, 300);
+			if (flags.qmd) {
+				core.mystatusNumber(ctx, 'shengqishi', null, 48 + 128, 16, 120);
+				core.mystatusNumber(ctx, 'zhunshengzi', null, 48 + 128 + 20, 16, 0);
+				core.mystatusNumber(ctx, 'guangmingshengnv', null, 48 + 128 + 50, 16, 300);
+			}
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
+			if (flags.szx)
 			core.mystatusNumber(ctx, 'potion1', null, 48 + 256, 16, 180);
+			if (flags.szx)
 			core.mystatusNumber(ctx, 'potion2', null, 48 + 256 + 22, 16 + 22, 300);
 			core.mystatusNumber(ctx, 'money', null, 48 + 128 + 22, 16 + 22, 180);
 		}
 		else {
-			core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
-			core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
-			core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
+			if (flags.qmd) {
+				core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
+				core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
+				core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
+			}
 			core.setAlpha(ctx, 0.4)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
 			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
 			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
+			if (flags.szx)
 			core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
+			if (flags.szx)
 			core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 			core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
 		}
@@ -3863,36 +3881,40 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 	};
 	this.nextCriticals = function (enemy, number, x, y, floorId) {
 		if (typeof enemy == 'string') enemy = core.material.enemys[enemy];
-		if (core.lhjnb[enemy]) return core.lhjnb[enemy];
+		if (core.lhjnb[enemy.id]) return core.lhjnb[enemy.id];
 		number = number || 1;
-	
+
 		var specialCriticals = core.enemys._nextCriticals_special(enemy, number, x, y, floorId);
-		if (specialCriticals != null) return core.lhjnb[enemy] = specialCriticals;
+		if (specialCriticals != null) return core.lhjnb[enemy.id] = specialCriticals;
 		var info = core.enemys.getDamageInfo(enemy, null, x, y, floorId);
 		if (info == null) { // 如果未破防...
 			var overAtk = core.enemys._nextCriticals_overAtk(enemy, x, y, floorId);
-			if (overAtk == null) return core.lhjnb[enemy] = [];
-			if (typeof overAtk[1] == 'number') return core.lhjnb[enemy] = [[overAtk[0], -overAtk[1]]];
+			if (overAtk == null) return core.lhjnb[enemy.id] = [];
+			if (typeof overAtk[1] == 'number') return core.lhjnb[enemy.id] = [
+				[overAtk[0], -overAtk[1]]
+			];
 			info = overAtk[1];
 			info.__over__ = true;
 			info.__overAtk__ = overAtk[0];
 		}
-	
-		if (typeof info == 'number') return core.lhjnb[enemy] = [[0, 0]];
+
+		if (typeof info == 'number') return core.lhjnb[enemy.id] = [
+			[0, 0]
+		];
 		if (info.damage <= 0 && !core.flags.enableNegativeDamage) {
-			return core.lhjnb[enemy] = [[info.__overAtk__ || 0, 0]];
+			return core.lhjnb[enemy.id] = [
+				[info.__overAtk__ || 0, 0]
+			];
 		}
-	
+
 		if (core.flags.useLoop) {
 			if (core.status.hero.atk <= (main.criticalUseLoop || 1)) {
-				return core.lhjnb[enemy] = core.enemys._nextCriticals_useLoop(enemy, info, number, x, y, floorId);
+				return core.lhjnb[enemy.id] = core.enemys._nextCriticals_useLoop(enemy, info, number, x, y, floorId);
+			} else {
+				return core.lhjnb[enemy.id] = core.enemys._nextCriticals_useBinarySearch(enemy, info, number, x, y, floorId);
 			}
-			else {
-				return core.lhjnb[enemy] = core.enemys._nextCriticals_useBinarySearch(enemy, info, number, x, y, floorId);
-			}
-		}
-		else {
-			return core.lhjnb[enemy] = core.enemys._nextCriticals_useTurn(enemy, info, number, x, y, floorId);
+		} else {
+			return core.lhjnb[enemy.id] = core.enemys._nextCriticals_useTurn(enemy, info, number, x, y, floorId);
 		}
 	}
 	core.control._updateDamage_damage = function (floorId, onMap) {
@@ -3912,7 +3934,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 					return;
 				}
 			}
-			
+
 
 			if (!block.disable && block.event.cls.indexOf('enemy') == 0 && block.event.displayDamage !== false) {
 				if (core.flags.displayCritical) {

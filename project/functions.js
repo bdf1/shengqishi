@@ -508,6 +508,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		core.playSound('宝石')
 	else
 		core.playSound('获得道具');
+	if (['I710', 'I711', 'I712', 'I713', 'I714'].includes(itemId) && !flags.szx) core.insertCommonEvent('神之血解锁');
 	if (core.material.items[itemId].cls == 'equips' || itemId == 'I715' || itemId == 'I421') core.plugin.calcEquip();
 	var todo = [];
 	// 检查该点的获得道具后事件。
@@ -1259,11 +1260,13 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 	core.setFlag('__fromLoad__', true);
 
 	// TODO：增加自己的一些读档处理
-	if (flags.version != 2) {
+	if (flags.version != 3) {
 		flags._statusbrg_ = 0.6
-		flags.version = 2
+		flags.version = 3
 		core.createSpr0()
-		if (flags.hard == 1) core.addBuff('atk', 0.1), core.addBuff('def', 0.1), core.addBuff('mdef', 0.1)
+		if (flags.hard == 1) core.addBuff('atk', 0.1), core.addBuff('def', 0.1), core.addBuff('mdef', 0.1), core.getItem('coin')
+		if (flags.shengqishi || flags.heianshengzi || flags.guangmingshengnv || flags.zhunshengzi) core.insertCommonEvent('亲密度解锁')
+		core.insertCommonEvent('神之血解锁')
 	}
 	// 切换到对应的楼层
 	core.changeFloor(data.floorId, null, data.hero.loc, 0, function () {

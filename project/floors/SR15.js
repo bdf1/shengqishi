@@ -63,7 +63,12 @@ main.floors.SR15=
                 "type": "openShop",
                 "id": "shop4",
                 "open": true
-            }
+            },
+            {
+                "type": "function",
+                "function": "function(){\ncore.AllSprites()\n}"
+            },
+            "解锁了黑白钥匙，状态栏将增加显示白钥匙和黑钥匙。"
         ]
     },
     "changeFloor": {

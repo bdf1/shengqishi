@@ -149,6 +149,17 @@ main.floors.BH1=
                                 "value": "1"
                             },
                             {
+                                "type": "if",
+                                "condition": "!flag:qmd",
+                                "true": [
+                                    "圣骑士亲密度减少了1。",
+                                    {
+                                        "type": "insert",
+                                        "name": "亲密度解锁"
+                                    }
+                                ]
+                            },
+                            {
                                 "type": "setBlock",
                                 "number": "N467",
                                 "loc": [
