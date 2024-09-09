@@ -2857,7 +2857,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 
 
-		if (!num && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
+		if (!num && name != null && name != 'key1' && name != 'key2' && name != 'potion1' && name != 'potion2') {
 			num = hero[name]
 			if(name == 'shengqishi' || name == 'guangmingshengnv' || name == 'zhunshengzi') num = flags[name] || 0
 			num = num.toString()
@@ -2884,7 +2884,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			}
 		}
 		if (name === 'key1' || name === 'key2') {
-			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0, hero.items.tools.redKey || 0, hero.items.tools.greenKey || 0];
+			var num = [hero.items.tools.yellowKey || 0, hero.items.tools.blueKey || 0, hero.items.tools.redKey || 0];
 			var keyCol = [170, 0, 140, 250]
 			if (name === 'key2') {
 				num = [hero.items.tools.whiteKey || 0, hero.items.tools.I422 || 0];
@@ -2894,12 +2894,12 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				var numk = num[k]
 				numk = numk.toString()
 				if (keyCol[k] < 0)
-					core.setFilter(ctx, 'grayscale(' + 100 + '%)');
+					core.setFilter(ctx, 'grayscale(' + 100 + '%)brightness(' + (keyCol[k] == -1 ? 200 : 25) + '%)');
 				else
 				core.setFilter(ctx, 'hue-rotate(' + keyCol[k] + 'deg)')
 				for (var i in numk) {
-					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k) - (k == 3 ? 10 : 0), y, 16, 16)
-					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 30 * Number(k) - (k == 3 ? 10 : 0), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10304), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
+					core.drawIcon(ctx, 'X' + (10305 + Number(numk[i])), x + 5 + 10 * Number(i) + 30 * Number(k), y, 16, 16)
 				}
 			}
 			core.setFilter(ctx, '')
@@ -2927,7 +2927,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 	}
 
 	core.mystatusbox = function (ctx, name, num, x, y, col2) {
-
+		if (name == null) return;
 		var m = '';
 		if (hero[name] < 0)
 			m = 'invert(100%)';
@@ -2991,7 +2991,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (-64);
+			top_up += core.domStyle.scale * (-96);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -3067,6 +3067,27 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.drawIcon(ctx, btn[i], 38 + 152 + 422 + 24 + 32 * (i % 3), 164 + 16 + 32 * Math.floor(i / 3) - h, 32, 32)
 
 		}
+		var btn = ['I710', 'I711', 'I712', 'I713', 'I714', 'I415', 'I416']
+		core.setTextAlign(ctx, 'right');
+		for (var i in btn) {
+			var h = 0
+			if (flags._Spr1Move_ && flags._Spr1Move_ < 18 && flags._Spr1Move_ === Number(i) + 11) {
+				h = 3
+				//core.drawImage(ctx, 'boxLight.png', 0, 0, 48, 48, 38 - 8 + 24 + 32 * ((flags._Spr1Move_ - 1) % 3), 384 - 8 + 16 + 32 * Math.floor((flags._Spr1Move_ - 1) / 3), 48, 48)
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)brightness(2)grayscale(' + (gry || 0) + '%)')
+			} else
+				core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
+			if (hero.items.tools[btn[i]]){
+				if (core.domStyle.isVertical) {
+					core.drawIcon(ctx, btn[i], 8 + 32 * i, 124, 32, 32)
+					core.fillText(ctx, hero.items.tools[btn[i]], 40 + 32 * i, 156, '#FFFFFF', core.ui._buildFont(14, true));
+				}
+				else {
+					core.drawIcon(ctx, btn[i], 38 + 152 + 422 + 8 + 32 * (i % 4), 208 + 16 + 32 * Math.floor(i / 4) - h, 32, 32)
+					core.fillText(ctx, hero.items.tools[btn[i]], 38 + 152 + 422 + 40 + 32 * (i % 4), 208 + 48 + 32 * Math.floor(i / 4), '#FFFFFF', core.ui._buildFont(14, true));
+				}
+			}
+		}
 		core.setFilter(ctx, fil)
 
 		//技能栏
@@ -3088,7 +3109,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (-64);
+			top_up += core.domStyle.scale * (-96);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -3124,10 +3145,10 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / hero.hpmax, 32, 60 - 16 + 4, 142, 128 * hero.hp / hero.hpmax, 32)
 		//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
 		//状态
-		var heroStatus = ['atk', 'mdef', 'key1']
+		var heroStatus = ['atk', 'mdef', core.domStyle.isVertical ? null : 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', core.isShopVisited('shop4') ? 'key2' : null]
-		var Scol2 = [0, 20, 180, 0]
+		var heroStatus2 = ['def', 'mana', core.domStyle.isVertical ? null : core.isShopVisited('shop4') ? 'key2' : null]
+		var Scol2 = [0, 20, 300, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
 				if (heroStatus2[i] != null)
@@ -3144,33 +3165,40 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		}
 		//魔力
 		if (core.domStyle.isVertical) {
-			if (flags.qmd)
-			core.mystatusbox(ctx, 'mana', null, 48 + 128, 16, 20 + (flags.heianshengzi ? 120 : 0));
-			core.setAlpha(ctx, 0.4)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			if (flags.qmd) {
+				core.setFilter(ctx, 'hue-rotate(' + (0) + 'deg)')
+				var npcs = [flags.heianshengzi ? 'N1124' : '', 'N510', 'N566', 'N489'];
+				for (var i = 0; i < 4; i++)
+				core.drawIcon(ctx, npcs[i], 32 + 256 + 32 * i, 64, 32, 48)
+			}//core.setAlpha(ctx, 0.4)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
-			if (flags.szx)
-			core.mystatusbox(ctx, 'potion', null, 48 + 256, 16, 180);
-			if (flags.szx)
-			core.mystatusbox(ctx, 'potion', null, 48 + 22 + 256, 16 + 22, 300);
+			//if (flags.szx)
+			core.mystatusbox(ctx, 'key1', null, 48 + 256, 16, 180);
+			if (core.isShopVisited('shop4'))
+			core.mystatusbox(ctx, 'key2', null, 48 + 22 + 256, 16 + 22, 300);
 			core.mystatusbox(ctx, 'money', null, 48 + 22 + 128, 16 + 22, 180);
 		}
 		else {
-			if (flags.qmd)
-			core.mystatusbox(ctx, 'mana', null, 80 + 152 + 422, 122, 20 + (flags.heianshengzi ? 120 : 0));
-			core.setAlpha(ctx, 0.4)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			if (flags.qmd) {
+				core.setFilter(ctx, 'hue-rotate(' + (0) + 'deg)')
+				var npcs = [flags.heianshengzi ? 'N1124' : '', 'N510', 'N566', 'N489'];
+				for (var i = 0; i < 4; i++)
+				core.drawIcon(ctx, npcs[i], 38 + 152 + 422 + 8 + 32 * i, 90, 32, 48)
+			}
+			//core.setAlpha(ctx, 0.4)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
-			if (flags.szx)
-			core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
-			if (flags.szx)
-			core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+			//if (flags.szx)
+			//core.mystatusbox(ctx, 'potion', null, 80 + 152 + 422, 60 * 4, 180);
+			//if (flags.szx)
+			//core.mystatusbox(ctx, 'potion', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 			core.mystatusbox(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
 			// 难度
 			core.drawTextContent(ctx, core.status.hard || "", { left: 45 + 152 + 422, top: 60 * 5.5, fontSize: 30, bold: true, color: "white" });
@@ -3204,12 +3232,14 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['防御', (hero.def < 0 ? '\r[red]' : '') + hero.def + '\r'],
 			['护盾', (hero.mdef < 0 ? '\r[red]' : '') + hero.mdef + '\r'],
 			['魔量', hero.mana],
-			['钥匙', core.itemCount('yellowKey') + '/' + core.itemCount('blueKey') + '/' + core.itemCount('redKey') + '/' + core.itemCount('greenKey')],
+			['钥匙', core.itemCount('yellowKey') + '/' + core.itemCount('blueKey') + '/' + core.itemCount('redKey')],
 			['钥匙', core.itemCount('whiteKey') + '/' + core.itemCount('I422') + '\r'],
-			['亲密度', ''],
-			['神之血', ''],
-			['琼浆玉露', ''],
 			['金币', hero.money],
+			['黑暗圣子', flags.heianshengzi || 0],
+			['圣骑士', flags.shengqishi || 0],
+			['准圣子', flags.zhunshengzi || 0],
+			['光明圣女', flags.guangmingshengnv || 0],
+			
 		]
 		var text2 = [
 			//['等级', '下级' + leveltext[hero.lv - 1][1]],
@@ -3222,10 +3252,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			['魔量', '用于施放技能的消耗'],
 			['钥匙', '用于开启黄/蓝/红/绿门'],
 			['钥匙', '用于开启白/黑门'],
-			['亲密度', '和圣骑士、准圣子、圣女亲密度'],
-			['神之血', '增加生命上限一定比例的生命'],
-			['琼浆玉露', '增加生命上限一定比例的生命'],
 			['金币', '用于商店购买的货币'],
+			['黑暗圣子', flags.heianshengzi ? '已融合黑暗圣子' : '未融合黑暗圣子'],
+			['圣骑士', '和圣骑士亲密度'],
+			['准圣子', '和光明准圣子亲密度'],
+			['光明圣女', '和光明圣女亲密度'],
 		]
 
 		core.setFilter(ctx, 'hue-rotate(' + (col || 0) + 'deg)grayscale(' + (gry || 0) + '%)')
@@ -3251,7 +3282,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 
 		}
 
-		if (flags._Spr1Move_ >= 8) {
+		if (flags._Spr1Move_ >= 8 && flags._Spr1Move_ < 11) {
 			core.drawImage(ctx, 'box2Light.png', 0, 0, 144, 96, 38 + 152 + 422, 166, 144, 96);
 		}
 		if (flags._Spr1Move_ == 7) {
@@ -3284,7 +3315,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var width = 748 + 100;
 		var height = 560;
 		if (core.domStyle.isVertical) {
-			top_up += core.domStyle.scale * (-64);
+			top_up += core.domStyle.scale * (-96);
 		} else {
 			top_up -= 16 * core.domStyle.scale;
 		}
@@ -3309,13 +3340,15 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.mystatusNumber(ctx, 'hp', null, 80 + 12, 122, 250);
 		}
 		var need = core.firstData.levelUp[core.status.hero.lv].need;
+		if (!core.domStyle.isVertical) {
 		core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.hp / core.getRealStatus('hpmax'), 32, 60 - 16 + 4, 142, 128 * hero.hp / core.getRealStatus('hpmax'), 32)
 		core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4, 142, 128, 32)
+		}
 		//状态
-		var heroStatus = ['atk', 'mdef', 'key1']
+		var heroStatus = ['atk', 'mdef', core.domStyle.isVertical ? null : 'key1']
 		var Scol = [140, 280, 180]
-		var heroStatus2 = ['def', 'mana', core.isShopVisited('shop4') ? 'key2' : null]
-		var Scol2 = [0, 20, 180, 0]
+		var heroStatus2 = ['def', 'mana', core.domStyle.isVertical ? null : core.isShopVisited('shop4') ? 'key2' : null]
+		var Scol2 = [0, 20, 300, 0]
 		if (core.domStyle.isVertical) {
 			for (var i in heroStatus2)
 				if (heroStatus2[i] != null)
@@ -3333,38 +3366,39 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		//魔力
 		if (core.domStyle.isVertical) {
 			if (flags.qmd) {
-				core.mystatusNumber(ctx, 'shengqishi', null, 48 + 128, 16, 120);
-				core.mystatusNumber(ctx, 'zhunshengzi', null, 48 + 128 + 20, 16, 0);
-				core.mystatusNumber(ctx, 'guangmingshengnv', null, 48 + 128 + 50, 16, 300);
+				core.mystatusNumber(ctx, 'shengqishi', null, 280 + 15 - 5 * (flags.shengqishi.toString().length) + 32, 116, 120);
+				core.mystatusNumber(ctx, 'zhunshengzi', null, 280 + 15 - 5 * (flags.zhunshengzi.toString().length) + 64, 116, 0);
+				core.mystatusNumber(ctx, 'guangmingshengnv', null, 280 + 15 - 5 * (flags.guangmingshengnv.toString().length) + 96, 116, 300);
 			}
-			core.setAlpha(ctx, 0.4)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			//core.setAlpha(ctx, 0.4)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
-			if (flags.szx)
-			core.mystatusNumber(ctx, 'potion1', null, 48 + 256, 16, 180);
-			if (flags.szx)
-			core.mystatusNumber(ctx, 'potion2', null, 48 + 256 + 22, 16 + 22, 300);
+			//if (flags.szx)
+			core.mystatusNumber(ctx, 'key1', null, 48 + 256, 16, 180);
+			if (core.isShopVisited('shop4'))
+			core.mystatusNumber(ctx, 'key2', null, 48 + 256 + 22, 16 + 22, 300);
 			core.mystatusNumber(ctx, 'money', null, 48 + 128 + 22, 16 + 22, 180);
 		}
 		else {
 			if (flags.qmd) {
-				core.mystatusNumber(ctx, 'shengqishi', null, 80 + 152 + 422, 122, 120);
-				core.mystatusNumber(ctx, 'zhunshengzi', null, 80 + 152 + 422 + 20, 122, 0);
-				core.mystatusNumber(ctx, 'guangmingshengnv', null, 80 + 152 + 422 + 50, 122, 300);
+				//38 + 152 + 422 + 8 + 32 * i -> 32 + 256 + 32 * i
+				core.mystatusNumber(ctx, 'shengqishi', null, 38 + 152 + 422 + 15 - 5 * (flags.shengqishi.toString().length) + 32, 140, 120);
+				core.mystatusNumber(ctx, 'zhunshengzi', null, 38 + 152 + 422 + 15 - 5 * (flags.zhunshengzi.toString().length) + 64, 140, 0);
+				core.mystatusNumber(ctx, 'guangmingshengnv', null, 38 + 152 + 422 + 15 - 5 * (flags.guangmingshengnv.toString().length) + 96, 140, 300);
 			}
-			core.setAlpha(ctx, 0.4)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
+			//core.setAlpha(ctx, 0.4)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * hero.mana / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * hero.mana / hero.manamax, 32)
 			core.setAlpha(ctx, 1)
-			core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
-			core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
+			//core.drawImage(ctx, 'manaLt.png', 0, 0, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32, 60 - 16 + 4 + 152 + 422, 142, 128 * (hero.mana - (flags.skillmana || 0)) / hero.manamax, 32)
+			//core.drawImage(ctx, 'manaL.png', 0, 0, 128, 32, 60 - 16 + 4 + 152 + 422, 142, 128, 32)
 			//钥匙/金币
-			if (flags.szx)
-			core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
-			if (flags.szx)
-			core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
+			//if (flags.szx)
+			//core.mystatusNumber(ctx, 'potion1', null, 80 + 152 + 422, 60 * 4, 180);
+			//if (flags.szx)
+			//core.mystatusNumber(ctx, 'potion2', null, 80 + 22 + 152 + 422, 22 + 60 * 4, 300);
 			core.mystatusNumber(ctx, 'money', null, 80 + 152 + 422, 60 * 5, 180);
 		}
 
@@ -3416,6 +3450,29 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			break;
 		case 9:
 			if (!core.status.lockControl) main.core.ui._drawReplay();
+			break;
+		case 10:
+			if (!core.status.lockControl && core.hasItem('I710')) core.useItem('I710');
+			break;
+		case 11:
+			if (!core.status.lockControl && core.hasItem('I711')) core.useItem('I711');
+			break;
+		case 12:
+			if (!core.status.lockControl && core.hasItem('I712')) core.useItem('I712');
+			break;
+		case 13:
+			if (!core.status.lockControl && core.hasItem('I713')) core.useItem('I713');
+			break;
+		case 14:
+			if (!core.status.lockControl && core.hasItem('I714')) core.useItem('I714');
+			break;
+		case 15:
+			if (!core.status.lockControl && core.hasItem('I415')) core.useItem('I415');
+			break;
+		case 16:
+			if (!core.status.lockControl && core.hasItem('I416')) core.useItem('I416');
+			break;
+		
 		}
 		//console.log("点击的位置合法，x:" + x + 'y:' + y);
 
@@ -3447,6 +3504,11 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			j = 10
 		if (x >= 636 && x < 732 && y >= 400 && y < 464)
 			j = 7
+		if (x >= 620 && x < 748 && y >= 224 && y < 256)
+			j = 11 + Math.floor((x - 620) / 32)
+		if (x >= 620 && x < 748 && y >= 256 && y < 288)
+			j = 15 + Math.floor((x - 620) / 32)
+		
 
 		if (i !== j) {
 			flags._Spr1Move_ = j;
@@ -3457,8 +3519,8 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		var ri = 0;
 		var rj2 = 0;
 		var rj
-		var rx = [80, 102, 80, 102, 80, 102, 80, 102, 654, 654, 676, 654]
-		var ry = [100, 122, 200, 222, 260, 282, 320, 342, 122, 240, 262, 300]
+		var rx = [80, 102, 80, 102, 80, 102, 80, 102, 654, 659, 691, 723, 755]
+		var ry = [100, 122, 200, 222, 260, 282, 320, 342, 300, 144, 144, 144, 144]
 		for (var r in rx) {
 			if ((rx[r] - 24 - x) * (rx[r] - 24 - x) + (ry[r] + 6 - y) * (ry[r] + 6 - y) <= 16 * 16)
 				rj = [rx[r] - 24, ry[r] + 6, r];
@@ -4166,7 +4228,7 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 				color = '#7f7f7f'
 				break;
 			default:
-				console.log(name, diff[name])
+				//console.log(name, diff[name])
 				if (diff[name] == 1) content = core.material.items[name].name;
 				else if (diff[name]) content = core.material.items[name].name + '*' + diff[name];
 			}

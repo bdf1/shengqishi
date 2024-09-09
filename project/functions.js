@@ -518,6 +518,7 @@ var functions_d6ad677b_427a_4623_b50f_a445a3b0ef8a =
 		if (event.data) event = event.data;
 		core.unshift(todo, event);
 	}
+	if (['I710', 'I711', 'I712', 'I713', 'I714', 'I415', 'I416'].includes(itemId)) core.createSpr0();
 
 	if (todo.length > 0) core.insertAction(todo, x, y);
 },

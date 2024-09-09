@@ -686,7 +686,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 	"firstData": {
 		"title": "旧约•圣骑士",
 		"name": "jiuyueshengqishi",
-		"version": "Ver 2.10.0",
+		"version": "Ver 2.10.3",
 		"floorId": "MT0",
 		"hero": {
 			"image": "shengzi.png",
@@ -2410,7 +2410,7 @@ var data_a1e2fb4a_e986_4524_b0da_9b7ba7c0874d =
 		"hatred": 2,
 		"animateSpeed": 300,
 		"moveSpeed": 100,
-		"statusCanvasRowsOnMobile": 3,
+		"statusCanvasRowsOnMobile": 2,
 		"floorChangeTime": 100
 	},
 	"flags": {
