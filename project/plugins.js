@@ -243,6 +243,23 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 			core.statusBar.hard.style.display = 'block';
 		}
 	}
+	core.actions._getClickLoc = function (x, y) {
+
+		var statusBar = { 'x': 0, 'y': 0 };
+		var size = 32;
+		size = size * core.domStyle.scale;
+
+		if (core.domStyle.isVertical) {
+
+		} else {
+			statusBar.x = core.dom.statusBar.offsetWidth;
+		}
+
+		var left = core.dom.gameGroup.offsetLeft + statusBar.x;
+		var top = core.dom.gameGroup.offsetTop + statusBar.y;
+		var loc = { 'x': Math.max(x - left), 'y': Math.max(y - top), 'size': size };
+		return loc;
+	}
 },
     "drawLight": function () {
 
