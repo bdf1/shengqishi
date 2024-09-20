@@ -185,16 +185,21 @@ var plugins_bb40132b_638b_4a9f_b028_d3fe47acc8d1 =
 		for (var i of fazhang_)
 			if (core.status.hero.equipment.includes(i) || core.hasItem(i)) fazhang = i;
 		juanzhou = core.clone(juanzhou_).filter(i => core.status.hero.equipment.includes(i) || core.hasItem(i));
+		var haveI720 = juanzhou.includes('I720');
 		flags.saveEquips = []
 		if (flags.shop3) {
 			while (juanzhou.length < 2) juanzhou.push(null);
 			for (var i = 0; i < juanzhou.length; i++)
 				for (var j = i + 1; j < juanzhou.length; j++)
-					flags.saveEquips.push([yifu, juanzhou[i], fazhang, juanzhou[j]]);
+					if (haveI720 && (![juanzhou[i], juanzhou[j]].includes('I720')) && (['I718', 'I719'].includes(juanzhou[i]) || ['I718', 'I719'].includes(juanzhou[j])));
+					else
+						flags.saveEquips.push([yifu, juanzhou[i], fazhang, juanzhou[j]]);
 		} else {
 			while (juanzhou.length < 1) juanzhou.push(null);
 			for (var i = 0; i < juanzhou.length; i++)
-				flags.saveEquips.push([yifu, juanzhou[i], fazhang]);
+				if (haveI720 && juanzhou[i] != 'I720' && ['I718', 'I719'].includes(juanzhou[i]));
+				else
+					flags.saveEquips.push([yifu, juanzhou[i], fazhang]);
 		}
 
 

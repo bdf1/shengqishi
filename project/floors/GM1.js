@@ -121,6 +121,24 @@ main.floors.GM1=
                 },
                 {
                     "type": "changeFloor",
+                    "floorId": "GM5"
+                },
+                {
+                    "type": "trigger",
+                    "loc": [
+                        4,
+                        9
+                    ]
+                },
+                {
+                    "type": "trigger",
+                    "loc": [
+                        8,
+                        5
+                    ]
+                },
+                {
+                    "type": "changeFloor",
                     "floorId": "BH1"
                 }
             ],
